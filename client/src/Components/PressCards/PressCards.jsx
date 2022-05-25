@@ -8,7 +8,7 @@ const PressCards = () => {
     {
       title: "Impact of Air Pollution on Health & Life",
       image:
-        "https://www.clubmahindra.com/blog/media/section_images/coverimage-f846b10831cf739.jpg",
+        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/air.jpg",
       description:
         "To create awareness of rising air pollution and to mitigete its impact....",
       tag: "Air Pollution",
@@ -18,9 +18,8 @@ const PressCards = () => {
     {
       title: "Smart Technologyis going to pave India",
       image:
-        "https://sabrangindia.in/sites/default/files/field/image/coal_mine0.jpg",
-      description:
-        "MoS, Science & Technology & Earth Sciences said,Smart...",
+        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/Smart%20Technologies.jpg",
+      description: "MoS, Science & Technology & Earth Sciences said,Smart...",
       tag: "Smart Technology",
       date: "Thu, 25 Apr, 2022",
       key: 2,
@@ -28,7 +27,7 @@ const PressCards = () => {
     {
       title: "AI is a Kinetic enabler for growth of India..",
       image:
-        "https://www.clubmahindra.com/blog/media/section_images/coverimage-f846b10831cf739.jpg",
+        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/Artificial%20Intelligence.jpg",
       description:
         "Artificial Intelligence is a Kinetic enabler for growth of Indian technolo...",
       tag: "A.I",
@@ -38,7 +37,7 @@ const PressCards = () => {
     {
       title: "About 44 cr PMJDY beneficiary accounts linked with JAM.",
       image:
-        "https://sabrangindia.in/sites/default/files/field/image/coal_mine0.jpg",
+        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/PMJDY.jpg",
       description:
         "As of October 2021, about 44 crore Pradhan Mantri Jan Dhan Yojana accounts..",
       tag: "PMJDY",
@@ -49,7 +48,7 @@ const PressCards = () => {
 
   return (
     <>
-      <div className="m-10">
+      <div className="mt-10">
         <div className="flex items-center justify-between m-5 mx-64">
           <div className="flex flex-col justify-center items-center p-2 shadow-2xl w-36 text-orange-500">
             <div className="w-12 h-12">
@@ -80,7 +79,7 @@ const PressCards = () => {
         <div className="flex align-items items-center  my-5 mx-44">
           <div className="flex flex-col align-items items-center my-10 ">
             <div
-              className="flex flex-wrap justify-center gap-20"
+              className="flex flex-wrap justify-center gap-10"
               style={{ height: "30rem" }}
             >
               {stateInfo.map((items) => (
@@ -102,7 +101,7 @@ const PressCards = () => {
                       className="w-full h-full rounded-t-3xl"
                     />
                   </div>
-                  <div className="flex flex-col items-center justify-center gap-4 m-5">
+                  <div className="flex flex-col items-center justify-center m-2">
                     <h1 className="text-2xl font-semibold text-orange-500">
                       {items.title}
                     </h1>

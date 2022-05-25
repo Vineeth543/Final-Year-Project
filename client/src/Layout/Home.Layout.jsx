@@ -10,6 +10,7 @@ import Categories from "../Components/Categories/Categories";
 import TreasureCards from "../Components/Treasures/TreasureCard";
 import Achievements from "../Components/Achievements/Achievements";
 import PressCards from "../Components/PressCards/PressCards";
+import Footer from "../Components/Footer/Footer";
 
 const HomeLayout = () => {
   return (
@@ -27,6 +28,7 @@ const HomeLayout = () => {
       <div className="container m-auto">
         <PressCards />
       </div>
+      <Footer />
     </>
   );
 };
