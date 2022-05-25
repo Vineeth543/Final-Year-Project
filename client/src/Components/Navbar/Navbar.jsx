@@ -11,12 +11,12 @@ const Navbar = () => {
             className="w-full h-full"
           />
         </div>
-        <h1>Home</h1>
-        <h1>About Us</h1>
-        <h1>e-Services</h1>
-        <h1>What's New</h1>
-        <h1>Contact Us</h1>
-        <h1>Helpline Numbers</h1>
+        <h1 className="font-semibold text-lg">Home</h1>
+        <h1 className="font-semibold text-lg">About Us</h1>
+        <h1 className="font-semibold text-lg">e-Services</h1>
+        <h1 className="font-semibold text-lg">What's New</h1>
+        <h1 className="font-semibold text-lg">Contact Us</h1>
+        <h1 className="font-semibold text-lg">Helpline Numbers</h1>
       </div>
     </>
   );

@@ -47,11 +47,11 @@ const Carousals = () => {
     <>
       <Slider {...settings}>
         {carousalImages.map((images) => (
-          <div className="w-full px-2 py-3">
+          <div className="w-full px-2 pt-3">
             <img
               src={images.link}
               alt="carousalImages"
-              className="w-full rounded-md"
+              className="w-full rounded-md shadow-lg"
               style={{ height: "35rem" }}
             />
           </div>
