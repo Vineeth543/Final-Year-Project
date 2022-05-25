@@ -9,6 +9,7 @@ import StateInfo from "../Components/StateInfo/StateInfo";
 import Categories from "../Components/Categories/Categories";
 import TreasureCards from "../Components/Treasures/TreasureCard";
 import Achievements from "../Components/Achievements/Achievements";
+import PressCards from "../Components/PressCards/PressCards";
 
 const HomeLayout = () => {
   return (
@@ -23,6 +24,9 @@ const HomeLayout = () => {
         <TreasureCards />
       </div>
       <Achievements />
+      <div className="container m-auto">
+        <PressCards />
+      </div>
     </>
   );
 };
