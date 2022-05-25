@@ -8,6 +8,7 @@ import Highlights from "../Components/Highlights/Highlights";
 import StateInfo from "../Components/StateInfo/StateInfo";
 import Categories from "../Components/Categories/Categories";
 import TreasureCards from "../Components/Treasures/TreasureCard";
+import Achievements from "../Components/Achievements/Achievements";
 
 const HomeLayout = () => {
   return (
@@ -21,6 +22,7 @@ const HomeLayout = () => {
         <Categories />
         <TreasureCards />
       </div>
+      <Achievements />
     </>
   );
 };

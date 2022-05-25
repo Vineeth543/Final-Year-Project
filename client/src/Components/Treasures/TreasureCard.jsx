@@ -13,21 +13,21 @@ const TreasureCards = () => {
       key: 1,
     },
     {
-      title: "Governance Profile",
+      title: "Mines and Minerals",
       image:
         "https://sabrangindia.in/sites/default/files/field/image/coal_mine0.jpg",
       description:
-        "It is almost fifteen years ago when the people of Bihar handed over the reins of power to Nitish.",
+        "Karnataka has the largest number of almost fifteen years ago when tribes as many as 62.",
       color: "bg-red-600",
       hover: "hover:bg-red-600",
       key: 2,
     },
     {
-      title: "Facts and Figure",
+      title: "Tribal Culture",
       image:
         "https://www.deccanherald.com/sites/dh/files/article_images/2017/04/07/605166.jpg",
       description:
-        "Distribution of Population Decadal Growth Rate, Sex Ratio, Density and Literacy by State.",
+        "Karnataka has the largest number of almost fifteen years ago when tribes as many as 62.",
       color: "bg-orange-600",
       hover: "hover:bg-orange-600",
       key: 3,
@@ -36,7 +36,12 @@ const TreasureCards = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center m-20">
+      <div className="mt-20 flex justify-center">
+        <h1 className="font-bold text-4xl text-red-700">
+          Treasures of Karnataka
+        </h1>
+      </div>
+      <div className="flex flex-col justify-center m-10">
         <div
           className="flex align-items items-center justify-center gap-5"
           style={{ height: "30rem" }}
