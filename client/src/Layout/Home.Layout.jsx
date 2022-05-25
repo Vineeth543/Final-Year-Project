@@ -7,6 +7,7 @@ import SelectVillage from "../Components/SelectVillage/SelectVillage";
 import Highlights from "../Components/Highlights/Highlights";
 import StateInfo from "../Components/StateInfo/StateInfo";
 import Categories from "../Components/Categories/Categories";
+import TreasureCards from "../Components/Treasures/TreasureCard";
 
 const HomeLayout = () => {
   return (
@@ -18,6 +19,7 @@ const HomeLayout = () => {
         <SelectVillage />
         <Highlights />
         <Categories />
+        <TreasureCards />
       </div>
     </>
   );
