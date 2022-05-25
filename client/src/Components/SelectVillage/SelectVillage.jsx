@@ -7,7 +7,7 @@ const SelectVillage = () => {
         <h1 className="font-bold text-4xl text-red-700">Select Your Village</h1>
         <div style={{ width: "45rem" }}>
           <img
-            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/karnataka.png"
+            src="https://www.karnataka.gov.in/frontend/assets/img/logos/Karnataka_map_latest_2021_en.png"
             alt="karnataka"
             className="h-full w-full"
           />

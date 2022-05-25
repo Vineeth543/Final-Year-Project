@@ -6,6 +6,7 @@ import Carousals from "../Components/Carousals/Carousals";
 import SelectVillage from "../Components/SelectVillage/SelectVillage";
 import Highlights from "../Components/Highlights/Highlights";
 import StateInfo from "../Components/StateInfo/StateInfo";
+import Categories from "../Components/Categories/Categories";
 
 const HomeLayout = () => {
   return (
@@ -16,6 +17,7 @@ const HomeLayout = () => {
         <StateInfo />
         <SelectVillage />
         <Highlights />
+        <Categories />
       </div>
     </>
   );
