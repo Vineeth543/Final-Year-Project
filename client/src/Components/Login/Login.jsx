@@ -4,35 +4,15 @@ import { FcEmptyBattery } from "react-icons/fc";
 const Login = () => {
   const formStyle = {
     width: "40rem",
-    height: "20rem",
+    height: "28rem",
   };
-
-  const dataSource = [];
-
-  const columns = [
-    {
-      title: "Notification",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Alert & Link",
-      dataIndex: "age",
-      key: "age",
-    },
-    {
-      title: "Awards",
-      dataIndex: "address",
-      key: "address",
-    },
-  ];
 
   return (
     <>
       <div className="flex align-items items-center justify-center mt-20 gap-40">
         <div className="flex items-center justify-center">
           <img
-            src="http://localhost:3000/static/media/water.35d3ef96.png"
+            src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/water.png"
             alt="save water"
             className="w-full h-full"
           />
@@ -41,27 +21,31 @@ const Login = () => {
           className="flex items-center justify-center bg-sky-500 rounded-3xl"
           style={formStyle}
         >
-          <form className="flex flex-col justify-center gap-8 text-white font-semibold ">
+          <form className="flex flex-col justify-center gap-8 text-white font-semibold my-5">
             <div className="flex items-center justify-center gap-8">
-              <label htmlFor="language">Language:</label>
-              <div className="flex items-center justify-center gap-2">
-                <input type="radio" value="Kannada" name="language" /> Kannada
-                <input
-                  type="radio"
-                  value="English"
-                  name="language"
-                  checked
-                />{" "}
-                English
-              </div>
+              <h1 className="font-bold text-4xl text-black">Login</h1>
             </div>
             <div className="flex items-center justify-center gap-3">
               <label htmlFor="usernamme">Username:</label>
-              <input type="text" name="username" id="username" />
+              <input
+                type="number"
+                name="username"
+                id="username"
+                placeholder="Mobile No"
+                className="text-black m-0"
+                required
+              />
             </div>
             <div className="flex items-center justify-center gap-4">
               <label htmlFor="password">Password:</label>
-              <input type="password" name="password" id="password" />
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                className="text-black"
+                required
+              />
             </div>
             <div className="flex flex-col items-center justify-center gap-4">
               <div className="flex items-center justify-center gap-4">
@@ -74,12 +58,18 @@ const Login = () => {
               >
                 Login
               </button>
+              <div className="flex items-center justify-center gap-4">
+                <p>Forgot Password..!?</p>
+              </div>
+              <div className="flex items-center justify-center gap-4">
+                <p>New User..!? Signup.</p>
+              </div>
             </div>
           </form>
         </div>
         <div>
           <img
-            src="http://localhost:3000/static/media/tree.3262bdd1.png"
+            src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/tree.png"
             alt="save water"
             className="w-full h-full"
           />

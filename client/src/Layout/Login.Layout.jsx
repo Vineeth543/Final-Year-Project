@@ -6,10 +6,10 @@ import Footer from "../Components/Footer/Footer";
 const LoginLayout = () => {
   return (
     <>
-      <div className="container m-auto">
+      {/* <div className="container m-auto"> */}
         <Navbar />
         <Login />
-      </div>
+      {/* </div> */}
       <Footer />
     </>
   );
