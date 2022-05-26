@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer class="flex flex-col items-center justify-center text-center bg-gray-900 text-white" style={{marginTop: "30rem"}}>
+      <footer class="flex flex-col items-center justify-center text-center bg-gray-900 text-white" style={{marginTop: "10rem"}}>
         <div class="container p-6">
           <div class="flex justify-center mb-6">
             <a

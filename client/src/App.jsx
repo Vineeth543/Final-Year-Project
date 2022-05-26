@@ -1,11 +1,16 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeLayout from "./Layout/Home.Layout";
+import LoginLayout from "./Layout/Login.Layout";
 
 const App = () => {
   return (
-    <div>
-      <HomeLayout />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" exact element={<HomeLayout />}></Route>
+        <Route path="/login" exact element={<LoginLayout />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
