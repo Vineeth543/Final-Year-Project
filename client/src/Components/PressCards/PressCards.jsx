@@ -48,7 +48,7 @@ const PressCards = () => {
 
   return (
     <>
-      <div className="mt-10">
+      <div className="mt-10 mb-96">
         <div className="flex items-center justify-between m-5 mx-64">
           <div className="flex flex-col justify-center items-center p-2 shadow-2xl w-36 text-orange-500">
             <div className="w-12 h-12">

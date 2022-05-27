@@ -15,7 +15,7 @@ import Footer from "../Components/Footer/Footer";
 const HomeLayout = () => {
   return (
     <>
-      <div className="container m-auto">
+      <div className="containe m-auto">
         <Navbar />
         <Carousals />
         <StateInfo />

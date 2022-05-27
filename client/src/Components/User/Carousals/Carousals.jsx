@@ -3,36 +3,39 @@ import Slider from "react-slick";
 
 import { NextArrow, PrevArrow } from "./CarousalArrow";
 
-const Carousals = () => {
+const VillageCarousals = () => {
   const carousalImages = [
     {
-      link: "https://image3.mouthshut.com/images/imagesp/925769443s.jpg",
+      link: "https://pnrd.assam.gov.in/sites/default/files/styles/76x84/public/revised-crc-%20slide8.jpg",
       key: 1,
     },
     {
-      // https://cbpssubscriber.mygov.in/assets/uploads/juGajmc1gOVBUtt5?94
-      link: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Mysore_Palace_Morning.jpg",
+      link: "https://cbpssubscriber.mygov.in/assets/uploads/juGajmc1gOVBUtt5",
       key: 2,
     },
     {
-      link: "https://images.unsplash.com/photo-1553679813-b437b57c08f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHNoaW1vZ2F8ZW58MHx8MHx8&w=1000&q=80",
+      link: "https://www.cornellsathgurufoundation.org/wp-content/uploads/2020/02/Seed-Village-visit-scaled.jpg",
       key: 3,
     },
     {
-      link: "https://i.ytimg.com/vi/oT4Lf807_P0/maxresdefault.jpg",
+      link: "https://www.prajavani.net/sites/pv/files/article_images/2019/06/07/file75o8qd943so12h8zmzf1559915881.jpg",
       key: 4,
     },
     {
-      link: "https://www.karnataka.gov.in/storage/slids/1638784672.jpg",
+      link: "https://www.inclusivebusiness.net/sites/default/files/wp/Agri1.jpg",
       key: 5,
     },
     {
-      link: "https://www.karnataka.gov.in/storage/slids/1638784483.jpg",
+      link: "https://econeeds.org/projsliderbanner/261525761parsoda.jpg",
       key: 6,
     },
     {
-      link: "https://punjab.gov.in/wp-content/uploads/2020/04/website-banner-DGR.png",
+      link: "https://swachhamevajayate.org/wp-content/uploads/2020/02/Blog-3.jpeg",
       key: 7,
+    },
+    {
+      link: "https://pnrd.assam.gov.in/sites/default/files/styles/76x84/public/swf_utility_folder/departments/pnrd_uneecopscloud_com_oid_9/slider/SDG.jpg",
+      key: 8,
     },
   ];
 
@@ -66,4 +69,4 @@ const Carousals = () => {
   );
 };
 
-export default Carousals;
+export default VillageCarousals;

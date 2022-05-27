@@ -1,4 +1,5 @@
 import React from "react";
+import { FcEmptyBattery } from "react-icons/fc";
 
 const Signup = () => {
   const formStyle = {
@@ -111,6 +112,21 @@ const Signup = () => {
             className="w-full h-full"
           />
         </div>
+      </div>
+      <div className="flex h-16 align-items items-center justify-center mt-20">
+        <div className="w-full h-full flex align-items items-center justify-center border bg-yellow-500 rounded-tl-xl rounded-tr-xl">
+          <h1 className="font-semibold text-xl">Notification</h1>
+        </div>
+        <div className="w-full h-full flex align-items items-center justify-center border bg-sky-500 rounded-tl-xl rounded-tr-xl">
+          <h1 className="font-semibold text-xl">Alert & Link</h1>
+        </div>
+        <div className="w-full h-full flex align-items items-center justify-center border bg-black text-white rounded-tl-xl rounded-tr-xl">
+          <h1 className="font-semibold text-xl">Awards</h1>
+        </div>
+      </div>
+      <div className="flex flex-col h-40 align-items items-center justify-center border">
+        <FcEmptyBattery className="w-fll h-full text-6xl" />
+        <h1>No Data</h1>
       </div>
     </>
   );
