@@ -59,7 +59,7 @@ const VillageCarousals = () => {
             <img
               src={images.link}
               alt="carousalImages"
-              className="w-full rounded-md shadow-lg"
+              className="w-full rounded-md shadow-lg object-cover"
               style={{ height: "35rem" }}
             />
           </div>

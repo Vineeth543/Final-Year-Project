@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const UserNavbar = () => {
   return (
@@ -12,15 +13,37 @@ const UserNavbar = () => {
               className="w-full h-full"
             />
           </div>
-          <h1 className="font-semibold text-lg cursor-pointer">Home</h1>
-          <h1 className="font-semibold text-lg cursor-pointer">e-Services</h1>
-          <h1 className="font-semibold text-lg cursor-pointer">Events</h1>
-          <h1 className="font-semibold text-lg cursor-pointer">Payments</h1>
-          <h1 className="font-semibold text-lg cursor-pointer">Complaints</h1>
-          <h1 className="font-semibold text-lg cursor-pointer">Notifications</h1>
+          <Link className="font-semibold text-lg" to="/user">
+            Home
+          </Link>
+          <Link className="font-semibold text-lg" to="/user/services">
+            e-Services
+          </Link>
+          <Link className="font-semibold text-lg" to="/user/schemes">
+            Schemes
+          </Link>
+          <Link className="font-semibold text-lg" to="/user/events">
+            Events
+          </Link>
+          <Link className="font-semibold text-lg" to="/user/tenders">
+            e-Tenders
+          </Link>
+          <Link className="font-semibold text-lg" to="/user/payments">
+            Payments
+          </Link>
+          <Link className="font-semibold text-lg" to="/user/complaints">
+            Complaints
+          </Link>
+          <Link className="font-semibold text-lg" to="/user/notifications">
+            Notifications
+          </Link>
           <div className="flex gap-5">
-            <h1 className="font-semibold text-lg cursor-pointer">SignIn</h1>
-            <h1 className="font-semibold text-lg cursor-pointer">SignUp</h1>
+            <Link className="font-semibold text-lg" to="/user/login">
+              SignIn
+            </Link>
+            <Link className="font-semibold text-lg" to="/user/signup">
+              SignUp
+            </Link>
           </div>
         </div>
       </>

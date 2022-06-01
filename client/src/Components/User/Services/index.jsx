@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const services = [
@@ -91,24 +92,26 @@ const Services = () => {
       <h1 className="text-black font-bold text-4xl text-center m-4">
         e-Services
       </h1>
-      <div className="flex flex-wrap gap-10 justify-between mx-36 mt-5">
+      <div className="flex flex-wrap gap-10 justify-between mx-32 mt-5">
         {services.map((items) => (
-          <div className="flex gap-1">
-            <div className="w-32">
-              <img
-                src={items.image}
-                alt={items.title}
-                className={`w-full h-full ${items.bgColor}`}
-              />
+          <Link to={`/user/services/${items.key}`}>
+            <div className="flex gap-1 hover:shadow-2xl">
+              <div className="w-32">
+                <img
+                  src={items.image}
+                  alt={items.title}
+                  className={`w-full ${items.bgColor}`}
+                />
+              </div>
+              <div
+                className={`flex justify-center items-center w-96 ${items.bgColor}`}
+              >
+                <h1 className="text-black font-semibold text-xl">
+                  {items.title}
+                </h1>
+              </div>
             </div>
-            <div
-              className={`flex justify-center items-center w-96 ${items.bgColor}`}
-            >
-              <h1 className="text-black font-semibold text-xl">
-                {items.title}
-              </h1>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

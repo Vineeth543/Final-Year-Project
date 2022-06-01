@@ -10,7 +10,6 @@ const Carousals = () => {
       key: 1,
     },
     {
-      // https://cbpssubscriber.mygov.in/assets/uploads/juGajmc1gOVBUtt5?94
       link: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Mysore_Palace_Morning.jpg",
       key: 2,
     },
@@ -56,7 +55,7 @@ const Carousals = () => {
             <img
               src={images.link}
               alt="carousalImages"
-              className="w-full rounded-md shadow-lg"
+              className="w-full rounded-md shadow-lg object-cover"
               style={{ height: "35rem" }}
             />
           </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Schemes = () => {
   const schemes = [
@@ -95,21 +96,21 @@ const Schemes = () => {
       </h1>
       <div className="flex flex-wrap gap-3 justify-between mt-10 mx-10 pb-10">
         {schemes.map((scheme) => (
-          <div
-            className={`flex items-center justify-center gap-4 bg-white shadow-lg p-10 border-b-4 ${scheme.borderColor}`}
-            style={{ width: "22rem" }}
-          >
-            <div className="w-24">
-              <img
-                src={scheme.image}
-                alt={scheme.title}
-                className="w-full"
-              />
+          <Link to={`/user/schemes/${scheme.key}`}>
+            <div
+              className={`flex items-center justify-center gap-4 bg-white hover:border-4 p-10 border-b-4 ${scheme.borderColor}`}
+              style={{ width: "22rem" }}
+            >
+              <div className="w-24 h-20">
+                <img src={scheme.image} alt={scheme.title} className="w-full h-full" />
+              </div>
+              <div className="w-full">
+                <h2 className="text-lg font-semibold">
+                  {scheme.key}.) {scheme.title}
+                </h2>
+              </div>
             </div>
-            <h2 className="text-lg font-semibold">
-              {scheme.key}.) {scheme.title}
-            </h2>
-          </div>
+          </Link>
         ))}
       </div>
     </>
