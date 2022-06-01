@@ -36,7 +36,7 @@ const Carousals = () => {
   ];
 
   const settings = {
-    arrows: true,
+    arrows: false,
     autoplay: true,
     centerMode: true,
     centerPadding: "300px",

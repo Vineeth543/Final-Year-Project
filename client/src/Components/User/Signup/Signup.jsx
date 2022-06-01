@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FcEmptyBattery } from "react-icons/fc";
 
 const Signup = () => {
@@ -94,6 +95,9 @@ const Signup = () => {
                 className="text-black"
                 required
               />
+            </div>
+            <div className="flex items-center justify-center gap-4">
+              Already Have Account..!? <Link to="/user/login">Signin</Link>
             </div>
             <div className="flex flex-col items-center justify-center gap-4">
               <button

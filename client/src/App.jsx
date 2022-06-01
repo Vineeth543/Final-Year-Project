@@ -1,15 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLayout from "./Layout/Admin.Layout";
-import EventsLayout from "./Layout/Events.Layout";
 import HomeLayout from "./Layout/Home.Layout";
+import UserHomeLayout from "./Layout/User.Home.Layout";
+import SignupLayout from "./Layout/Signup.Layout";
 import LoginLayout from "./Layout/Login.Layout";
 import ServiceLayout from "./Layout/Service.Layout";
-import SignupLayout from "./Layout/Signup.Layout";
 import SingleServiceLayout from "./Layout/SingleService.Layout";
-import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
-import UserHomeLayout from "./Layout/User.Home.Layout";
 import SchemesLayout from "./Layout/Schemes.Layout";
+import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
+import EventsLayout from "./Layout/Events.Layout";
+import TendersLayout from "./Layout/Tenders.Layout";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           exact
           element={<SingleSchemeLayout />}
         ></Route>
+        <Route path="/user/tenders" exact element={<TendersLayout />}></Route>
         <Route path="/admin" exact element={<AdminLayout />}></Route>
       </Routes>
     </BrowserRouter>

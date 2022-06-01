@@ -6,13 +6,15 @@ const UserNavbar = () => {
     <>
       <>
         <div className="flex items-center justify-evenly bg-white shadow-lg my-2">
-          <div className="w-20 h-20">
-            <img
-              src="https://www.karnataka.gov.in/frontend/assets/img/Seal_of_Karnataka.png"
-              alt="logo"
-              className="w-full h-full"
-            />
-          </div>
+          <Link className="font-semibold text-lg" to="/user">
+            <div className="w-20 h-20">
+              <img
+                src="https://www.karnataka.gov.in/frontend/assets/img/Seal_of_Karnataka.png"
+                alt="logo"
+                className="w-full h-full"
+              />
+            </div>
+          </Link>
           <Link className="font-semibold text-lg" to="/user">
             Home
           </Link>

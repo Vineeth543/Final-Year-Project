@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FcEmptyBattery } from "react-icons/fc";
 
 const Login = () => {
@@ -59,10 +60,10 @@ const Login = () => {
                 Login
               </button>
               <div className="flex items-center justify-center gap-4">
-                <p>Forgot Password..!?</p>
+                <Link to="#">Forgot Password..!?</Link>
               </div>
               <div className="flex items-center justify-center gap-4">
-                <p>New User..!? Signup.</p>
+                New User..!? <Link to="/user/signup">SignUp</Link>
               </div>
             </div>
           </form>

@@ -89,10 +89,10 @@ const Services = () => {
 
   return (
     <>
-      <h1 className="text-black font-bold text-4xl text-center m-4">
+      <h1 className="text-black font-bold text-4xl text-center pt-8">
         e-Services
       </h1>
-      <div className="flex flex-wrap gap-10 justify-between mx-32 mt-5">
+      <div className="flex flex-wrap gap-10 justify-between mx-32 mt-10">
         {services.map((items) => (
           <Link to={`/user/services/${items.key}`}>
             <div className="flex gap-1 hover:shadow-2xl">

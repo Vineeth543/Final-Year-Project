@@ -76,8 +76,8 @@ const PressCards = () => {
           </div>
         </div>
         <div className="border-b-4 border-orange-500 mx-44" />
-        <div className="flex align-items items-center  my-5 mx-44">
-          <div className="flex flex-col align-items items-center my-10 ">
+        <div className="flex align-items items-center my-5 mx-44">
+          <div className="flex flex-col align-items items-center mt-10 mb-24">
             <div
               className="flex flex-wrap justify-center gap-10"
               style={{ height: "30rem" }}
