@@ -8,6 +8,7 @@ import ServiceLayout from "./Layout/Service.Layout";
 import SignupLayout from "./Layout/Signup.Layout";
 import SingleServiceLayout from "./Layout/SingleService.Layout";
 import UserHomeLayout from "./Layout/User.Home.Layout";
+import SchemesLayout from "./Layout/Schemes.Layout";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           element={<SingleServiceLayout />}
         ></Route>
         <Route path="/user/events" exact element={<EventsLayout />}></Route>
+        <Route path="/user/schemes" exact element={<SchemesLayout />}></Route>
         <Route path="/admin" exact element={<AdminLayout />}></Route>
       </Routes>
     </BrowserRouter>

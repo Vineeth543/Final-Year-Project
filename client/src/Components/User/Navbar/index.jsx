@@ -1,6 +1,6 @@
 import React from "react";
 
-const VillageNavbar = () => {
+const UserNavbar = () => {
   return (
     <>
       <>
@@ -28,4 +28,4 @@ const VillageNavbar = () => {
   );
 };
 
-export default VillageNavbar;
+export default UserNavbar;
