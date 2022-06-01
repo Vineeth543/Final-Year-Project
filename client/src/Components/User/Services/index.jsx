@@ -97,7 +97,7 @@ const Services = () => {
             <div className="w-32">
               <img
                 src={items.image}
-                alt="agri"
+                alt={items.title}
                 className={`w-full h-full ${items.bgColor}`}
               />
             </div>

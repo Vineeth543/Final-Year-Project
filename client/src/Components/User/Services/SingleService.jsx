@@ -8,22 +8,22 @@ const SingleService = () => {
       </h1>
       <div className="flex mx-20 my-10 gap-5">
         <div className="flex flex-col gap-2 w-1/3 border px-2 pt-2">
-          <h1 className="w-full text-white bg-blue-800 font-semibold font-lg rounded-xl p-2">
+          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
             Subsidy to farmers
           </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2">
+          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
             Laboratory testing and analysis
           </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2">
+          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
             Technical Information
           </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2">
+          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
             Seeds
           </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2">
+          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
             Government assisted financial grants for Farmers and Fishermen
           </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2">
+          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
             Other Services
           </h1>
         </div>

@@ -1,17 +1,17 @@
 import React from "react";
 
 import UserNavbar from "../Components/User/Navbar";
-import SingleService from "../Components/User/Services/SingleService";
+import SingleScheme from "../Components/User/Schemes/SingleScheme";
 import Footer from "../Components/Footer/Footer";
 
-const SingleServiceLayout = () => {
+const SingleSchemeLayout = () => {
   return (
     <>
       <UserNavbar />
-      <SingleService />
+      <SingleScheme />
       <Footer />
     </>
   );
 };
 
-export default SingleServiceLayout;
+export default SingleSchemeLayout;

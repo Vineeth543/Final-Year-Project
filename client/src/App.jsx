@@ -7,6 +7,7 @@ import LoginLayout from "./Layout/Login.Layout";
 import ServiceLayout from "./Layout/Service.Layout";
 import SignupLayout from "./Layout/Signup.Layout";
 import SingleServiceLayout from "./Layout/SingleService.Layout";
+import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
 import UserHomeLayout from "./Layout/User.Home.Layout";
 import SchemesLayout from "./Layout/Schemes.Layout";
 
@@ -26,6 +27,11 @@ const App = () => {
         ></Route>
         <Route path="/user/events" exact element={<EventsLayout />}></Route>
         <Route path="/user/schemes" exact element={<SchemesLayout />}></Route>
+        <Route
+          path="/user/schemes/:id"
+          exact
+          element={<SingleSchemeLayout />}
+        ></Route>
         <Route path="/admin" exact element={<AdminLayout />}></Route>
       </Routes>
     </BrowserRouter>

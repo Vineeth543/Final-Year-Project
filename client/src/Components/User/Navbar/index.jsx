@@ -12,15 +12,15 @@ const UserNavbar = () => {
               className="w-full h-full"
             />
           </div>
-          <h1 className="font-semibold text-lg">Home</h1>
-          <h1 className="font-semibold text-lg">e-Services</h1>
-          <h1 className="font-semibold text-lg">Events</h1>
-          <h1 className="font-semibold text-lg">Payments</h1>
-          <h1 className="font-semibold text-lg">Complaints</h1>
-          <h1 className="font-semibold text-lg">Notifications</h1>
+          <h1 className="font-semibold text-lg cursor-pointer">Home</h1>
+          <h1 className="font-semibold text-lg cursor-pointer">e-Services</h1>
+          <h1 className="font-semibold text-lg cursor-pointer">Events</h1>
+          <h1 className="font-semibold text-lg cursor-pointer">Payments</h1>
+          <h1 className="font-semibold text-lg cursor-pointer">Complaints</h1>
+          <h1 className="font-semibold text-lg cursor-pointer">Notifications</h1>
           <div className="flex gap-5">
-            <h1 className="font-semibold text-lg">SignIn</h1>
-            <h1 className="font-semibold text-lg">SignUp</h1>
+            <h1 className="font-semibold text-lg cursor-pointer">SignIn</h1>
+            <h1 className="font-semibold text-lg cursor-pointer">SignUp</h1>
           </div>
         </div>
       </>
