@@ -49,10 +49,10 @@ const StateInfo = () => {
     <>
       <div className="flex flex-col justify-center">
         <div>
-          <marquee style={{ color: "red", fontSize: "2em" }}>
+          {/* <marquee style={{ color: "red", fontSize: "2em" }}>
             Karnataka local body polls: HC gives 12 weeks for delimitation,
             reservations
-          </marquee>
+          </marquee> */}
         </div>
         <div className="flex align-items items-center justify-center gap-5 h-96">
           {stateInfo.map((items) => (

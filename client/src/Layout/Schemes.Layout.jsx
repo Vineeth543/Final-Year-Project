@@ -6,11 +6,11 @@ import Footer from "../Components/Footer/Footer";
 const SchemesLayout = () => {
   return (
     <>
-      <div className="container mx-auto bg-sky-100 scrollbar-hide">
-        <UserNavbar />
+      <UserNavbar />
+      <div className="container mx-auto bg-sky-100">
         <Schemes />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

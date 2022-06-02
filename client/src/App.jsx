@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminLayout from "./Layout/Admin.Layout";
+
 import HomeLayout from "./Layout/Home.Layout";
 import UserHomeLayout from "./Layout/User.Home.Layout";
 import SignupLayout from "./Layout/Signup.Layout";
@@ -13,6 +13,8 @@ import EventsLayout from "./Layout/Events.Layout";
 import TendersLayout from "./Layout/Tenders.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
+import AdminDashboardPage from "./Pages/Admin/AdminDashboard.Page";
+import AdminServicePage from "./Pages/Admin/AdminService.Page";
 
 const App = () => {
   return (
@@ -42,7 +44,12 @@ const App = () => {
           exact
           element={<ComplaintsLayout />}
         ></Route>
-        <Route path="/admin" exact element={<AdminLayout />}></Route>
+        <Route path="/admin" exact element={<AdminDashboardPage />}></Route>
+        <Route
+          path="/admin/services"
+          exact
+          element={<AdminServicePage />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

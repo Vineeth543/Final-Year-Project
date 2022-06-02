@@ -6,10 +6,8 @@ import AdminDashboard from "../Components/Admin/Dashboard";
 const AdminLayout = () => {
   return (
     <>
-      <div className="container m-auto scrollbar-hide">
-        <Navbar />
-        <AdminDashboard />
-      </div>
+      <Navbar />
+      <AdminDashboard />
       <Footer />
     </>
   );
