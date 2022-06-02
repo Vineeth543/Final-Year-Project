@@ -4,22 +4,22 @@ const Footer = () => {
   return (
     <>
       <footer
-        class="flex flex-col items-center justify-center text-center bg-gray-900 text-white"
+        className="flex flex-col items-center justify-center text-center bg-gray-900 text-white"
         style={{ marginTop: "10rem" }}
       >
-        <div class="container p-6">
-          <div class="flex justify-center mb-6">
+        <div className="container p-6">
+          <div className="flex justify-center mb-6">
             <a
               href="#!"
               type="button"
-              class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
                 data-icon="facebook-f"
-                class="w-2 h-full mx-auto"
+                className="w-2 h-full mx-auto"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 320 512"
@@ -34,14 +34,14 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
                 data-icon="twitter"
-                class="w-3 h-full mx-auto"
+                className="w-3 h-full mx-auto"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
@@ -56,14 +56,14 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
                 data-icon="google"
-                class="w-3 h-full mx-auto"
+                className="w-3 h-full mx-auto"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 488 512"
@@ -78,14 +78,14 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
                 data-icon="instagram"
-                class="w-3 h-full mx-auto"
+                className="w-3 h-full mx-auto"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
@@ -100,14 +100,14 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
                 data-icon="linkedin-in"
-                class="w-3 h-full mx-auto"
+                className="w-3 h-full mx-auto"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 448 512"
@@ -122,14 +122,14 @@ const Footer = () => {
             <a
               href="#!"
               type="button"
-              class="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
+              className="rounded-full border-2 border-white text-white leading-normal uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-9 h-9 m-1"
             >
               <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fab"
                 data-icon="github"
-                class="w-3 h-full mx-auto"
+                className="w-3 h-full mx-auto"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 496 512"
@@ -144,17 +144,17 @@ const Footer = () => {
 
           <div>
             <form action="">
-              <div class="grid md:grid-cols-3 gird-cols-1 gap-4 flex justify-center items-center">
-                <div class="md:ml-auto md:mb-6">
-                  <p class="">
+              <div className="grid md:grid-cols-3 gird-cols-1 gap-4 flex justify-center items-center">
+                <div className="md:ml-auto md:mb-6">
+                  <p className="">
                     <strong>Sign up for our newsletter</strong>
                   </p>
                 </div>
 
-                <div class="md:mb-6">
+                <div className="md:mb-6">
                   <input
                     type="text"
-                    class="
+                    className="
                 form-control
                 block
                 w-full
@@ -176,8 +176,8 @@ const Footer = () => {
                   />
                 </div>
 
-                <div class="md:mr-auto mb-6">
-                  <button class="inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                <div className="md:mr-auto mb-6">
+                  <button className="inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
                     Subscribe
                   </button>
                 </div>
@@ -185,7 +185,7 @@ const Footer = () => {
             </form>
           </div>
 
-          <div class="mb-6">
+          <div className="mb-6">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
               distinctio earum repellat quaerat voluptatibus placeat nam,
@@ -194,109 +194,109 @@ const Footer = () => {
             </p>
           </div>
 
-          <div class="grid lg:grid-cols-4 md:grid-cols-2">
-            <div class="mb-6">
-              <h5 class="uppercase font-bold mb-2.5">Links</h5>
+          <div className="grid lg:grid-cols-4 md:grid-cols-2">
+            <div className="mb-6">
+              <h5 className="uppercase font-bold mb-2.5">Links</h5>
 
-              <ul class="list-none mb-0">
+              <ul className="list-none mb-0">
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 1
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 2
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 3
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 4
                   </a>
                 </li>
               </ul>
             </div>
 
-            <div class="mb-6">
-              <h5 class="uppercase font-bold mb-2.5">Links</h5>
+            <div className="mb-6">
+              <h5 className="uppercase font-bold mb-2.5">Links</h5>
 
-              <ul class="list-none mb-0">
+              <ul className="list-none mb-0">
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 1
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 2
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 3
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 4
                   </a>
                 </li>
               </ul>
             </div>
 
-            <div class="mb-6">
-              <h5 class="uppercase font-bold mb-2.5">Links</h5>
+            <div className="mb-6">
+              <h5 className="uppercase font-bold mb-2.5">Links</h5>
 
-              <ul class="list-none mb-0">
+              <ul className="list-none mb-0">
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 1
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 2
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 3
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 4
                   </a>
                 </li>
               </ul>
             </div>
 
-            <div class="mb-6">
-              <h5 class="uppercase font-bold mb-2.5">Links</h5>
+            <div className="mb-6">
+              <h5 className="uppercase font-bold mb-2.5">Links</h5>
 
-              <ul class="list-none mb-0">
+              <ul className="list-none mb-0">
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 1
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 2
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 3
                   </a>
                 </li>
                 <li>
-                  <a href="#!" class="text-white">
+                  <a href="#!" className="text-white">
                     Link 4
                   </a>
                 </li>
@@ -306,7 +306,7 @@ const Footer = () => {
         </div>
 
         <div
-          class="text-center p-4"
+          className="text-center p-4"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
           © 2022 Copyright Team JARVIS

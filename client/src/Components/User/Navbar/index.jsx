@@ -36,9 +36,6 @@ const UserNavbar = () => {
           <Link className="font-semibold text-lg" to="/user/complaints">
             Complaints
           </Link>
-          <Link className="font-semibold text-lg" to="/user/notifications">
-            Notifications
-          </Link>
           <div className="flex gap-5">
             <Link className="font-semibold text-lg" to="/user/login">
               SignIn

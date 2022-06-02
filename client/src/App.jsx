@@ -12,6 +12,7 @@ import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
 import EventsLayout from "./Layout/Events.Layout";
 import TendersLayout from "./Layout/Tenders.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
+import ComplaintsLayout from "./Layout/Complaints.Layout";
 
 const App = () => {
   return (
@@ -36,6 +37,11 @@ const App = () => {
         ></Route>
         <Route path="/user/tenders" exact element={<TendersLayout />}></Route>
         <Route path="/user/payments" exact element={<PaymentsLayout />}></Route>
+        <Route
+          path="/user/complaints"
+          exact
+          element={<ComplaintsLayout />}
+        ></Route>
         <Route path="/admin" exact element={<AdminLayout />}></Route>
       </Routes>
     </BrowserRouter>

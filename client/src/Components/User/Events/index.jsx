@@ -154,9 +154,9 @@ const Events = () => {
                     className="w-full h-60 object-cover"
                     src={items.video}
                     title="YouTube video player"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                   ></iframe>
                 </div>
                 <div className="flex flex-col mt-5 gap-3">
