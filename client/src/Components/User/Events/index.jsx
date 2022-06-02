@@ -5,10 +5,12 @@ const Events = () => {
     left: "15%",
     top: "27%",
   };
+
   const imageStyle = {
     width: "100%",
     height: "30rem",
   };
+  
   const upcomingEvent = [
     {
       key: 1,
@@ -83,7 +85,7 @@ const Events = () => {
   ];
   return (
     <>
-      <div className="container m-auto">
+      <div className="container m-auto mt-2">
         <h1
           className="text-white font-semibold text-4xl absolute"
           style={myStyle}
@@ -97,7 +99,7 @@ const Events = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="flex flex-col mt-20 justify-center">
+        <div className="flex flex-col mt-16 justify-center">
           <h1 className="text-black font-semibold text-4xl text-center">
             Live Events
           </h1>
@@ -110,7 +112,7 @@ const Events = () => {
             </h1>
           </div>
         </div>
-        <div className="flex flex-col mt-20 justify-center">
+        <div className="flex flex-col mt-16 justify-center">
           <h1 className="text-black font-semibold text-4xl text-center">
             Upcoming Events
           </h1>
@@ -139,7 +141,7 @@ const Events = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col mt-20 justify-center">
+        <div className="flex flex-col mt-16 justify-center">
           <h1 className="text-black font-semibold text-4xl text-center">
             Past Events
           </h1>

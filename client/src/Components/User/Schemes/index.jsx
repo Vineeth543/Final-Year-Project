@@ -91,7 +91,7 @@ const Schemes = () => {
 
   return (
     <>
-      <h1 className="text-black font-bold text-4xl text-center pt-8">
+      <h1 className="text-black font-bold text-4xl text-center pt-6 mt-2">
         Schemes
       </h1>
       <div className="flex flex-wrap gap-3 justify-between mt-10 mx-10 pb-10">

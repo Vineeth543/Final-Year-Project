@@ -10,7 +10,7 @@ const Signup = () => {
 
   return (
     <>
-      <div className="flex align-items items-center justify-center mt-20 gap-40">
+      <div className="flex align-items items-center justify-center mt-10 gap-40">
         <div className="flex items-center justify-center">
           <img
             src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/water.png"
@@ -117,7 +117,7 @@ const Signup = () => {
           />
         </div>
       </div>
-      <div className="flex h-16 align-items items-center justify-center mt-20">
+      <div className="flex h-16 align-items items-center justify-center mt-14">
         <div className="w-full h-full flex align-items items-center justify-center border bg-yellow-500 rounded-tl-xl rounded-tr-xl">
           <h1 className="font-semibold text-xl">Notification</h1>
         </div>

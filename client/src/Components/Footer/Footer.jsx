@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <footer
-        className="flex flex-col items-center justify-center text-center bg-gray-900 text-white"
+        className="flex flex-col items-center justify-center text-center bg-gray-900 text-white scrollbar-hide"
         style={{ marginTop: "10rem" }}
       >
         <div className="container p-6">

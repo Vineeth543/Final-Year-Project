@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <div className="flex items-center justify-evenly bg-white shadow-lg">
+      <div className="flex items-center justify-evenly bg-white shadow-lg py-2">
         <Link className="font-semibold text-lg" to="/user">
           <div className="w-20 h-20">
             <img
@@ -21,9 +21,6 @@ const Navbar = () => {
           About Us
         </Link>
         <Link className="font-semibold text-lg" to="#">
-          e-Services
-        </Link>
-        <Link className="font-semibold text-lg" to="#">
           What's New
         </Link>
         <Link className="font-semibold text-lg" to="#">
@@ -31,6 +28,12 @@ const Navbar = () => {
         </Link>
         <Link className="font-semibold text-lg" to="#">
           Helpline Numbers
+        </Link>
+        <Link className="font-semibold text-lg" to="#">
+          Others
+        </Link>
+        <Link className="font-semibold text-lg" to="/user/login">
+          Login
         </Link>
       </div>
     </>

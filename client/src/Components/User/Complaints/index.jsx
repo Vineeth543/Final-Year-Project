@@ -3,7 +3,7 @@ import React from "react";
 const Complaints = () => {
   return (
     <>
-      <div className="flex items-center justify-center bg-sky-100 m-auto">
+      <div className="flex items-center justify-center bg-sky-100 m-auto scrollbar-hide">
         <form className="flex flex-col justify-center gap-8 font-semibold my-10 w-1/2">
           <h1 className="font-bold text-4xl text-center">Complaint Form</h1>
           <div className="flex items-center justify-center gap-6 text-xl">
