@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { CgEditBlackPoint } from "react-icons/cg";
 
 const Tenders = () => {
@@ -68,7 +67,7 @@ const Tenders = () => {
     },
     {
       key: 6,
-      refNo: "INV/IND/22-23/EXT/IT-1002",
+      refNo: "INV/IND/22-23/EXT/",
       title:
         "Request for Quotation for Procurement of extended warranty for 49 Dell Laptops for 2 years",
       releaseDate: "21 Apr 2022",
@@ -99,15 +98,15 @@ const Tenders = () => {
       </h1>
       {tenderDetails.map((items) => (
         <div
-          className="flex flex-col mx-auto mt-10 shadow-2xl rounded-xl"
+          className="flex flex-col bg-white mx-auto mt-10 hover:shadow-2xl rounded-xl border"
           style={{ width: "70rem" }}
         >
-          <div className="flex items-center border-t border-b justify-between gap-5 w-full rounded-t-xl">
+          <div className="flex items-center border-b justify-between gap-5 w-full rounded-t-xl">
             <p className="bg-green-400 text-white p-6 text-lg font-medium rounded-tl-xl">
               {items.key}
             </p>
             <h1 className="text-xl font-semibold">{items.title}</h1>
-            <div className="flex flex-col text-lg font-medium border-l pl-6 pr-3">
+            <div className="flex flex-col text-md font-medium border-l items-center justify-center">
               <p>Tender Reference No:</p>
               <p>{items.refNo}</p>
             </div>

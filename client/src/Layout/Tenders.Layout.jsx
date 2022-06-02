@@ -7,9 +7,11 @@ import Footer from "../Components/Footer/Footer";
 const TendersLayout = () => {
   return (
     <>
-      <UserNavbar />
-      <Tenders />
-      <Footer />
+      <div className=" bg-sky-100">
+        <UserNavbar />
+        <Tenders />
+        <Footer />
+      </div>
     </>
   );
 };

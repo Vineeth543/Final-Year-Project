@@ -102,7 +102,11 @@ const Schemes = () => {
               style={{ width: "22rem" }}
             >
               <div className="w-24 h-20">
-                <img src={scheme.image} alt={scheme.title} className="w-full h-full" />
+                <img
+                  src={scheme.image}
+                  alt={scheme.title}
+                  className="w-full h-full"
+                />
               </div>
               <div className="w-full">
                 <h2 className="text-lg font-semibold">
