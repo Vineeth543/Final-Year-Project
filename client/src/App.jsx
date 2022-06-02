@@ -15,6 +15,12 @@ import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
 import AdminDashboardPage from "./Pages/Admin/AdminDashboard.Page";
 import AdminServicePage from "./Pages/Admin/AdminService.Page";
+import AdminSchemePage from "./Pages/Admin/AdminScheme.Page";
+import AdminEventPage from "./Pages/Admin/AdminEvent.Page";
+import AdminTenderPage from "./Pages/Admin/AdminTender.Page";
+import AdminPaymentPage from "./Pages/Admin/AdminPayment.Page";
+import AdminComplaintPage from "./Pages/Admin/AdminComplaints.Page";
+import AdminUserPage from "./Pages/Admin/AdminUser.Page";
 
 const App = () => {
   return (
@@ -46,10 +52,37 @@ const App = () => {
         ></Route>
         <Route path="/admin" exact element={<AdminDashboardPage />}></Route>
         <Route
+          path="/admin/dashboard"
+          exact
+          element={<AdminDashboardPage />}
+        ></Route>
+        <Route
           path="/admin/services"
           exact
           element={<AdminServicePage />}
         ></Route>
+        <Route
+          path="/admin/schemes"
+          exact
+          element={<AdminSchemePage />}
+        ></Route>
+        <Route path="/admin/events" exact element={<AdminEventPage />}></Route>
+        <Route
+          path="/admin/tenders"
+          exact
+          element={<AdminTenderPage />}
+        ></Route>
+        <Route
+          path="/admin/payments"
+          exact
+          element={<AdminPaymentPage />}
+        ></Route>
+        <Route
+          path="/admin/complaints"
+          exact
+          element={<AdminComplaintPage />}
+        ></Route>
+        <Route path="/admin/users" exact element={<AdminUserPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

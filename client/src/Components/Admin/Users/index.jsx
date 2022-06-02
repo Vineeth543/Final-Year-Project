@@ -1,7 +1,11 @@
 import React from "react";
 
-const index = () => {
-  return <></>;
+const AdminUsers = () => {
+  return (
+    <>
+      <div className="h-screen flex-1 p-7">Admin Users</div>
+    </>
+  );
 };
 
-export default index;
+export default AdminUsers;

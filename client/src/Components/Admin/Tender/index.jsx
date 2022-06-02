@@ -1,7 +1,11 @@
 import React from "react";
 
-const index = () => {
-  return <></>;
+const AdminTenders = () => {
+  return (
+    <>
+      <div className="h-screen flex-1 p-7">Admin Tenders</div>
+    </>
+  );
 };
 
-export default index;
+export default AdminTenders;
