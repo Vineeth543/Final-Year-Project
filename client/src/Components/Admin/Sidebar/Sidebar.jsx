@@ -7,23 +7,23 @@ const Sidebar = () => {
   const [Menus] = useState([
     {
       title: "Dashboard",
-      src: "https://cdn-icons.flaticon.com/png/512/1991/premium/1991103.png?token=exp=1654179628~hmac=ecd23e848cf6c7b3ec75a9f817fca2d1",
+      src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
       title: "Services",
-      src: "https://cdn-icons.flaticon.com/png/512/3631/premium/3631163.png?token=exp=1654179221~hmac=e5d48204bf36f4104f2cb6871ac1978b",
+      src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
       title: "Schemes",
-      src: "https://cdn-icons.flaticon.com/png/512/1597/premium/1597725.png?token=exp=1654179510~hmac=78235abb326379981f03575d0dbeb7f4",
+      src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
       title: "Events",
-      src: "https://cdn-icons.flaticon.com/png/512/3277/premium/3277487.png?token=exp=1654179533~hmac=b3dff5e3d6c63a51c66d0ba20099207a",
+      src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
       title: "Tenders",
-      src: "https://cdn-icons.flaticon.com/png/512/5165/premium/5165921.png?token=exp=1654179565~hmac=2a6c36be158c4df4a4b18ec3cc57036c",
+      src: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
     },
     {
       title: "Payments",
@@ -46,7 +46,7 @@ const Sidebar = () => {
       <div
         className={` ${
           open ? "w-72" : "w-20 "
-        } bg-white h-screen py-5 relative duration-300`}
+        } bg-white h-screen py-4 relative duration-300`}
       >
         <img
           src="https://cdn-icons-png.flaticon.com/512/2879/2879593.png"
@@ -56,20 +56,20 @@ const Sidebar = () => {
           }`}
           onClick={() => setOpen(!open)}
         />
-        <div className="flex bg-white gap-x-4 items-center">
+        <div className="flex bg-white gap-x-4 items-center pl-4">
           <img
             src="https://www.karnataka.gov.in/frontend/assets/img/Seal_of_Karnataka.png"
-            alt=""
+            alt="logo"
             className={`w-10 cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
             }`}
           />
           <h1
-            className={`text-black origin-left font-medium text-xl duration-200 ${
+            className={`flex text-black origin-left font-medium text-xl duration-200 ${
               !open && "scale-0"
             }`}
           >
-            Welcome Admin
+            Grama
           </h1>
         </div>
         <ul className="w-full h-full bg-blue-700">
@@ -80,12 +80,12 @@ const Sidebar = () => {
             >
               <li
                 key={index}
-                className={`flex p-2 pl-5 mt-4 cursor-pointer hover:text-white text-black text-lg font-semibold items-center justify- gap-x-4 ${
+                className={`flex p-2 pl-5 mt-4 hover:text-white text-black text-lg font-semibold items-center gap-x-4 ${
                   page.pathname === `/admin/${Menu.title.toLowerCase()}` &&
                   "bg-light-white"
                 } `}
               >
-                <img src={Menu.src} alt="" className="w-8" />
+                <img src={Menu.src} alt="icon" className="w-8" />
                 <span
                   className={`${!open && "hidden"} origin-left duration-200`}
                 >
