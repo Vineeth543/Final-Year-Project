@@ -7,7 +7,7 @@ export default function PaymentModal({ isOpen, setIsOpen, price }) {
   };
 
   const options = {
-    key: "rzp_test_3lT4wvAjvpTCBs",
+    key: "rzp_test_hgnOGH5GP7b5xn",
     amount: price,
     currency: "INR",
     name: "Water Bill Payment",
@@ -81,14 +81,14 @@ export default function PaymentModal({ isOpen, setIsOpen, price }) {
                 <div className="w-full mt-4">
                   <button
                     type="button"
-                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     onClick={launchRazorPay}
                   >
                     Pay ₹{price}
                   </button>
                   <button
                     type="button"
-                    className="mt-5 w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    className="mt-5 w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-700 hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     onClick={closeModal}
                   >
                     Cancel Payment
