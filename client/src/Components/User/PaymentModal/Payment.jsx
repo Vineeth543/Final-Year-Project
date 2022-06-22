@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 
 export default function PaymentModal({ isOpen, setIsOpen, price }) {
   const closeModal = () => {
@@ -8,7 +8,7 @@ export default function PaymentModal({ isOpen, setIsOpen, price }) {
 
   const options = {
     key: "rzp_test_hgnOGH5GP7b5xn",
-    amount: price,
+    amount: price * 100,
     currency: "INR",
     name: "Water Bill Payment",
     description: "Water Bill Submission Amount",

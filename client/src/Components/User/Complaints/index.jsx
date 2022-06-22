@@ -58,6 +58,7 @@ const Complaints = () => {
             <button
               type="submit"
               className="bg-blue-500 p-2 px-4 rounded-2xl hover:bg-blue-700 hover:text-white"
+              // onClick={alert("Complaint Submitted")}
             >
               Submit
             </button>

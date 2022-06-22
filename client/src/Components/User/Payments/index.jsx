@@ -45,7 +45,7 @@ export const Payments = () => {
             House Tax Payment
           </h1>
           <h2 className="bg-gray-300 p-2 w-full text-blue-900 text-md font-medium">
-            Municipal Corporation
+            Panchayat Management
           </h2>
           <p className="bg-white px-2 pt-2 text-md font-base">
             Use this service to pay your house tax online through e-mitra.
@@ -60,7 +60,7 @@ export const Payments = () => {
               onClick={payBill}
               className="text-white text-md bg-blue-500 p-2 rounded-lg hover:bg-blue-900"
             >
-              Pay Bill
+              Pay Tax
             </button>
           </div>
         </div>

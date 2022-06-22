@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AdminServices = () => {
   const [active, setActive] = useState(true);
@@ -59,21 +60,29 @@ const AdminServices = () => {
       <div className="flex flex-col w-full m-10 gap-5">
         <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl">
           <h1 className="font-bold text-2xl">Services</h1>
-          <button className="flex text-xl underline">Add Services</button>
+          <Link
+            className="flex text-xl underline"
+            to="/admin/services/add-service"
+          >
+            Add Services
+          </Link>
         </div>
-        <div className="flex gap-72 px-5 w-full">
-          <h1 className="font-semibold text-xl">Sl.No</h1>
+        <div className="flex px-5 w-full gap-2">
+          <h1 className="font-semibold text-xl w-80">Sl.No</h1>
           <h1 className="font-semibold text-xl">Services</h1>
         </div>
         <div className="flex flex-col shadow-xl">
           {services.map((items) => (
             <div className="flex flex-col px-7 py-2 gap-5 bg-white w-full border-b-2">
               <div className="flex justify-between">
-                <div className="flex gap-80">
-                  <h1 className="font-semibold text-xl">{items.key}</h1>
-                  <h1 className="font-semibold text-xl">{items.title}</h1>
+                <div className="flex">
+                  <h1 className="font-semibold text-xl w-80">{items.key}</h1>
+                  <button className="font-semibold text-xl">{items.title}</button>
                 </div>
                 <div className="flex gap-3">
+                  <button className="bg-pink-500 px-2 rounded text-white">
+                    VIEW
+                  </button>
                   <button
                     className={`bg-green-500 px-2 rounded text-white ${
                       !active && "bg-gray-500"

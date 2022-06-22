@@ -8,7 +8,9 @@ const AdminSchemesPage = () => {
     <>
       <div className="flex">
         <Sidebar />
-        <AdminSchemes />
+        <div className="flex w-full h-full bg-gray-200">
+          <AdminSchemes />
+        </div>
       </div>
     </>
   );

@@ -200,8 +200,8 @@ const Footer = () => {
 
               <ul className="list-none mb-0">
                 <li>
-                  <a href="#!" className="text-white">
-                    Link 1
+                  <a href="admin" className="text-white">
+                    Admin
                   </a>
                 </li>
                 <li>

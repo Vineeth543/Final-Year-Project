@@ -21,6 +21,11 @@ import AdminTenderPage from "./Pages/Admin/AdminTender.Page";
 import AdminPaymentPage from "./Pages/Admin/AdminPayment.Page";
 import AdminComplaintPage from "./Pages/Admin/AdminComplaints.Page";
 import AdminUserPage from "./Pages/Admin/AdminUser.Page";
+import AddServicePage from "./Pages/Admin/AddService.Page";
+import AddSchemePage from "./Pages/Admin/AddScheme.Page";
+import AddLiveEventsPage from "./Pages/Admin/AddLiveEvents";
+import AddUpcomingEventsPage from "./Pages/Admin/AddUpcomingEvents.Page";
+import PastEventsPage from "./Pages/Admin/PastEvents.Page";
 
 const App = () => {
   return (
@@ -83,6 +88,31 @@ const App = () => {
           element={<AdminComplaintPage />}
         ></Route>
         <Route path="/admin/users" exact element={<AdminUserPage />}></Route>
+        <Route
+          path="/admin/services/add-service"
+          exact
+          element={<AddServicePage />}
+        ></Route>
+        <Route
+          path="/admin/schemes/add-scheme"
+          exact
+          element={<AddSchemePage />}
+        ></Route>
+        <Route
+          path="/admin/events/live-event"
+          exact
+          element={<AddLiveEventsPage />}
+        ></Route>
+        <Route
+          path="/admin/events/upcoming"
+          exact
+          element={<AddUpcomingEventsPage />}
+        ></Route>
+        <Route
+          path="/admin/events/past"
+          exact
+          element={<PastEventsPage />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

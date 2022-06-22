@@ -85,12 +85,11 @@ const Events = () => {
   ];
   return (
     <>
-      <div className="container m-auto mt-2">
+      <div className="container m-auto mt-2 ">
         <h1
           className="text-white font-semibold text-4xl absolute"
           style={myStyle}
         >
-          Events and Awareness Programs
         </h1>
         <div className="h-96">
           <img

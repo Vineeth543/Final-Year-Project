@@ -57,6 +57,7 @@ const Sidebar = () => {
           onClick={() => setOpen(!open)}
         />
         <div className="flex bg-white gap-x-4 items-center pl-4">
+          {/* <Link to="/"> */}
           <img
             src="https://www.karnataka.gov.in/frontend/assets/img/Seal_of_Karnataka.png"
             alt="logo"
@@ -64,12 +65,13 @@ const Sidebar = () => {
               open && "rotate-[360deg]"
             }`}
           />
+          {/* </Link> */}
           <h1
             className={`flex text-black origin-left font-medium text-xl duration-200 ${
               !open && "scale-0"
             }`}
           >
-            Grama
+            eGrama
           </h1>
         </div>
         <ul className="w-full h-full bg-blue-700">

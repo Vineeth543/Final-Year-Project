@@ -1,19 +1,19 @@
 import React from "react";
 
 import Sidebar from "../../Components/Admin/Sidebar/Sidebar";
-import AdminEvents from "../../Components/Admin/Events/index";
+import AddUpocomingEvents from "../../Components/Admin/Events/addUpcomingEvents";
 
-const AdminEventPage = () => {
+const AddLiveEventsPage = () => {
   return (
     <>
       <div className="flex">
         <Sidebar />
         <div className="flex w-full h-full bg-gray-200">
-          <AdminEvents />
+          <AddUpocomingEvents />
         </div>
       </div>
     </>
   );
 };
 
-export default AdminEventPage;
+export default AddLiveEventsPage;
