@@ -6,34 +6,42 @@ const Sidebar = () => {
 
   const [Menus] = useState([
     {
+      key: 1,
       title: "Dashboard",
       src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
+      key: 2,
       title: "Services",
       src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
+      key: 3,
       title: "Schemes",
       src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
+      key: 4,
       title: "Events",
       src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
+      key: 5,
       title: "Tenders",
       src: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
     },
     {
+      key: 6,
       title: "Payments",
       src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
+      key: 7,
       title: "Complaints",
       src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
+      key: 8,
       title: "Users",
       src: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
     },
@@ -83,8 +91,9 @@ const Sidebar = () => {
               <li
                 key={index}
                 className={`flex p-2 pl-5 mt-4 hover:text-white text-black text-lg font-semibold items-center gap-x-4 ${
-                  page.pathname === `/admin/${Menu.title.toLowerCase()}` &&
-                  "bg-light-white"
+                  page.pathname.includes(
+                    "/admin/" + Menu.title.toLowerCase()
+                  ) && "bg-light-white"
                 } `}
               >
                 <img src={Menu.src} alt="icon" className="w-8" />
@@ -100,6 +109,23 @@ const Sidebar = () => {
       </div>
     </>
   );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 };
 
 export default Sidebar;

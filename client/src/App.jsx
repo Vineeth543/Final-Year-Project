@@ -26,6 +26,8 @@ import AddSchemePage from "./Pages/Admin/AddScheme.Page";
 import AddLiveEventsPage from "./Pages/Admin/AddLiveEvents";
 import AddUpcomingEventsPage from "./Pages/Admin/AddUpcomingEvents.Page";
 import PastEventsPage from "./Pages/Admin/PastEvents.Page";
+import ViewUpcomingEventsPage from "./Pages/Admin/ViewUpcomingEvents.Page";
+import ViewPastEventsPage from "./Pages/Admin/ViewPastEvents.Page";
 
 const App = () => {
   return (
@@ -109,9 +111,19 @@ const App = () => {
           element={<AddUpcomingEventsPage />}
         ></Route>
         <Route
+          path="/admin/events/view-upcoming"
+          exact
+          element={<ViewUpcomingEventsPage />}
+        ></Route>
+        <Route
           path="/admin/events/past"
           exact
           element={<PastEventsPage />}
+        ></Route>
+        <Route
+          path="/admin/events/view-past"
+          exact
+          element={<ViewPastEventsPage />}
         ></Route>
       </Routes>
     </BrowserRouter>

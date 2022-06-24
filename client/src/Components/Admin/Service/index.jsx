@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 const AdminServices = () => {
   const [active, setActive] = useState(true);
@@ -59,25 +60,33 @@ const AdminServices = () => {
     <>
       <div className="flex flex-col w-full m-10 gap-5">
         <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl">
-          <h1 className="font-bold text-2xl">Services</h1>
+          <h1 className="font-semibold text-4xl text-gray-700">Services</h1>
           <Link
-            className="flex text-xl underline"
+            className="flex w-44 outline-none"
             to="/admin/services/add-service"
           >
-            Add Services
+            <IoMdAddCircleOutline className="p-2 text-white text-5xl bg-cyan-500" />
+            <h2 className="p-2 text-xl font-semibold text-white bg-cyan-500">
+              New Service
+            </h2>
           </Link>
         </div>
         <div className="flex px-5 w-full gap-2">
-          <h1 className="font-semibold text-xl w-80">Sl.No</h1>
-          <h1 className="font-semibold text-xl">Services</h1>
+          <h1 className="font-semibold text-xl w-80 text-gray-700">Sl.No</h1>
+          <h1 className="font-semibold text-xl text-gray-700">Services</h1>
         </div>
         <div className="flex flex-col shadow-xl">
           {services.map((items) => (
-            <div className="flex flex-col px-7 py-2 gap-5 bg-white w-full border-b-2">
+            <div
+              className="flex flex-col px-7 py-2 gap-5 bg-white w-full border-b-2"
+              key={items.title}
+            >
               <div className="flex justify-between">
                 <div className="flex">
                   <h1 className="font-semibold text-xl w-80">{items.key}</h1>
-                  <button className="font-semibold text-xl">{items.title}</button>
+                  <h1 className="font-semibold text-xl cursor-pointer">
+                    {items.title}
+                  </h1>
                 </div>
                 <div className="flex gap-3">
                   <button className="bg-pink-500 px-2 rounded text-white">
