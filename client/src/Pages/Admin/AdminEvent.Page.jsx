@@ -8,7 +8,7 @@ const AdminEventPage = () => {
     <>
       <div className="flex">
         <Sidebar />
-        <div className="flex w-full h-full bg-gray-200">
+        <div className="flex w-full h-full bg-white">
           <AdminEvents />
         </div>
       </div>

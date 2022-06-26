@@ -8,7 +8,9 @@ const AdminTenderPage = () => {
     <>
       <div className="flex">
         <Sidebar />
-        <AdminTenders />
+        <div className="flex w-full h-full bg-white">
+          <AdminTenders />
+        </div>
       </div>
     </>
   );
