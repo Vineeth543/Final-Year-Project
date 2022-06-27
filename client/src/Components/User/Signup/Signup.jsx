@@ -1,11 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { FcEmptyBattery } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   const formStyle = {
     width: "40rem",
     height: "35rem",
+  };
+  const nav = useNavigate();
+
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
+  const Signup = () => {
+    if (
+      name === "" ||
+      gender === "" ||
+      email === "" ||
+      phone === "" ||
+      password === ""
+    ) {
+      alert("Please fill all the fields");
+      return;
+    }
+    const newUser = {
+      name: name,
+      gender: gender,
+      email: email,
+      phone: phone,
+      password: password,
+    };
+    axios
+      .post("http://localhost:8080/user/signup", newUser)
+      .then((result) => {
+        alert(result.data);
+        nav("/user/login");
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
   };
 
   return (
@@ -31,24 +68,42 @@ const Signup = () => {
               <input
                 type="text"
                 name="fullname"
-                id="fullname"
+                id="name"
                 placeholder="Fullname"
                 className="text-black"
                 required
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-start gap-8">
               <label htmlFor="gender">Gender:</label>
               <div className="flex items-center justify-center gap-2">
-                <input type="radio" value="male" name="gender" required /> Male
                 <input
                   type="radio"
+                  value="male"
+                  id="gender"
+                  name="gender"
+                  required
+                  onChange={(e) => setGender(e.target.value)}
+                />{" "}
+                Male
+                <input
+                  type="radio"
+                  id="gender"
                   value="female"
                   name="gender"
                   required
+                  onChange={(e) => setGender(e.target.value)}
                 />{" "}
                 Female
-                <input type="radio" value="other" name="gender" required />{" "}
+                <input
+                  type="radio"
+                  value="other"
+                  id="gender"
+                  name="gender"
+                  required
+                  onChange={(e) => setGender(e.target.value)}
+                />{" "}
                 Other
               </div>
             </div>
@@ -61,17 +116,19 @@ const Signup = () => {
                 placeholder="Email"
                 className="text-black"
                 required
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-start gap-3">
               <label htmlFor="mobile">Mobile No:</label>
               <input
                 type="number"
-                name="mobile"
-                id="mobile"
+                name="phone"
+                id="phone"
                 placeholder="Mobile No"
                 className="text-black"
                 required
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-start gap-5">
@@ -83,6 +140,7 @@ const Signup = () => {
                 placeholder="Password"
                 className="text-black"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-start gap-4">
@@ -101,8 +159,8 @@ const Signup = () => {
             </div>
             <div className="flex flex-col items-center justify-center gap-4">
               <button
-                type="submit"
                 className="bg-blue-900 p-2 px-4 rounded-2xl"
+                onClick={() => Signup()}
               >
                 Submit
               </button>

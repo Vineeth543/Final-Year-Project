@@ -1,19 +1,19 @@
 import React from "react";
 
 import Sidebar from "../../Components/Admin/Sidebar/Sidebar";
-import AdminComplaints from "../../Components/Admin/Complaints/index";
+import AdminViewSingleServices from "../../Components/Admin/Service/viewSingleService";
 
-const AdminComplaintsPage = () => {
+const AdminViewSingleServicePage = () => {
   return (
     <>
       <div className="flex">
         <Sidebar />
         <div className="flex w-full h-full bg-gray-200">
-          <AdminComplaints />
+          <AdminViewSingleServices />
         </div>
       </div>
     </>
   );
 };
 
-export default AdminComplaintsPage;
+export default AdminViewSingleServicePage;

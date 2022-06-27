@@ -1,11 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { FcEmptyBattery } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const formStyle = {
     width: "40rem",
     height: "28rem",
+  };
+  const nav = useNavigate();
+
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = (e) => {
+    e.preventDefault();
+    if (phone === "" || password === "") {
+      alert("Please fill all the fields");
+      return;
+    }
+
+    const User = {
+      phone: phone,
+      password: password,
+    };
+
+    axios
+      .post("http://localhost:8080/user/login", User)
+      .then((result) => {
+        if (result.data.status === "success") {
+          alert(result.data.msg);
+          nav("/user");
+          localStorage.setItem("loggedIn", "true");
+        } else alert(result.data.msg);
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+    setPhone("");
+    setPassword("");
   };
 
   return (
@@ -29,12 +62,13 @@ const Login = () => {
             <div className="flex items-center justify-center gap-3">
               <label htmlFor="usernamme">Username:</label>
               <input
-                type="number"
+                type="text"
                 name="username"
                 id="username"
                 placeholder="Mobile No"
                 className="text-black m-0"
                 required
+                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-center gap-4">
@@ -46,6 +80,7 @@ const Login = () => {
                 placeholder="Password"
                 className="text-black"
                 required
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="flex flex-col items-center justify-center gap-4">
@@ -56,6 +91,7 @@ const Login = () => {
               <button
                 type="submit"
                 className="bg-blue-900 p-2 px-4 rounded-2xl"
+                onClick={login}
               >
                 Login
               </button>

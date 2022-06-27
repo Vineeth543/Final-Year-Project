@@ -28,6 +28,8 @@ import AddUpcomingEventsPage from "./Pages/Admin/AddUpcomingEvents.Page";
 import PastEventsPage from "./Pages/Admin/PastEvents.Page";
 import ViewUpcomingEventsPage from "./Pages/Admin/ViewUpcomingEvents.Page";
 import ViewPastEventsPage from "./Pages/Admin/ViewPastEvents.Page";
+import AdminViewServicePage from "./Pages/Admin/AdminViewService.Page";
+import AdminViewSingleServicePage from "./Pages/Admin/AdminViewSingleService.Page";
 
 const App = () => {
   return (
@@ -40,6 +42,11 @@ const App = () => {
         <Route path="/user/services" exact element={<ServiceLayout />}></Route>
         <Route
           path="/user/services/:id"
+          exact
+          element={<SingleServiceLayout />}
+        ></Route>
+        <Route
+          path="/user/services/:id/:id"
           exact
           element={<SingleServiceLayout />}
         ></Route>
@@ -89,9 +96,29 @@ const App = () => {
           exact
           element={<AdminComplaintPage />}
         ></Route>
+        <Route
+          path="/admin/complaints/all"
+          exact
+          element={<AdminComplaintPage />}
+        ></Route>
         <Route path="/admin/users" exact element={<AdminUserPage />}></Route>
         <Route
           path="/admin/services/add-service"
+          exact
+          element={<AddServicePage />}
+        ></Route>
+        <Route
+          path="/admin/services/view/:id"
+          exact
+          element={<AdminViewServicePage />}
+        ></Route>
+        <Route
+          path="/admin/services/view/:id/:id"
+          exact
+          element={<AdminViewSingleServicePage />}
+        ></Route>
+        <Route
+          path="/admin/services/add-service/:id"
           exact
           element={<AddServicePage />}
         ></Route>

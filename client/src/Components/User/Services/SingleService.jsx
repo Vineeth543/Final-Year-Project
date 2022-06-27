@@ -1,6 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
+import axios from "axios";
 
 const SingleService = () => {
+  const [categories, setCategories] = useState([]);
+  const [services, setServices] = useState([]);
+  const page = useLocation();
+  const mainCategoryID = page.pathname.replace("/user/services/", "");
+
+  const getSubCategories = () => {
+    axios
+      .get(`http://localhost:8080/user/services/${mainCategoryID}/`)
+      .then((res) => {
+        const Categories = res.data;
+        const subCategory = [];
+        Categories.forEach((element) => {
+          subCategory.push(element);
+        });
+        setCategories(subCategory);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getService = (subCategoryID) => {
+    axios
+      .get(`http://localhost:8080/user/services/view/${subCategoryID}/`)
+      .then((res) => {
+        const servicesData = res.data;
+        const serviceList = [];
+        servicesData.forEach((element) => {
+          serviceList.push(element.name);
+        });
+        setServices(serviceList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getSubCategories();
+  }, []);
+
+  const findService = (id) => {
+    getService(id);
+  };
+
   return (
     <>
       <h1 className="text-black font-bold text-4xl text-center m-5">
@@ -8,125 +55,43 @@ const SingleService = () => {
       </h1>
       <div className="flex mx-20 my-10 gap-5">
         <div className="flex flex-col gap-2 w-1/3 border px-2 pt-2">
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
-            Subsidy to farmers
-          </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
-            Laboratory testing and analysis
-          </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
-            Technical Information
-          </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
-            Seeds
-          </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
-            Government assisted financial grants for Farmers and Fishermen
-          </h1>
-          <h1 className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer">
-            Other Services
-          </h1>
+          {categories.map((items) => (
+            <h1
+              className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer"
+              key={items._id}
+              onClick={() => findService(items._id)}
+            >
+              {items.name}
+            </h1>
+          ))}
         </div>
-        <div className="flex flex-col w-full border pb-4">
-          <div className="flex justify-between mx-5 my-2 items-center text-lg font-base">
-            <div className="flex gap-4 items-center">
-              <span className="p-2">Search:</span>
-              <input
-                type="text"
-                name="search"
-                id="search"
-                className="border border-black w-24 h-8"
-              />
-            </div>
-          </div>
-          <h1 className="text-black font-semibold bg-gray-200 p-2 border-b border-black text-xl mx-5">
+        <div className="flex flex-col w-full border py-3">
+          <h1 className="font-semibold bg-gray-200 p-2 border-b border-black text-xl mx-5">
             Services
           </h1>
-          <div className="flex items-center justify-between mx-5 border-b border-gray-400">
+          {services.map((items, index) => (
             <div
-              className="flex items-center bg-gray-300 h-full px-2"
-              style={{ width: "70rem" }}
+              className="flex items-center justify-between mx-5 border-b border-gray-400"
+              key={index}
             >
-              <h1 className="text-black font-semibold text-md">
-                Application for claiming subsidies for Purchase of Fish Seed -
-                Fisheries Department
-              </h1>
+              <div
+                className={
+                  index % 2
+                    ? "flex items-center bg-gray-300 h-full px-2"
+                    : "flex items-center bg-gray-100 h-full px-2"
+                }
+                style={{ width: "70rem" }}
+              >
+                <h1 className="text-black font-semibold text-md">{items}</h1>
+              </div>
+              <div className="flex flex-col p-1 w-36 bg-gray-200">
+                <button className="p-1 bg-blue-500 rounded-2xl">
+                  Apply Online
+                </button>
+                <button className="text-blue-500 font-medium">Know More</button>
+              </div>
             </div>
-            <div className="flex flex-col p-1 w-36 bg-gray-200">
-              <button className="p-1 bg-blue-500 rounded-2xl">
-                Apply Online
-              </button>
-              <button className="text-blue-500 font-medium">Know More</button>
-            </div>
-          </div>
-          <div className="flex items-center justify-between mx-5 border-b border-gray-400">
-            <div
-              className="flex items-center bg-gray-200 h-full px-2"
-              style={{ width: "70rem" }}
-            >
-              <h1 className="text-black font-semibold text-md">
-                Application for issue of Pass books to the Sericulturists -
-                Department of Sericulture
-              </h1>
-            </div>
-            <div className="flex flex-col p-1 w-36 bg-gray-300">
-              <button className="p-1 bg-blue-500 rounded-2xl">
-                Apply Online
-              </button>
-              <button className="text-blue-500 font-medium">Know More</button>
-            </div>
-          </div>
-          <div className="flex items-center justify-between mx-5 border-b border-gray-400">
-            <div
-              className="flex items-center bg-gray-300 h-full px-2"
-              style={{ width: "70rem" }}
-            >
-              <h1 className="text-black font-semibold text-md">
-                Application for issue of Subsidy to Reelers for Installation of
-                Heat Recovery Units - Department of Sericulture
-              </h1>
-            </div>
-            <div className="flex flex-col p-1 w-36 bg-gray-200">
-              <button className="p-1 bg-blue-500 rounded-2xl">
-                Apply Online
-              </button>
-              <button className="text-blue-500 font-medium">Know More</button>
-            </div>
-          </div>
-          <div className="flex items-center justify-between mx-5 border-b border-gray-400">
-            <div
-              className="flex items-center bg-gray-200 h-full px-2"
-              style={{ width: "70rem" }}
-            >
-              <h1 className="text-black font-semibold text-md">
-                Application for Issue of Subsidy to Sericulturists for Drip
-                Irrigation SC/ST and Others - Department of Sericulture
-              </h1>
-            </div>
-            <div className="flex flex-col p-1 w-36 bg-gray-300">
-              <button className="p-1 bg-blue-500 rounded-2xl">
-                Apply Online
-              </button>
-              <button className="text-blue-500 font-medium">Know More</button>
-            </div>
-          </div>
-          <div className="flex items-center justify-between mx-5 border-b border-gray-400">
-            <div
-              className="flex items-center bg-gray-300 h-full px-2"
-              style={{ width: "70rem" }}
-            >
-              <h1 className="text-black font-semibold text-md">
-                Application for issue of Subsidy to Reelers for Installation of
-                Generators - Department of Sericulture
-              </h1>
-            </div>
-            <div className="flex flex-col p-1 w-36 bg-gray-200">
-              <button className="p-1 bg-blue-500 rounded-2xl">
-                Apply Online
-              </button>
-              <button className="text-blue-500 font-medium">Know More</button>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>
