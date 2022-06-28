@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const SingleService = () => {
@@ -31,7 +31,7 @@ const SingleService = () => {
         const servicesData = res.data;
         const serviceList = [];
         servicesData.forEach((element) => {
-          serviceList.push(element.name);
+          serviceList.push(element);
         });
         setServices(serviceList);
       })
@@ -82,12 +82,18 @@ const SingleService = () => {
                 }
                 style={{ width: "70rem" }}
               >
-                <h1 className="text-black font-semibold text-md">{items}</h1>
+                <h1 className="text-black font-semibold text-md">
+                  {items.name}
+                </h1>
               </div>
-              <div className="flex flex-col p-1 w-36 bg-gray-200">
-                <button className="p-1 bg-blue-500 rounded-2xl">
-                  Apply Online
-                </button>
+              <div className="flex flex-col items-center jusfify-center p-1 w-36 bg-gray-200">
+                <Link
+                  to={page.pathname + "/apply/" + items._id}
+                >
+                  <button className="p-1 bg-blue-500 rounded-2xl">
+                    Apply Online
+                  </button>
+                </Link>
                 <button className="text-blue-500 font-medium">Know More</button>
               </div>
             </div>

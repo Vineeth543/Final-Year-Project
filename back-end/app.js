@@ -7,6 +7,7 @@ const eServices = require("./routes/User/eservices");
 const events = require("./routes/User/events");
 const complaints = require("./routes/User/complaints");
 const profile = require("./routes/User/updateProfile");
+const applyService = require("./routes/User/e-services/applyService");
 
 //officials routes
 const manageServiceRequest = require("./routes/officials/manageServiceRequest");
@@ -14,6 +15,7 @@ const QRgenerator = require("./routes/officials/qrgenerator");
 const PDFgenerator = require("./routes/officials/pdfgenerator");
 const services = require("./routes/officials/Services/services");
 const officialIndex = require("./routes/officials/index");
+const appliedService = require("./routes/officials/Services/appliedServices");
 
 const app = express();
 
@@ -76,6 +78,8 @@ app.use(events);
 app.use(complaints);
 
 app.use(profile);
+
+app.use(applyService);
 //**********************************OFFICIALS ****************************//
 
 app.use(manageServiceRequest);
@@ -83,3 +87,4 @@ app.use(QRgenerator);
 app.use(PDFgenerator);
 app.use(services);
 app.use(officialIndex);
+app.use(appliedService);

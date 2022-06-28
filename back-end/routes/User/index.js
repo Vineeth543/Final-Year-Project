@@ -51,7 +51,11 @@ router.post("/user/login", (req, res) => {
         res.send({ msg: "No user exists", status: "error" });
       } else {
         if (req.body.password == doc.password) {
-          res.send({ msg: "Login Successful", status: "success" });
+          res.send({
+            msg: "Login Successful",
+            status: "success",
+            userId: doc._id,
+          });
         } else {
           res.send({ msg: "Invalid Credentials", status: "error" });
         }

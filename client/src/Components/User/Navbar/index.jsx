@@ -35,7 +35,7 @@ const UserNavbar = () => {
         <Link className="font-semibold text-lg" to="/user/complaints">
           Complaints
         </Link>
-        {localStorage.getItem("loggedIn") === "true" ? (
+        {localStorage.getItem("CCPS-loggedIn") === "true" ? (
           <div className="w-10 h-10">
             <img
               src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/344/external-user-user-tanah-basah-glyph-tanah-basah-5.png"

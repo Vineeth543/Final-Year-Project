@@ -1,12 +1,15 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// ***************** User Pages *************************  //
+
 import HomeLayout from "./Layout/Home.Layout";
 import UserHomeLayout from "./Layout/User.Home.Layout";
 import SignupLayout from "./Layout/Signup.Layout";
 import LoginLayout from "./Layout/Login.Layout";
 import ServiceLayout from "./Layout/Service.Layout";
 import SingleServiceLayout from "./Layout/SingleService.Layout";
+import ApplyServiceLayout from "./Layout/ApplyService.Layout";
 import SchemesLayout from "./Layout/Schemes.Layout";
 import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
 import EventsLayout from "./Layout/Events.Layout";
@@ -16,7 +19,7 @@ import ComplaintsLayout from "./Layout/Complaints.Layout";
 
 import OfficialLoginLayout from "./Pages/Official Login/Login.Layout";
 
-// ***************** Admin Pages *************************
+// ***************** Admin Pages *************************  //
 import AdminDashboardPage from "./Pages/Admin/AdminDashboard.Page";
 import AdminServicePage from "./Pages/Admin/AdminService.Page";
 import AdminSchemePage from "./Pages/Admin/AdminScheme.Page";
@@ -74,6 +77,11 @@ const App = () => {
           path="/user/services/:id"
           exact
           element={<SingleServiceLayout />}
+        ></Route>
+        <Route
+          path="/user/services/:id/apply/:id"
+          exact
+          element={<ApplyServiceLayout />}
         ></Route>
         <Route
           path="/user/services/:id/:id"

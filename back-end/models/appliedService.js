@@ -1,35 +1,41 @@
-const mongoose  = require('mongoose');
-const schema  = mongoose.Schema;
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
 
-const appliedServiceSchema = new schema({
-    service:{
-        type : schema.Types.ObjectId,
-        ref: 'services',
-        required:true,
+const appliedServiceSchema = new schema(
+  {
+    service: {
+      type: schema.Types.ObjectId,
+      ref: "services",
+      required: true,
     },
-    user:{
-        type : schema.Types.ObjectId,
-        ref :'users',
-        required : true,
+    user: {
+      type: schema.Types.ObjectId,
+      ref: "users",
+      required: true,
     },
-    date: { 
-        type : Date,
-        default : Date.now
+    userDocuments:{
+        type: Array
     },
-    secretary:{
-        type:Boolean,
-        default:false
+    date: {
+      type: Date,
+      default: Date.now,
     },
-    pdo:{
-        type:Boolean,
-        default:false
+    secretary: {
+      type: Boolean,
+      default: false,
+    },
+    pdo: {
+      type: Boolean,
+      default: false,
     },
     status: {
-        type : String,
-        enum :["rejected","accepted","completed","applied"],
-        default : "applied"
-    }
-},{timestamps : true});
+      type: String,
+      enum: ["rejected", "accepted", "completed", "applied"],
+      default: "applied",
+    },
+  },
+  { timestamps: true }
+);
 
-const appliedService = mongoose.model('applied-services',appliedServiceSchema);
+const appliedService = mongoose.model("applied-services", appliedServiceSchema);
 module.exports = appliedService;

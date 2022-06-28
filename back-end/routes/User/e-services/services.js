@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.use(express.json());
 
-//getting services data from database
+//getting subcategory by main cat id data from database
 router.get("/user/services/:id", (req, res) => {
   serviceCategory
     .find({ eService: req.params.id })
@@ -19,9 +19,22 @@ router.get("/user/services/:id", (req, res) => {
     });
 });
 
+// getting services under perticular sub category from database
 router.get("/user/services/view/:id", (req, res) => {
   services
     .find({ serviceCategory: req.params.id, status: true })
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((doc) => {
+      res.send("Nil");
+    });
+});
+
+// getting service required documents from database
+router.get("/user/services/view/apply/:serviceId", (req, res) => {
+  services
+    .findOne({ _id: req.params.serviceId, status: true })
     .then((doc) => {
       res.send(doc);
     })

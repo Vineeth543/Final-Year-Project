@@ -1,5 +1,5 @@
 //const express = require('express');
-const multer = require('multer');
+const multer = require("multer");
 
 // const storage = multer.diskStorage({
 //     dest : "./complaintFiles",
@@ -9,13 +9,13 @@ const multer = require('multer');
 // });
 
 const uploadComplaint = multer({
-   // storage:storage
-   dest : "./complaintFiles/"
+  // storage:storage
+  dest: "./complaintFiles/",
 });
 
 const uploadUserDetails = multer({
-   // storage:storage
-   dest : "./UserDocuments/"
+  // storage:storage
+  dest: "./UserDocuments/",
 });
 
-module.exports = {uploadComplaint,uploadUserDetails};
+module.exports = { uploadComplaint, uploadUserDetails };

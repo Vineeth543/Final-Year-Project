@@ -31,7 +31,9 @@ const Login = () => {
         if (result.data.status === "success") {
           alert(result.data.msg);
           nav("/user");
-          localStorage.setItem("loggedIn", "true");
+          localStorage.setItem("CCPS-loggedIn", "true");
+          localStorage.setItem("CCPS-userID", result.data.userId);
+          console.log(result.data.userId);
         } else alert(result.data.msg);
       })
       .catch((err) => {
