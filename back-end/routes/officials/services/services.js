@@ -1,5 +1,5 @@
 const express = require("express");
-const user = require("../../../models/user");
+const user = require("../../../models/home/user");
 const eServices = require("../../../models/e-Services/eServices");
 const serviceCategory = require("../../../models/e-Services/serviceCategory");
 const services = require("../../../models/e-Services/services");
@@ -53,6 +53,18 @@ router.get("/admin/services/view/:eServiceId/:categoryId", (req, res) => {
     .find({ serviceCategory: req.params.categoryId })
     .then((doc) => {
       res.send(doc);
+    })
+    .catch((doc) => {
+      res.send("Nil");
+    });
+});
+
+router.put("/admin/services/view/delete", (req, res) => {
+  services
+    .deleteOne({ _id: req.body.serviceId })
+    .then((doc) => {
+      res.send(req.body.serviceId);
+      console.log(req.body);
     })
     .catch((doc) => {
       res.send("Nil");

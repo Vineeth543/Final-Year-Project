@@ -1,5 +1,5 @@
 const express = require("express");
-const user = require("../../models/user");
+const user = require("../../models/home/user");
 var router = express.Router();
 
 router.use(express.json());

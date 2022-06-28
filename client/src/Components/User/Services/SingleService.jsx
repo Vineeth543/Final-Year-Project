@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const SingleService = () => {
@@ -55,10 +55,10 @@ const SingleService = () => {
       </h1>
       <div className="flex mx-20 my-10 gap-5">
         <div className="flex flex-col gap-2 w-1/3 border px-2 pt-2">
-          {categories.map((items) => (
+          {categories.map((items, index) => (
             <h1
               className="w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 hover:text-white hover:bg-blue-800 cursor-pointer"
-              key={items._id}
+              key={index}
               onClick={() => findService(items._id)}
             >
               {items.name}

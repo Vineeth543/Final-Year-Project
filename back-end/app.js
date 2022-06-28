@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const user = require("./models/user");
 
 //User routes
 const index = require("./routes/User/index");
@@ -14,6 +13,7 @@ const manageServiceRequest = require("./routes/officials/manageServiceRequest");
 const QRgenerator = require("./routes/officials/qrgenerator");
 const PDFgenerator = require("./routes/officials/pdfgenerator");
 const services = require("./routes/officials/Services/services");
+const officialIndex = require("./routes/officials/index");
 
 const app = express();
 
@@ -82,3 +82,4 @@ app.use(manageServiceRequest);
 app.use(QRgenerator);
 app.use(PDFgenerator);
 app.use(services);
+app.use(officialIndex);
