@@ -116,13 +116,13 @@ const AdminDashboard = () => {
                             </button>
                             <button
                               className="bg-green-500 px-2 rounded text-white"
-                              onSubmit={() => setApprove(items._id)}
+                              onClick={() => setApprove(items._id)}
                             >
                               APPROVE
                             </button>
                             <button
                               className="bg-red-400 px-2 rounded text-white"
-                              onSubmit={() => setReject(items._id)}
+                              onClick={() => setReject(items._id)}
                             >
                               REJECT
                             </button>

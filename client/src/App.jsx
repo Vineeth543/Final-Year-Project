@@ -16,6 +16,7 @@ import EventsLayout from "./Layout/Events.Layout";
 import TendersLayout from "./Layout/Tenders.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
+import UserDashboardLayout from "./Layout/UserDashboard.Layout";
 
 import OfficialLoginLayout from "./Pages/Official Login/Login.Layout";
 
@@ -38,6 +39,7 @@ import AddPastEventsPage from "./Pages/Admin/AddPastEvents.Page";
 import ViewPastEventsPage from "./Pages/Admin/ViewPastEvents.Page";
 import AdminViewServicePage from "./Pages/Admin/AdminViewService.Page";
 import AdminViewSingleServicePage from "./Pages/Admin/AdminViewSingleService.Page";
+import ViewUserDocumentsPage from "./Pages/Admin/ViewUserDocuments.Page";
 
 // ***************** Secretary Pages *************************
 
@@ -72,6 +74,11 @@ const App = () => {
         <Route path="/user" exact element={<UserHomeLayout />}></Route>
         <Route path="/user/login" exact element={<LoginLayout />}></Route>
         <Route path="/user/signup" exact element={<SignupLayout />}></Route>
+        <Route
+          path="/user/dashboard"
+          exact
+          element={<UserDashboardLayout />}
+        ></Route>
         <Route path="/user/services" exact element={<ServiceLayout />}></Route>
         <Route
           path="/user/services/:id"
@@ -112,6 +119,11 @@ const App = () => {
           path="/admin/dashboard"
           exact
           element={<AdminDashboardPage />}
+        ></Route>
+        <Route
+          path="/admin/dashboard/view-docs/:id"
+          exact
+          element={<ViewUserDocumentsPage />}
         ></Route>
         <Route
           path="/admin/services"
