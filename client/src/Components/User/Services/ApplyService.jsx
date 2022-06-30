@@ -30,6 +30,7 @@ const SingleService = () => {
             formData
           )
           .then((res) => {
+            alert(res.data);
             console.log(res);
           })
           .catch((err) => {

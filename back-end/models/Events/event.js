@@ -7,20 +7,28 @@ const eventSchema = new schema(
       type: String,
       required: true,
     },
-    link: {
+    eventType: {
       type: String,
+      enum: ["live", "upcoming", "past"],
+      required: true,
     },
-    photos: {
-      type: schema.Types.ObjectId,
-      ref: "images",
-    },
-    description: {
+    date: {
       type: String,
       required: true,
     },
     place: {
       type: String,
       required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    link: {
+      type: String,
+    },
+    poster: {
+      type: String,
     },
   },
   { timestamps: true }

@@ -16,6 +16,9 @@ const PDFgenerator = require("./routes/officials/pdfgenerator");
 const services = require("./routes/officials/Services/services");
 const officialIndex = require("./routes/officials/index");
 const appliedService = require("./routes/officials/Services/appliedServices");
+const uploadEvent = require("./routes/officials/events/uploadEvent");
+const deleteEvent = require("./routes/officials/events/deleteEvent");
+const updateEvent = require("./routes/officials/events/updateEvent");
 
 const app = express();
 
@@ -88,3 +91,6 @@ app.use(PDFgenerator);
 app.use(services);
 app.use(officialIndex);
 app.use(appliedService);
+app.use(uploadEvent);
+app.use(deleteEvent);
+app.use(updateEvent);

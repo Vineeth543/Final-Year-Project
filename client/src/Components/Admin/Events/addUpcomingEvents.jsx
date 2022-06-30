@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const AddUpcomingEvents = () => {
+  const [title, setTitle] = useState("");
+  const [place, setPlace] = useState("");
+  const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
+  const [poster, setPoster] = useState("");
+
+  const addUpcomingEvent = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", title);
+    formData.append("eventType", "upcoming");
+    formData.append("date", date);
+    formData.append("description", description);
+    formData.append("place", place);
+    formData.append("eventPoster", poster);
+    axios
+      .post("http://localhost:8080/admin/events/uploadEvent/aws", formData)
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((err) => {
+        alert("Error in uploading event");
+      });
+  };
+
   return (
     <>
       <div className="flex flex-col w-full m-10 rounded">
@@ -9,58 +35,50 @@ const AddUpcomingEvents = () => {
         </div>
         <div className="flex flex-col shadow-xl bg-white">
           <form className="flex flex-col mt-5 mb-2 px-5 gap-4">
-            <label htmlFor="eventTitle" className="text-xl font-medium pl-1">
+            <label htmlFor="name" className="text-xl font-medium pl-1">
               Event Title
             </label>
             <input
               type="text"
-              name="eventTitle"
-              id="eventTitle"
+              name="name"
+              id="name"
               className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+              required
+              onChange={(e) => setTitle(e.target.value)}
             />
-          </form>
-        </div>
-        <div className="flex flex-col shadow-xl bg-white">
-          <form className="flex flex-col mt-5 mb-2 px-5 gap-4">
-            <label htmlFor="eventTitle" className="text-xl font-medium pl-1">
+            <label htmlFor="place" className="text-xl font-medium pl-1">
               Event Place
             </label>
             <input
               type="text"
-              name="eventTitle"
-              id="eventTitle"
+              name="place"
+              id="place"
               className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+              required
+              onChange={(e) => setPlace(e.target.value)}
             />
-          </form>
-        </div>
-        <div className="flex flex-col shadow-xl bg-white">
-          <form className="flex flex-col mt-5 mb-2 px-5 gap-4">
-            <label htmlFor="eventTitle" className="text-xl font-medium pl-1">
+            <label htmlFor="date" className="text-xl font-medium pl-1">
               Event Date
             </label>
             <input
               type="text"
-              name="eventTitle"
-              id="eventTitle"
+              name="date"
+              id="date"
               className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+              required
+              onChange={(e) => setDate(e.target.value)}
             />
-          </form>
-        </div>
-        <div className="flex flex-col shadow-xl bg-white">
-          <form className="flex flex-col mt-5 mb-2 px-5 gap-4">
-            <label htmlFor="eventLink" className="text-xl font-medium pl-1">
+            <label htmlFor="description" className="text-xl font-medium pl-1">
               Event Description
             </label>
             <input
               type="text"
-              name="eventLink"
-              id="eventLink"
+              name="description"
+              id="description"
               className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+              required
+              onChange={(e) => setDescription(e.target.value)}
             />
-          </form>
-        </div>
-        <div className="flex flex-col shadow-xl bg-white">
-          <form className="flex flex-col px-5 py-3 gap-4">
             <label htmlFor="eventPoster" className="text-xl font-medium pl-1">
               Event Poster
             </label>
@@ -69,13 +87,17 @@ const AddUpcomingEvents = () => {
               name="eventPoster"
               id="eventPoster"
               className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+              required
+              onChange={(e) => setPoster(e.target.files[0])}
             />
+            <button
+              type="submit"
+              className="flex items-center justify-center p-2 bg-blue-300 w-full"
+              onClick={(e) => addUpcomingEvent(e)}
+            >
+              Submit
+            </button>
           </form>
-        </div>
-        <div className="flex w-full bg-white items-center justify-center p-5">
-          <button className="flex items-center justify-center p-2 bg-blue-300 w-full">
-            Submit
-          </button>
         </div>
       </div>
     </>

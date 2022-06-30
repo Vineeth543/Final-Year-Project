@@ -1,65 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Events = () => {
-  const myStyle = {
-    left: "15%",
-    top: "27%",
+  const [liveEvent, setLiveEvents] = useState([]);
+
+  const getLiveEvents = () => {
+    axios
+      .get("http://localhost:8080/admin/events/viewEvent/live")
+      .then((res) => {
+        console.log(res.data);
+        const tempLiveEvents = [];
+        res.data.forEach((event) => {
+          tempLiveEvents.push(event);
+        });
+        setLiveEvents(tempLiveEvents);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const imageStyle = {
-    width: "100%",
-    height: "30rem",
-  };
-  
-  const upcomingEvent = [
-    {
-      key: 1,
-      title: "Mann Ki Baat",
-      location: "Radio",
-      image:
-        "https://www.pmindia.gov.in/wp-content/uploads/2022/03/Thumbnail-Maan-ki-baat-27-March-2022-English.jpg",
-      date: "28 May, 2022",
-    },
-    {
-      key: 1,
-      title: "Social Forestry",
-      location: "Village Panchayat",
-      image:
-        "https://www.panchayat.gov.in/documents/20126/404934/WhatsApp+Image+2021-08-05+at+15.29.56+%281%29.jpeg",
-      date: "5th June 2022",
-    },
-    {
-      key: 1,
-      title: "Turning waste into wealth, training program",
-      location: "Government School",
-      image: "https://wwfin.awsassets.panda.org/img/original/photo_21_3.jpg",
-      date: "10th June 2022",
-    },
-  ];
+  const [upcomingEvent, setUpcomingEvent] = useState([]);
 
-  const pastEvent = [
-    {
-      key: 1,
-      title: "Mann Ki Baat",
-      location: "Radio",
-      video: "https://www.youtube.com/embed/thUXYWp0VvU?controls=0",
-      date: "28 May, 2022",
-    },
-    {
-      key: 1,
-      title: "Social Forestry",
-      location: "Village Panchayat",
-      video: "https://www.youtube.com/embed/68jnF_MZW7g?controls=0",
-      date: "5th June 2022",
-    },
-    {
-      key: 1,
-      title: "Turning waste into wealth, training program",
-      location: "Government School",
-      video: "https://www.youtube.com/embed/kf7KBaviEE0?controls=0",
-      date: "10th June 2022",
-    },
-  ];
+  const getUpcomingEvents = () => {
+    axios
+      .get("http://localhost:8080/admin/events/viewEvent/upcoming")
+      .then((res) => {
+        console.log(res.data);
+        const tempUpcomingEvent = [];
+        res.data.forEach((event) => {
+          tempUpcomingEvent.push(event);
+        });
+        setUpcomingEvent(tempUpcomingEvent);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [pastEvent, setPastEvent] = useState([]);
+
+  const getPastEvents = () => {
+    axios
+      .get("http://localhost:8080/admin/events/viewEvent/past")
+      .then((res) => {
+        console.log(res.data);
+        const tempUpcomingEvent = [];
+        res.data.forEach((event) => {
+          tempUpcomingEvent.push(event);
+        });
+        setPastEvent(tempUpcomingEvent);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getLiveEvents();
+    getUpcomingEvents();
+    getPastEvents();
+  }, []);
 
   const awareness = [
     {
@@ -83,54 +84,63 @@ const Events = () => {
         "https://www.mohfw.gov.in/assets/images/Poster_Corona_ad_Eng_page-0001.png",
     },
   ];
+
   return (
     <>
-      <div className="container m-auto mt-2 ">
-        <h1
-          className="text-white font-semibold text-4xl absolute"
-          style={myStyle}
-        >
-        </h1>
+      <div className="container m-auto mt-5">
         <div className="h-96">
           <img
-            src="https://www.insight.com/en_US/content-and-resources/2017/07122017-control-data-and-deny-application-attacks-with-insight-and-f5/jcr:content/top-container-width/column_layout_458368662/-column-1/insight_image.img.jpg/1565981250982.jpg"
+            src="https://circulareconomy.europa.eu/platform/sites/all/themes/cecon_theme/images/events.jpg"
             alt="event"
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="flex flex-col mt-16 justify-center">
-          <h1 className="text-black font-semibold text-4xl text-center">
-            Live Events
-          </h1>
-          <div
-            className="flex items-center justify-center border border-gray-200 shadow-2xl mt-10"
-            style={imageStyle}
-          >
-            <h1 className="text-gray-600 font-medium text-2xl">
-              Currently No Live Events. ☹️
-            </h1>
+        <h1 className="font-semibold text-4xl text-center p-10">Live Events</h1>
+        <div className="flex items-center justify-center">
+          <div className="flex w-full gap-5 p-10 border-2 border-gray-400 rounded">
+            {liveEvent.length !== 0 ? (
+              liveEvent.map((items) => (
+                <div className="p-10 hover:shadow-2xl bg-sky-300 rounded">
+                  <div className="w-96 h-60">
+                    <iframe
+                      className="w-full h-full object-cover"
+                      src={items.link}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                  <div className="flex flex-col items-center justify-center mt-3 gap-3 text-gray-900 text-xl text-bold">
+                    <h4>{items.name}</h4>
+                    <h4>Live from {items.place}</h4>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <h1 className="flex items-center justify-center text-gray-500 font-medium text-3xl w-full h-96">
+                Currently No Live Events. ☹️
+              </h1>
+            )}
           </div>
         </div>
-        <div className="flex flex-col mt-16 justify-center">
-          <h1 className="text-black font-semibold text-4xl text-center">
-            Upcoming Events
-          </h1>
-          <div className="flex gap-4">
+        <h1 className="text-black font-semibold text-4xl text-center p-10">
+          Upcoming Events
+        </h1>
+        <div className="flex items-center justify-center">
+          <div className="flex w-full gap-5 p-10 border-2 border-gray-400 rounded">
             {upcomingEvent.map((items) => (
-              <div
-                className="p-10 border border-black shadow-2xl mt-10 bg-gray-900"
-                style={imageStyle}
-              >
-                <div className="flex justify-center">
+              <div className="p-10 hover:shadow-2xl bg-gray-900">
+                <div className="w-96 h-60">
                   <img
-                    src={items.image}
-                    alt={items.title}
+                    src={items.poster}
+                    alt={items.name}
                     className="w-full h-60 object-cover"
                   />
                 </div>
-                <div className="flex flex-col mt-5 gap-3">
-                  <h4 className="text-orange-400">{items.title}</h4>
-                  <h4 className="text-orange-400">{items.location}</h4>
+                <div className="flex flex-col mt-3 gap-3">
+                  <h4 className="text-orange-400">{items.name}</h4>
+                  <h4 className="text-orange-400">{items.place}</h4>
                   <h4 className="text-white">{items.date}</h4>
                   <button className="bg-orange-400 text-white p-1 text-lg">
                     Event Details
@@ -140,29 +150,26 @@ const Events = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col mt-16 justify-center">
-          <h1 className="text-black font-semibold text-4xl text-center">
-            Past Events
-          </h1>
-          <div className="flex gap-4">
+        <h1 className="text-black font-semibold text-4xl text-center p-10">
+          Past Events
+        </h1>
+        <div className="flex items-center justify-center">
+          <div className="flex w-full items-center justify-center gap-5 p-10 border-2 border-gray-400 rounded">
             {pastEvent.map((items) => (
-              <div
-                className="p-10 shadow-2xl mt-10 bg-sky-900"
-                style={imageStyle}
-              >
-                <div className="flex justify-center">
+              <div className="p-10 hover:shadow-2xl bg-sky-900">
+                <div className="w-96 h-60">
                   <iframe
-                    className="w-full h-60 object-cover"
-                    src={items.video}
+                    className="w-full h-full"
+                    src={items.link}
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                 </div>
-                <div className="flex flex-col mt-5 gap-3">
-                  <h4 className="text-orange-400">{items.title}</h4>
-                  <h4 className="text-orange-400">{items.location}</h4>
+                <div className="flex flex-col mt-3 gap-3">
+                  <h4 className="text-orange-400">{items.name}</h4>
+                  <h4 className="text-orange-400">{items.place}</h4>
                   <h4 className="text-white">{items.date}</h4>
                   <button className="bg-orange-400 text-white p-1 text-lg">
                     Event Details
@@ -172,21 +179,19 @@ const Events = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col m-20">
-          <h1 className="text-black font-semibold text-4xl text-center mb-10">
-            Awareness
-          </h1>
-          <div className="flex justify-between">
-            {awareness.map((items) => (
-              <div className="w-80 h-60">
-                <img
-                  src={items.image}
-                  alt="covid"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+        <h1 className="text-black font-semibold text-4xl text-center p-10">
+          Awareness
+        </h1>
+        <div className="flex justify-center gap-5">
+          {awareness.map((items) => (
+            <div className="w-80 h-60">
+              <img
+                src={items.image}
+                alt="covid"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </>

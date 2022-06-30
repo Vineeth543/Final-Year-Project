@@ -5,7 +5,7 @@ const addPastEvents = () => {
     <>
       <div className="flex flex-col w-full m-10 rounded">
         <div className="flex flex-col p-5 gap-5 bg-gray-100 w-full shadow-xl border-b-2">
-          <h1 className="font-bold text-2xl">Add Upcoming Event Details</h1>
+          <h1 className="font-bold text-2xl">Add Past Event Details</h1>
         </div>
         <div className="flex flex-col shadow-xl bg-white">
           <form className="flex flex-col mt-5 mb-2 px-5 gap-4">
@@ -30,7 +30,6 @@ const addPastEvents = () => {
           </form>
         </div>
         <div className="flex flex-col shadow-xl bg-white">
-          <form className="flex flex-col mt-5 mb-2 px-5 gap-4"></form>
         </div>
         <div className="flex flex-col shadow-xl bg-white">
           <form className="flex flex-col mt-5 mb-2 px-5 gap-4">

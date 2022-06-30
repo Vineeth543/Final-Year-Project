@@ -40,6 +40,7 @@ import ViewPastEventsPage from "./Pages/Admin/ViewPastEvents.Page";
 import AdminViewServicePage from "./Pages/Admin/AdminViewService.Page";
 import AdminViewSingleServicePage from "./Pages/Admin/AdminViewSingleService.Page";
 import ViewUserDocumentsPage from "./Pages/Admin/ViewUserDocuments.Page";
+import ViewLiveEventsPage from "./Pages/Admin/ViewLiveEvents.Page";
 
 // ***************** Secretary Pages *************************
 
@@ -183,9 +184,14 @@ const App = () => {
           element={<AddSchemePage />}
         ></Route>
         <Route
-          path="/admin/events/live-event"
+          path="/admin/events/live"
           exact
           element={<AddLiveEventsPage />}
+        ></Route>
+        <Route
+          path="/admin/events/view-live"
+          exact
+          element={<ViewLiveEventsPage />}
         ></Route>
         <Route
           path="/admin/events/upcoming"
@@ -193,7 +199,7 @@ const App = () => {
           element={<AddUpcomingEventsPage />}
         ></Route>
         <Route
-          path="/admin/events/past-event"
+          path="/admin/events/past"
           exact
           element={<AddPastEventsPage />}
         ></Route>

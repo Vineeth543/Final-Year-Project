@@ -12,7 +12,7 @@ const AdminEvents = () => {
           <div className="flex gap-8">
             <Link
               className="flex w-fit outline-none"
-              to="/admin/events/live-event"
+              to="/admin/events/live"
             >
               <IoMdAddCircleOutline className="p-2 text-white text-5xl bg-red-500" />
               <h2 className="p-2 text-xl font-semibold text-white bg-red-500">
@@ -21,7 +21,7 @@ const AdminEvents = () => {
             </Link>
             <Link
               className="flex w-fit outline-none"
-              to="/admin/events/live-event"
+              to="/admin/events/view-live"
             >
               <MdOutlineRemoveRedEye className="p-2 text-white text-5xl bg-red-500" />
               <h2 className="p-2 text-xl font-semibold text-white bg-red-500">
@@ -62,7 +62,7 @@ const AdminEvents = () => {
           <div className="flex gap-8">
             <Link
               className="flex w-fit outline-none"
-              to="/admin/events/past-event"
+              to="/admin/events/past"
             >
               <IoMdAddCircleOutline className="p-2 text-white text-5xl bg-blue-500" />
               <h2 className="p-2 text-xl font-semibold text-white bg-blue-500">
