@@ -63,7 +63,7 @@ router.post(
       };
       s3.upload(params, (error, data) => {
         if (error) {
-          res.status(500).send({ err: error });
+          res.status(500).send("Error in uploading.");
           return;
         } else {
           detail.push(data.Location);
@@ -75,7 +75,7 @@ router.post(
               userDocuments: detail,
             });
             newAppliedService.save();
-            res.status(200).send({ data: detail });
+            res.status(200).send("Service applied successfully.");
           }
         }
       });

@@ -2,12 +2,12 @@ import React from "react";
 
 const AdminPayments = () => {
   const paymentMethods = {
-    visa: "https://cdn.icon-icons.com/icons2/2341/PNG/512/visa_payment_method_card_icon_142729.png",
+    visa: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/800px-Visa_Inc._logo.svg.png",
     mastercard:
       "https://cdn.icon-icons.com/icons2/2341/PNG/512/mastercard_payment_method_card_icon_142734.png",
     paytm:
-      "https://cdn.icon-icons.com/icons2/729/PNG/512/paytm_icon-icons.com_62731.png",
-    amex: "https://cdn.icon-icons.com/icons2/2341/PNG/512/amex_payment_method_card_icon_142744.png",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/120px-Paytm_Logo_%28standalone%29.svg.png",
+    amex: "https://1000logos.net/wp-content/uploads/2016/10/American-Express-logo-700x394.png",
     gpay: "https://upload.wikimedia.org/wikipedia/commons/1/13/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg",
     phonepay: "https://cdn.worldvectorlogo.com/logos/phonepe-1.svg",
   };

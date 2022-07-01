@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const AdminViewServices = () => {
-
   const [categories, setCategories] = useState([]);
   const page = useLocation();
   const serviceID = page.pathname.replace("/admin/services/view/", "");
@@ -26,9 +25,7 @@ const AdminViewServices = () => {
 
   useEffect(() => {
     getCategory();
-  }, []);
-
-  console.log(categories);
+  });
 
   const mainServiceCategory = [
     {
@@ -86,7 +83,10 @@ const AdminViewServices = () => {
       <div className="flex flex-col w-full m-10 gap-5">
         <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl">
           <h1 className="font-semibold text-4xl text-gray-700 text-center">
-            Hello
+            {mainServiceCategory.map((category) => {
+              if (category.id === serviceID) return category.title;
+              return null;
+            })}
           </h1>
         </div>
         <div className="flex px-5 w-full gap-2">

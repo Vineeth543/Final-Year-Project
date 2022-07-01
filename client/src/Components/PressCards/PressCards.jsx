@@ -13,7 +13,6 @@ const PressCards = () => {
         "To create awareness of rising air pollution and to mitigete its impact....",
       tag: "Air Pollution",
       date: "Thu, 25 Apr, 2022",
-      key: 1,
     },
     {
       title: "Smart Technologyis going to pave India",
@@ -22,7 +21,6 @@ const PressCards = () => {
       description: "MoS, Science & Technology & Earth Sciences said,Smart...",
       tag: "Smart Technology",
       date: "Thu, 25 Apr, 2022",
-      key: 2,
     },
     {
       title: "AI is a Kinetic enabler for growth of India..",
@@ -32,7 +30,6 @@ const PressCards = () => {
         "Artificial Intelligence is a Kinetic enabler for growth of Indian technolo...",
       tag: "A.I",
       date: "Thu, 25 Apr, 2022",
-      key: 3,
     },
     {
       title: "About 44 cr PMJDY beneficiary accounts linked with JAM.",
@@ -42,7 +39,6 @@ const PressCards = () => {
         "As of October 2021, about 44 crore Pradhan Mantri Jan Dhan Yojana accounts..",
       tag: "PMJDY",
       date: "Thu, 25 Apr, 2022",
-      key: 4,
     },
   ];
 
@@ -82,8 +78,11 @@ const PressCards = () => {
               className="flex flex-wrap justify-center gap-10"
               style={{ height: "30rem" }}
             >
-              {stateInfo.map((items) => (
-                <div className="bg-white rounded-3xl relative shadow-xl w-96">
+              {stateInfo.map((items, index) => (
+                <div
+                  className="bg-white rounded-3xl relative shadow-xl w-96"
+                  key={index}
+                >
                   <div
                     className="bg-red-600 absolute w-64 h-12 left-0"
                     style={{ top: "15rem" }}

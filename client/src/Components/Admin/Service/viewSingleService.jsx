@@ -6,12 +6,14 @@ const AdminViewSingleServices = () => {
   const [active, setActive] = useState(true);
 
   const [categories, setCategories] = useState([]);
+  const [services, setServices] = useState([]);
   const page = useLocation();
   const serviceID = page.pathname.replace("/admin/services/view/", "");
+  const categoryID = page.pathname.split("/")[4];
 
   const getCategory = () => {
     axios
-      .get(`http://localhost:8080/admin/services/view/${serviceID}`)
+      .get(`http://localhost:8080/user/services/${categoryID}/`)
       .then((res) => {
         const Categories = res.data;
         const subCategory = [];
@@ -21,7 +23,23 @@ const AdminViewSingleServices = () => {
         setCategories(subCategory);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
+      });
+  };
+
+  const getService = () => {
+    axios
+      .get(`http://localhost:8080/admin/services/view/${serviceID}`)
+      .then((res) => {
+        const Categories = res.data;
+        const subCategory = [];
+        Categories.forEach((element) => {
+          subCategory.push(element);
+        });
+        setServices(subCategory);
+      })
+      .catch((err) => {
+        alert(err);
       });
   };
 
@@ -31,19 +49,19 @@ const AdminViewSingleServices = () => {
         serviceId: id,
       })
       .then((res) => {
-        alert(res.data);
+        alert(res);
       })
       .catch((err) => {
-        alert(err.data);
+        alert(err);
       });
   };
 
   useEffect(() => {
     getCategory();
+    getService();
   }, []);
 
   const initiateDelete = (id) => {
-    console.log(id);
     deleteService(id);
   };
 
@@ -52,7 +70,11 @@ const AdminViewSingleServices = () => {
       <div className="flex flex-col w-full m-10 gap-5">
         <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl">
           <h1 className="font-semibold text-4xl text-gray-700 text-center">
-            Hello
+            {categories.map((category) => {
+              if (category._id === serviceID.split("/")[1])
+                return category.name;
+              return null;
+            })}
           </h1>
         </div>
         <div className="flex px-5 w-full gap-2">
@@ -60,7 +82,7 @@ const AdminViewSingleServices = () => {
           <h1 className="font-semibold text-xl text-gray-700">Service Name</h1>
         </div>
         <div className="flex flex-col shadow-xl">
-          {categories.map((items, index) => (
+          {services.map((items, index) => (
             <div
               className="flex flex-col px-7 py-2 gap-5 bg-white w-full border-b-2"
               key={items.name}

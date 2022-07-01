@@ -93,14 +93,14 @@ const Services = () => {
         e-Services
       </h1>
       <div className="flex flex-wrap gap-10 justify-between mx-32 mt-10">
-        {services.map((items) => (
-          <Link to={`/user/services/${items.id}`} key={items.id}>
+        {services.map((items, index) => (
+          <Link to={`/user/services/${items.id}`} key={index}>
             <div className="flex gap-1 hover:shadow-2xl">
               <div className="w-32">
                 <img
-                  src={items.image}
+                  src="https://imgsv.imaging.nikon.com/lineup/dslr/df/img/sample/img_01.jpg"
                   alt={items.title}
-                  className={`w-full ${items.bgColor}`}
+                  className={`w-full ${items.bgColor} object-cover`}
                 />
               </div>
               <div

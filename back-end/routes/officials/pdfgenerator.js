@@ -66,7 +66,7 @@ router.post("/admin/dashboard/appliedServices/sendCertificate", (req, res) => {
       });
       var mailOptions = {
         from: "demo28052002@yahoo.com",
-        to: "vineethserigar17@gmail.com",
+        to: req.body.email,
         subject: "Sending Email using Node.js",
         text: "That was easy!",
         attachments: [

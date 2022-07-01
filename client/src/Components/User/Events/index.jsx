@@ -8,7 +8,6 @@ const Events = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/live")
       .then((res) => {
-        console.log(res.data);
         const tempLiveEvents = [];
         res.data.forEach((event) => {
           tempLiveEvents.push(event);
@@ -16,7 +15,7 @@ const Events = () => {
         setLiveEvents(tempLiveEvents);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -26,7 +25,6 @@ const Events = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/upcoming")
       .then((res) => {
-        console.log(res.data);
         const tempUpcomingEvent = [];
         res.data.forEach((event) => {
           tempUpcomingEvent.push(event);
@@ -34,7 +32,7 @@ const Events = () => {
         setUpcomingEvent(tempUpcomingEvent);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -44,7 +42,6 @@ const Events = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/past")
       .then((res) => {
-        console.log(res.data);
         const tempUpcomingEvent = [];
         res.data.forEach((event) => {
           tempUpcomingEvent.push(event);
@@ -52,7 +49,7 @@ const Events = () => {
         setPastEvent(tempUpcomingEvent);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -63,26 +60,10 @@ const Events = () => {
   }, []);
 
   const awareness = [
-    {
-      key: 1,
-      image:
-        "https://www.mohfw.gov.in/assets/images/socialdistancingEnglish_page-0001.png",
-    },
-    {
-      key: 2,
-      image:
-        "https://www.mohfw.gov.in/assets/images/FINAL_14_03_2020_ENg_page-0001.png",
-    },
-    {
-      key: 3,
-      image:
-        "https://www.mohfw.gov.in/assets/images/ProtectivemeasuresEng_page-0001.png",
-    },
-    {
-      key: 4,
-      image:
-        "https://www.mohfw.gov.in/assets/images/Poster_Corona_ad_Eng_page-0001.png",
-    },
+    "https://www.mohfw.gov.in/assets/images/socialdistancingEnglish_page-0001.png",
+    "https://www.mohfw.gov.in/assets/images/FINAL_14_03_2020_ENg_page-0001.png",
+    "https://www.mohfw.gov.in/assets/images/ProtectivemeasuresEng_page-0001.png",
+    "https://www.mohfw.gov.in/assets/images/Poster_Corona_ad_Eng_page-0001.png",
   ];
 
   return (
@@ -99,8 +80,11 @@ const Events = () => {
         <div className="flex items-center justify-center">
           <div className="flex w-full gap-5 p-10 border-2 border-gray-400 rounded">
             {liveEvent.length !== 0 ? (
-              liveEvent.map((items) => (
-                <div className="p-10 hover:shadow-2xl bg-sky-300 rounded">
+              liveEvent.map((items, index) => (
+                <div
+                  className="p-10 hover:shadow-2xl bg-sky-300 rounded"
+                  key={index}
+                >
                   <div className="w-96 h-60">
                     <iframe
                       className="w-full h-full object-cover"
@@ -129,8 +113,8 @@ const Events = () => {
         </h1>
         <div className="flex items-center justify-center">
           <div className="flex w-full gap-5 p-10 border-2 border-gray-400 rounded">
-            {upcomingEvent.map((items) => (
-              <div className="p-10 hover:shadow-2xl bg-gray-900">
+            {upcomingEvent.map((items, index) => (
+              <div className="p-10 hover:shadow-2xl bg-gray-900" key={index}>
                 <div className="w-96 h-60">
                   <img
                     src={items.poster}
@@ -155,8 +139,8 @@ const Events = () => {
         </h1>
         <div className="flex items-center justify-center">
           <div className="flex w-full items-center justify-center gap-5 p-10 border-2 border-gray-400 rounded">
-            {pastEvent.map((items) => (
-              <div className="p-10 hover:shadow-2xl bg-sky-900">
+            {pastEvent.map((items, index) => (
+              <div className="p-10 hover:shadow-2xl bg-sky-900" key={index}>
                 <div className="w-96 h-60">
                   <iframe
                     className="w-full h-full"
@@ -183,10 +167,10 @@ const Events = () => {
           Awareness
         </h1>
         <div className="flex justify-center gap-5">
-          {awareness.map((items) => (
-            <div className="w-80 h-60">
+          {awareness.map((items, index) => (
+            <div className="w-80 h-60" key={index}>
               <img
-                src={items.image}
+                src={items}
                 alt="covid"
                 className="w-full h-full object-cover"
               />

@@ -8,7 +8,7 @@ const UserNavbar = () => {
         <Link className="font-semibold text-lg" to="/">
           <div className="w-20 h-20">
             <img
-              src="https://www.karnataka.gov.in/frontend/assets/img/Seal_of_Karnataka.png"
+              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/NoOadFZJ_400x400.jpg"
               alt="logo"
               className="w-full h-full"
             />

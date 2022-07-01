@@ -63,11 +63,10 @@ router.put("/admin/services/view/delete", (req, res) => {
   services
     .deleteOne({ _id: req.body.serviceId })
     .then((doc) => {
-      res.send(req.body.serviceId);
-      console.log(req.body);
+      res.send("Service deleted successfully.");
     })
     .catch((doc) => {
-      res.send("Nil");
+      res.send("Not able to delete the service.");
     });
 });
 

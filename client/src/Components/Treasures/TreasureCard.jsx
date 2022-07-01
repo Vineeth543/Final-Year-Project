@@ -10,17 +10,15 @@ const TreasureCards = () => {
         "Karnataka has the largest number of almost fifteen years ago when tribes as many as 62.",
       color: "bg-sky-600",
       hover: "hover:bg-sky-600 hover:text-white",
-      key: 1,
     },
     {
-      title: "Mines and Minerals hover:text-white",
+      title: "Mines and Minerals",
       image:
         "https://sabrangindia.in/sites/default/files/field/image/coal_mine0.jpg",
       description:
         "Karnataka has the largest number of almost fifteen years ago when tribes as many as 62.",
       color: "bg-red-600",
       hover: "hover:bg-red-600 hover:text-white",
-      key: 2,
     },
     {
       title: "Tribal Culture",
@@ -30,7 +28,6 @@ const TreasureCards = () => {
         "Karnataka has the largest number of almost fifteen years ago when tribes as many as 62.",
       color: "bg-orange-600",
       hover: "hover:bg-orange-600 hover:text-white",
-      key: 3,
     },
   ];
 
@@ -46,9 +43,10 @@ const TreasureCards = () => {
           className="flex align-items items-center justify-center gap-5"
           style={{ height: "30rem" }}
         >
-          {stateInfo.map((items) => (
+          {stateInfo.map((items, index) => (
             <div
               className={`bg-white w-1/3 rounded-3xl bg-gray-100 relative ${items.hover}`}
+              key={index}
             >
               <div
                 className={`${items.color} absolute rounded-tl-full w-12 h-12 bottom-0 right-0 rounded-br-3xl`}

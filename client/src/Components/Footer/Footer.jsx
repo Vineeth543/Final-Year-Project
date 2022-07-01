@@ -3,10 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer
-        className="flex flex-col items-center justify-center text-center bg-gray-900 text-white scrollbar-hide"
-        style={{ marginTop: "10rem" }}
-      >
+      <footer className="flex flex-col items-center justify-center text-center bg-gray-900 text-white scrollbar-hide">
         <div className="container p-6">
           <div className="flex justify-center mb-6">
             <a

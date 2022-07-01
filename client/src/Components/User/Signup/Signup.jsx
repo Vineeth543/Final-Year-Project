@@ -8,6 +8,7 @@ const Signup = () => {
     width: "40rem",
     height: "35rem",
   };
+
   const nav = useNavigate();
 
   const [name, setName] = useState("");
@@ -15,18 +16,25 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const Signup = () => {
+  const Signup = (e) => {
+    e.preventDefault();
     if (
       name === "" ||
       gender === "" ||
       email === "" ||
       phone === "" ||
-      password === ""
+      password === "" ||
+      confirmPassword === ""
     ) {
       alert("Please fill all the fields");
       return;
+    } else if (confirmPassword !== password) {
+      alert("Password and confirm password does not match");
+      return;
     }
+
     const newUser = {
       name: name,
       gender: gender,
@@ -34,6 +42,7 @@ const Signup = () => {
       phone: phone,
       password: password,
     };
+
     axios
       .post("http://localhost:8080/user/signup", newUser)
       .then((result) => {
@@ -48,7 +57,7 @@ const Signup = () => {
   return (
     <>
       <div className="flex align-items items-center justify-center mt-10 gap-40">
-        <div className="flex items-center justify-center">
+        <div>
           <img
             src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/water.png"
             alt="save water"
@@ -56,13 +65,14 @@ const Signup = () => {
           />
         </div>
         <div
-          className="flex items-center justify-center bg-sky-500 rounded-3xl"
+          className="flex flex-col items-center justify-center bg-sky-500 rounded-3xl"
           style={formStyle}
         >
-          <form className="flex flex-col justify-center gap-8 text-white font-semibold my-5">
-            <div className="flex items-center justify-center gap-8">
-              <h1 className="font-bold text-4xl text-black">SignUp</h1>
-            </div>
+          <h1 className="font-bold text-4xl text-black">SignUp</h1>
+          <form
+            className="flex flex-col justify-center gap-8 text-white font-semibold my-5"
+            onSubmit={Signup}
+          >
             <div className="flex items-center justify-start gap-6">
               <label htmlFor="fullname">Fullname:</label>
               <input
@@ -81,29 +91,29 @@ const Signup = () => {
                 <input
                   type="radio"
                   value="male"
-                  id="gender"
+                  id="male"
                   name="gender"
                   required
                   onChange={(e) => setGender(e.target.value)}
-                />{" "}
+                />
                 Male
                 <input
                   type="radio"
-                  id="gender"
                   value="female"
+                  id="female"
                   name="gender"
                   required
                   onChange={(e) => setGender(e.target.value)}
-                />{" "}
+                />
                 Female
                 <input
                   type="radio"
                   value="other"
-                  id="gender"
+                  id="other"
                   name="gender"
                   required
                   onChange={(e) => setGender(e.target.value)}
-                />{" "}
+                />
                 Other
               </div>
             </div>
@@ -152,19 +162,18 @@ const Signup = () => {
                 placeholder="Confirm Password"
                 className="text-black"
                 required
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-center gap-4">
-              Already Have Account..!? <Link to="/user/login">Signin</Link>
+              Already Have Account..!?
+              <Link to="/user/login" className="font-semibold text-lg">
+                Signin
+              </Link>
             </div>
-            <div className="flex flex-col items-center justify-center gap-4">
-              <button
-                className="bg-blue-900 p-2 px-4 rounded-2xl"
-                onClick={() => Signup()}
-              >
-                Submit
-              </button>
-            </div>
+            <button className="m-auto bg-blue-900 py-1 px-2 rounded-lg hover:bg-blue-700 focus:ring ring-blue-400">
+              Submit
+            </button>
           </form>
         </div>
         <div>
@@ -176,15 +185,15 @@ const Signup = () => {
         </div>
       </div>
       <div className="flex h-16 align-items items-center justify-center mt-14">
-        <div className="w-full h-full flex align-items items-center justify-center border bg-yellow-500 rounded-tl-xl rounded-tr-xl">
-          <h1 className="font-semibold text-xl">Notification</h1>
-        </div>
-        <div className="w-full h-full flex align-items items-center justify-center border bg-sky-500 rounded-tl-xl rounded-tr-xl">
-          <h1 className="font-semibold text-xl">Alert & Link</h1>
-        </div>
-        <div className="w-full h-full flex align-items items-center justify-center border bg-black text-white rounded-tl-xl rounded-tr-xl">
-          <h1 className="font-semibold text-xl">Awards</h1>
-        </div>
+        <h1 className="flex justify-center items-center w-full h-full bg-yellow-500 rounded-tl-xl rounded-tr-xl font-semibold text-xl text-center border">
+          Notification
+        </h1>
+        <h1 className="flex justify-center items-center w-full h-full bg-sky-500 rounded-tl-xl rounded-tr-xl font-semibold text-xl text-center border">
+          Alert & Link
+        </h1>
+        <h1 className="flex justify-center items-center w-full h-full bg-black rounded-tl-xl rounded-tr-xl font-semibold text-xl text-white border">
+          Awards
+        </h1>
       </div>
       <div className="flex flex-col h-40 align-items items-center justify-center border">
         <FcEmptyBattery className="w-fll h-full text-6xl" />

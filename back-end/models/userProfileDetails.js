@@ -11,6 +11,7 @@ const userDetailsSchema = new schema(
     },
     fatherName: {
       type: String,
+      required: true,
     },
     motherName: {
       type: String,

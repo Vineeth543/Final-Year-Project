@@ -4,7 +4,6 @@ import { CgEditBlackPoint } from "react-icons/cg";
 const Tenders = () => {
   const tenderDetails = [
     {
-      key: 1,
       refNo: "GEM/2022/B/2205115",
       title: "Procurement Of 13 Inches Macbook Laptop ( 20 pieces )",
       releaseDate: "01 Jun 2022",
@@ -14,7 +13,6 @@ const Tenders = () => {
       links: ["Bid Document"],
     },
     {
-      key: 2,
       refNo: "GEM/2022/B/2187946",
       title:
         "Procurement Of 80 Quantity Of DELL/HP Laptops With 13.3 Inches Size ( 80 pieces )",
@@ -25,7 +23,6 @@ const Tenders = () => {
       links: ["Bid Document"],
     },
     {
-      key: 3,
       refNo: "GEM/2022/B/2224327",
       title: "RFP for AWS Managed Service Provider and Reselling Services",
       releaseDate: "01 Jun 2022",
@@ -36,7 +33,6 @@ const Tenders = () => {
       links: ["Bid Document"],
     },
     {
-      key: 4,
       refNo: "INV/IND/SUI_NSA_20221",
       title:
         "Request for Proposal for Selection of Consulting Firm for Assisting Invest India in “National Startup Awards 2022”",
@@ -54,7 +50,6 @@ const Tenders = () => {
       ],
     },
     {
-      key: 5,
       refNo: "GEM/2022/B/2205115",
       title:
         "RFP (GeM) for Operation and Maintenance of Startup India Seed Fund Scheme (SISFS) Portal",
@@ -66,7 +61,6 @@ const Tenders = () => {
       links: ["Bid Document", "Responses to Queries (13/05/2022)"],
     },
     {
-      key: 6,
       refNo: "INV/IND/22-23/EXT/",
       title:
         "Request for Quotation for Procurement of extended warranty for 49 Dell Laptops for 2 years",
@@ -78,7 +72,6 @@ const Tenders = () => {
       links: ["Bid Document", "Corrigendum 1"],
     },
     {
-      key: 7,
       refNo: "GEM/2022/B/2068776",
       title:
         "RFP (GeM) for Operation and Maintenance of Startup India Hub Portal",
@@ -96,14 +89,15 @@ const Tenders = () => {
       <h1 className="text-black font-bold text-4xl text-center pt-8">
         e-Tenders
       </h1>
-      {tenderDetails.map((items) => (
+      {tenderDetails.map((items, index) => (
         <div
           className="flex flex-col bg-white mx-auto mt-10 hover:shadow-2xl rounded-xl border"
           style={{ width: "70rem" }}
+          key={index}
         >
           <div className="flex items-center border-b justify-between gap-5 w-full rounded-t-xl">
             <p className="bg-green-400 text-white p-6 text-lg font-medium rounded-tl-xl">
-              {items.key}
+              {index + 1}
             </p>
             <h1 className="text-xl font-semibold">{items.title}</h1>
             <div className="flex flex-col text-md font-medium border-l items-center justify-center">
@@ -130,8 +124,11 @@ const Tenders = () => {
           </div>
           <div className="flex flex-col p-4 text-md font-base gap-2 pb-10">
             <p className="text-lg font-semibold">Links:</p>
-            {items.links.map((link) => (
-              <div className="flex items-center text-red-600 gap-2 font-medium">
+            {items.links.map((link, index) => (
+              <div
+                className="flex items-center text-red-600 gap-2 font-medium"
+                key={index}
+              >
                 <CgEditBlackPoint />
                 {link}
               </div>

@@ -61,7 +61,7 @@ router.post("/user/profile", uploadUserDetails.array("avatar"), (req, res) => {
 router.post("/user/updateProfile", (req, res) => {
   userDetails.findOne({ userId: req.body.userId }).then((doc) => {
     if (doc != null) {
-      doc.fathername = req.body.fatherName;
+      doc.fatherName = req.body.fatherName;
       doc.motherName = req.body.motherName;
       doc.address = req.body.address;
       doc.village = req.body.village;
@@ -76,10 +76,9 @@ router.post("/user/updateProfile", (req, res) => {
           res.send("Failed to update the profile");
         });
     } else {
-      console.log(req.body);
       const updateProfile = new userDetails({
         userId: req.body.userId,
-        fathername: req.body.fatherName,
+        fatherName: req.body.fatherName,
         motherName: req.body.motherName,
         address: req.body.address,
         village: req.body.village,

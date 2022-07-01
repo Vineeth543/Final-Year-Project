@@ -33,7 +33,6 @@ const Login = () => {
           nav("/user");
           localStorage.setItem("CCPS-loggedIn", "true");
           localStorage.setItem("CCPS-userID", result.data.userId);
-          console.log(result.data.userId);
         } else alert(result.data.msg);
       })
       .catch((err) => {
@@ -46,7 +45,7 @@ const Login = () => {
   return (
     <>
       <div className="flex align-items items-center justify-center mt-10 gap-40">
-        <div className="flex items-center justify-center">
+        <div>
           <img
             src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/water.png"
             alt="save water"
@@ -54,13 +53,14 @@ const Login = () => {
           />
         </div>
         <div
-          className="flex items-center justify-center bg-sky-500 rounded-3xl"
+          className="flex flex-col items-center justify-center bg-sky-500 rounded-3xl"
           style={formStyle}
         >
-          <form className="flex flex-col justify-center gap-8 text-white font-semibold my-5">
-            <div className="flex items-center justify-center gap-8">
-              <h1 className="font-bold text-4xl text-black">Login</h1>
-            </div>
+          <h1 className="font-bold text-4xl text-black">Login</h1>
+          <form
+            className="flex flex-col justify-center gap-8 text-white font-semibold my-5"
+            onSubmit={login}
+          >
             <div className="flex items-center justify-center gap-3">
               <label htmlFor="usernamme">Username:</label>
               <input
@@ -68,7 +68,7 @@ const Login = () => {
                 name="username"
                 id="username"
                 placeholder="Mobile No"
-                className="text-black m-0"
+                className="text-black"
                 required
                 onChange={(e) => setPhone(e.target.value)}
               />
@@ -93,7 +93,6 @@ const Login = () => {
               <button
                 type="submit"
                 className="bg-blue-900 p-2 px-4 rounded-2xl"
-                onClick={login}
               >
                 Login
               </button>
@@ -115,15 +114,15 @@ const Login = () => {
         </div>
       </div>
       <div className="flex h-16 align-items items-center justify-center mt-20">
-        <div className="w-full h-full flex align-items items-center justify-center border bg-yellow-500 rounded-tl-xl rounded-tr-xl">
-          <h1 className="font-semibold text-xl">Notification</h1>
-        </div>
-        <div className="w-full h-full flex align-items items-center justify-center border bg-sky-500 rounded-tl-xl rounded-tr-xl">
-          <h1 className="font-semibold text-xl">Alert & Link</h1>
-        </div>
-        <div className="w-full h-full flex align-items items-center justify-center border bg-black text-white rounded-tl-xl rounded-tr-xl">
-          <h1 className="font-semibold text-xl">Awards</h1>
-        </div>
+        <h1 className="flex justify-center items-center w-full h-full bg-yellow-500 rounded-tl-xl rounded-tr-xl font-semibold text-xl text-center border">
+          Notification
+        </h1>
+        <h1 className="flex justify-center items-center w-full h-full bg-sky-500 rounded-tl-xl rounded-tr-xl font-semibold text-xl text-center border">
+          Alert & Link
+        </h1>
+        <h1 className="flex justify-center items-center w-full h-full bg-black rounded-tl-xl rounded-tr-xl font-semibold text-xl text-white border">
+          Awards
+        </h1>
       </div>
       <div className="flex flex-col h-40 align-items items-center justify-center border">
         <FcEmptyBattery className="w-fll h-full text-6xl" />

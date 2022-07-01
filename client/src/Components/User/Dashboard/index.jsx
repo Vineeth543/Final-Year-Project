@@ -11,7 +11,6 @@ const UserDashboard = () => {
 
   const updateProfile = (e) => {
     e.preventDefault();
-    console.log(fatherName, motherName, address, village, taluk, district);
     axios
       .post("http://localhost:8080/user/updateProfile", {
         userId: localStorage.getItem("CCPS-userID"),

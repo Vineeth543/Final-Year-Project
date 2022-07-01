@@ -6,40 +6,7 @@ const AdminDashboard = () => {
   const [userName, setUserName] = useState([]);
   const [serviceName, setServiceName] = useState([]);
 
-  const formatDate = (date) => {
-    const d = date.split("T")[1];
-    return date.replace(d, "").slice(0, -1);
-  };
-
-  const setApprove = (id) => {
-    axios
-      .post(
-        `http://localhost:8080/secretary/dashboard/appliedServices/status/`,
-        { id: id, status: "accepted" }
-      )
-      .then((res) => {
-        alert(res.data);
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
-  };
-
-  const setReject = (id) => {
-    axios
-      .post(
-        `http://localhost:8080/secretary/dashboard/appliedServices/status/`,
-        { id: id, status: "rejected" }
-      )
-      .then((res) => {
-        alert(res.data);
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
-  };
-
-  useEffect(() => {
+  const loadUserApplications = () => {
     axios
       .get(`http://localhost:8080/secretary/dashboard/appliedServices`)
       .then((res) => {
@@ -68,6 +35,45 @@ const AdminDashboard = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const formatDate = (date) => {
+    const d = date.split("T")[1];
+    return date.replace(d, "").slice(0, -1);
+  };
+
+  const setApprove = (id) => {
+    axios
+      .post(
+        `http://localhost:8080/secretary/dashboard/appliedServices/status/`,
+        { id: id, status: "accepted" }
+      )
+      .then((res) => {
+        alert(res.data);
+        loadUserApplications();
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  const setReject = (id) => {
+    axios
+      .post(
+        `http://localhost:8080/secretary/dashboard/appliedServices/status/`,
+        { id: id, status: "rejected" }
+      )
+      .then((res) => {
+        alert(res.data);
+        loadUserApplications();
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    loadUserApplications();
   }, []);
 
   return (

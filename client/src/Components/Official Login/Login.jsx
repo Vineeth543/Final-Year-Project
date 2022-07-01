@@ -23,7 +23,14 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    if (phone === "" || password === "") alert("Please fill all the fields");
+
+    if (role === "" || phone === "" || password === "") {
+      alert("Please fill all the fields");
+      return;
+    } else if (!Number(phone)) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
 
     const Official = {
       role: role,
@@ -31,9 +38,6 @@ const Login = () => {
       password: password,
     };
 
-    console.log(Official);
-
-    console.log(role);
     axios
       .post("http://localhost:8080/login", Official)
       .then((result) => {
@@ -45,14 +49,13 @@ const Login = () => {
             ? nav("/secretary")
             : nav("/president");
           // localStorage.setItem("OfficialloggedIn", "true");
-        } else alert(result.data.msg);
+        } else {
+          alert(result.data.msg);
+        }
       })
       .catch((err) => {
         alert(err.data);
       });
-    setRole("");
-    setPhone("");
-    setPassword("");
   };
 
   return (
@@ -69,59 +72,62 @@ const Login = () => {
           className="flex items-center justify-center bg-sky-500 rounded-3xl"
           style={formStyle}
         >
-          <form className="flex flex-col justify-center gap-8 text-white font-semibold my-5">
+          <form
+            className="flex flex-col items-center justify-center gap-5 text-white font-semibold my-5"
+            onSubmit={login}
+          >
             <h1 className="font-bold text-4xl text-black text-center">
               Official Login
             </h1>
-            <div className="flex items-center justify-center gap-5">
-              <label htmlFor="role">Select Role:</label>
-              <select
-                name="role"
-                id="role"
-                className="text-black px-2 w-44"
-                onChange={(e) => getRole(e.target.value)}
+            <label htmlFor="role" className="text-lg">Select Role</label>
+            <select
+              name="role"
+              id="role"
+              className="text-black w-48 text-center font-semibold rounded focus:outline-orange-400"
+              onChange={(e) => getRole(e.target.value)}
+              defaultValue="Select Your Role"
+              required
+            >
+              <option
+                value="Select Your Role"
+                disabled
+                className="text-black text-center"
               >
-                <option value="" selected disabled>
-                  Select Your Role
-                </option>
-                <option value="SECRETARY">Secretary</option>
-                <option value="PDO">PDO</option>
-                <option value="PRESIDENT">President</option>
-              </select>
-            </div>
-            <div className="flex items-center justify-center gap-3">
-              <label htmlFor="phone">Username:</label>
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                placeholder="Mobile No"
-                className="text-black"
-                required
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-center gap-4">
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="text-black"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-center gap-4">
-              <button
-                type="submit"
-                className="bg-blue-900 p-2 px-4 rounded-2xl"
-                onClick={login}
-              >
-                Login
-              </button>
-            </div>
+                Select Your Role
+              </option>
+              <option value="SECRETARY" className="text-center font-semibold">
+                Secretary
+              </option>
+              <option value="PDO" className="font-semibold text-center">
+                PDO
+              </option>
+              <option value="PRESIDENT" className="font-semibold text-center">
+                President
+              </option>
+            </select>
+            <label htmlFor="phone" className="text-lg">Username</label>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="Mobile No"
+              className="text-black text-center rounded focus:outline-orange-400"
+              required
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <label htmlFor="password" className="text-lg">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              className="text-black text-center rounded focus:outline-orange-400"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit" className="bg-blue-900 hover:bg-blue-800 p-2 px-4 rounded-2xl focus:ring ring-blue-700 ">
+              Login
+            </button>
           </form>
         </div>
         <div>

@@ -3,6 +3,10 @@ import axios from "axios";
 
 const AddService = () => {
   const [subCategories, setSubCategories] = useState([]);
+  const [selectedSubCategory, setSelectedSubCategory] = useState("");
+  const [serviceTitle, setServiceTitle] = useState("");
+  const [overview, setOverview] = useState("");
+  const [documents, setDocuments] = useState([]);
 
   const getSubCategory = (serviceID) => {
     axios
@@ -14,25 +18,23 @@ const AddService = () => {
           subCategory.push(element);
         });
         setSubCategories(subCategory);
-        console.log(subCategory);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
-  const [selectedSubCategory, setSelectedSubCategory] = useState("");
-  const [serviceTitle, setServiceTitle] = useState("");
-  const [overview, setOverview] = useState("");
-  const [documents, setDocuments] = useState([]);
-
-  const handleChange = (e) => {
-    setSelectedSubCategory(e);
+  const covertTextToArray = (text) => {
+    const doumentList = text.split(",");
+    setDocuments(doumentList);
   };
 
-  const covertTextToArray = (text) => {
-    const array = text.split(",");
-    setDocuments(array);
+  const resetValues = () => {
+    setSubCategories([]);
+    setSelectedSubCategory("");
+    setServiceTitle("");
+    setOverview("");
+    setDocuments([]);
   };
 
   const addNewService = (e) => {
@@ -49,100 +51,62 @@ const AddService = () => {
       .post("http://localhost:8080/admin/services/add-service", newService)
       .then((res) => {
         alert(res.data);
+        resetValues();
       })
       .catch((err) => {
-        alert(err);
+        alert(err.data);
+        resetValues();
       });
-
-    setSubCategories([]);
-    setSelectedSubCategory("");
-    setServiceTitle("");
-    setOverview("");
-    setDocuments([]);
   };
 
   const mainCategory = [
     {
       id: "62b87ae8be83ec8f10283763",
       title: "Farmer Welfare",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/Agriculture.png",
-      bgColor: "bg-yellow-400",
     },
     {
       id: "62b87c7bbe83ec8f1028376f",
       title: "Electricity items",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/Power.png",
-      bgColor: "bg-pink-400",
     },
     {
       id: "62b87b00be83ec8f10283765",
       title: "Housing related items",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/Urban.png",
-      bgColor: "bg-teal-400",
     },
     {
       id: "62b87c95be83ec8f10283771",
       title: "Student educational items",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/Education.png",
-      bgColor: "bg-lime-400",
     },
     {
       id: "62b87b1dbe83ec8f10283767",
       title: "Employement and Training",
-      image: "https://sevasindhu.karnataka.gov.in/Category/assets/img/Job.png",
-      bgColor: "bg-cyan-400",
     },
     {
-      id: "62b87cbabe83ec8f10283773", 
+      id: "62b87cbabe83ec8f10283773",
       title: "Driving and Transport items",
-      image: "https://sevasindhu.karnataka.gov.in/Category/assets/img/bus.png",
-      bgColor: "bg-slate-400",
     },
     {
       id: "62b87b35be83ec8f10283769",
       title: "Health and Drug related items",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/Medical.png",
-      bgColor: "bg-red-400",
     },
     {
       id: "62b87cd7be83ec8f10283775",
       title: "Police and Security items",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/Police.png",
-      bgColor: "bg-orange-400",
     },
     {
       id: "62b87b67be83ec8f1028376b",
       title: "Birth, Death & Marriage related items",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/marriage.png",
-      bgColor: "bg-sky-400",
     },
     {
       id: "62b87d07be83ec8f10283777",
       title: "Women and Child Development",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/Women.png",
-      bgColor: "bg-amber-400",
     },
     {
       id: "62b87c49be83ec8f1028376d",
       title: "Labour Welfare",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/labour.png",
-      bgColor: "bg-fuchsia-400",
     },
     {
       id: "62b87d21be83ec8f10283779",
       title: "Citizen items",
-      image:
-        "https://sevasindhu.karnataka.gov.in/Category/assets/img/citizen_new.png",
-      bgColor: "bg-green-400",
     },
   ];
 
@@ -153,7 +117,10 @@ const AddService = () => {
           <h1 className="font-bold text-2xl">Add New Service</h1>
         </div>
         <div className="flex flex-col shadow-xl bg-white">
-          <form className="flex flex-col px-5 py-3 gap-4">
+          <form
+            className="flex flex-col px-5 py-3 gap-4"
+            onSubmit={(e) => addNewService(e)}
+          >
             <label htmlFor="mainCategory" className="text-xl font-medium pl-1">
               Category
             </label>
@@ -163,12 +130,13 @@ const AddService = () => {
               className="outline-none border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
               required
               onChange={(e) => getSubCategory(e.target.value)}
+              defaultValue={"Select Main Category"}
             >
-              <option value="" selected disabled>
+              <option value="Select Main Category" disabled>
                 Select Main Category
               </option>
               {mainCategory.map((item) => (
-                <option value={item.id} key={item.title}>
+                <option value={item.id} key={item.id}>
                   {item.title}
                 </option>
               ))}
@@ -181,9 +149,10 @@ const AddService = () => {
               id="subCategory"
               className="outline-none border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
               required
-              onChange={(e) => handleChange(e.target.value)}
+              onChange={(e) => setSelectedSubCategory(e.target.value)}
+              defaultValue={"Select Sub Category"}
             >
-              <option value="" selected disabled>
+              <option value="Select Sub Category" disabled>
                 Select Sub Category
               </option>
               {subCategories.map((item) => (
@@ -225,8 +194,8 @@ const AddService = () => {
               onChange={(e) => covertTextToArray(e.target.value)}
             />
             <button
+              type="submit"
               className="flex items-center justify-center p-2 text-lg font-semibold bg-blue-600 w-full focus:ring ring-blue-300 hover:text-white"
-              onClick={addNewService}
             >
               Submit
             </button>

@@ -8,7 +8,9 @@ const ComplaintsLayout = () => {
   return (
     <>
       <UserNavbar />
-      <Complaints />
+      <div className="flex flex-col items-center justify-center py-5 bg-sky-200">
+        <Complaints />
+      </div>
       <Footer />
     </>
   );

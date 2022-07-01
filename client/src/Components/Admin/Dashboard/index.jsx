@@ -7,75 +7,7 @@ const AdminDashboard = () => {
   const [userName, setUserName] = useState([]);
   const [serviceName, setServiceName] = useState([]);
 
-  const formatDate = (date) => {
-    const d = date.split("T")[1];
-    return date.replace(d, "").slice(0, -1);
-  };
-
-  const sendCertificate = (userId, userName, serviceName) => {
-    axios
-      .get(
-        `http://localhost:8080/admin/dashboard/appliedServices/userDetails/${userId}`
-      )
-      .then((res) => {
-        console.log(userId);
-        console.log(res);
-        axios
-          .post(
-            "http://localhost:8080/admin/dashboard/appliedServices/sendCertificate",
-            {
-              userId: userId,
-              name: userName,
-              serviceName: serviceName,
-              fatherName: res.data.fatherName,
-              motherName: res.data.motherName,
-              address: res.data.address,
-              year: "5",
-            }
-          )
-          .then((re) => {
-            alert("Certificate sent successfully");
-          })
-
-          .catch((err) => {
-            alert("Error in sending certificate");
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const setApprove = (userId, serviceId, userName, serviceName) => {
-    axios
-      .post(`http://localhost:8080/admin/dashboard/appliedServices/status`, {
-        id: serviceId,
-        status: "accepted",
-      })
-      .then((res) => {
-        alert(res.data);
-        sendCertificate(userId, userName, serviceName);
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
-  };
-
-  const setReject = (id) => {
-    axios
-      .post(`http://localhost:8080/admin/dashboard/appliedServices/status`, {
-        id: id,
-        status: "rejected",
-      })
-      .then((res) => {
-        alert(res.data);
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
-  };
-
-  useEffect(() => {
+  const loadUserApplications = () => {
     axios
       .get(`http://localhost:8080/admin/dashboard/appliedServices`)
       .then((res) => {
@@ -104,6 +36,81 @@ const AdminDashboard = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const formatDate = (date) => {
+    const d = date.split("T")[1];
+    return date.replace(d, "").slice(0, -1);
+  };
+
+  const sendCertificate = (userId, userName, userEmail, serviceName) => {
+    axios
+      .get(
+        `http://localhost:8080/admin/dashboard/appliedServices/userDetails/${userId}`
+      )
+      .then((res) => {
+        console.log(userId);
+        console.log(res);
+        axios
+          .post(
+            "http://localhost:8080/admin/dashboard/appliedServices/sendCertificate",
+            {
+              userId: userId,
+              name: userName,
+              email: userEmail,
+              serviceName: serviceName,
+              fatherName: res.data.fatherName,
+              motherName: res.data.motherName,
+              address: res.data.address,
+              year: "5",
+            }
+          )
+          .then((re) => {
+            alert("Certificate sent successfully");
+          })
+
+          .catch((err) => {
+            alert("Error in sending certificate");
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const setApprove = (userId, serviceId, userName, userEmail, serviceName) => {
+    axios
+      .post(`http://localhost:8080/admin/dashboard/appliedServices/status`, {
+        id: serviceId,
+        status: "accepted",
+      })
+      .then((res) => {
+        alert(res.data);
+        sendCertificate(userId, userName, userEmail, serviceName);
+        loadUserApplications();
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  const setReject = (id) => {
+    axios
+      .post(`http://localhost:8080/admin/dashboard/appliedServices/status`, {
+        id: id,
+        status: "rejected",
+      })
+      .then((res) => {
+        alert(res.data);
+        loadUserApplications();
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    loadUserApplications();
   }, []);
 
   return (
@@ -161,6 +168,7 @@ const AdminDashboard = () => {
                                   items.user,
                                   items._id,
                                   user.name,
+                                  user.email,
                                   service.name
                                 )
                               }

@@ -8,35 +8,32 @@ const Highlights = () => {
       description:
         "Intellectual Property Facilitation Centre has been established with the prime objective to boost Intellectual Property (IP) culture in MSMEs by guiding and assisting them in the identification, protection, and management of Intellectual property rights (IPRs). IPFC provides cost-effective, hassle-free, and timely IP-related services to make IP protection easier and affordable. We are also taking the services of external consultants in this field.",
       image: "https://www.assocham.org/assets/images/INITIATIVE_IPR.jpg",
-      key: 1,
     },
     {
       title: "Intellectual Property Facilitation Centre",
       description:
         "Intellectual Property Facilitation Centre has been established with the prime objective to boost Intellectual Property (IP) culture in MSMEs by guiding and assisting them in the identification, protection, and management of Intellectual property rights (IPRs). IPFC provides cost-effective, hassle-free, and timely IP-related services to make IP protection easier and affordable. We are also taking the services of external consultants in this field.",
       image: "https://www.assocham.org/assets/images/INITIATIVE_Gem.jpg",
-      key: 2,
     },
     {
       title: "Intellectual Property Facilitation Centre",
       description:
         "Intellectual Property Facilitation Centre has been established with the prime objective to boost Intellectual Property (IP) culture in MSMEs by guiding and assisting them in the identification, protection, and management of Intellectual property rights (IPRs). IPFC provides cost-effective, hassle-free, and timely IP-related services to make IP protection easier and affordable. We are also taking the services of external consultants in this field.",
       image: "https://www.assocham.org/assets/images/well-new-add.jpg",
-      key: 3,
     },
     {
       title: "Intellectual Property Facilitation Centre",
       description:
         "Intellectual Property Facilitation Centre has been established with the prime objective to boost Intellectual Property (IP) culture in MSMEs by guiding and assisting them in the identification, protection, and management of Intellectual property rights (IPRs). IPFC provides cost-effective, hassle-free, and timely IP-related services to make IP protection easier and affordable. We are also taking the services of external consultants in this field.",
-      image: "https://www.assocham.org/assets/images/banner/sector-cover/shipping.jpg",
-      key: 4,
+      image:
+        "https://www.assocham.org/assets/images/banner/sector-cover/shipping.jpg",
     },
     {
       title: "Intellectual Property Facilitation Centre",
       description:
         "Intellectual Property Facilitation Centre has been established with the prime objective to boost Intellectual Property (IP) culture in MSMEs by guiding and assisting them in the identification, protection, and management of Intellectual property rights (IPRs). IPFC provides cost-effective, hassle-free, and timely IP-related services to make IP protection easier and affordable. We are also taking the services of external consultants in this field.",
-      image: "https://www.assocham.org/assets/images/banner/sector-cover/food-processing-value-addition-sector-cover.jpg",
-      key: 5,
+      image:
+        "https://www.assocham.org/assets/images/banner/sector-cover/food-processing-value-addition-sector-cover.jpg",
     },
   ];
 
@@ -50,10 +47,15 @@ const Highlights = () => {
   };
   return (
     <>
-      <h1 className="flex align-items items-center justify-center font-bold text-4xl text-red-700">Highligts</h1>
+      <h1 className="flex align-items items-center justify-center font-bold text-4xl text-red-700">
+        Highligts
+      </h1>
       <Slider {...settings}>
-        {highlightCarousal.map((highlight) => (
-          <div className="flex flex-col align-items items-center justify-center">
+        {highlightCarousal.map((highlight, index) => (
+          <div
+            className="flex flex-col align-items items-center justify-center"
+            key={index}
+          >
             <div className="flex items-center justify-center w-full">
               <div className="flex flex-col gap-5 w-1/2">
                 <h1 className="font-medium text-2xl">{highlight.title}</h1>

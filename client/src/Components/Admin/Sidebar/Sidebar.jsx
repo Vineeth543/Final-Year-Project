@@ -58,7 +58,7 @@ const Sidebar = () => {
       >
         <img
           src="https://cdn-icons-png.flaticon.com/512/2879/2879593.png"
-          alt=""
+          alt="arrow"
           className={`absolute cursor-pointer -right-3 top-9 w-7 ${
             !open && "rotate-180"
           }`}
@@ -67,7 +67,7 @@ const Sidebar = () => {
         <div className="flex bg-white gap-x-4 items-center pl-4">
           {/* <Link to="/"> */}
           <img
-            src="https://www.karnataka.gov.in/frontend/assets/img/Seal_of_Karnataka.png"
+            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/NoOadFZJ_400x400.jpg"
             alt="logo"
             className={`w-10 cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
