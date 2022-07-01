@@ -23,12 +23,6 @@ const UserDashboard = () => {
       })
       .then((res) => {
         alert(res.data);
-        setFatharName("");
-        setMotherName("");
-        setAddress("");
-        setVillage("");
-        setTaluk("");
-        setDistrict("");
       })
       .catch((err) => {
         alert("Error in updating profile");
@@ -37,8 +31,11 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center bg-sky-100 m-auto scrollbar-hide">
-        <form className="flex flex-col justify-center gap-8 font-semibold my-10 w-1/2">
+      <div className="flex flex-col items-center justify-center bg-sky-100 m-auto my-10">
+        <form
+          className="flex flex-col justify-center gap-8 font-semibold"
+          onSubmit={(e) => updateProfile(e)}
+        >
           <h1 className="font-bold text-4xl text-center">Fill Your Details</h1>
           <div className="flex items-center justify-center gap-6 text-xl">
             <label htmlFor="fatherName">Father Name:</label>
@@ -52,7 +49,7 @@ const UserDashboard = () => {
               onChange={(e) => setFatharName(e.target.value)}
             />
           </div>
-          <div className="flex items-center justify-center gap-6 text-xl">
+          <div className="flex items-center justify-center gap-4 text-xl">
             <label htmlFor="motherName">Mother Name:</label>
             <input
               type="text"
@@ -112,15 +109,12 @@ const UserDashboard = () => {
               onChange={(e) => setDistrict(e.target.value)}
             />
           </div>
-          <div className="flex flex-col items-center justify-center gap-4 ">
-            <button
-              type="submit"
-              className="bg-blue-500 p-2 px-4 rounded-2xl hover:bg-blue-700 hover:text-white"
-              onClick={(e) => updateProfile(e)}
-            >
-              Submit
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="m-auto bg-blue-500 py-1 px-2 rounded-xl hover:bg-blue-700 hover:text-white focus:ring ring-blue-300 focus:outline-none"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </>

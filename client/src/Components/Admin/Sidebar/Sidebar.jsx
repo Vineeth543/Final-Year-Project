@@ -67,7 +67,7 @@ const Sidebar = () => {
         <div className="flex bg-white gap-x-4 items-center pl-4">
           {/* <Link to="/"> */}
           <img
-            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/NoOadFZJ_400x400.jpg"
+            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
             alt="logo"
             className={`w-10 cursor-pointer duration-500 ${
               open && "rotate-[360deg]"

@@ -8,11 +8,11 @@ const Complaints = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center">Complaint Form</h1>
       <form
-        className="flex flex-col m-auto gap-10 pt-5 font-semibold text-xl"
+        className="flex flex-col m-auto gap-10 my-5 font-semibold text-xl"
         onSubmit={sendComplaint}
       >
+        <h1 className="font-bold text-4xl text-center">Complaint Form</h1>
         <div className="flex items-center justify-center gap-6">
           <label htmlFor="fullname">Fullname:</label>
           <input

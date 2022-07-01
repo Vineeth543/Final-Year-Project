@@ -8,7 +8,7 @@ const PressCards = () => {
     {
       title: "Impact of Air Pollution on Health & Life",
       image:
-        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/air.jpg",
+        "https://raw.githubusercontent.com/Vineeth543/Project-Images/main/air.jpg",
       description:
         "To create awareness of rising air pollution and to mitigete its impact....",
       tag: "Air Pollution",
@@ -17,7 +17,7 @@ const PressCards = () => {
     {
       title: "Smart Technologyis going to pave India",
       image:
-        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/Smart%20Technologies.jpg",
+        "https://raw.githubusercontent.com/Vineeth543/Project-Images/main/Smart%20Technologies.jpg",
       description: "MoS, Science & Technology & Earth Sciences said,Smart...",
       tag: "Smart Technology",
       date: "Thu, 25 Apr, 2022",
@@ -25,7 +25,7 @@ const PressCards = () => {
     {
       title: "AI is a Kinetic enabler for growth of India..",
       image:
-        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/Artificial%20Intelligence.jpg",
+        "https://raw.githubusercontent.com/Vineeth543/Project-Images/main/Artificial%20Intelligence.jpg",
       description:
         "Artificial Intelligence is a Kinetic enabler for growth of Indian technolo...",
       tag: "A.I",
@@ -34,7 +34,7 @@ const PressCards = () => {
     {
       title: "About 44 cr PMJDY beneficiary accounts linked with JAM.",
       image:
-        "https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/PMJDY.jpg",
+        "https://raw.githubusercontent.com/Vineeth543/Project-Images/main/PMJDY.jpg",
       description:
         "As of October 2021, about 44 crore Pradhan Mantri Jan Dhan Yojana accounts..",
       tag: "PMJDY",

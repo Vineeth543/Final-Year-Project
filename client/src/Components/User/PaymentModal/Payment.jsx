@@ -7,7 +7,7 @@ export default function PaymentModal({ isOpen, setIsOpen, price }) {
   };
 
   const options = {
-    key: "rzp_test_hgnOGH5GP7b5xn",
+    key: "rzp_test_qBHNeycDgsDQcu",
     amount: price * 100,
     currency: "INR",
     name: "Water Bill Payment",

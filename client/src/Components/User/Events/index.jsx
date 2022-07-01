@@ -68,7 +68,7 @@ const Events = () => {
 
   return (
     <>
-      <div className="container m-auto mt-5">
+      <div className="container m-auto mt-5 mb-10">
         <div className="h-96">
           <img
             src="https://circulareconomy.europa.eu/platform/sites/all/themes/cecon_theme/images/events.jpg"
@@ -168,11 +168,11 @@ const Events = () => {
         </h1>
         <div className="flex justify-center gap-5">
           {awareness.map((items, index) => (
-            <div className="w-80 h-60" key={index}>
+            <div className="w-80 p-2 border border-black rounded" key={index}>
               <img
                 src={items}
                 alt="covid"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded"
               />
             </div>
           ))}

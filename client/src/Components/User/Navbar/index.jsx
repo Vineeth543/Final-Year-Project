@@ -1,14 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const UserNavbar = () => {
+  const path = useLocation();
+
+  const logout = () => {
+    localStorage.removeItem("CCPS-loggedIn");
+    localStorage.removeItem("CCPS-userID");
+  };
+
   return (
     <>
       <div className="flex items-center justify-evenly bg-white shadow-lg py-2 scrollbar-hide">
         <Link className="font-semibold text-lg" to="/">
           <div className="w-20 h-20">
             <img
-              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/NoOadFZJ_400x400.jpg"
+              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
               alt="logo"
               className="w-full h-full"
             />
@@ -46,7 +53,9 @@ const UserNavbar = () => {
             </div>
             <div className="dropdown-content">
               <Link to="/user/dashboard">Dashboard</Link>
-              <Link to="/">Logout</Link>
+              <Link to={path.pathname} onClick={logout}>
+                Logout
+              </Link>
             </div>
           </div>
         ) : (

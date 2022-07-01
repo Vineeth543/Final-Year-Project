@@ -8,7 +8,7 @@ const Navbar = () => {
         <Link className="font-semibold text-lg" to="/user">
           <div className="w-20 h-20">
             <img
-              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/NoOadFZJ_400x400.jpg"
+              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
               alt="logo"
               className="w-full h-full object-cover"
             />

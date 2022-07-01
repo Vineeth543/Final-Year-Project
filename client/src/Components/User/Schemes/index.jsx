@@ -79,10 +79,10 @@ const Schemes = () => {
 
   return (
     <>
-      <h1 className="text-black font-bold text-4xl text-center pt-6 mt-2">
+      <h1 className="text-black font-bold text-4xl text-center mt-2 pt-5">
         Schemes
       </h1>
-      <div className="flex flex-wrap gap-3 justify-between mt-10 mx-10 pb-10">
+      <div className="flex flex-wrap gap-3 justify-between m-10 pb-10">
         {schemes.map((scheme, index) => (
           <Link to={`/user/schemes/${index + 1}`} key={index}>
             <div

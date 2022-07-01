@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+// const cors = require("cors");
 
 //User routes
 const index = require("./routes/User/index");
@@ -8,6 +9,7 @@ const events = require("./routes/User/events");
 const complaints = require("./routes/User/complaints");
 const profile = require("./routes/User/updateProfile");
 const applyService = require("./routes/User/e-services/applyService");
+const payment = require("./routes/User/payments");
 
 //officials routes
 const manageServiceRequest = require("./routes/officials/manageServiceRequest");
@@ -21,6 +23,8 @@ const deleteEvent = require("./routes/officials/events/deleteEvent");
 const updateEvent = require("./routes/officials/events/updateEvent");
 
 const app = express();
+
+// app.use(cors());
 
 //app.use(express.json());
 
@@ -83,6 +87,9 @@ app.use(complaints);
 app.use(profile);
 
 app.use(applyService);
+
+app.use(payment);
+
 //**********************************OFFICIALS ****************************//
 
 app.use(manageServiceRequest);

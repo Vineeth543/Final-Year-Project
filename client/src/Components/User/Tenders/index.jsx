@@ -91,7 +91,7 @@ const Tenders = () => {
       </h1>
       {tenderDetails.map((items, index) => (
         <div
-          className="flex flex-col bg-white mx-auto mt-10 hover:shadow-2xl rounded-xl border"
+          className="flex flex-col bg-white m-auto my-10 hover:shadow-2xl rounded-xl border"
           style={{ width: "70rem" }}
           key={index}
         >

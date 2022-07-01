@@ -47,7 +47,7 @@ const Login = () => {
       <div className="flex align-items items-center justify-center mt-10 gap-40">
         <div>
           <img
-            src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/water.png"
+            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/water.png"
             alt="save water"
             className="w-full h-full"
           />
@@ -107,8 +107,8 @@ const Login = () => {
         </div>
         <div>
           <img
-            src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/tree.png"
-            alt="save water"
+            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/tree.png"
+            alt="save tree"
             className="w-full h-full"
           />
         </div>

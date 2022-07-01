@@ -63,7 +63,7 @@ const Login = () => {
       <div className="flex align-items items-center justify-center gap-40 bg-cyan-200">
         <div className="flex items-center justify-center">
           <img
-            src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/water.png"
+            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/water.png"
             alt="save water"
             className="w-full h-full"
           />
@@ -79,7 +79,9 @@ const Login = () => {
             <h1 className="font-bold text-4xl text-black text-center">
               Official Login
             </h1>
-            <label htmlFor="role" className="text-lg">Select Role</label>
+            <label htmlFor="role" className="text-lg">
+              Select Role
+            </label>
             <select
               name="role"
               id="role"
@@ -105,7 +107,9 @@ const Login = () => {
                 President
               </option>
             </select>
-            <label htmlFor="phone" className="text-lg">Username</label>
+            <label htmlFor="phone" className="text-lg">
+              Username
+            </label>
             <input
               type="text"
               name="phone"
@@ -115,7 +119,9 @@ const Login = () => {
               required
               onChange={(e) => setPhone(e.target.value)}
             />
-            <label htmlFor="password" className="text-lg">Password</label>
+            <label htmlFor="password" className="text-lg">
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -125,15 +131,18 @@ const Login = () => {
               required
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button type="submit" className="bg-blue-900 hover:bg-blue-800 p-2 px-4 rounded-2xl focus:ring ring-blue-700 ">
+            <button
+              type="submit"
+              className="bg-blue-900 hover:bg-blue-800 p-2 px-4 rounded-2xl focus:ring ring-blue-700 "
+            >
               Login
             </button>
           </form>
         </div>
         <div>
           <img
-            src="https://raw.githubusercontent.com/Vineeth543/Final-Year-Project/main/client/src/Images/tree.png"
-            alt="save water"
+            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/tree.png"
+            alt="save tree"
             className="w-full h-full"
           />
         </div>
