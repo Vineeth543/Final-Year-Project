@@ -1,33 +1,79 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import axios from "axios";
 
 export default function PaymentModal({ isOpen, setIsOpen, price }) {
   const closeModal = () => {
     setIsOpen(false);
   };
 
-  const options = {
-    key: "rzp_test_qBHNeycDgsDQcu",
-    amount: price * 100,
-    currency: "INR",
-    name: "Water Bill Payment",
-    description: "Water Bill Submission Amount",
-    image: "https://m.media-amazon.com/images/I/41+gO0x771L._SL1000_.jpg",
-    handler: () => {
-      setIsOpen(false);
-      alert("Payment Successful.");
-    },
-    theme: { color: "#0000FF" },
-    modal: {
-      ondismiss: function () {
-        console.log("Checkout form closed");
-      },
-    },
+  const [userName, setName] = useState("");
+  const [userEmail, setEmail] = useState("");
+  const [userPhone, setPhone] = useState("");
+
+  const getUserDetails = () => {
+    axios
+      .post("http://localhost:8080/user/details", {
+        userId: localStorage.getItem("CCPS-userID"),
+      })
+      .then((res) => {
+        setName(res.data.name);
+        setEmail(res.data.email);
+        setPhone(res.data.phone);
+      })
+      .catch((err) => {
+        alert("Error in getting user details");
+      });
   };
 
-  const launchRazorPay = () => {
+  const initPayment = (data) => {
+    const options = {
+      key: "rzp_test_qBHNeycDgsDQcu",
+      amount: price * 100,
+      currency: "INR",
+      name: "Water Bill Payment",
+      description: "Water Bill Submission Amount",
+      image: "https://m.media-amazon.com/images/I/41+gO0x771L._SL1000_.jpg",
+      order_id: data.id,
+      remember_customer: true,
+      prefill: {
+        name: userName,
+        email: userEmail,
+        contact: userPhone,
+      },
+      handler: async (response) => {
+        try {
+          const data = await axios.post(
+            "http://localhost:8080/user/payments/verify",
+            response
+          );
+          console.log(data);
+          setIsOpen(false);
+          alert("Payment Successful.");
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      theme: { color: "#0000FF" },
+    };
     const RazorPay = new window.Razorpay(options);
     RazorPay.open();
+  };
+
+  const launchRazorPay = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/user/payments/",
+        {
+          amount: 500,
+        }
+      );
+      console.log(data);
+      getUserDetails();
+      initPayment(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

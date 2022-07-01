@@ -36,7 +36,7 @@ export const Payments = () => {
               onClick={payBill}
               className="text-white text-md bg-blue-500 p-2 rounded-lg hover:bg-blue-900"
             >
-              Pay Bill
+              Pay Tax
             </button>
           </div>
         </div>

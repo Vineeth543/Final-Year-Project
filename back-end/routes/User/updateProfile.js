@@ -1,5 +1,6 @@
 const express = require("express");
 const userDetails = require("../../models/userProfileDetails");
+const users = require("../../models/home/user");
 var router = express.Router();
 
 router.use(express.json());
@@ -93,6 +94,16 @@ router.post("/user/updateProfile", (req, res) => {
         .catch((err1) => {
           res.send("Not able to update the profile details");
         });
+    }
+  });
+});
+
+router.post("/user/details", (req, res) => {
+  users.findOne({ _id: req.body.userId }).then((doc) => {
+    if (doc != null) {
+      res.send(doc);
+    } else {
+      res.send("No data found");
     }
   });
 });

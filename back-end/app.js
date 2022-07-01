@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const cors = require("cors");
+const cors = require("cors");
 
 //User routes
 const index = require("./routes/User/index");
@@ -24,7 +24,7 @@ const updateEvent = require("./routes/officials/events/updateEvent");
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 
 //app.use(express.json());
 
