@@ -171,8 +171,11 @@ const Signup = () => {
                 Signin
               </Link>
             </div>
-            <button className="m-auto bg-blue-900 py-1 px-2 rounded-lg hover:bg-blue-700 focus:ring ring-blue-400">
-              Submit
+            <button
+              type="submit"
+              className="m-auto bg-blue-800 p-2 px-4 rounded-2xl hover:bg-blue-900 focus:ring ring-blue-700"
+            >
+              Signup
             </button>
           </form>
         </div>

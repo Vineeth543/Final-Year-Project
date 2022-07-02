@@ -49,7 +49,8 @@ const AdminViewSingleServices = () => {
         serviceId: id,
       })
       .then((res) => {
-        alert(res);
+        alert(res.data);
+        getService();
       })
       .catch((err) => {
         alert(err);
@@ -67,34 +68,27 @@ const AdminViewSingleServices = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full m-10 gap-5">
-        <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl">
-          <h1 className="font-semibold text-4xl text-gray-700 text-center">
-            {categories.map((category) => {
-              if (category._id === serviceID.split("/")[1])
-                return category.name;
-              return null;
-            })}
-          </h1>
-        </div>
-        <div className="flex px-5 w-full gap-2">
-          <h1 className="font-semibold text-xl w-80 text-gray-700">Sl.No</h1>
-          <h1 className="font-semibold text-xl text-gray-700">Service Name</h1>
-        </div>
-        <div className="flex flex-col shadow-xl">
-          {services.map((items, index) => (
-            <div
-              className="flex flex-col px-7 py-2 gap-5 bg-white w-full border-b-2"
-              key={items.name}
-            >
-              <div className="flex justify-between">
-                <div className="flex">
-                  <h1 className="font-semibold text-xl w-80">{index + 1}</h1>
-                  <h1 className="font-semibold text-xl cursor-pointer">
-                    {items.name}
-                  </h1>
-                </div>
-                <div className="flex gap-3">
+      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 mx-12 text-white">
+        {categories.map((category) => {
+          if (category._id === serviceID.split("/")[1]) return category.name;
+          return null;
+        })}
+      </h1>
+      {services.length > 0 ? (
+        <table className="content-table dashboard">
+          <thead>
+            <tr>
+              <th className="text-center">SL.NO</th>
+              <th className="text-center">Service Name</th>
+              <th className="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {services.map((items, index) => (
+              <tr key={index}>
+                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{items.name}</td>
+                <td className="flex items-center justify-center gap-5">
                   <button
                     className={`bg-green-500 px-2 rounded text-white ${
                       !active && "bg-gray-500"
@@ -109,12 +103,16 @@ const AdminViewSingleServices = () => {
                   >
                     DELETE
                   </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <h1 className="font-bold text-4xl text-center my-20">
+          No Services Found. ☹️
+        </h1>
+      )}
     </>
   );
 };

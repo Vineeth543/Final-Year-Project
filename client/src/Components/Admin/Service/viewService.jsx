@@ -80,39 +80,30 @@ const AdminViewServices = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full m-10 gap-5">
-        <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl">
-          <h1 className="font-semibold text-4xl text-gray-700 text-center">
-            {mainServiceCategory.map((category) => {
-              if (category.id === serviceID) return category.title;
-              return null;
-            })}
-          </h1>
-        </div>
-        <div className="flex px-5 w-full gap-2">
-          <h1 className="font-semibold text-xl w-80 text-gray-700">Sl.No</h1>
-          <h1 className="font-semibold text-xl text-gray-700">Services</h1>
-        </div>
-        <div className="flex flex-col shadow-xl">
+      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 mx-12 text-white">
+        {mainServiceCategory.map((category) => {
+          if (category.id === serviceID) return category.title;
+          return null;
+        })}
+      </h1>
+      <table className="content-table dashboard">
+        <thead>
+          <tr>
+            <th className="text-center">SL.NO</th>
+            <th className="text-center">Services</th>
+          </tr>
+        </thead>
+        <tbody>
           {categories.map((items, index) => (
-            <div
-              className="flex flex-col px-7 py-2 gap-5 bg-white w-full border-b-2"
-              key={index}
-            >
-              <div className="flex justify-between">
-                <div className="flex">
-                  <h1 className="font-semibold text-xl w-80">{index + 1}</h1>
-                  <Link to={`${items._id}`}>
-                    <h1 className="font-semibold text-xl cursor-pointer">
-                      {items.name}
-                    </h1>
-                  </Link>
-                </div>
-              </div>
-            </div>
+            <tr key={index}>
+              <td className="text-center">{index + 1}</td>
+              <td className="text-center">
+                <Link to={`${items._id}`}>{items.name}</Link>
+              </td>
+            </tr>
           ))}
-        </div>
-      </div>
+        </tbody>
+      </table>
     </>
   );
 };

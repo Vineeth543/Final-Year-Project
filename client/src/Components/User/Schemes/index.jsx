@@ -36,7 +36,7 @@ const Schemes = () => {
     {
       title: "Schemes for Senior Citizens",
       image:
-        "https://scontent.fblr20-3.fna.fbcdn.net/v/t1.6435-9/52527260_1723333424433470_8104411470017593344_n.png?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=tRG794JAtZUAX-lBygf&_nc_ht=scontent.fblr20-3.fna&oh=00_AT_yqdV0ebvuLDV03zMtO4_Ipc3FMh8bccO_642w8t7bjw&oe=62BE4A73",
+        "https://raw.githubusercontent.com/Vineeth543/Project-Images/main/citizen_new.png",
       borderColor: "border-slate-400",
     },
     {
@@ -65,8 +65,7 @@ const Schemes = () => {
     },
     {
       title: "MGNAREGA",
-      image:
-        "https://play-lh.googleusercontent.com/5BO6ICjQ1DyFiV8dTA3wMWZw0qF9ve3XLRe9adrlzR71iLWCn_xqsCAMYzHY90P3hbg",
+      image: "https://www.ipetechnologies.com/icrg/public/img/mgn-logo.png",
       borderColor: "border-fuchsia-400",
     },
     {
@@ -84,7 +83,7 @@ const Schemes = () => {
       </h1>
       <div className="flex flex-wrap gap-3 justify-between m-10 pb-10">
         {schemes.map((scheme, index) => (
-          <Link to={`/user/schemes/${index + 1}`} key={index}>
+          <Link to={`/user/schemes/${index + 1}/1`} key={index}>
             <div
               className={`flex items-center justify-center gap-4 bg-white hover:border-4 p-10 border-b-4 ${scheme.borderColor}`}
               style={{ width: "22rem" }}

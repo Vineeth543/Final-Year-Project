@@ -58,8 +58,16 @@
   font-size: 1.1em;
 }
 
+.complaints {
+  border-collapse: collapse;
+  margin: 0px 50px;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgb(29, 78, 216);
+}
+
 .content-table tbody tr {
-  border-bottom: 1px solid #dddddd;
   font-weight: 500;
 }
 
@@ -69,4 +77,49 @@
 
 .content-table tbody tr:last-of-type {
   border-bottom: 2px solid #1d4ed8;
+}
+
+.dashboard tbody tr {
+  border-bottom: 1px solid #dddddd;
+  font-weight: 500;
+}
+
+.upcoming thead tr {
+  background-color: #099823;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.upcoming tbody tr:last-of-type {
+  border-bottom: 2px solid #099823;
+}
+
+.upcoming {
+  border-collapse: collapse;
+  margin: 25px 50px;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px #099823;
+}
+
+.past thead tr {
+  background-color: #f6f672;
+  color: #000000;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.past tbody tr:last-of-type {
+  border-bottom: 2px solid #f6f672;
+}
+
+.past {
+  border-collapse: collapse;
+  margin: 25px 50px;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px #f6f672;
 }

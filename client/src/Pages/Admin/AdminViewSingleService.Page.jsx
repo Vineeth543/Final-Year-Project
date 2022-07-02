@@ -8,7 +8,7 @@ const AdminViewSingleServicePage = () => {
     <>
       <div className="flex">
         <Sidebar />
-        <div className="flex w-full h-full bg-gray-200">
+        <div className="flex flex-col w-full h-full my-10 gap-5">
           <AdminViewSingleServices />
         </div>
       </div>

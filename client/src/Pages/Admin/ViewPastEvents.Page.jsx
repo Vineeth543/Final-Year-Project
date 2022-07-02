@@ -3,12 +3,12 @@ import React from "react";
 import Sidebar from "../../Components/Admin/Sidebar/Sidebar";
 import ViewPastEvents from "../../Components/Admin/Events/viewPastEvents";
 
-const ViewUpcomingEventsPage = () => {
+const ViewPastEventsPage = () => {
   return (
     <>
       <div className="flex">
         <Sidebar />
-        <div className="flex w-full h-full bg-gray-200">
+        <div className="flex flex-col w-full h-full my-10 gap-5">
           <ViewPastEvents />
         </div>
       </div>
@@ -16,4 +16,4 @@ const ViewUpcomingEventsPage = () => {
   );
 };
 
-export default ViewUpcomingEventsPage;
+export default ViewPastEventsPage;

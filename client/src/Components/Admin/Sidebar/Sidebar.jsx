@@ -6,42 +6,34 @@ const Sidebar = () => {
 
   const [Menus] = useState([
     {
-      key: 1,
       title: "Dashboard",
       src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
-      key: 2,
       title: "Services",
       src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
-      key: 3,
       title: "Schemes",
       src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
-      key: 4,
       title: "Events",
       src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
-      key: 5,
       title: "Tenders",
       src: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
     },
     {
-      key: 6,
       title: "Payments",
       src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
-      key: 7,
-      title: "Complaints",
+      title: "Complaints/all",
       src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {
-      key: 8,
       title: "Users",
       src: "https://cdn-icons-png.flaticon.com/512/1077/1077012.png",
     },
@@ -54,7 +46,7 @@ const Sidebar = () => {
       <div
         className={` ${
           open ? "w-72" : "w-20 "
-        } bg-white h-screen py-4 relative duration-300`}
+        } bg-blue-700 h-screen py-4 relative duration-300`}
       >
         <img
           src="https://cdn-icons-png.flaticon.com/512/2879/2879593.png"
@@ -64,18 +56,18 @@ const Sidebar = () => {
           }`}
           onClick={() => setOpen(!open)}
         />
-        <div className="flex bg-white gap-x-4 items-center pl-4">
-          {/* <Link to="/"> */}
-          <img
-            src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
-            alt="logo"
-            className={`w-10 cursor-pointer duration-500 ${
-              open && "rotate-[360deg]"
-            }`}
-          />
-          {/* </Link> */}
+        <div className="flex bg-white gap-x-4 items-center pl-4 bg-blue-700">
+          <Link to="/" className="w-10 h-10">
+            <img
+              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
+              alt="logo"
+              className={`w-full h-full cursor-pointer duration-500 ${
+                open && "rotate-[360deg]"
+              }`}
+            />
+          </Link>
           <h1
-            className={`flex text-black origin-left font-medium text-xl duration-200 ${
+            className={`flex text-white origin-left font-medium text-xl duration-200 ${
               !open && "scale-0"
             }`}
           >
@@ -84,10 +76,7 @@ const Sidebar = () => {
         </div>
         <ul className="w-full h-full bg-blue-700">
           {Menus.map((Menu, index) => (
-            <Link
-              to={`/admin/${Menu.title.toLowerCase()}`}
-              key={Menu.title.toLowerCase()}
-            >
+            <Link to={`/admin/${Menu.title.toLowerCase()}`} key={index}>
               <li
                 key={index}
                 className={`flex p-2 pl-5 mt-4 hover:text-white text-black text-lg font-semibold items-center gap-x-4 ${
@@ -100,7 +89,7 @@ const Sidebar = () => {
                 <span
                   className={`${!open && "hidden"} origin-left duration-200`}
                 >
-                  {Menu.title}
+                  {Menu.title.split("/")[0]}
                 </span>
               </li>
             </Link>
@@ -109,23 +98,6 @@ const Sidebar = () => {
       </div>
     </>
   );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 };
 
 export default Sidebar;

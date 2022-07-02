@@ -3,15 +3,27 @@ import PaymentModal from "../PaymentModal/Payment";
 
 export const Payments = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [price, setPrice] = useState(0);
-  const payBill = () => {
+  const [waterBill, setWaterBill] = useState(0);
+  const [homeTax, setHomeTax] = useState(0);
+
+  const payWaterBill = () => {
     setIsOpen(true);
-    setPrice(149);
+    setWaterBill(450);
+  };
+
+  const payHomeTax = () => {
+    setIsOpen(true);
+    setHomeTax(400);
   };
 
   return (
     <>
-      <PaymentModal setIsOpen={setIsOpen} isOpen={isOpen} price={price} />
+      <PaymentModal
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+        waterBill={waterBill}
+        homeTax={homeTax}
+      />
       <h1 className="w-full mt-3 p-5 bg-blue-900 text-center text-white text-4xl font-bold">
         Utility Bill Payment
       </h1>
@@ -33,7 +45,7 @@ export const Payments = () => {
               className="w-64 object-cover rounded-bl-lg"
             />
             <button
-              onClick={payBill}
+              onClick={payWaterBill}
               className="text-white text-md bg-blue-500 p-2 rounded-lg hover:bg-blue-900"
             >
               Pay Tax
@@ -57,7 +69,7 @@ export const Payments = () => {
               className="w-28 object-cover rounded-bl-lg"
             />
             <button
-              onClick={payBill}
+              onClick={payHomeTax}
               className="text-white text-md bg-blue-500 p-2 rounded-lg hover:bg-blue-900"
             >
               Pay Tax

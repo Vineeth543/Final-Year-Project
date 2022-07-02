@@ -11,7 +11,6 @@ const AdminDashboard = () => {
     axios
       .get(`http://localhost:8080/admin/dashboard/appliedServices`)
       .then((res) => {
-        console.log(res.data);
         const serviceData = res.data.doc;
         const tempServiceData = [];
         serviceData.forEach((element) => {
@@ -34,13 +33,13 @@ const AdminDashboard = () => {
         setServiceName(tempServiceNameData);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
   const formatDate = (date) => {
     const d = date.split("T")[1];
-    return date.replace(d, "").slice(0, -1);
+    return date.replace(d, "").slice(0, -1) + " " + date.substring(11, 19);
   };
 
   const sendCertificate = (userId, userName, userEmail, serviceName) => {
@@ -49,8 +48,6 @@ const AdminDashboard = () => {
         `http://localhost:8080/admin/dashboard/appliedServices/userDetails/${userId}`
       )
       .then((res) => {
-        console.log(userId);
-        console.log(res);
         axios
           .post(
             "http://localhost:8080/admin/dashboard/appliedServices/sendCertificate",
@@ -74,7 +71,7 @@ const AdminDashboard = () => {
           });
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 
@@ -115,82 +112,69 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full m-10 gap-5">
-        <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl text-center">
-          <h1 className="font-semibold text-4xl text-gray-700">
-            Users Applied for Services
-          </h1>
-        </div>
-        <div className="flex items-center justify-center font-semibold text-xl text-gray-700">
-          <h1 className="w-80 pl-5">User ID</h1>
-          <h1 className="w-96">User Name</h1>
-          <h1 className="w-80">Service Title</h1>
-          <h1 className="w-80">Applied On</h1>
-          <h1 className="w-40 invisible">Applied On</h1>
-        </div>
-        <div className="flex flex-col gap-3">
+      <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 mx-12 shadow-xl text-white">
+        Users Applied for Services
+      </h1>
+      <table className="content-table dashboard">
+        <thead>
+          <tr>
+            <th className="text-center">User ID</th>
+            <th className="text-center">Name</th>
+            <th className="text-center">Service Title</th>
+            <th className="text-center">Applied On</th>
+            <th className="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
           {userName.map((user, index) =>
             userAndDate.map((items) =>
               user._id === items.user
                 ? serviceName.map((service) =>
                     items.service === service._id ? (
-                      <div
-                        className="flex flex-col px-7 py-2 gap-5 bg-white w-full border border-black"
-                        key={index}
-                      >
-                        <div className="flex items-center justify-center">
-                          <div className="flex">
-                            <h1 className="font-semibold text-xl w-80">
-                              {items.user.toUpperCase()}
-                            </h1>
-                            <h1 className="font-semibold text-xl w-80">
-                              {user.name}
-                            </h1>
-                            <h1 className="font-semibold text-xl w-80">
-                              {service.name}
-                            </h1>
-                            <h1 className="font-semibold text-xl w-80 pl-16">
-                              {formatDate(items.date)}
-                            </h1>
-                          </div>
-                          <div className="flex gap-3">
-                            <Link
-                              to={`/admin/dashboard/view-docs/${items._id}`}
-                            >
-                              <button className="bg-pink-500 px-2 rounded text-white">
-                                VIEW
-                              </button>
-                            </Link>
-                            <button
-                              className="bg-green-500 px-2 rounded text-white"
-                              onClick={() =>
-                                setApprove(
-                                  items.user,
-                                  items._id,
-                                  user.name,
-                                  user.email,
-                                  service.name
-                                )
-                              }
-                            >
-                              APPROVE
+                      <tr key={index}>
+                        <td>{items.user.toUpperCase()}</td>
+                        <td>{user.name}</td>
+                        <td>
+                          {service.name.length > 85
+                            ? service.name.substring(0, 85) + "..."
+                            : service.name}
+                        </td>
+                        <td>{formatDate(items.date)}</td>
+                        <td className="flex items-center justify-center gap-2">
+                          <Link to={`/admin/dashboard/view-docs/${items._id}`}>
+                            <button className="bg-pink-500 px-2 rounded text-white">
+                              VIEW
                             </button>
-                            <button
-                              className="bg-red-400 px-2 rounded text-white"
-                              onClick={() => setReject(items._id)}
-                            >
-                              REJECT
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                          </Link>
+                          <button
+                            className="bg-green-500 px-2 rounded text-white"
+                            onClick={() =>
+                              setApprove(
+                                items.user,
+                                items._id,
+                                user.name,
+                                user.email,
+                                service.name
+                              )
+                            }
+                          >
+                            APPROVE
+                          </button>
+                          <button
+                            className="bg-red-400 px-2 rounded text-white"
+                            onClick={() => setReject(items._id)}
+                          >
+                            REJECT
+                          </button>
+                        </td>
+                      </tr>
                     ) : null
                   )
                 : null
             )
           )}
-        </div>
-      </div>
+        </tbody>
+      </table>
     </>
   );
 };

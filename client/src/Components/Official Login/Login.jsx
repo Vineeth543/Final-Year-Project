@@ -43,12 +43,13 @@ const Login = () => {
       .then((result) => {
         if (result.data.status === "success") {
           alert(result.data.msg);
+          localStorage.setItem("CCPS-Official-loggedIn", "true");
+          localStorage.setItem("CCPS-Official-Role", role);
           role === "PDO"
             ? nav("/admin")
             : role === "SECRETARY"
             ? nav("/secretary")
             : nav("/president");
-          // localStorage.setItem("OfficialloggedIn", "true");
         } else {
           alert(result.data.msg);
         }

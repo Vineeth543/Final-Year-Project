@@ -13,7 +13,7 @@ const Complaints = () => {
         onSubmit={sendComplaint}
       >
         <h1 className="font-bold text-4xl text-center">Complaint Form</h1>
-        <div className="flex items-center justify-center gap-6">
+        <div className="flex items-center justify-center gap-5">
           <label htmlFor="fullname">Fullname:</label>
           <input
             type="text"
@@ -24,7 +24,7 @@ const Complaints = () => {
             required
           />
         </div>
-        <div className="flex items-center justify-center gap-8">
+        <div className="flex items-center justify-center gap-14">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -35,7 +35,7 @@ const Complaints = () => {
             required
           />
         </div>
-        <div className="flex items-center justify-center gap-6">
+        <div className="flex items-center justify-center gap-3">
           <label htmlFor="mobile">Mobile No:</label>
           <input
             type="number"
@@ -61,7 +61,7 @@ const Complaints = () => {
           <label htmlFor="file">Upload Photos:</label>
           <input type="file" name="file" id="file" required />
         </div>
-        <button className="m-auto bg-blue-500 py-1 px-2 rounded-2xl hover:bg-blue-700 hover:text-white focus:ring ring-blue-400">
+        <button className="m-auto bg-blue-500 py-1 px-2 rounded-2xl hover:bg-blue-700 text-lg hover:text-white focus:ring ring-blue-400">
           Submit
         </button>
       </form>

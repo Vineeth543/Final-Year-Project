@@ -60,28 +60,28 @@ const AdminPayments = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center py-4 rounded bg-gray-400 mx-12">
+      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 mx-12 text-white">
         Transactions
       </h1>
       <table className="content-table">
         <thead>
           <tr>
-            <th>Sl.No</th>
-            <th>User Name</th>
-            <th>Payment</th>
-            <th>Status</th>
-            <th>Amount</th>
-            <th>Method</th>
-            <th>Transaction ID</th>
-            <th>Date</th>
+            <th className="text-center">Sl.No</th>
+            <th className="text-center">User Name</th>
+            <th className="text-center">Payment</th>
+            <th className="text-center">Status</th>
+            <th className="text-center">Amount</th>
+            <th className="text-center">Method</th>
+            <th className="text-center">Transaction ID</th>
+            <th className="text-center">Date</th>
           </tr>
         </thead>
         <tbody>
           {payments.map((payment, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{payment.email}</td>
-              <td className="flex items-center gap-2">
+            <tr key={index} className="hover:border-2 border-blue-400">
+              <td className="text-center">{index + 1}</td>
+              <td className="text-center">{payment.email}</td>
+              <td className="flex items-center justify-center gap-2">
                 <img
                   src={
                     payment.description === "Water Bill Submission Amount"
@@ -93,7 +93,7 @@ const AdminPayments = () => {
                 />
                 {payment.description.substring(0, 10)}
               </td>
-              <td>
+              <td className="text-center">
                 <span
                   className={
                     payment.status === "captured"
@@ -110,16 +110,18 @@ const AdminPayments = () => {
                     : "Pending"}
                 </span>
               </td>
-              <td>{payment.amount / 100}</td>
+              <td className="text-center">{payment.amount / 100}</td>
               <td>
                 <img
                   src={paymentMethods[payment.method]}
                   alt={payment.method}
-                  className="w-12"
+                  className="w-12 m-auto"
                 />
               </td>
-              <td>{payment.id.split("_")[1]}</td>
-              <td>{timeConverter(payment.created_at)}</td>
+              <td className="text-center">{payment.id.split("_")[1]}</td>
+              <td className="text-center">
+                {timeConverter(payment.created_at)}
+              </td>
             </tr>
           ))}
         </tbody>

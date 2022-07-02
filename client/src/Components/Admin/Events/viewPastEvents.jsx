@@ -8,7 +8,6 @@ const ViewUpcomingEvents = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/past")
       .then((res) => {
-        console.log(res.data);
         const tempUpcomingEvent = [];
         res.data.forEach((event) => {
           tempUpcomingEvent.push(event);
@@ -16,7 +15,19 @@ const ViewUpcomingEvents = () => {
         setPastEvent(tempUpcomingEvent);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
+      });
+  };
+
+  const deletePastEvents = (id) => {
+    axios
+      .post("http://localhost:8080/admin/events/deleteEvents", { id: id })
+      .then((res) => {
+        alert(res.data);
+        getPastEvents();
+      })
+      .catch((err) => {
+        alert(err);
       });
   };
 
@@ -85,33 +96,51 @@ const ViewUpcomingEvents = () => {
 
   return (
     <>
-      <div className="flex m-10">
-        <div className="flex flex-wrap gap-8 bg-white p-8 justify-center">
+      <h1 className="font-bold text-4xl text-center text-white py-4 rounded bg-yellow-400 mx-12 text-black">
+        Past Events
+      </h1>
+      <table className="content-table past">
+        <thead>
+          <tr>
+            <th className="text-center">Sl.No</th>
+            <th className="text-center">Name</th>
+            <th className="text-center">Description</th>
+            <th className="text-center">Image</th>
+            <th className="text-center">Location</th>
+            <th className="text-center">Date</th>
+            <th className="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
           {pastEvent.map((event, index) => (
-            <div
-              className="flex flex-col bg-lime-100 hover:shadow-2xl border-2 border-lime-400 p-4 text-lg font-semibold gap-4"
-              key={index}
-            >
-              <div className="w-80">
+            <tr key={index}>
+              <td className="text-center">{index + 1}</td>
+              <td className="text-center">{event.name}</td>
+              <td className="text-center">{event.description}</td>
+              <td>
                 <iframe
-                  className="w-full h-full object-cover"
+                  className="w-24 h-12 m-auto"
                   src={event.link}
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
-              </div>
-              <h1 className="w-80">{event.name}</h1>
-              <h2>{event.place}</h2>
-              <h2>{event.date}</h2>
-              <div className="flex gap-3 m-auto text-white">
-                <button className="bg-red-500 px-1 rounded">DELETE</button>
-              </div>
-            </div>
+              </td>
+              <td className="text-center">{event.place}</td>
+              <td className="text-center">{event.date}</td>
+              <td className="text-center">
+                <button
+                  className="bg-red-600 px-2 py-1 rounded text-white"
+                  onClick={() => deletePastEvents(event._id)}
+                >
+                  DELETE
+                </button>
+              </td>
+            </tr>
           ))}
-        </div>
-      </div>
+        </tbody>
+      </table>
     </>
   );
 };

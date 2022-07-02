@@ -103,6 +103,11 @@ const App = () => {
           exact
           element={<SingleSchemeLayout />}
         ></Route>
+        <Route
+          path="/user/schemes/:id/:id"
+          exact
+          element={<SingleSchemeLayout />}
+        ></Route>
         <Route path="/user/tenders" exact element={<TendersLayout />}></Route>
         <Route path="/user/payments" exact element={<PaymentsLayout />}></Route>
         <Route
@@ -148,12 +153,7 @@ const App = () => {
           element={<AdminPaymentPage />}
         ></Route>
         <Route
-          path="/admin/complaints"
-          exact
-          element={<AdminComplaintPage />}
-        ></Route>
-        <Route
-          path="/admin/complaints/all"
+          path="/admin/complaints/:status"
           exact
           element={<AdminComplaintPage />}
         ></Route>

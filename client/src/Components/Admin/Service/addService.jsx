@@ -112,96 +112,92 @@ const AddService = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full m-10 rounded">
-        <div className="flex flex-col p-5 gap-5 bg-gray-100 w-full shadow-xl border-b-2">
-          <h1 className="font-bold text-2xl">Add New Service</h1>
-        </div>
-        <div className="flex flex-col shadow-xl bg-white">
-          <form
-            className="flex flex-col px-5 py-3 gap-4"
-            onSubmit={(e) => addNewService(e)}
-          >
-            <label htmlFor="mainCategory" className="text-xl font-medium pl-1">
-              Category
-            </label>
-            <select
-              name="mainCategory"
-              id="mainCategory"
-              className="outline-none border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
-              required
-              onChange={(e) => getSubCategory(e.target.value)}
-              defaultValue={"Select Main Category"}
-            >
-              <option value="Select Main Category" disabled>
-                Select Main Category
-              </option>
-              {mainCategory.map((item) => (
-                <option value={item.id} key={item.id}>
-                  {item.title}
-                </option>
-              ))}
-            </select>
-            <label htmlFor="subCategory" className="text-xl font-medium pl-1">
-              Sub Category
-            </label>
-            <select
-              name="subCategory"
-              id="subCategory"
-              className="outline-none border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
-              required
-              onChange={(e) => setSelectedSubCategory(e.target.value)}
-              defaultValue={"Select Sub Category"}
-            >
-              <option value="Select Sub Category" disabled>
-                Select Sub Category
-              </option>
-              {subCategories.map((item) => (
-                <option value={item._id} key={item._id}>
-                  {item.name}
-                </option>
-              ))}
-            </select>
-            <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
-              Service Title
-            </label>
-            <input
-              type="text"
-              name="itemTitle"
-              id="itemTitle"
-              className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
-              required
-              onChange={(e) => setServiceTitle(e.target.value)}
-            />
-            <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
-              Overview
-            </label>
-            <input
-              type="text"
-              name="itemTitle"
-              id="itemTitle"
-              className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
-              required
-              onChange={(e) => setOverview(e.target.value)}
-            />
-            <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
-              Required Documents
-            </label>
-            <input
-              type="text"
-              name="documents"
-              id="documents"
-              className="border-2 p-1 rounded focus:border-blue-200 focus:outline-none"
-              onChange={(e) => covertTextToArray(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="flex items-center justify-center p-2 text-lg font-semibold bg-blue-600 w-full focus:ring ring-blue-300 hover:text-white"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
+      <h1 className="font-bold text-2xl text-white bg-blue-700 shadow-2xl border-b-2 border-blue-900 p-5 mx-10">
+        Add New Service
+      </h1>
+      <form
+        className="flex flex-col p-5 gap-4 shadow-2xl bg-white mx-10"
+        onSubmit={(e) => addNewService(e)}
+      >
+        <label htmlFor="mainCategory" className="text-xl font-medium pl-1">
+          Category
+        </label>
+        <select
+          name="mainCategory"
+          id="mainCategory"
+          className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+          onChange={(e) => getSubCategory(e.target.value)}
+          defaultValue={"Select Main Category"}
+          required
+        >
+          <option value="Select Main Category" disabled>
+            Select Main Category
+          </option>
+          {mainCategory.map((item) => (
+            <option value={item.id} key={item.id}>
+              {item.title}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="subCategory" className="text-xl font-medium pl-1">
+          Sub Category
+        </label>
+        <select
+          name="subCategory"
+          id="subCategory"
+          className="outline-none border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+          onChange={(e) => setSelectedSubCategory(e.target.value)}
+          defaultValue={"Select Sub Category"}
+          required
+        >
+          <option value="Select Sub Category" disabled>
+            Select Sub Category
+          </option>
+          {subCategories.map((item) => (
+            <option value={item._id} key={item._id}>
+              {item.name}
+            </option>
+          ))}
+        </select>
+        <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
+          Service Title
+        </label>
+        <input
+          type="text"
+          name="itemTitle"
+          id="itemTitle"
+          className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+          required
+          onChange={(e) => setServiceTitle(e.target.value)}
+        />
+        <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
+          Overview
+        </label>
+        <input
+          type="text"
+          name="itemTitle"
+          id="itemTitle"
+          className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
+          required
+          onChange={(e) => setOverview(e.target.value)}
+        />
+        <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
+          Required Documents
+        </label>
+        <input
+          type="text"
+          name="documents"
+          id="documents"
+          className="border-2 p-1 rounded focus:border-blue-200 focus:outline-none"
+          onChange={(e) => covertTextToArray(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="p-2 font-semibold bg-blue-400 hover:bg-blue-700 hover:text-white focus:ring ring-blue-400"
+        >
+          Submit
+        </button>
+      </form>
     </>
   );
 };

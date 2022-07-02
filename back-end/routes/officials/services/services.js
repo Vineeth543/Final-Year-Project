@@ -26,7 +26,6 @@ router.post("/admin/services/add-service", (req, res) => {
     overview: req.body.overview,
     documents: req.body.documents,
   });
-  console.log(newService);
   newService
     .save()
     .then((doc) => {

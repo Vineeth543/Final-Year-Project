@@ -8,7 +8,7 @@ const ViewLiveEventsPage = () => {
     <>
       <div className="flex">
         <Sidebar />
-        <div className="flex items-center justify-center w-full h-full bg-gray-200">
+        <div className="flex flex-col w-full h-full my-10 gap-5">
           <ViewLiveEvents />
         </div>
       </div>

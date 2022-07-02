@@ -3,13 +3,11 @@ import axios from "axios";
 
 const ViewUpcomingEvents = () => {
   const [upcomingEvent, setUpcomingEvent] = useState([]);
-  // const [eventId, setEventId] = useState("");
 
   const getUpcomingEvents = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/upcoming")
       .then((res) => {
-        console.log(res.data);
         const tempUpcomingEvent = [];
         res.data.forEach((event) => {
           tempUpcomingEvent.push(event);
@@ -111,45 +109,48 @@ const ViewUpcomingEvents = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full m-10 gap-5">
-        <div className="flex px-8 w-full items-center justify-between font-semibold text-xl text-gray-700">
-          <h1 className="w-24">Sl.No</h1>
-          <h1 className="pr-8 w-64">Name</h1>
-          <h1 className="w-96">Description</h1>
-          <h1 className="w-36">Image</h1>
-          <h1 className="w-40">Location</h1>
-          <h1 className="w-40">Date</h1>
-          <h1 className="w-20 invisible">Hello</h1>
-        </div>
-        <div className="flex flex-col p-5 rounded-md gap-5 bg-white w-full shadow-xl">
-          <div className="flex flex-col gap-2">
-            {upcomingEvent.map((event, index) => (
-              <div className="flex w-full border border-black py-2 px-8 items-center justify-between text-lg font-semibold">
-                <h3 className="w-20">{index + 1}</h3>
-                <h1 className="w-64">{event.name}</h1>
-                <h1 className="w-96">{event.description}</h1>
-                <div className="w-24 h-12 mr-12">
-                  <img
-                    src={event.poster}
-                    alt="poster"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h2 className="w-40">{event.place}</h2>
-                <h2 className="w-40">{event.date}</h2>
-                <div className="flex gap-3 text-white">
-                  <button
-                    className="bg-red-500 px-2 py-1 rounded"
-                    onClick={() => deleteUpcomingEvent(event._id)}
-                  >
-                    DELETE
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <h1 className="font-bold text-4xl text-center text-white py-4 rounded bg-green-700 mx-12">
+        Upcoming Events
+      </h1>
+      <table className="content-table upcoming">
+        <thead>
+          <tr>
+            <th className="text-center">Sl.No</th>
+            <th className="text-center">Name</th>
+            <th className="text-center">Description</th>
+            <th className="text-center">Image</th>
+            <th className="text-center">Location</th>
+            <th className="text-center">Date</th>
+            <th className="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {upcomingEvent.map((event, index) => (
+            <tr key={index}>
+              <td className="text-center">{index + 1}</td>
+              <td className="text-center">{event.name}</td>
+              <td className="text-center">{event.description}</td>
+              <td>
+                <img
+                  src={event.poster}
+                  alt={event.name}
+                  className="w-24 object-cover m-auto"
+                />
+              </td>
+              <td className="text-center">{event.place}</td>
+              <td className="text-center">{event.date}</td>
+              <td className="text-center">
+                <button
+                  className="bg-red-600 px-2 py-1 rounded text-white"
+                  onClick={() => deleteUpcomingEvent(event._id)}
+                >
+                  DELETE
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };
