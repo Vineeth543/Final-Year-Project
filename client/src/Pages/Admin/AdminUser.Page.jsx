@@ -8,7 +8,9 @@ const AdminUserPage = () => {
     <>
       <div className="flex">
         <Sidebar />
-        <AdminUsers />
+        <div className="flex flex-col w-full h-full gap-5 my-10">
+          <AdminUsers />
+        </div>
       </div>
     </>
   );

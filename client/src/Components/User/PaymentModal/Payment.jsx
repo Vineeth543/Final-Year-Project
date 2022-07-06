@@ -49,7 +49,7 @@ export default function PaymentModal({
       },
       handler: async (response) => {
         try {
-          const data = await axios.post(
+          await axios.post(
             "http://localhost:8080/user/payments/verify",
             response
           );
@@ -83,7 +83,7 @@ export default function PaymentModal({
       },
       handler: async (response) => {
         try {
-          const data = await axios.post(
+          await axios.post(
             "http://localhost:8080/user/payments/verify",
             response
           );
