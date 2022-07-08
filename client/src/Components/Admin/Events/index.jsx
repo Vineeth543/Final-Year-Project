@@ -6,7 +6,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 const AdminEvents = () => {
   return (
     <>
-      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-2xl mx-12">
+      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-lg shadow-blue-600 mx-12">
         <h1 className="font-semibold text-4xl text-white">Live Events</h1>
         <div className="flex gap-8">
           <Link className="flex w-fit outline-none" to="/admin/events/live">
@@ -27,7 +27,7 @@ const AdminEvents = () => {
         </div>
       </div>
 
-      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-2xl mx-12">
+      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-lg shadow-blue-600 mx-12">
         <h1 className="font-semibold text-4xl text-white">Upcoming Events</h1>
         <div className="flex gap-8">
           <Link className="flex w-fit outline-none" to="/admin/events/upcoming">
@@ -48,7 +48,7 @@ const AdminEvents = () => {
         </div>
       </div>
 
-      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-2xl mx-12">
+      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-lg shadow-blue-600 mx-12">
         <h1 className="font-semibold text-4xl text-white">Past Events</h1>
         <div className="flex gap-8">
           <Link

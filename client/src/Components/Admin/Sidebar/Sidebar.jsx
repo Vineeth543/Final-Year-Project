@@ -81,7 +81,7 @@ const Sidebar = () => {
                 key={index}
                 className={`flex p-2 pl-5 mt-4 hover:text-white text-black text-lg font-semibold items-center gap-x-4 ${
                   page.pathname.includes(
-                    "/admin/" + Menu.title.toLowerCase()
+                    "/admin/" + Menu.title.toLowerCase().split("/")[0]
                   ) && "bg-light-white"
                 } `}
               >
