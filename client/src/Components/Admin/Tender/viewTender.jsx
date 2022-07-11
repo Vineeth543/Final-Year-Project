@@ -1,11 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
-const AdminTenders = () => {
+const AdminViewTender = () => {
+  const page = useLocation();
+  const TenderID = page.pathname.split("/")[4];
+
+  const deleteTender = (e) => {
+    e.preventDefault();
+    alert("Tender Deleted");
+  };
+
   const tenderDetails = [
     {
-      key: 1,
       refNo: "GEM/2022/B/2205115",
       title: "Procurement Of 13 Inches Macbook Laptop (20 pieces)",
       releaseDate: "01 Jun 2022",
@@ -15,7 +21,6 @@ const AdminTenders = () => {
       links: ["Bid Document"],
     },
     {
-      key: 2,
       refNo: "GEM/2022/B/2187946",
       title:
         "Procurement Of 80 Quantity Of DELL/HP Laptops With 13.3 Inches Size (80 pieces)",
@@ -26,7 +31,6 @@ const AdminTenders = () => {
       links: ["Bid Document"],
     },
     {
-      key: 3,
       refNo: "GEM/2022/B/2224327",
       title: "RFP for AWS Managed Service Provider and Reselling Services",
       releaseDate: "01 Jun 2022",
@@ -37,7 +41,6 @@ const AdminTenders = () => {
       links: ["Bid Document"],
     },
     {
-      key: 4,
       refNo: "INV/IND/SUI_NSA_20221",
       title:
         "Request for Proposal for Selection of Consulting Firm for Assisting Invest India in “National Startup Awards 2022”",
@@ -55,7 +58,6 @@ const AdminTenders = () => {
       ],
     },
     {
-      key: 5,
       refNo: "GEM/2022/B/2205115",
       title:
         "RFP (GeM) for Operation and Maintenance of Startup India Seed Fund Scheme (SISFS) Portal",
@@ -67,7 +69,6 @@ const AdminTenders = () => {
       links: ["Bid Document", "Responses to Queries (13/05/2022)"],
     },
     {
-      key: 6,
       refNo: "INV/IND/22-23/EXT/",
       title:
         "Request for Quotation for Procurement of extended warranty for 49 Dell Laptops for 2 years",
@@ -79,7 +80,6 @@ const AdminTenders = () => {
       links: ["Bid Document", "Corrigendum 1"],
     },
     {
-      key: 7,
       refNo: "GEM/2022/B/2068776",
       title:
         "RFP (GeM) for Operation and Maintenance of Startup India Hub Portal",
@@ -92,75 +92,111 @@ const AdminTenders = () => {
     },
   ];
 
+  const tendererDetails = [
+    {
+      name: "Krishna Ltd. Services",
+      person: "Sachin Kumar",
+      phone: "9113937543",
+      email: "sachin@gmail.com",
+      fax: "9121357654",
+      address: "Bangalore",
+      bid: "54000",
+    },
+    {
+      name: "Shivam IT Solutions",
+      person: "Shiva Prthap",
+      phone: "8951797978",
+      email: "shivam@gmail.com",
+      fax: "8723476532",
+      address: "Udupi",
+      bid: "52340",
+    },
+    {
+      name: "Birla Software Services",
+      person: "Birla Prasad",
+      phone: "9980903528",
+      email: "prasad17@birla.com",
+      fax: "9121357654",
+      address: "Mangalore",
+      bid: "54300",
+    },
+  ];
+
   return (
     <>
-      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-xl shadow-blue-600 mx-12">
-        <h1 className="font-semibold text-4xl text-white">Tenders</h1>
-        <Link className="flex w-fit" to="/admin/tenders/add-tender">
-          <IoMdAddCircleOutline className="p-2 text-5xl bg-white rounded-tl-lg rounded-bl-lg" />
-          <h2 className="p-2 text-xl font-semibold bg-white rounded-tr-lg rounded-br-lg">
-            New Tender
-          </h2>
-        </Link>
-      </div>
+      <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
+        {tenderDetails[TenderID - 1].title}
+      </h1>
       <table className="content-table dashboard">
         <thead>
           <tr>
-            <th className="text-center border-double border-4 border-black">
-              SL.NO
-            </th>
-            <th className="text-center border-double border-4 border-black">
-              Tender Title
-            </th>
-            <th className="text-center border-double border-4 border-black">
-              Additional Information
-            </th>
-            <th className="w-52 text-center border-double border-4 border-black">
-              Opened Date
-            </th>
-            <th className="w-48 text-center border-double border-4 border-black">
-              Closing Date
-            </th>
-            <th className="text-center border-double border-4 border-black">
-              Action
-            </th>
+            <th className="text-center w-1/2">Description</th>
+            <th className="text-center">Opening Date</th>
+            <th className="text-center">Closing Date</th>
+            <th className="text-center">Action</th>
           </tr>
         </thead>
         <tbody>
-          {tenderDetails.map((tender, index) => (
-            <tr key={index} className="text-center">
-              <td className="border-double border-4 border-black p-2">
-                {index + 1}
-              </td>
-              <td className="border-double border-4 border-black">
-                <Link to={`view/${index + 1}`}>
-                  {tender.title.substring(0, 60)}
-                  {tender.title.length > 60 ? "..." : ""}
-                </Link>
-              </td>
-              <td className="border-double border-4 border-black">
-                {tender.description.substring(0, 60)}
-                {tender.title.length > 60 ? "..." : ""}
-              </td>
-              <td className="border-double border-4 border-black">
-                {tender.bidOpenDate}
-              </td>
-              <td className="border-double border-4 border-black">
-                {tender.releaseDate}
-              </td>
-              <td className="border-double border-4 border-black">
-                <Link to={`view/${index + 1}`}>
-                  <button className="bg-pink-500 p-1 rounded text-white">
-                    VIEW
-                  </button>
-                </Link>
-              </td>
-            </tr>
-          ))}
+          <tr className="text-center">
+            <td className="w-1/2">{tenderDetails[TenderID - 1].description}</td>
+            <td>{tenderDetails[TenderID - 1].bidSubDate}</td>
+            <td>{tenderDetails[TenderID - 1].releaseDate}</td>
+            <td className="m-auto text-white">
+              <button
+                className="bg-orange-500 px-2 py-1 rounded mr-1"
+                onClick={(e) => deleteTender(e)}
+              >
+                EDIT
+              </button>
+              <button
+                className="bg-red-500 px-2 py-1 rounded ml-1"
+                onClick={(e) => deleteTender(e)}
+              >
+                DELETE
+              </button>
+            </td>
+          </tr>
         </tbody>
       </table>
+      <div className="flex flex-col">
+        <h1 className="font-bold text-4xl text-center p-4 rounded bg-sky-800 mx-12 text-white">
+          Tenderers Applied
+        </h1>
+        <table className="content-table dashboard">
+          <thead>
+            <tr>
+              <th className="text-center">Tenderer Name</th>
+              <th className="text-center">Contact Person</th>
+              <th className="text-center">Phone</th>
+              <th className="text-center">Email</th>
+              <th className="text-center">Fax</th>
+              <th className="text-center">Address</th>
+              <th className="text-center">Bid Amount</th>
+              <th className="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tendererDetails.map((tenderer, index) => (
+              <tr className="text-semibold text-center" key={index}>
+                <td>{tenderer.name}</td>
+                <td>{tenderer.person}</td>
+                <td>{tenderer.phone}</td>
+                <td>{tenderer.email}</td>
+                <td>{tenderer.fax}</td>
+                <td>{tenderer.address}</td>
+                <td>₹ {tenderer.bid}</td>
+                <td>
+                  <button className="px-2 py-1 bg-orange-500 rounded text-white">
+                    Review
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
 
-export default AdminTenders;
+export default AdminViewTender;

@@ -14,9 +14,9 @@ const AdminPayments = () => {
     phonepe: "https://cdn.worldvectorlogo.com/logos/phonepe-1.svg",
   };
 
-  function timeConverter(UNIX_timestamp) {
-    var DATE = new Date(UNIX_timestamp * 1000);
-    var months = [
+  const timeConverter = (unixTimeStamp) => {
+    const DATE = new Date(unixTimeStamp * 1000);
+    const months = [
       "Jan",
       "Feb",
       "Mar",
@@ -30,18 +30,18 @@ const AdminPayments = () => {
       "Nov",
       "Dec",
     ];
-    var year = DATE.getFullYear();
-    var month = months[DATE.getMonth()];
-    var date = DATE.getDate();
-    var hour = DATE.getHours() < 10 ? "0" + DATE.getHours() : DATE.getHours();
-    var min =
+    const year = DATE.getFullYear();
+    const month = months[DATE.getMonth()];
+    const date = DATE.getDate();
+    const hour = DATE.getHours() < 10 ? "0" + DATE.getHours() : DATE.getHours();
+    const min =
       DATE.getMinutes() < 10 ? "0" + DATE.getMinutes() : DATE.getMinutes();
-    var sec =
+    const sec =
       DATE.getSeconds() < 10 ? "0" + DATE.getSeconds() : DATE.getSeconds();
-    var time =
+    const time =
       date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
     return time;
-  }
+  };
 
   const getPaymentsData = async () => {
     try {
@@ -60,7 +60,7 @@ const AdminPayments = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 mx-12 text-white">
+      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
         Transactions
       </h1>
       <table className="content-table">

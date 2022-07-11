@@ -45,7 +45,7 @@ const Sidebar = () => {
     <>
       <div
         className={` ${
-          open ? "w-72" : "w-20 "
+          open ? "w-64" : "w-20"
         } bg-blue-700 h-screen py-4 relative duration-300`}
       >
         <img
@@ -57,7 +57,7 @@ const Sidebar = () => {
           onClick={() => setOpen(!open)}
         />
         <div className="flex bg-white gap-x-4 items-center pl-4 bg-blue-700">
-          <Link to="/" className="w-10 h-10">
+          <Link to="/" className="flex items-center gap-4 w-10 h-10">
             <img
               src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
               alt="logo"
@@ -65,14 +65,14 @@ const Sidebar = () => {
                 open && "rotate-[360deg]"
               }`}
             />
+            <h1
+              className={`flex text-white origin-left font-medium text-xl duration-200 ${
+                !open && "scale-0"
+              }`}
+            >
+              eGrama
+            </h1>
           </Link>
-          <h1
-            className={`flex text-white origin-left font-medium text-xl duration-200 ${
-              !open && "scale-0"
-            }`}
-          >
-            eGrama
-          </h1>
         </div>
         <ul className="w-full h-full bg-blue-700">
           {Menus.map((Menu, index) => (

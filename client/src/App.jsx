@@ -31,6 +31,8 @@ import AdminComplaintPage from "./Pages/Admin/AdminComplaints.Page";
 import AdminUserPage from "./Pages/Admin/AdminUser.Page";
 import AddServicePage from "./Pages/Admin/AddService.Page";
 import AddSchemePage from "./Pages/Admin/AddScheme.Page";
+import AddTenderPage from "./Pages/Admin/AddTender.Page";
+import AdminViewTenderPage from "./Pages/Admin/AdminViewTender.Page";
 import AddLiveEventsPage from "./Pages/Admin/AddLiveEvents";
 import AddUpcomingEventsPage from "./Pages/Admin/AddUpcomingEvents.Page";
 import PastEventsPage from "./Pages/Admin/PastEvents.Page";
@@ -182,6 +184,16 @@ const App = () => {
           path="/admin/schemes/add-scheme"
           exact
           element={<AddSchemePage />}
+        ></Route>
+        <Route
+          path="/admin/tenders/add-tender"
+          exact
+          element={<AddTenderPage />}
+        ></Route>
+        <Route
+          path="/admin/tenders/view/:id"
+          exact
+          element={<AdminViewTenderPage />}
         ></Route>
         <Route
           path="/admin/events/live"

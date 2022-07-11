@@ -68,7 +68,7 @@ const AdminViewSingleServices = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 mx-12 text-white">
+      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
         {categories.map((category) => {
           if (category._id === serviceID.split("/")[1]) return category.name;
           return null;
