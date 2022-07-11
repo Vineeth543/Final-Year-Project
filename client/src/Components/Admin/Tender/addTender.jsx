@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const AddService = () => {
   const [tenderTitle, setTenderTitle] = useState("");
@@ -8,7 +9,20 @@ const AddService = () => {
 
   const addNewTender = (e) => {
     e.preventDefault();
-    alert("Tender added successfully");
+    axios
+      .post("http://localhost:8080/official/tenders/create", {
+        title: tenderTitle,
+        description: tenderOverview,
+        startDate: tenderOpenDate,
+        endDate: tenderCloseDate,
+      })
+      .then((res) => {
+        alert(res.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
   };
 
   return (
@@ -32,7 +46,7 @@ const AddService = () => {
           onChange={(e) => setTenderTitle(e.target.value)}
         />
         <label htmlFor="tenderOverview" className="text-xl font-medium pl-1">
-          Overview
+          Corrigendum
         </label>
         <input
           type="text"
@@ -51,7 +65,7 @@ const AddService = () => {
           id="tenderOpenDate"
           className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
           required
-          // onFocus={(e) => (e.target.type = "date")}
+          onFocus={(e) => (e.target.type = "date")}
           onChange={(e) => setTenderOpenDate(e.target.value)}
         />
         <label htmlFor="tenderCloseDate" className="text-xl font-medium pl-1">
@@ -63,9 +77,9 @@ const AddService = () => {
           id="tenderCloseDate"
           className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
           required
+          onFocus={(e) => (e.target.type = "date")}
           onChange={(e) => setTenderCloseDate(e.target.value)}
         />
-
         <button
           type="submit"
           className="p-2 font-semibold bg-blue-400 hover:bg-blue-700 hover:text-white focus:ring ring-blue-400 outline-none"

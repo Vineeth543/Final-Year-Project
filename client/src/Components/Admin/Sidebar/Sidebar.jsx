@@ -45,7 +45,7 @@ const Sidebar = () => {
     <>
       <div
         className={` ${
-          open ? "w-64" : "w-20"
+          open ? "w-72" : "w-20"
         } bg-blue-700 h-screen py-4 relative duration-300`}
       >
         <img

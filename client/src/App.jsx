@@ -14,6 +14,7 @@ import SchemesLayout from "./Layout/Schemes.Layout";
 import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
 import EventsLayout from "./Layout/Events.Layout";
 import TendersLayout from "./Layout/Tenders.Layout";
+import TenderApplyLayout from "./Layout/TenderApply.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
 import UserDashboardLayout from "./Layout/UserDashboard.Layout";
@@ -31,6 +32,7 @@ import AdminComplaintPage from "./Pages/Admin/AdminComplaints.Page";
 import AdminUserPage from "./Pages/Admin/AdminUser.Page";
 import AddServicePage from "./Pages/Admin/AddService.Page";
 import AddSchemePage from "./Pages/Admin/AddScheme.Page";
+import AdminViewSchemePage from "./Pages/Admin/AdminViewScheme.Page";
 import AddTenderPage from "./Pages/Admin/AddTender.Page";
 import AdminViewTenderPage from "./Pages/Admin/AdminViewTender.Page";
 import AddLiveEventsPage from "./Pages/Admin/AddLiveEvents";
@@ -111,6 +113,7 @@ const App = () => {
           element={<SingleSchemeLayout />}
         ></Route>
         <Route path="/user/tenders" exact element={<TendersLayout />}></Route>
+        <Route path="/user/tenders/apply/:id" exact element={<TenderApplyLayout />}></Route>
         <Route path="/user/payments" exact element={<PaymentsLayout />}></Route>
         <Route
           path="/user/complaints"
@@ -184,6 +187,11 @@ const App = () => {
           path="/admin/schemes/add-scheme"
           exact
           element={<AddSchemePage />}
+        ></Route>
+        <Route
+          path="/admin/schemes/view/:id"
+          exact
+          element={<AdminViewSchemePage />}
         ></Route>
         <Route
           path="/admin/tenders/add-tender"

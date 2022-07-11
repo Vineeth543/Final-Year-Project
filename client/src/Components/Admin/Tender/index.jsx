@@ -1,96 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import axios from "axios";
 
 const AdminTenders = () => {
-  const tenderDetails = [
-    {
-      key: 1,
-      refNo: "GEM/2022/B/2205115",
-      title: "Procurement Of 13 Inches Macbook Laptop (20 pieces)",
-      releaseDate: "01 Jun 2022",
-      bidSubDate: "15 June 2022",
-      bidOpenDate: "15 June 2022",
-      description: "Procurement of Laptops for Invest India",
-      links: ["Bid Document"],
-    },
-    {
-      key: 2,
-      refNo: "GEM/2022/B/2187946",
-      title:
-        "Procurement Of 80 Quantity Of DELL/HP Laptops With 13.3 Inches Size (80 pieces)",
-      releaseDate: "01 Jun 2022",
-      bidSubDate: "08 June 2022",
-      bidOpenDate: "08 June 2022",
-      description: "Procurement of Laptops for Invest India",
-      links: ["Bid Document"],
-    },
-    {
-      key: 3,
-      refNo: "GEM/2022/B/2224327",
-      title: "RFP for AWS Managed Service Provider and Reselling Services",
-      releaseDate: "01 Jun 2022",
-      bidSubDate: "07 June 2022",
-      bidOpenDate: "16 June 2022",
-      description:
-        "RFP for AWS Managed Service Provider and Reselling Services for Invest India’s cloud infrastructure to get support in DevOps automation, implementation, and management.",
-      links: ["Bid Document"],
-    },
-    {
-      key: 4,
-      refNo: "INV/IND/SUI_NSA_20221",
-      title:
-        "Request for Proposal for Selection of Consulting Firm for Assisting Invest India in “National Startup Awards 2022”",
-      releaseDate: "04 May 2022",
-      bidSubDate: "18 May 2022",
-      bidOpenDate: "24 May 2022",
-      description:
-        "Invest India is a joint venture between Department for Promotion of Industry and Internal Trade (DPIIT), Ministry of Commerce and Industry, Industry Associations and State Governments of India. Operationalized in early 2010, Invest India has been set up as the dedicated investment promotion and facilitation agency for attracting investments into the country in a structured, focused, and comprehensive manner.",
-      links: [
-        "Request for Proposal",
-        "Response to Queries",
-        "Corrigendum 1",
-        "Corrigendum 2 (19/05/2022)",
-        "Declaration of Results",
-      ],
-    },
-    {
-      key: 5,
-      refNo: "GEM/2022/B/2205115",
-      title:
-        "RFP (GeM) for Operation and Maintenance of Startup India Seed Fund Scheme (SISFS) Portal",
-      releaseDate: "02 May 2022",
-      bidSubDate: "20 May 2022",
-      bidOpenDate: "13 May 2022",
-      description:
-        "RFP (GeM) for Operation and Maintenance of Startup India Seed Fund Scheme (SISFS) Portal",
-      links: ["Bid Document", "Responses to Queries (13/05/2022)"],
-    },
-    {
-      key: 6,
-      refNo: "INV/IND/22-23/EXT/",
-      title:
-        "Request for Quotation for Procurement of extended warranty for 49 Dell Laptops for 2 years",
-      releaseDate: "21 Apr 2022",
-      bidSubDate: "11 May 2022",
-      bidOpenDate: "12 May 2022",
-      description:
-        "Invest India, Invest India is the National Investment Promotion and Facilitation Bidder of India and acts as the first point of reference for investors in India.",
-      links: ["Bid Document", "Corrigendum 1"],
-    },
-    {
-      key: 7,
-      refNo: "GEM/2022/B/2068776",
-      title:
-        "RFP (GeM) for Operation and Maintenance of Startup India Hub Portal",
-      releaseDate: "01 Apr 2022",
-      bidSubDate: "25 April 2022",
-      bidOpenDate: " 21 April 2022",
-      description:
-        "RFP (GeM) for Operation and Maintenance of Startup India Hub Portal",
-      links: ["Bid Document", "Queries Response"],
-    },
-  ];
+  const [tenderDetails, setTenders] = useState([]);
+
+  const getTenders = () => {
+    axios
+      .get("http://localhost:8080/official/tenders/view")
+      .then((res) => {
+        const Tenders = res.data;
+        const tempTenders = [];
+        Tenders.forEach((element) => {
+          tempTenders.push(element);
+        });
+        setTenders(tempTenders);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    getTenders();
+  }, []);
 
   return (
     <>
@@ -110,19 +45,19 @@ const AdminTenders = () => {
               SL.NO
             </th>
             <th className="text-center border-double border-4 border-black">
-              Tender Title
+              TENDER TITLE
             </th>
             <th className="text-center border-double border-4 border-black">
-              Additional Information
+              CORRIGENDUM
             </th>
-            <th className="w-52 text-center border-double border-4 border-black">
-              Opened Date
+            <th className="w-60 text-center border-double border-4 border-black">
+              OPENING DATE
             </th>
-            <th className="w-48 text-center border-double border-4 border-black">
-              Closing Date
+            <th className="w-56 text-center border-double border-4 border-black">
+              CLOSING DATE
             </th>
             <th className="text-center border-double border-4 border-black">
-              Action
+              ACTION
             </th>
           </tr>
         </thead>
@@ -143,13 +78,13 @@ const AdminTenders = () => {
                 {tender.title.length > 60 ? "..." : ""}
               </td>
               <td className="border-double border-4 border-black">
-                {tender.bidOpenDate}
+                {tender.startDate.split("T")[0]}
               </td>
               <td className="border-double border-4 border-black">
-                {tender.releaseDate}
+                {tender.endDate.split("T")[0]}
               </td>
               <td className="border-double border-4 border-black">
-                <Link to={`view/${index + 1}`}>
+                <Link to={`view/${tender._id}`}>
                   <button className="bg-pink-500 p-1 rounded text-white">
                     VIEW
                   </button>

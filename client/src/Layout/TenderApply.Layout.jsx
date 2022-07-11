@@ -1,19 +1,19 @@
 import React from "react";
 
 import UserNavbar from "../Components/User/Navbar";
-import Tenders from "../Components/User/Tenders";
+import TenderApply from "../Components/User/Tenders/TenderApply";
 import Footer from "../Components/Footer/Footer";
 
-const TendersLayout = () => {
+const TenderApplyLayout = () => {
   return (
     <>
       <div className="bg-sky-100">
         <UserNavbar />
-        <Tenders />
+        <TenderApply />
         <Footer />
       </div>
     </>
   );
 };
 
-export default TendersLayout;
+export default TenderApplyLayout;

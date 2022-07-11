@@ -10,6 +10,7 @@ const complaints = require("./routes/User/complaints");
 const profile = require("./routes/User/updateProfile");
 const applyService = require("./routes/User/e-services/applyService");
 const payment = require("./routes/User/payments");
+const tenders = require("./routes/User/tenders/tender");
 
 //officials routes
 const manageServiceRequest = require("./routes/officials/manageServiceRequest");
@@ -21,6 +22,7 @@ const appliedService = require("./routes/officials/Services/appliedServices");
 const uploadEvent = require("./routes/officials/events/uploadEvent");
 const deleteEvent = require("./routes/officials/events/deleteEvent");
 const updateEvent = require("./routes/officials/events/updateEvent");
+const tender = require("./routes/officials/tenders/tender");
 
 const app = express();
 
@@ -90,6 +92,8 @@ app.use(applyService);
 
 app.use(payment);
 
+app.use(tenders);
+
 //**********************************OFFICIALS ****************************//
 
 app.use(manageServiceRequest);
@@ -101,3 +105,4 @@ app.use(appliedService);
 app.use(uploadEvent);
 app.use(deleteEvent);
 app.use(updateEvent);
+app.use(tender);
