@@ -23,6 +23,7 @@ const uploadEvent = require("./routes/officials/events/uploadEvent");
 const deleteEvent = require("./routes/officials/events/deleteEvent");
 const updateEvent = require("./routes/officials/events/updateEvent");
 const tender = require("./routes/officials/tenders/tender");
+const schemes = require("./routes/officials/schemes/schemes");
 
 const app = express();
 
@@ -106,3 +107,4 @@ app.use(uploadEvent);
 app.use(deleteEvent);
 app.use(updateEvent);
 app.use(tender);
+app.use(schemes);

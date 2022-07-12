@@ -13,54 +13,18 @@ const ViewSchemes = () => {
   };
 
   const Schemes = [
-    {
-      id: 1,
-      title: "Schemes for Child Welfare",
-    },
-    {
-      id: 2,
-      title: "Schemes for Unemployed and Poor",
-    },
-    {
-      id: 3,
-      title: "Schemes for Academicians",
-    },
-    {
-      id: 4,
-      title: "Aatma Nirbhar Bharat Abhiyaan",
-    },
-    {
-      id: 5,
-      title: "Schemes for Farmers",
-    },
-    {
-      id: 6,
-      title: "Schemes for Senior Citizens",
-    },
-    {
-      id: 7,
-      title: "Schemes for Students",
-    },
-    {
-      id: 8,
-      title: "Schemes for Anganwadi workers",
-    },
-    {
-      id: 9,
-      title: "Schemes for Entrepreneurs",
-    },
-    {
-      id: 10,
-      title: "Schemes for Women",
-    },
-    {
-      id: 11,
-      title: "MGNAREGA",
-    },
-    {
-      id: 12,
-      title: "Skill Development",
-    },
+    "Schemes for Child Welfare",
+    "Schemes for Unemployed and Poor",
+    "Schemes for Academicians",
+    "Aatma Nirbhar Bharat Abhiyaan",
+    "Schemes for Farmers",
+    "Schemes for Senior Citizens",
+    "Schemes for Students",
+    "Schemes for Anganwadi workers",
+    "Schemes for Entrepreneurs",
+    "Schemes for Women",
+    "MGNAREGA",
+    "Skill Development",
   ];
 
   const [schemesList] = useState([
@@ -76,7 +40,7 @@ const ViewSchemes = () => {
   return (
     <>
       <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
-        {Schemes[schemeID - 1].title}
+        {Schemes[schemeID - 1]}
       </h1>
       {schemesList.length > 0 ? (
         <table className="content-table dashboard">

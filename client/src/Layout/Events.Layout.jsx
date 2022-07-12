@@ -7,7 +7,9 @@ const EventsLayout = () => {
   return (
     <>
       <UserNavbar />
-      <Events />
+      <div className="container m-auto my-5">
+        <Events />
+      </div>
       <Footer />
     </>
   );

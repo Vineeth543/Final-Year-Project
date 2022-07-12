@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Schemes = () => {
+  const [scheme, setSchemes] = useState([]);
+
   const schemes = [
     {
       title: "Schemes for Child Welfare",
@@ -76,12 +79,26 @@ const Schemes = () => {
     },
   ];
 
+  const getSchemeData = () => {
+    axios
+      .get("http://localhost:8080/official/schemes/category")
+      .then((res) => {
+        console.log(res);
+        setSchemes(res.data);
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    getSchemeData();
+  }, []);
+
   return (
     <>
-      <h1 className="text-black font-bold text-4xl text-center mt-2 pt-5">
-        Schemes
-      </h1>
-      <div className="flex flex-wrap gap-3 justify-between m-10 pb-10">
+      <h1 className="font-bold text-4xl text-center">Schemes</h1>
+      <div className="flex flex-wrap gap-3 justify-between">
         {schemes.map((scheme, index) => (
           <Link to={`/user/schemes/${index + 1}/1`} key={index}>
             <div
@@ -95,11 +112,9 @@ const Schemes = () => {
                   className="w-full h-full"
                 />
               </div>
-              <div className="w-full">
-                <h2 className="text-lg font-semibold">
-                  {index + 1}.) {scheme.title}
-                </h2>
-              </div>
+              <h2 className="text-lg font-semibold">
+                {index + 1}.) {scheme.title}
+              </h2>
             </div>
           </Link>
         ))}

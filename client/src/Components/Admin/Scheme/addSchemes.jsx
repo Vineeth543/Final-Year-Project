@@ -5,38 +5,26 @@ const AddSchemes = () => {
   const [schemeCategory, setSchemeCategory] = useState("");
   const [schemeTitle, setSchemeTitle] = useState("");
   const [objective, setObjective] = useState("");
-  const [benefits, setBenefits] = useState([]);
-  const [eligibility, setEligibility] = useState([]);
+  const [benefits, setBenefits] = useState("");
+  const [eligibility, setEligibility] = useState("");
   const [howToApply, setHowToApply] = useState("");
-  const [application, setApplication] = useState([]);
-
-  const getCategory = (serviceID) => {
-    axios
-      .get(`http://localhost:8080/admin/services/add-service/${serviceID}`)
-      .then((res) => {
-        const Categories = res.data;
-        const subCategory = [];
-        Categories.forEach((element) => {
-          subCategory.push(element);
-        });
-        setSchemeCategory(subCategory);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
+  const [application, setApplication] = useState("");
 
   const addNewScheme = (e) => {
     e.preventDefault();
+
+    const schemeBenefits = benefits.split("\n");
+    const schemeEligibility = eligibility.split("\n");
+    const schemeApplication = application.split("\n");
 
     const newService = {
       serviceCategory: schemeCategory,
       name: schemeTitle,
       overview: objective,
-      benefits: benefits,
-      eligibility: eligibility,
+      benefits: schemeBenefits,
+      eligibility: schemeEligibility,
       howToApply: howToApply,
-      application: application,
+      application: schemeApplication,
     };
 
     axios
@@ -50,54 +38,18 @@ const AddSchemes = () => {
   };
 
   const Schemes = [
-    {
-      key: 1,
-      title: "Schemes for Child Welfare",
-    },
-    {
-      key: 2,
-      title: "Schemes for Unemployed and Poor",
-    },
-    {
-      key: 3,
-      title: "Schemes for Academicians",
-    },
-    {
-      key: 4,
-      title: "Aatma Nirbhar Bharat Abhiyaan",
-    },
-    {
-      key: 5,
-      title: "Schemes for Farmers",
-    },
-    {
-      key: 6,
-      title: "Schemes for Senior Citizens",
-    },
-    {
-      key: 7,
-      title: "Schemes for Students",
-    },
-    {
-      key: 8,
-      title: "Schemes for Anganwadi workers",
-    },
-    {
-      key: 9,
-      title: "Schemes for Entrepreneurs",
-    },
-    {
-      key: 10,
-      title: "Schemes for Women",
-    },
-    {
-      key: 11,
-      title: "MGNAREGA",
-    },
-    {
-      key: 12,
-      title: "Skill Development",
-    },
+    "Schemes for Child Welfare",
+    "Schemes for Unemployed and Poor",
+    "Schemes for Academicians",
+    "Aatma Nirbhar Bharat Abhiyaan",
+    "Schemes for Farmers",
+    "Schemes for Senior Citizens",
+    "Schemes for Students",
+    "Schemes for Anganwadi workers",
+    "Schemes for Entrepreneurs",
+    "Schemes for Women",
+    "MGNAREGA",
+    "Skill Development",
   ];
 
   return (
@@ -108,7 +60,7 @@ const AddSchemes = () => {
         </h1>
         <form
           className="flex flex-col p-5 gap-4 shadow-2xl bg-white mx-10"
-          // onSubmit={(e) => addNewScheme(e)}
+          onSubmit={(e) => addNewScheme(e)}
         >
           <label htmlFor="category" className="text-xl font-medium pl-1">
             Category
@@ -118,15 +70,15 @@ const AddSchemes = () => {
             name="category"
             id="category"
             className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
-            // onChange={(e) => getCategory(e.target.value)}
+            onChange={(e) => setSchemeCategory(e.target.value)}
             defaultValue={"Select Category"}
           >
             <option value="Select Category" disabled>
               Select Category
             </option>
-            {Schemes.map((item) => (
-              <option value={item.id} key={item.id}>
-                {item.title}
+            {Schemes.map((item, index) => (
+              <option value={item} key={index}>
+                {item}
               </option>
             ))}
           </select>
@@ -188,14 +140,14 @@ const AddSchemes = () => {
           <label htmlFor="formLink" className="text-xl font-medium pl-1">
             Aplication Form Link
           </label>
-          <input
-            type="text"
+          <textarea
+            rows="2"
             name="formLink"
             id="formLink"
             className="border-2 p-1 rounded focus:border-blue-200 focus:outline-none"
             onChange={(e) => setApplication(e.target.value)}
             required
-          />
+          ></textarea>
           <button
             type="submit"
             className="p-2 font-semibold bg-blue-400 hover:bg-blue-700 hover:text-white focus:ring ring-blue-400"

@@ -5,51 +5,51 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 const AdminSchemes = () => {
   const Schemes = [
     {
-      id: 1,
+      id: "child",
       title: "Schemes for Child Welfare",
     },
     {
-      id: 2,
+      id: "poor",
       title: "Schemes for Unemployed and Poor",
     },
     {
-      id: 3,
+      id: "academy",
       title: "Schemes for Academicians",
     },
     {
-      id: 4,
+      id: "aatma",
       title: "Aatma Nirbhar Bharat Abhiyaan",
     },
     {
-      id: 5,
+      id: "farmer",
       title: "Schemes for Farmers",
     },
     {
-      id: 6,
+      id: "senior",
       title: "Schemes for Senior Citizens",
     },
     {
-      id: 7,
+      id: "student",
       title: "Schemes for Students",
     },
     {
-      id: 8,
+      id: "anganwadi",
       title: "Schemes for Anganwadi workers",
     },
     {
-      id: 9,
+      id: "entrepreneur",
       title: "Schemes for Entrepreneurs",
     },
     {
-      id: 10,
+      id: "women",
       title: "Schemes for Women",
     },
     {
-      id: 11,
+      id: "mgnarega",
       title: "MGNAREGA",
     },
     {
-      id: 12,
+      id: "skill",
       title: "Skill Development",
     },
   ];

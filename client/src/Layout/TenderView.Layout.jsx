@@ -1,18 +1,19 @@
 import React from "react";
-import Services from "../Components/User/Services";
+
 import UserNavbar from "../Components/User/Navbar";
+import ViewTender from "../Components/User/Tenders/ViewTender";
 import Footer from "../Components/Footer/Footer";
 
-const ServiceLayout = () => {
+const ViewTenderLayout = () => {
   return (
     <>
+      <div className="bg-sky-100">
       <UserNavbar />
-      <div className="flex flex-col gap-10 mx-32 my-10">
-        <Services />
-      </div>
+      <ViewTender />
       <Footer />
+      </div>
     </>
   );
 };
 
-export default ServiceLayout;
+export default ViewTenderLayout;

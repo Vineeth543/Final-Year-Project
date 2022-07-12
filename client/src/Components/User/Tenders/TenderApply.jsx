@@ -5,7 +5,7 @@ import axios from "axios";
 const Complaints = () => {
   const location = useLocation();
   const tenderId = location.pathname.split("/")[4];
-  const [tenderTitle, setTenderTitle] = useState([]);
+  const [tenderTitle, setTenderTitle] = useState("");
   const [tendererName, setTendererName] = useState("");
   const [tendererPersonName, setTendererPersonName] = useState("");
   const [tendererEmail, setTendererEmail] = useState("");

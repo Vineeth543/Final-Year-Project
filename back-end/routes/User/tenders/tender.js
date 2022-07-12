@@ -26,22 +26,11 @@ router.post("/user/tenders/apply", (req, res) => {
     });
 });
 
-//getting applied tender list
-router.get("/user/tenders/apply/view", (req, res) => {
-  appliedTender
-    .find()
-    .then((doc) => {
-      res.send(doc);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
-
-//getting the Individual applied tender information
+//getting users list who applied for particular tender
 router.get("/user/tenders/apply/view/:id", (req, res) => {
   appliedTender
-    .findOne({ _id: req.params.id })
+    .find({ tender: req.params.id })
+    .sort("bidAmount")
     .then((doc) => {
       res.send(doc);
     })

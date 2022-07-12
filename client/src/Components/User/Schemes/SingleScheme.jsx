@@ -28,7 +28,10 @@ const SingleScheme = () => {
     ],
     howToApply:
       "Approach the bank branch/ post office where individual’s savings bank account is held or open a savings account if the subscriber doesn’t have one.",
-    apllicationForm: [],
+    apllicationForm: [
+      "https://www.pfrda.org.in/index.cshtml",
+      "https://www.pfrda.org.in/myauth/admin/showimg.cshtml?ID=1738",
+    ],
   };
 
   return (
@@ -95,22 +98,24 @@ const SingleScheme = () => {
                 Application Form
               </h1>
               <h2>
-                To get the forms,
+                To get the forms,{" "}
                 <a
                   href={schemeData.apllicationForm[0]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-800"
                 >
-                  {" "}
                   Click here. ↗️
                 </a>
               </h2>
               <h2>
-                For more information,
+                For more information,{" "}
                 <a
                   href={schemeData.apllicationForm[1]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-800"
                 >
-                  {" "}
                   Click here. ↗️
                 </a>
               </h2>

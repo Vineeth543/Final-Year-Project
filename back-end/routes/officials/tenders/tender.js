@@ -1,5 +1,6 @@
 const express = require("express");
 const tender = require("../../../models/Tenders/tender");
+const appliedTender = require("../../../models/tenders/appliedTenders");
 var router = express.Router();
 
 router.use(express.json());
@@ -43,6 +44,25 @@ router.get("/official/tenders/view/:id", (req, res) => {
     })
     .catch((err) => {
       res.send(err);
+    });
+});
+
+//deleting the tender
+router.get("/official/tenders/delete/:id", (req, res) => {
+  appliedTender
+    .deleteMany({ tender: req.params.id })
+    .then((doc1) => {
+      tender
+        .deleteOne({ _id: req.params.id })
+        .then((doc2) => {
+          res.send("Tender deleted successfully");
+        })
+        .catch((err1) => {
+          res.send("Not able to delete the tender");
+        });
+    })
+    .catch((err2) => {
+      res.send("Not able to delete the tender");
     });
 });
 

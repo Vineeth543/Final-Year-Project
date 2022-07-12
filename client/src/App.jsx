@@ -15,6 +15,7 @@ import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
 import EventsLayout from "./Layout/Events.Layout";
 import TendersLayout from "./Layout/Tenders.Layout";
 import TenderApplyLayout from "./Layout/TenderApply.Layout";
+import ViewTenderLayout from "./Layout/TenderView.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
 import UserDashboardLayout from "./Layout/UserDashboard.Layout";
@@ -113,7 +114,16 @@ const App = () => {
           element={<SingleSchemeLayout />}
         ></Route>
         <Route path="/user/tenders" exact element={<TendersLayout />}></Route>
-        <Route path="/user/tenders/apply/:id" exact element={<TenderApplyLayout />}></Route>
+        <Route
+          path="/user/tenders/apply/:id"
+          exact
+          element={<TenderApplyLayout />}
+        ></Route>
+        <Route
+          path="/user/tenders/view/:id"
+          exact
+          element={<ViewTenderLayout />}
+        ></Route>
         <Route path="/user/payments" exact element={<PaymentsLayout />}></Route>
         <Route
           path="/user/complaints"

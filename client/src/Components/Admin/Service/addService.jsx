@@ -6,7 +6,7 @@ const AddService = () => {
   const [selectedSubCategory, setSelectedSubCategory] = useState("");
   const [serviceTitle, setServiceTitle] = useState("");
   const [overview, setOverview] = useState("");
-  const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState("");
 
   const getSubCategory = (serviceID) => {
     axios
@@ -24,38 +24,25 @@ const AddService = () => {
       });
   };
 
-  const covertTextToArray = (text) => {
-    const doumentList = text.split(",");
-    setDocuments(doumentList);
-  };
-
-  const resetValues = () => {
-    setSubCategories([]);
-    setSelectedSubCategory("");
-    setServiceTitle("");
-    setOverview("");
-    setDocuments([]);
-  };
-
   const addNewService = (e) => {
     e.preventDefault();
+
+    const serviceDocuments = documents.split("\n");
 
     const newService = {
       serviceCategory: selectedSubCategory,
       name: serviceTitle,
       overview: overview,
-      documents: documents,
+      documents: serviceDocuments,
     };
 
     axios
       .post("http://localhost:8080/admin/services/add-service", newService)
       .then((res) => {
         alert(res.data);
-        resetValues();
       })
       .catch((err) => {
         alert(err.data);
-        resetValues();
       });
   };
 
@@ -159,38 +146,39 @@ const AddService = () => {
             </option>
           ))}
         </select>
-        <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
+        <label htmlFor="serviceTitle" className="text-xl font-medium pl-1">
           Service Title
         </label>
         <input
           type="text"
-          name="itemTitle"
-          id="itemTitle"
+          name="serviceTitle"
+          id="serviceTitle"
           className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
           required
           onChange={(e) => setServiceTitle(e.target.value)}
         />
-        <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
+        <label htmlFor="serviceOverview" className="text-xl font-medium pl-1">
           Overview
         </label>
         <input
           type="text"
-          name="itemTitle"
-          id="itemTitle"
+          name="serviceOverview"
+          id="serviceOverview"
           className="border-2 p-1 focus:border-blue-200 focus:outline-none rounded"
           required
           onChange={(e) => setOverview(e.target.value)}
         />
-        <label htmlFor="itemTitle" className="text-xl font-medium pl-1">
+        <label htmlFor="serviceDocs" className="text-xl font-medium pl-1">
           Required Documents
         </label>
-        <input
-          type="text"
-          name="documents"
-          id="documents"
+        <textarea
+          rows="2"
+          name="serviceDocs"
+          id="serviceDocs"
           className="border-2 p-1 rounded focus:border-blue-200 focus:outline-none"
-          onChange={(e) => covertTextToArray(e.target.value)}
-        />
+          onChange={(e) => setDocuments(e.target.value)}
+          required
+        ></textarea>
         <button
           type="submit"
           className="p-2 font-semibold bg-blue-400 hover:bg-blue-700 hover:text-white focus:ring ring-blue-400"

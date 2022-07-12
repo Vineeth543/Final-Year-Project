@@ -7,7 +7,7 @@ const SchemesLayout = () => {
   return (
     <>
       <UserNavbar />
-      <div className="container mx-auto bg-sky-100">
+      <div className="container flex flex-col gap-10 m-auto bg-sky-100 p-8 my-2">
         <Schemes />
       </div>
       <Footer />

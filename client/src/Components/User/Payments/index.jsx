@@ -24,10 +24,10 @@ export const Payments = () => {
         waterBill={waterBill}
         homeTax={homeTax}
       />
-      <h1 className="w-full mt-3 p-5 bg-blue-900 text-center text-white text-4xl font-bold">
+      <h1 className="w-full p-5 bg-blue-900 text-center text-white text-4xl font-bold">
         Utility Bill Payment
       </h1>
-      <div className="flex items-center justify-evenly p-10 mt-10 bg-gray-200">
+      <div className="flex items-center justify-evenly p-10 bg-gray-200">
         <div className="w-96 h-84 hover:shadow-2xl">
           <h1 className="bg-blue-900 p-3 w-full text-white text-xl text-center font-semibold rounded-t-lg">
             Water Bill Payment
@@ -46,9 +46,9 @@ export const Payments = () => {
             />
             <button
               onClick={payWaterBill}
-              className="text-white text-md bg-blue-500 p-2 rounded-lg hover:bg-blue-900"
+              className="font-semibold bg-blue-500 p-2 rounded-lg hover:bg-blue-900 hover:text-white focus:ring ring-blue-500"
             >
-              Pay Tax
+              Pay Bill
             </button>
           </div>
         </div>
@@ -70,7 +70,7 @@ export const Payments = () => {
             />
             <button
               onClick={payHomeTax}
-              className="text-white text-md bg-blue-500 p-2 rounded-lg hover:bg-blue-900"
+              className="font-semibold bg-blue-500 p-2 rounded-lg hover:bg-blue-900 hover:text-white focus:ring ring-blue-500"
             >
               Pay Tax
             </button>
