@@ -45,23 +45,19 @@ const Highlights = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   return (
     <>
-      <h1 className="flex align-items items-center justify-center font-bold text-4xl text-red-700">
-        Highligts
-      </h1>
+      <h1 className="text-center font-bold text-4xl text-red-700">Highligts</h1>
       <Slider {...settings}>
         {highlightCarousal.map((highlight, index) => (
-          <div
-            className="flex flex-col align-items items-center justify-center"
-            key={index}
-          >
-            <div className="flex items-center justify-center w-full">
-              <div className="flex flex-col gap-5 w-1/2">
-                <h1 className="font-medium text-2xl">{highlight.title}</h1>
+          <div key={index}>
+            <div className="flex items-center w-full">
+              <div className="flex flex-col gap-5 w-1/2 pl-8">
+                <h3 className="font-medium text-2xl">{highlight.title}</h3>
                 <p>{highlight.description}</p>
               </div>
-              <div className="flex align-items items-center justify-center w-1/2 h-96 relative">
+              <div className="flex items-center justify-center w-1/2 h-96 relative">
                 <div
                   className="w-96 h-72 border-2 border-blue-900 absolute top-20 left-56 shadow-lg"
                   style={{ borderRadius: "110px 0px" }}
@@ -69,7 +65,7 @@ const Highlights = () => {
                 <div className="w-96 h-72 absolute">
                   <img
                     src={highlight.image}
-                    alt="highlight"
+                    alt={highlight.title}
                     className="h-full w-full shadow-2xl"
                     style={{ borderRadius: "110px 0px" }}
                   />

@@ -17,7 +17,7 @@ const HomeLayout = () => {
     <>
       <Navbar />
       <Carousals />
-      <div className="container m-auto">
+      <div className="container flex flex-col m-auto gap-10">
         <StateInfo />
         <SelectVillage />
         <Highlights />
@@ -25,7 +25,7 @@ const HomeLayout = () => {
         <TreasureCards />
       </div>
       <Achievements />
-      <div className="container m-auto">
+      <div className="container flex flex-col m-auto gap-10 my-10">
         <PressCards />
       </div>
       <Footer />

@@ -85,6 +85,7 @@ const Schemes = () => {
       .then((res) => {
         console.log(res);
         setSchemes(res.data);
+        console.log(scheme);
       })
       .catch((err) => {
         alert(err.data);

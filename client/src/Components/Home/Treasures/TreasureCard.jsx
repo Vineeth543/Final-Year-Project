@@ -33,39 +33,32 @@ const TreasureCards = () => {
 
   return (
     <>
-      <div className="mt-20 flex justify-center">
-        <h1 className="font-bold text-4xl text-red-700">
-          Treasures of Karnataka
-        </h1>
-      </div>
-      <div className="flex flex-col justify-center m-10">
-        <div
-          className="flex align-items items-center justify-center gap-5"
-          style={{ height: "30rem" }}
-        >
-          {stateInfo.map((items, index) => (
+      <h1 className="font-bold text-4xl text-red-700 text-center">
+        Treasures of Karnataka
+      </h1>
+      <div className="flex items-center gap-5" style={{ height: "30rem" }}>
+        {stateInfo.map((items, index) => (
+          <div
+            className={`bg-white w-1/3 rounded-3xl bg-gray-100 relative ${items.hover}`}
+            key={index}
+          >
             <div
-              className={`bg-white w-1/3 rounded-3xl bg-gray-100 relative ${items.hover}`}
-              key={index}
-            >
-              <div
-                className={`${items.color} absolute rounded-tl-full w-12 h-12 bottom-0 right-0 rounded-br-3xl`}
+              className={`${items.color} absolute rounded-tl-full w-12 h-12 bottom-0 right-0 rounded-br-3xl`}
+            />
+            <div className="w-full h-72 rounded-t-3xl">
+              <img
+                src={items.image}
+                alt={items.title}
+                className="w-full h-full rounded-t-3xl"
               />
-              <div className="w-full h-72 rounded-t-3xl">
-                <img
-                  src={items.image}
-                  alt="karnataka"
-                  className="w-full h-full rounded-t-3xl"
-                />
-              </div>
-              <div className="flex flex-col gap-4 m-5">
-                <h1 className="text-2xl font-semibold">{items.title}</h1>
-                <p>{items.description}</p>
-                <button className="font-medium flex">Read More</button>
-              </div>
             </div>
-          ))}
-        </div>
+            <div className="flex flex-col gap-4 m-5">
+              <h2 className="text-2xl font-semibold">{items.title}</h2>
+              <p>{items.description}</p>
+              <p className="font-medium cursor-pointer">Read More</p>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );

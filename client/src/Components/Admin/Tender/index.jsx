@@ -38,62 +38,68 @@ const AdminTenders = () => {
           </h2>
         </Link>
       </div>
-      <table className="content-table dashboard">
-        <thead>
-          <tr>
-            <th className="text-center border-double border-4 border-black">
-              SL.NO
-            </th>
-            <th className="text-center border-double border-4 border-black">
-              TENDER TITLE
-            </th>
-            <th className="text-center border-double border-4 border-black">
-              CORRIGENDUM
-            </th>
-            <th className="w-60 text-center border-double border-4 border-black">
-              OPENING DATE
-            </th>
-            <th className="w-56 text-center border-double border-4 border-black">
-              CLOSING DATE
-            </th>
-            <th className="text-center border-double border-4 border-black">
-              ACTION
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {tenderDetails.map((tender, index) => (
-            <tr key={index} className="text-center">
-              <td className="border-double border-4 border-black p-2">
-                {index + 1}
-              </td>
-              <td className="border-double border-4 border-black">
-                <Link to={`view/${index + 1}`}>
-                  {tender.title.substring(0, 60)}
-                  {tender.title.length > 60 ? "..." : ""}
-                </Link>
-              </td>
-              <td className="border-double border-4 border-black">
-                {tender.description.substring(0, 60)}
-                {tender.title.length > 60 ? "..." : ""}
-              </td>
-              <td className="border-double border-4 border-black">
-                {tender.startDate.split("T")[0]}
-              </td>
-              <td className="border-double border-4 border-black">
-                {tender.endDate.split("T")[0]}
-              </td>
-              <td className="border-double border-4 border-black">
-                <Link to={`view/${tender._id}`}>
-                  <button className="bg-pink-500 p-1 rounded text-white">
-                    VIEW
-                  </button>
-                </Link>
-              </td>
+      {tenderDetails.length > 0 ? (
+        <table className="content-table dashboard">
+          <thead>
+            <tr>
+              <th className="text-center border-double border-4 border-black">
+                SL.NO
+              </th>
+              <th className="text-center border-double border-4 border-black">
+                TENDER TITLE
+              </th>
+              <th className="text-center border-double border-4 border-black">
+                CORRIGENDUM
+              </th>
+              <th className="w-60 text-center border-double border-4 border-black">
+                OPENING DATE
+              </th>
+              <th className="w-56 text-center border-double border-4 border-black">
+                CLOSING DATE
+              </th>
+              <th className="text-center border-double border-4 border-black">
+                ACTION
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tenderDetails.map((tender, index) => (
+              <tr key={index} className="text-center">
+                <td className="border-double border-4 border-black p-2">
+                  {index + 1}
+                </td>
+                <td className="border-double border-4 border-black">
+                  <Link to={`view/${index + 1}`}>
+                    {tender.title.substring(0, 60)}
+                    {tender.title.length > 60 ? "..." : ""}
+                  </Link>
+                </td>
+                <td className="border-double border-4 border-black">
+                  {tender.description.substring(0, 60)}
+                  {tender.title.length > 60 ? "..." : ""}
+                </td>
+                <td className="border-double border-4 border-black">
+                  {tender.startDate.split("T")[0]}
+                </td>
+                <td className="border-double border-4 border-black">
+                  {tender.endDate.split("T")[0]}
+                </td>
+                <td className="border-double border-4 border-black">
+                  <Link to={`view/${tender._id}`}>
+                    <button className="bg-pink-500 p-1 rounded text-white">
+                      VIEW
+                    </button>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <h1 className="font-bold text-4xl text-center my-40">
+          Currently No Tender Available. ☹️
+        </h1>
+      )}
     </>
   );
 };
