@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const AddSchemes = () => {
+  const [schemes, setSchemes] = useState([]);
   const [schemeCategory, setSchemeCategory] = useState("");
   const [schemeTitle, setSchemeTitle] = useState("");
   const [objective, setObjective] = useState("");
@@ -17,18 +18,18 @@ const AddSchemes = () => {
     const schemeEligibility = eligibility.split("\n");
     const schemeApplication = application.split("\n");
 
-    const newService = {
-      serviceCategory: schemeCategory,
-      name: schemeTitle,
-      overview: objective,
+    const newScheme = {
+      category: schemeCategory,
+      title: schemeTitle,
+      objective: objective,
       benefits: schemeBenefits,
       eligibility: schemeEligibility,
       howToApply: howToApply,
-      application: schemeApplication,
+      applicationLink: schemeApplication,
     };
 
     axios
-      .post("http://localhost:8080/admin/services/add-service", newService)
+      .post("http://localhost:8080/official/schemes/add", newScheme)
       .then((res) => {
         alert(res.data);
       })
@@ -37,20 +38,20 @@ const AddSchemes = () => {
       });
   };
 
-  const Schemes = [
-    "Schemes for Child Welfare",
-    "Schemes for Unemployed and Poor",
-    "Schemes for Academicians",
-    "Aatma Nirbhar Bharat Abhiyaan",
-    "Schemes for Farmers",
-    "Schemes for Senior Citizens",
-    "Schemes for Students",
-    "Schemes for Anganwadi workers",
-    "Schemes for Entrepreneurs",
-    "Schemes for Women",
-    "MGNAREGA",
-    "Skill Development",
-  ];
+  const getSchemeData = () => {
+    axios
+      .get("http://localhost:8080/official/schemes/category")
+      .then((res) => {
+        setSchemes(res.data);
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    getSchemeData();
+  }, []);
 
   return (
     <>
@@ -76,9 +77,9 @@ const AddSchemes = () => {
             <option value="Select Category" disabled>
               Select Category
             </option>
-            {Schemes.map((item, index) => (
-              <option value={item} key={index}>
-                {item}
+            {schemes.map((item, index) => (
+              <option value={item._id} key={index}>
+                {item.title}
               </option>
             ))}
           </select>

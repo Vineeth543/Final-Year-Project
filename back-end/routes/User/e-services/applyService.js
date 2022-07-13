@@ -41,8 +41,8 @@ var router = express.Router();
 router.use(express.json());
 
 const s3 = new aws.S3({
-  accessKeyId: "AKIAQKNSN2M4YUTCHY6P",
-  secretAccessKey: "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",
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: "ap-south-1",
 });
 const storage = multer.memoryStorage();
@@ -55,7 +55,7 @@ router.post(
     const detail = [];
     req.files.map((file, index) => {
       const params = {
-        Bucket: "zomato-clone-vineeth",
+        Bucket: "citizen-centric-panchayat-system",
         Key: file.originalname + "-" + Date.now(),
         Body: file.buffer,
         ACL: "public-read",

@@ -9,8 +9,8 @@ var router = express.Router();
 router.use(express.json());
 
 const s3 = new aws.S3({
-  accessKeyId: "AKIAQKNSN2M4YUTCHY6P",
-  secretAccessKey: "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",
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: "ap-south-1",
 });
 const storage = multer.memoryStorage();
@@ -23,7 +23,7 @@ router.post(
   upload.single("eventPoster"),
   (req, res) => {
     const params = {
-      Bucket: "zomato-clone-vineeth",
+      Bucket: "citizen-centric-project-bucket",
       Key: req.file.originalname + "-" + Date.now(),
       Body: req.file.buffer,
       ACL: "public-read",

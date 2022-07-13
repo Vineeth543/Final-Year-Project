@@ -6,7 +6,7 @@ const AddUpcomingEvents = () => {
   const [place, setPlace] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-  const [poster, setPoster] = useState("");
+  const [poster, setPoster] = useState();
 
   const addUpcomingEvent = (e) => {
     e.preventDefault();
@@ -20,9 +20,11 @@ const AddUpcomingEvents = () => {
     axios
       .post("http://localhost:8080/admin/events/uploadEvent/aws", formData)
       .then((res) => {
+        console.log(res);
         alert(res.data);
       })
       .catch((err) => {
+        console.log(err);
         alert("Error in uploading event");
       });
   };

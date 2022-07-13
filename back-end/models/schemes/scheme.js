@@ -20,7 +20,7 @@ const schemeSchema = new schema(
       required: true,
     },
     eligibility: {
-      type: String,
+      type: Array,
       required: true,
     },
     howToApply: {

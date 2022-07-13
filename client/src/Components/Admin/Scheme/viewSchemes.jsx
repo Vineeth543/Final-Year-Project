@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const ViewSchemes = () => {
@@ -13,18 +13,54 @@ const ViewSchemes = () => {
   };
 
   const Schemes = [
-    "Schemes for Child Welfare",
-    "Schemes for Unemployed and Poor",
-    "Schemes for Academicians",
-    "Aatma Nirbhar Bharat Abhiyaan",
-    "Schemes for Farmers",
-    "Schemes for Senior Citizens",
-    "Schemes for Students",
-    "Schemes for Anganwadi workers",
-    "Schemes for Entrepreneurs",
-    "Schemes for Women",
-    "MGNAREGA",
-    "Skill Development",
+    {
+      id: "child",
+      title: "Schemes for Child Welfare",
+    },
+    {
+      id: "poor",
+      title: "Schemes for Unemployed and Poor",
+    },
+    {
+      id: "academy",
+      title: "Schemes for Academicians",
+    },
+    {
+      id: "aatma",
+      title: "Aatma Nirbhar Bharat Abhiyaan",
+    },
+    {
+      id: "farmer",
+      title: "Schemes for Farmers",
+    },
+    {
+      id: "senior",
+      title: "Schemes for Senior Citizens",
+    },
+    {
+      id: "student",
+      title: "Schemes for Students",
+    },
+    {
+      id: "anganwadi",
+      title: "Schemes for Anganwadi workers",
+    },
+    {
+      id: "entrepreneur",
+      title: "Schemes for Entrepreneurs",
+    },
+    {
+      id: "women",
+      title: "Schemes for Women",
+    },
+    {
+      id: "mgnarega",
+      title: "MGNAREGA",
+    },
+    {
+      id: "skill",
+      title: "Skill Development",
+    },
   ];
 
   const [schemesList] = useState([
@@ -40,7 +76,10 @@ const ViewSchemes = () => {
   return (
     <>
       <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
-        {Schemes[schemeID - 1]}
+        {Schemes.map((scheme) => {
+          if (scheme.id === schemeID) return scheme.title;
+          else return null;
+        })}
       </h1>
       {schemesList.length > 0 ? (
         <table className="content-table dashboard">

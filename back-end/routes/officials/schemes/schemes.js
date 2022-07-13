@@ -29,4 +29,29 @@ router.get("/official/schemes/category/scheme/:id", (req, res) => {
     });
 });
 
+//adding the new scheme
+router.post("/official/schemes/add", (req, res) => {
+  const newScheme = new scheme(req.body);
+  newScheme
+    .save()
+    .then((doc) => {
+      res.send("New scheme added successfully");
+    })
+    .catch((err) => {
+      res.send("Failed to add the scheme");
+    });
+});
+
+//getting the single schema category details
+router.get("/official/schemes/category/:id", (req, res) => {
+  schemeCategory
+    .findOne({ _id: req.params.id })
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 module.exports = router;

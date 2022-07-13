@@ -105,7 +105,7 @@ const ViewUpcomingEvents = () => {
             <th className="text-center">Sl.No</th>
             <th className="text-center">Name</th>
             <th className="text-center">Description</th>
-            <th className="text-center">Image</th>
+            <th className="text-center">Video</th>
             <th className="text-center">Location</th>
             <th className="text-center">Date</th>
             <th className="text-center">Actions</th>
