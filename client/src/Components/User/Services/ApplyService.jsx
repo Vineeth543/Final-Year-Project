@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const SingleService = () => {
-  const [file, setFile] = useState([]);
   const [reqDocuments, setReqDocuments] = useState([]);
   const [serviceTitle, setServiceTitle] = useState("");
 
@@ -14,12 +13,7 @@ const SingleService = () => {
     axios
       .get(`http://localhost:8080/user/services/view/apply/${serviceId}/`)
       .then((res) => {
-        const servicesData = res.data.documents;
-        const serviceList = [];
-        servicesData.forEach((element) => {
-          serviceList.push(element);
-        });
-        setReqDocuments(serviceList);
+        setReqDocuments(res.data.documents);
         setServiceTitle(res.data.name);
       })
       .catch((err) => {
@@ -31,39 +25,26 @@ const SingleService = () => {
     getRequiredDocuments(serviceId);
   }, []);
 
-  const storeImageList = [];
+  const documentsList = [];
 
-  const storeImage = (e) => {
-    e.preventDefault();
-    storeImageList.push(e.target.files[0]);
-  };
-
-  const applyService = () => {
-    setFile(storeImageList);
-    const formData = new FormData();
-    file.map((item, index) => {
-      formData.append("userDocument", item);
-      if (index === file.length - 1) {
-        axios
-          .post(
-            `http://localhost:8080/user/services/apply/${serviceId}/${userId}`,
-            formData
-          )
-          .then((res) => {
-            alert(res.data);
-            console.log(res);
-          })
-          .catch((err) => {
-            alert(err);
-          });
-      }
-    });
-  };
-
-  const initiateApplyService = (e) => {
+  const applyService = async (e) => {
     e.preventDefault();
     window.confirm("Are you sure you want to apply for this service?");
-    applyService();
+    const formData = new FormData();
+    documentsList.forEach((file) => {
+      formData.append("userDocument", file);
+    });
+    axios
+      .post(
+        `http://localhost:8080/user/services/apply/${serviceId}/${userId}`,
+        formData
+      )
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
   return (
@@ -77,7 +58,7 @@ const SingleService = () => {
         </h1>
         <form
           className="flex flex-col gap-5 font-semibold my-4"
-          onSubmit={(e) => initiateApplyService(e)}
+          onSubmit={(e) => applyService(e)}
         >
           {reqDocuments.map((element, index) => (
             <div
@@ -90,7 +71,7 @@ const SingleService = () => {
                 name="userDocument"
                 id="userDocument"
                 required
-                onChange={(e) => storeImage(e)}
+                onChange={async (e) => documentsList.push(e.target.files[0])}
               />
             </div>
           ))}

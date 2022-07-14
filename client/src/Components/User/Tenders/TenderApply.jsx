@@ -52,12 +52,13 @@ const Complaints = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center mt-10">
-        Applying for Tender - {tenderTitle}
+      <h1 className="font-bold text-4xl text-center">
+        Applying for Tender -{" "}
+        <span className="text-gray-700">{tenderTitle}</span>
       </h1>
       <form
-        className="flex flex-col gap-10 font-semibold text-xl my-10"
-        onSubmit={applyForTender}
+        className="flex flex-col gap-10 font-semibold text-xl"
+        onSubmit={(e) => applyForTender(e)}
       >
         <div className="flex items-center justify-center gap-5">
           <label htmlFor="tendererName">Tenderer Name :</label>

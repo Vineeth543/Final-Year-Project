@@ -8,7 +8,7 @@ const ComplaintsLayout = () => {
   return (
     <>
       <UserNavbar />
-      <div className="flex flex-col items-center justify-center py-5 bg-sky-200">
+      <div className="flex flex-col gap-10 m-auto bg-sky-200 p-10">
         <Complaints />
       </div>
       <Footer />

@@ -8,11 +8,11 @@ const Complaints = () => {
 
   return (
     <>
+      <h1 className="font-bold text-4xl text-center">Complaint Form</h1>
       <form
         className="flex flex-col m-auto gap-10 my-5 font-semibold text-xl"
-        onSubmit={sendComplaint}
+        onSubmit={(e) => sendComplaint(e)}
       >
-        <h1 className="font-bold text-4xl text-center">Complaint Form</h1>
         <div className="flex items-center justify-center gap-5">
           <label htmlFor="fullname">Fullname:</label>
           <input
@@ -46,18 +46,45 @@ const Complaints = () => {
             required
           />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-center gap-5">
+          <label htmlFor="subject">Complaint Subject:</label>
+          <input
+            type="text"
+            name="subject"
+            id="subject"
+            placeholder="Complaint Subject"
+            className="text-lg border shadow-sm border-slate-300 focus:outline-orange-200"
+            required
+          />
+        </div>
+        <div className="flex flex-col gap-2 m-auto">
           <label htmlFor="complaints" className="text-center">
-            Enter your complaint here:
+            Write your issue here:
           </label>
           <textarea
             id="complaints"
             name="complaints"
-            rows="8"
+            rows="5"
+            cols="35"
             className="border shadow-sm border-slate-300 focus:outline-orange-200"
           ></textarea>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center justify-center gap-5">
+          <label htmlFor="file">Set Priority</label>
+          <input
+            type="radio"
+            name="priority"
+            value="critical"
+            id="critical"
+            required
+          />
+          Critical
+          <input type="radio" name="priority" value="high" id="high" required />
+          High
+          <input type="radio" name="priority" value="low" id="low" required />
+          Average
+        </div>
+        <div className="flex items-center justify-center gap-5">
           <label htmlFor="file">Upload Photos:</label>
           <input type="file" name="file" id="file" required />
         </div>

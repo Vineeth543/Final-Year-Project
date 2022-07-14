@@ -37,8 +37,9 @@ const SingleService = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center mt-5">
-        Tenderers Applied for - {tenderTitle}
+      <h1 className="font-bold text-4xl text-center">
+        Tenderers Applied for -{" "}
+        <span className="text-gray-700">{tenderTitle}</span>
       </h1>
       <div className="flex items-center justify-center w-full">
         {tenderer.length > 0 ? (

@@ -39,7 +39,7 @@ const SelectVillage = () => {
             type="number"
             name="pincode"
             id="pincode"
-            className="border-2 border-gray-400 outline-none text-center font-semibold p-1 text-lg rounded"
+            className="border-2 border-gray-400 outline-none text-center font-semibold p-1 text-lg rounded focus:border-green-400"
             placeholder="Pincode"
             required
             onChange={(e) => setPincode(e.target.value)}

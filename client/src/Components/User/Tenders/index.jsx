@@ -10,12 +10,7 @@ const Tenders = () => {
     axios
       .get("http://localhost:8080/official/tenders/view")
       .then((res) => {
-        const Tenders = res.data;
-        const tempTenders = [];
-        Tenders.forEach((element) => {
-          tempTenders.push(element);
-        });
-        setTenders(tempTenders);
+        setTenders(res.data);
       })
       .catch((err) => {
         alert(err.data);
@@ -35,11 +30,11 @@ const Tenders = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center mt-10">e-Tenders</h1>
+      <h1 className="font-bold text-4xl text-center">e-Tenders</h1>
       {tenderDetails.length > 0 ? (
         tenderDetails.map((tender, index) => (
           <div
-            className="flex flex-col bg-white m-auto my-10 hover:shadow-2xl rounded-xl border"
+            className="flex flex-col bg-white m-auto hover:shadow-2xl rounded-xl border"
             style={{ width: "70rem" }}
             key={index}
           >

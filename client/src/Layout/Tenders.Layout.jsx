@@ -7,11 +7,11 @@ import Footer from "../Components/Footer/Footer";
 const TendersLayout = () => {
   return (
     <>
-      <div className="bg-sky-100">
-        <UserNavbar />
+      <UserNavbar />
+      <div className="flex flex-col gap-10 py-10 bg-sky-100">
         <Tenders />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };
