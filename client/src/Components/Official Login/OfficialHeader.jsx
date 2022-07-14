@@ -4,9 +4,9 @@ import { FaPowerOff } from "react-icons/fa";
 const OfficialHeader = () => {
   const handleLogout = () => {
     alert("Logout Successful");
-    // localStorage.removeItem("CCPS-Official-loggedIn");
-    // localStorage.removeItem("CCPS-Official-Role");
-    // window.location.href = "/login";
+    localStorage.removeItem("CCPS-Official-loggedIn");
+    localStorage.removeItem("CCPS-Official-Role");
+    window.location.href = "/login";
   };
 
   if (localStorage.getItem("CCPS-Official-loggedIn") === "true") {

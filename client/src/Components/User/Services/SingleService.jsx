@@ -5,7 +5,7 @@ import axios from "axios";
 const SingleService = () => {
   const [categories, setCategories] = useState([]);
   const [services, setServices] = useState([]);
-  const [selectedId, setSelectedId] = useState("");
+  const [selectedId, setSelectedId] = useState(0);
   const page = useLocation();
   const mainCategoryID = page.pathname.split("/")[3];
 
@@ -25,10 +25,7 @@ const SingleService = () => {
       .get(`http://localhost:8080/user/services/${mainCategoryID}/`)
       .then((res) => {
         setCategories(res.data);
-        if (res.data.length > 0) {
-          setSelectedId(res.data[0]._id);
-          getService(res.data[0]._id);
-        }
+        if (res != null) getService(res.data[0]._id);
       })
       .catch((err) => {
         alert(err);
@@ -104,12 +101,12 @@ const SingleService = () => {
             <h1
               key={index}
               className={
-                selectedId === items._id
-                  ? "w-full text-white bg-blue-800 font-semibold font-lg rounded-xl p-2 cursor-pointer"
-                  : "w-full text-black bg-gray-300 font-semibold font-lg rounded-xl p-2 cursor-pointer"
+                selectedId === index
+                  ? "w-full text-white text-lg bg-blue-800 font-semibold font-lg rounded-xl p-2 cursor-pointer"
+                  : "w-full text-black text-lg bg-gray-300 font-semibold font-lg rounded-xl p-2 cursor-pointer"
               }
               onClick={() => {
-                setSelectedId(items._id);
+                setSelectedId(index);
                 getService(items._id);
               }}
             >
@@ -136,19 +133,17 @@ const SingleService = () => {
                     }
                     style={{ width: "70rem" }}
                   >
-                    <h1 className="text-black font-semibold text-md">
+                    <h1 className="text-black font-semibold text-lg">
                       {items.name}
                     </h1>
                   </div>
-                  <div className="flex flex-col items-center jusfify-center p-1 w-36 bg-gray-200">
-                    <Link to={page.pathname + "/apply/" + items._id}>
-                      <button className="p-1 bg-blue-500 rounded-2xl">
-                        Apply Online
-                      </button>
+                  <div className="w-1/6 bg-gray-200 text-center py-4 outline-none">
+                    <Link
+                      to={"apply/" + items._id}
+                      className="px-3 py-2 bg-blue-800 font-semibold text-white text-lg rounded-xl outline-none"
+                    >
+                      Apply Online
                     </Link>
-                    <button className="text-blue-500 font-medium">
-                      Know More
-                    </button>
                   </div>
                 </div>
               ))}

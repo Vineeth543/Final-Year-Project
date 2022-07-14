@@ -1,38 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { useEffect } from "react";
 
 const SingleScheme = () => {
   const [schemesList, setSchemeList] = useState([]);
   const [schemeDetails, setSchemeDetails] = useState([]);
   const [schemeCategory, setSchemeCategory] = useState("");
+  const [selectedScheme, setSelectedScheme] = useState(0);
 
   const page = useLocation();
-  const category = page.pathname.split("/")[3];
-
-  const getSchemeData = () => {
-    axios
-      .get(`http://localhost:8080/official/schemes/category/scheme/${category}`)
-      .then((res) => {
-        console.log(res);
-        setSchemeList(res.data);
-        setSchemeDetails(res.data[0]);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
-
-  const getSchmeDetails = (index) => {
-    setSchemeDetails(schemesList[index]);
-  };
+  const categoryId = page.pathname.split("/")[4];
 
   const getShemeCategory = () => {
     axios
-      .get(`http://localhost:8080/official/schemes/category/${category}`)
+      .get(`http://localhost:8080/official/schemes/category/${categoryId}`)
       .then((res) => {
-        console.log(res);
         setSchemeCategory(res.data.title);
       })
       .catch((err) => {
@@ -40,80 +22,94 @@ const SingleScheme = () => {
       });
   };
 
+  const getSchemeData = () => {
+    axios
+      .get(
+        `http://localhost:8080/official/schemes/category/scheme/${categoryId}`
+      )
+      .then((res) => {
+        if (res != null) {
+          setSchemeList(res.data);
+          setSchemeDetails(res.data[0]);
+        }
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
+
   useEffect(() => {
-    getSchemeData();
     getShemeCategory();
+    getSchemeData();
   }, []);
 
   return (
     <>
-      <h1 className="text-black font-bold text-4xl text-center m-5">
-        {schemeCategory}
-      </h1>
-      {schemesList !== [] ? (
-        <div className="flex mx-20 my-10 gap-5">
+      <h1 className="font-bold text-4xl text-center mt-10">{schemeCategory}</h1>
+      {schemesList != null && schemeDetails != null ? (
+        <div className="flex mx-20 gap-5 my-10">
           <div className="flex flex-col gap-2 p-2 w-1/3">
             {schemesList.map((scheme, index) => (
               <h3
-                className="font-semibold font-lg rounded-xl p-2 cursor-pointer bg-gray-300 hover:bg-blue-900 hover:text-white"
+                className={
+                  selectedScheme === index
+                    ? "font-semibold text-md rounded-xl p-2 cursor-pointer bg-blue-900 text-white"
+                    : "font-semibold text-md rounded-xl p-2 cursor-pointer bg-gray-300"
+                }
                 key={index}
-                onClick={() => getSchmeDetails(index)}
+                onClick={() => {
+                  setSelectedScheme(index);
+                  setSchemeDetails(schemesList[index]);
+                }}
               >
                 {scheme.title}
               </h3>
             ))}
           </div>
-          <div className="flex flex-col w-full px-5 gap-5">
-            <h1 className="text-black font-semibold text-3xl">
-              {schemeDetails.title}
-            </h1>
+          <div className="flex flex-col w-full gap-5">
+            <h1 className="font-semibold text-3xl">{schemeDetails.title}</h1>
             <ul className="flex flex-col p-5 text-blue-700 border border-blue-700 bg-gray-100 rounded-md">
-              <li>1. Brief Objective</li>
-              <li>2. Benefits</li>
-              <li>3. Eligibility</li>
-              <li>4. How to apply</li>
-              <li>5. Application Form</li>
+              <li className="cursor-pointer">1. Brief Objective</li>
+              <li className="cursor-pointer">2. Benefits</li>
+              <li className="cursor-pointer">3. Eligibility</li>
+              <li className="cursor-pointer">4. How to apply</li>
+              <li className="cursor-pointer">5. Application Form</li>
             </ul>
             <div className="flex flex-col gap-4">
-              <h1 className="text-black font-semibold text-2xl border-b-2 pb-2">
+              <h1 className="font-semibold text-2xl border-b-2 pb-1">
                 Brief Objective
               </h1>
               <p>{schemeDetails.objective}</p>
-              <h1 className="text-black font-semibold text-2xl border-b-2 pb-2">
+              <h1 className="font-semibold text-2xl border-b-2 pb-1">
                 Benefits
               </h1>
-              {schemeDetails.benefits != null ? (
-                schemeDetails.benefits.map((benefit, index) => (
-                  <p key={index}>{benefit}</p>
-                ))
-              ) : (
-                <p>No benefits</p>
-              )}
-              <h1 className="text-black font-semibold text-2xl border-b-2 pb-2">
+              {schemeDetails.benefits != null
+                ? schemeDetails.benefits.map((benefit, index) => (
+                    <p key={index}>🎯 {benefit}</p>
+                  ))
+                : ""}
+              <h1 className="font-semibold text-2xl border-b-2 pb-1">
                 Eligibility
               </h1>
-              <p>
-                Any Citizen of India can join APY scheme. The following are the
-                eligibility criteria :-
-              </p>
+              <p>The following are the eligibility criteria :-</p>
               {schemeDetails.eligibility != null ? (
                 schemeDetails.eligibility.map((eligibility, index) => (
                   <p key={index}>✅ {eligibility}</p>
                 ))
               ) : (
-                <p>No eligibility</p>
+                <p>✅ Anyone can apply to this scheme.</p>
               )}
-              <h1 className="text-black font-semibold text-2xl border-b-2 pb-2">
+              <h1 className="font-semibold text-2xl border-b-2 pb-1">
                 How to apply
               </h1>
               <p>{schemeDetails.howToApply}</p>
-              <h1 className="text-black font-semibold text-2xl border-b-2 pb-2">
-                Application Form
+              <h1 className="font-semibold text-2xl border-b-2 pb-1">
+                Usefullf Links
               </h1>
               {schemeDetails.applicationLink != null ? (
                 <>
                   <h2>
-                    To get the forms,{" "}
+                    Appliction forms,{" "}
                     <a
                       href={schemeDetails.applicationLink[0]}
                       target="_blank"
@@ -136,14 +132,14 @@ const SingleScheme = () => {
                   </h2>
                 </>
               ) : (
-                <p>No application form</p>
+                <p>Links not available.</p>
               )}
             </div>
           </div>
         </div>
       ) : (
-        <h1 className="text-black font-semibold text-4xl text-center m-5">
-          No schemes found
+        <h1 className="font-bold text-4xl text-center my-80">
+          No Schemes Available. ☹️
         </h1>
       )}
     </>

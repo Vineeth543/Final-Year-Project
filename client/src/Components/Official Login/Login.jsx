@@ -46,10 +46,10 @@ const Login = () => {
           localStorage.setItem("CCPS-Official-loggedIn", "true");
           localStorage.setItem("CCPS-Official-Role", role);
           role === "PDO"
-            ? nav("/admin")
+            ? nav("/admin/dashboard")
             : role === "SECRETARY"
-            ? nav("/secretary")
-            : nav("/president");
+            ? nav("/secretary/dashboard")
+            : nav("/president/dashboard");
         } else {
           alert(result.data.msg);
         }

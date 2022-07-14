@@ -20,9 +20,12 @@ import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
 import UserDashboardLayout from "./Layout/UserDashboard.Layout";
 
+// ***************** Officials Login *************************  //
+
 import OfficialLoginLayout from "./Pages/Official Login/Login.Layout";
 
 // ***************** Admin Pages *************************  //
+
 import AdminDashboardPage from "./Pages/Admin/AdminDashboard.Page";
 import AdminServicePage from "./Pages/Admin/AdminService.Page";
 import AdminSchemePage from "./Pages/Admin/AdminScheme.Page";
@@ -92,24 +95,19 @@ const App = () => {
           element={<SingleServiceLayout />}
         ></Route>
         <Route
-          path="/user/services/:id/apply/:id"
-          exact
-          element={<ApplyServiceLayout />}
-        ></Route>
-        <Route
           path="/user/services/:id/:id"
           exact
           element={<SingleServiceLayout />}
         ></Route>
+        <Route
+          path="/user/services/:id/apply/:id"
+          exact
+          element={<ApplyServiceLayout />}
+        ></Route>
         <Route path="/user/events" exact element={<EventsLayout />}></Route>
         <Route path="/user/schemes" exact element={<SchemesLayout />}></Route>
         <Route
-          path="/user/schemes/:id"
-          exact
-          element={<SingleSchemeLayout />}
-        ></Route>
-        <Route
-          path="/user/schemes/:id/:id"
+          path="/user/schemes/view/:id"
           exact
           element={<SingleSchemeLayout />}
         ></Route>

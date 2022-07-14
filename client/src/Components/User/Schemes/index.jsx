@@ -87,7 +87,7 @@ const Schemes = () => {
       <h1 className="font-bold text-4xl text-center">Schemes</h1>
       <div className="flex flex-wrap gap-3 justify-between">
         {scheme.map((scheme, index) => (
-          <Link to={`/user/schemes/${scheme._id}`} key={index}>
+          <Link to={`/user/schemes/view/${scheme._id}`} key={index}>
             <div
               className={`flex items-center justify-center gap-4 bg-white hover:border-4 p-10 border-b-4 ${schemes[index].borderColor}`}
               style={{ width: "22rem" }}

@@ -8,7 +8,9 @@ const SingleSchemeLayout = () => {
   return (
     <>
       <UserNavbar />
-      <SingleScheme />
+      <div className="flex flex-col">
+        <SingleScheme />
+      </div>
       <Footer />
     </>
   );
