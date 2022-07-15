@@ -12,7 +12,6 @@ const ViewDocuments = () => {
     axios
       .get(`http://localhost:8080/user/services/view/apply/${serviceId}/`)
       .then((res) => {
-        console.log(res.data);
         setDocumentsTitle(res.data.documents);
         setServiceName(res.data.name);
       })
@@ -27,7 +26,6 @@ const ViewDocuments = () => {
         `http://localhost:8080/admin/dashboard/appliedServices/documents/${appliedServiceId}`
       )
       .then((res) => {
-        console.log(res.data);
         getRequiredDocuments(res.data.service);
         setDocuments(res.data.userDocuments);
       })
@@ -39,6 +37,14 @@ const ViewDocuments = () => {
   useEffect(() => {
     getDocuments();
   }, []);
+
+  const poupImageContainer = document.getElementById("poupImageContainer");
+  const [popupImage, setPopupImage] = useState("");
+
+  const showModal = (e) => {
+    setPopupImage(e.target.src);
+    poupImageContainer.style.display = "block";
+  };
 
   return (
     <>
@@ -54,11 +60,45 @@ const ViewDocuments = () => {
                   src={link}
                   alt={documentsTitle[index]}
                   className="w-full h-full object-cover"
+                  onClick={(e) => showModal(e)}
                 />
               </div>
               <h2 className="font-semibold text-lg">{documentsTitle[index]}</h2>
             </div>
           ))}
+      </div>
+      <div
+        id="poupImageContainer"
+        className="overflow-hidden bg-blue-600 p-5"
+        style={{
+          maxWidth: "80%",
+          maxHeight: "90%",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          display: "none",
+        }}
+      >
+        <div className="flex items-center justify-between">
+          <h1 className="w-full text-center bg-white font-semibold ">
+            {popupImage !== ""
+              ? documentsTitle[documents.indexOf(popupImage)]
+              : null}
+          </h1>
+          <button
+            onClick={(e) => (poupImageContainer.style.display = "none")}
+            className="px-4 bg-red-500 text-white font-bold"
+          >
+            X
+          </button>
+        </div>
+        <img
+          id="popupImage"
+          src={popupImage}
+          alt={popupImage}
+          className="w-full h-full object-cover"
+        />
       </div>
     </>
   );
