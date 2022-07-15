@@ -27,6 +27,7 @@ const AddUpcomingEvents = () => {
         console.log(err);
         alert("Error in uploading event");
       });
+    document.getElementById("upcoming-event-form").reset();
   };
 
   return (
@@ -37,6 +38,7 @@ const AddUpcomingEvents = () => {
       <form
         className="flex flex-col p-5 gap-4 shadow-2xl bg-white mx-10"
         onSubmit={(e) => addUpcomingEvent(e)}
+        id="upcoming-event-form"
       >
         <label htmlFor="name" className="text-xl font-medium pl-1">
           Event Title

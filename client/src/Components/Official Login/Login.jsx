@@ -57,6 +57,7 @@ const Login = () => {
       .catch((err) => {
         alert(err.data);
       });
+      document.getElementById("official-login-form").reset();
   };
 
   return (
@@ -76,6 +77,7 @@ const Login = () => {
           <form
             className="flex flex-col items-center justify-center gap-5 text-white font-semibold my-5"
             onSubmit={login}
+            id="official-login-form"
           >
             <h1 className="font-bold text-4xl text-black text-center">
               Official Login

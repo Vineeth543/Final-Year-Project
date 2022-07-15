@@ -44,6 +44,7 @@ const AddService = () => {
       .catch((err) => {
         alert(err.data);
       });
+      document.getElementById("add-service-form").reset();
   };
 
   const mainCategory = [
@@ -105,6 +106,7 @@ const AddService = () => {
       <form
         className="flex flex-col p-5 gap-4 shadow-2xl bg-white mx-10"
         onSubmit={(e) => addNewService(e)}
+        id="add-service-form"
       >
         <label htmlFor="mainCategory" className="text-xl font-medium pl-1">
           Category

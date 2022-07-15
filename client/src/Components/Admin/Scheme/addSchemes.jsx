@@ -36,6 +36,7 @@ const AddSchemes = () => {
       .catch((err) => {
         alert(err.data);
       });
+    document.getElementById("add-scheme-form").reset();
   };
 
   const getSchemeData = () => {
@@ -62,6 +63,7 @@ const AddSchemes = () => {
         <form
           className="flex flex-col p-5 gap-4 shadow-2xl bg-white mx-10"
           onSubmit={(e) => addNewScheme(e)}
+          id="add-scheme-form"
         >
           <label htmlFor="category" className="text-xl font-medium pl-1">
             Category

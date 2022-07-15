@@ -29,7 +29,7 @@ const AdminTenders = () => {
 
   return (
     <>
-      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-xl shadow-blue-600 mx-12">
+      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-lg shadow-blue-600 mx-12">
         <h1 className="font-semibold text-4xl text-white">Tenders</h1>
         <Link className="flex w-fit" to="/admin/tenders/add-tender">
           <IoMdAddCircleOutline className="p-2 text-5xl bg-white rounded-tl-lg rounded-bl-lg" />

@@ -112,7 +112,7 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 mx-12 shadow-xl text-white">
+      <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
         Users Applied for Services
       </h1>
       <table className="content-table dashboard">

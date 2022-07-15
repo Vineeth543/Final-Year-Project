@@ -18,11 +18,11 @@ const AddService = () => {
       })
       .then((res) => {
         alert(res.data);
-        console.log(res);
       })
       .catch((err) => {
         alert(err.data);
       });
+    document.getElementById("add-tender-form").reset();
   };
 
   return (
@@ -33,6 +33,7 @@ const AddService = () => {
       <form
         className="flex flex-col p-5 gap-4 shadow-2xl bg-white mx-10"
         onSubmit={(e) => addNewTender(e)}
+        id="add-tender-form"
       >
         <label htmlFor="tenderTitle" className="text-xl font-medium pl-1">
           Tender Title

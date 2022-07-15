@@ -8,7 +8,9 @@ const ApplyServiceLayout = () => {
   return (
     <>
       <UserNavbar />
-      <ApplyService />
+      <div className="flex flex-col gap-10 my-10">
+        <ApplyService />
+      </div>
       <Footer />
     </>
   );

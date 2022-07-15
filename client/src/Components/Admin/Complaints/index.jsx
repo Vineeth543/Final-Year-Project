@@ -43,7 +43,7 @@ const AdminComplaints = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
+      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
         User Complaints List
       </h1>
       <div className="flex bg-sky-500 gap-16 p-2 font-bold text-2xl shadow-md shadow-sky-400 mx-12 rounded">

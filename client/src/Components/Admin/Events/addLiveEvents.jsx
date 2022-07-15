@@ -26,6 +26,7 @@ const AddLiveEvents = () => {
       .catch((err) => {
         alert(err.data);
       });
+    document.getElementById("live-event-form").reset();
   };
 
   return (
@@ -36,6 +37,7 @@ const AddLiveEvents = () => {
       <form
         className="flex flex-col p-5 gap-4 shadow-2xl bg-white mx-10"
         onSubmit={(e) => startLiveEvent(e)}
+        id="live-event-form"
       >
         <label htmlFor="name" className="text-xl font-medium pl-1">
           Event Title

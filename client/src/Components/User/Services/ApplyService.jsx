@@ -45,20 +45,22 @@ const SingleService = () => {
       .catch((err) => {
         alert(err);
       });
+    document.getElementById("apply-service-form").reset();
   };
 
   return (
     <>
-      <h1 className="text-black font-bold text-4xl text-center m-5">
+      <h1 className="text-black font-bold text-4xl text-center">
         {serviceTitle}
       </h1>
-      <div className="container m-auto flex flex-col items-center justify-center w-full border py-3">
-        <h1 className="w-full font-semibold bg-gray-200 p-2 border-b border-black text-2xl mx-5 text-center">
-          Upload Documents
+      <div className="container m-auto flex flex-col items-center border">
+        <h1 className="w-full font-semibold bg-gray-200 p-2 border-b border-black text-2xl text-center">
+          Please Upload These Documents
         </h1>
         <form
           className="flex flex-col gap-5 font-semibold my-4"
           onSubmit={(e) => applyService(e)}
+          id="apply-service-form"
         >
           {reqDocuments.map((element, index) => (
             <div
