@@ -37,10 +37,10 @@ const SingleService = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center">
-        Tenderers Applied for -{" "}
-        <span className="text-gray-700">{tenderTitle}</span>
+      <h1 className="font-bold text-4xl text-center underline">
+        Tenderers Applied
       </h1>
+      <h1 className="font-bold text-4xl text-center">{tenderTitle}</h1>
       <div className="flex items-center justify-center w-full">
         {tenderer.length > 0 ? (
           <table className="content-table dashboard w-full">
@@ -60,11 +60,26 @@ const SingleService = () => {
                 <tr className="text-semibold text-center" key={index}>
                   <td>{tenderer.tendererName}</td>
                   <td>{tenderer.contactPerson}</td>
-                  <td>{tenderer.phone}</td>
-                  <td>{tenderer.email}</td>
-                  <td>{tenderer.fax}</td>
+                  <td>
+                    {tenderer.phone.slice(0, 2) +
+                      "*".repeat(6) +
+                      tenderer.phone.slice(8, 10)}
+                  </td>
+                  <td>
+                    {tenderer.email[0] +
+                      "*".repeat(
+                        tenderer.email.slice(0, tenderer.email.indexOf("@"))
+                          .length - 1
+                      ) +
+                      tenderer.email.slice(tenderer.email.indexOf("@"))}
+                  </td>
+                  <td>
+                    {tenderer.fax.slice(0, 2) +
+                      "*".repeat(6) +
+                      tenderer.fax.slice(8, 10)}
+                  </td>
                   <td>{tenderer.address}</td>
-                  <td>₹ {tenderer.bidAmount}</td>
+                  <td>*****</td>
                 </tr>
               ))}
             </tbody>

@@ -40,6 +40,7 @@ const Complaints = () => {
       })
       .then((res) => {
         alert(res.data);
+        document.getElementById("tender-apply-form").reset();
       })
       .catch((err) => {
         alert(err.data);
@@ -52,15 +53,16 @@ const Complaints = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center">
-        Applying for Tender -{" "}
-        <span className="text-gray-700">{tenderTitle}</span>
+      <h1 className="font-bold text-4xl text-center underline">
+        Tender Application
       </h1>
+      <h1 className="font-bold text-4xl text-center">{tenderTitle}</h1>
       <form
-        className="flex flex-col gap-10 font-semibold text-xl"
+        id="tender-apply-form"
+        className="flex flex-col m-auto gap-10 font-semibold text-xl"
         onSubmit={(e) => applyForTender(e)}
       >
-        <div className="flex items-center justify-center gap-5">
+        <div className="flex justify-between gap-2">
           <label htmlFor="tendererName">Tenderer Name :</label>
           <input
             type="text"
@@ -74,7 +76,7 @@ const Complaints = () => {
             }}
           />
         </div>
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex justify-between">
           <label htmlFor="fullname">Person Name :</label>
           <input
             type="text"
@@ -88,7 +90,7 @@ const Complaints = () => {
             }}
           />
         </div>
-        <div className="flex items-center justify-center gap-16">
+        <div className="flex justify-between">
           <label htmlFor="mobile">Mobile No :</label>
           <input
             type="number"
@@ -102,7 +104,7 @@ const Complaints = () => {
             }}
           />
         </div>
-        <div className="flex items-center justify-center gap-28">
+        <div className="flex justify-between">
           <label htmlFor="email">Email :</label>
           <input
             type="email"
@@ -116,7 +118,7 @@ const Complaints = () => {
             }}
           />
         </div>
-        <div className="flex items-center justify-center gap-32">
+        <div className="flex justify-between">
           <label htmlFor="fax">Fax :</label>
           <input
             type="number"
@@ -130,7 +132,7 @@ const Complaints = () => {
             }}
           />
         </div>
-        <div className="flex items-center justify-center gap-24">
+        <div className="flex justify-between">
           <label htmlFor="address">Address :</label>
           <input
             type="text"
@@ -144,7 +146,7 @@ const Complaints = () => {
             }}
           />
         </div>
-        <div className="flex items-center justify-center gap-14">
+        <div className="flex justify-between">
           <label htmlFor="bidAmount">Bid Amount :</label>
           <input
             type="number"

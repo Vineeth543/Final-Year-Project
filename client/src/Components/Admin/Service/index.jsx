@@ -69,7 +69,7 @@ const AdminServices = () => {
         <thead>
           <tr>
             <th className="text-center">SL.NO</th>
-            <th className="text-center">Service Title</th>
+            <th className="text-center">Services Category</th>
           </tr>
         </thead>
         <tbody>

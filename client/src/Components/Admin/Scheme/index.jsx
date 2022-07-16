@@ -1,58 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import axios from "axios";
 
 const AdminSchemes = () => {
-  const Schemes = [
-    {
-      id: "child",
-      title: "Schemes for Child Welfare",
-    },
-    {
-      id: "poor",
-      title: "Schemes for Unemployed and Poor",
-    },
-    {
-      id: "academy",
-      title: "Schemes for Academicians",
-    },
-    {
-      id: "aatma",
-      title: "Aatma Nirbhar Bharat Abhiyaan",
-    },
-    {
-      id: "farmer",
-      title: "Schemes for Farmers",
-    },
-    {
-      id: "senior",
-      title: "Schemes for Senior Citizens",
-    },
-    {
-      id: "student",
-      title: "Schemes for Students",
-    },
-    {
-      id: "anganwadi",
-      title: "Schemes for Anganwadi workers",
-    },
-    {
-      id: "entrepreneur",
-      title: "Schemes for Entrepreneurs",
-    },
-    {
-      id: "women",
-      title: "Schemes for Women",
-    },
-    {
-      id: "mgnarega",
-      title: "MGNAREGA",
-    },
-    {
-      id: "skill",
-      title: "Skill Development",
-    },
-  ];
+  const [scheme, setSchemes] = useState([]);
+
+  const getSchemeData = () => {
+    axios
+      .get("http://localhost:8080/official/schemes/category")
+      .then((res) => {
+        setSchemes(res.data);
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    getSchemeData();
+  }, []);
 
   return (
     <>
@@ -69,15 +36,15 @@ const AdminSchemes = () => {
         <thead>
           <tr>
             <th className="text-center">SL.NO</th>
-            <th className="text-center">Service Title</th>
+            <th className="text-center">Schemes Category</th>
           </tr>
         </thead>
         <tbody>
-          {Schemes.map((items, index) => (
+          {scheme.map((items, index) => (
             <tr key={index}>
               <td className="text-center">{index + 1}</td>
               <td className="text-center">
-                <Link to={`/admin/schemes/view/${items.id}`}>
+                <Link to={`/admin/schemes/view/${items._id}`}>
                   {items.title}
                 </Link>
               </td>

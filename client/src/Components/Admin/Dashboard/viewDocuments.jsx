@@ -48,7 +48,7 @@ const ViewDocuments = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
+      <h1 className="font-bold text-4xl text-white text-center p-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12">
         Documents submitted for - {seviceName}
       </h1>
       <div className="flex flex-wrap gap-8 justify-center mx-12">
@@ -56,12 +56,24 @@ const ViewDocuments = () => {
           documents.map((link, index) => (
             <div className="flex flex-col items-center" key={index}>
               <div className="w-96 h-96 border border-black hover:shadow-2xl cursor-pointer">
-                <img
-                  src={link}
-                  alt={documentsTitle[index]}
-                  className="w-full h-full object-cover"
-                  onClick={(e) => showModal(e)}
-                />
+                {link.includes(".pdf") ? (
+                  <iframe
+                    src={link}
+                    title={documentsTitle[index]}
+                    frameBorder="0"
+                    scrolling="auto"
+                    alt={documentsTitle[index]}
+                    className="w-full h-full object-cover overflow-hidden"
+                    onClick={(e) => showModal(e)}
+                  ></iframe>
+                ) : (
+                  <img
+                    src={link}
+                    alt={documentsTitle[index]}
+                    className="w-full h-full object-cover"
+                    onClick={(e) => showModal(e)}
+                  />
+                )}
               </div>
               <h2 className="font-semibold text-lg">{documentsTitle[index]}</h2>
             </div>
@@ -72,7 +84,7 @@ const ViewDocuments = () => {
         className="overflow-hidden bg-blue-600 p-5"
         style={{
           maxWidth: "80%",
-          maxHeight: "90%",
+          maxHeight: "100%",
           position: "absolute",
           top: "50%",
           left: "50%",
