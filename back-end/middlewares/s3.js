@@ -17,7 +17,7 @@ function uploadFile(file) {
   const uploadParams = {
     Bucket: bucketName,
     Body: file.buffer,
-    Key: file.originalname + "-" + Date.now(),
+    Key: Date.now() + "-" + file.originalname,
     ContentType: file.mimetype,
   };
   return s3.upload(uploadParams).promise();

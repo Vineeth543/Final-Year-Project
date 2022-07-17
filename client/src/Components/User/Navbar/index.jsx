@@ -11,8 +11,8 @@ const UserNavbar = () => {
 
   return (
     <>
-      <div className="flex items-center justify-evenly bg-white shadow-lg py-2 scrollbar-hide">
-        <Link className="font-semibold text-lg" to="/">
+      <div className="flex items-center justify-evenly bg-white shadow-lg py-2 scrollbar-hide font-semibold text-lg">
+        <Link to="/">
           <div className="w-20 h-20">
             <img
               src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
@@ -21,27 +21,13 @@ const UserNavbar = () => {
             />
           </div>
         </Link>
-        <Link className="font-semibold text-lg" to="/user">
-          Home
-        </Link>
-        <Link className="font-semibold text-lg" to="/user/services">
-          e-Services
-        </Link>
-        <Link className="font-semibold text-lg" to="/user/schemes">
-          Schemes
-        </Link>
-        <Link className="font-semibold text-lg" to="/user/events">
-          Events
-        </Link>
-        <Link className="font-semibold text-lg" to="/user/tenders">
-          e-Tenders
-        </Link>
-        <Link className="font-semibold text-lg" to="/user/payments">
-          Payments
-        </Link>
-        <Link className="font-semibold text-lg" to="/user/complaints">
-          Complaints
-        </Link>
+        <Link to="/user">Home</Link>
+        <Link to="/user/services">e-Services</Link>
+        <Link to="/user/schemes">Schemes</Link>
+        <Link to="/user/events">Events</Link>
+        <Link to="/user/tenders">e-Tenders</Link>
+        <Link to="/user/payments">Payments</Link>
+        <Link to="/user/complaints">Complaints</Link>
         {localStorage.getItem("CCPS-loggedIn") === "true" ? (
           <div className="dropdown">
             <div className="w-10 h-10">
@@ -52,14 +38,18 @@ const UserNavbar = () => {
               />
             </div>
             <div className="dropdown-content">
-              <Link to="/user/dashboard">Dashboard</Link>
-              <Link to={path.pathname} onClick={logout}>
+              <Link to="/user/profile">Dashboard</Link>
+              <Link to="/user/login" onClick={logout}>
                 Logout
               </Link>
             </div>
           </div>
+        ) : path.pathname.includes("/user/login") ? (
+          <Link to="/user/signup" className="w-12">
+            Signup
+          </Link>
         ) : (
-          <Link className="font-semibold text-lg" to="/user/login">
+          <Link to="/user/login" className="w-12">
             Login
           </Link>
         )}

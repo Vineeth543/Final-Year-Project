@@ -46,7 +46,7 @@ export const Payments = () => {
             />
             <button
               onClick={payWaterBill}
-              className="font-semibold bg-blue-500 p-2 rounded-lg hover:bg-blue-900 hover:text-white focus:ring ring-blue-500"
+              className="font-semibold bg-blue-500 p-2 rounded-lg hover:bg-blue-900 text-white focus:ring ring-blue-500"
             >
               Pay Bill
             </button>
@@ -70,7 +70,7 @@ export const Payments = () => {
             />
             <button
               onClick={payHomeTax}
-              className="font-semibold bg-blue-500 p-2 rounded-lg hover:bg-blue-900 hover:text-white focus:ring ring-blue-500"
+              className="font-semibold bg-blue-500 p-2 rounded-lg hover:bg-blue-900 text-white focus:ring ring-blue-500"
             >
               Pay Tax
             </button>

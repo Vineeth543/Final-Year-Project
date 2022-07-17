@@ -127,7 +127,7 @@ const Complaints = () => {
             onChange={(e) => setImages(e.target.value)}
           />
         </div>
-        <button className="m-auto bg-blue-500 py-1 px-2 rounded-2xl hover:bg-blue-700 text-lg hover:text-white focus:ring ring-blue-400">
+        <button className="m-auto bg-blue-500 py-1 px-2 rounded hover:bg-blue-700 text-lg hover:text-white focus:ring ring-blue-400">
           Submit
         </button>
       </form>

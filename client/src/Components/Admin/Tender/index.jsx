@@ -46,10 +46,10 @@ const AdminTenders = () => {
                 SL.NO
               </th>
               <th className="text-center border-double border-4 border-black">
-                TENDER TITLE
+                PROJECT TITLE
               </th>
               <th className="text-center border-double border-4 border-black">
-                CORRIGENDUM
+                DESCRIPTION
               </th>
               <th className="w-60 text-center border-double border-4 border-black">
                 OPENING DATE

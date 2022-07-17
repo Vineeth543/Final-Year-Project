@@ -2,10 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Disable Scrollbar */
 ::-webkit-scrollbar {
   display: none;
 }
 
+/* User Dashboard */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -35,6 +37,7 @@
   display: block;
 }
 
+/* Admin Tables */
 .content-table {
   border-collapse: collapse;
   margin: 25px 50px;
@@ -58,15 +61,6 @@
   font-size: 1.1em;
 }
 
-.complaints {
-  border-collapse: collapse;
-  margin: 0px 50px;
-  min-width: 400px;
-  border-radius: 5px 5px 0 0;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgb(29, 78, 216);
-}
-
 .content-table tbody tr {
   font-weight: 500;
 }
@@ -79,9 +73,30 @@
   border-bottom: 2px solid #1d4ed8;
 }
 
+/* Admin Complaint Table */
+.complaints {
+  border-collapse: collapse;
+  margin: 0px 50px;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgb(29, 78, 216);
+}
+
+/* Admin Dashboard Table */
 .dashboard tbody tr {
   border-bottom: 1px solid #dddddd;
   font-weight: 500;
+}
+
+/* Admin Upcoming Event Table */
+.upcoming {
+  border-collapse: collapse;
+  margin: 25px 50px;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px #099823;
 }
 
 .upcoming thead tr {
@@ -95,13 +110,14 @@
   border-bottom: 2px solid #099823;
 }
 
-.upcoming {
+/* Admin Upcoming Event Table */
+.past {
   border-collapse: collapse;
   margin: 25px 50px;
   min-width: 400px;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
-  box-shadow: 0 0 20px #099823;
+  box-shadow: 0 0 20px #f6f672;
 }
 
 .past thead tr {
@@ -115,11 +131,86 @@
   border-bottom: 2px solid #f6f672;
 }
 
-.past {
-  border-collapse: collapse;
-  margin: 25px 50px;
+/* User View Tender Table */
+.tender {
+  margin: 0px 50px;
   min-width: 400px;
-  border-radius: 5px 5px 0 0;
-  overflow: hidden;
-  box-shadow: 0 0 20px #f6f672;
+  font-weight: 500;
+}
+
+.tender thead tr {
+  color: black;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.tender th,
+.tender td {
+  padding: 12px 15px;
+  font-size: 1.1em;
+  border: 2px dashed black;
+}
+
+/* User Service Status Table */
+.serviceStatus thead tr th {
+  background-color: #7dd3fc;
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid white;
+}
+
+.serviceStatus tbody tr td {
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.serviceStatus tbody tr:nth-of-type(even) {
+  background-color: #e0f2fe;
+}
+
+/* User Tender Status Table */
+.tenderStatus thead tr th {
+  background-color: #67e8f9;
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid white;
+}
+
+.tenderStatus tbody tr td {
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.tenderStatus tbody tr:nth-of-type(even) {
+  background-color: #cffafe;
+}
+
+/* User Tender Status Table */
+.paymentStatus thead tr th {
+  background-color: #c4b5fd;
+  padding: 12px 15px;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid white;
+}
+
+.paymentStatus tbody tr td {
+  font-weight: 500;
+  padding: 8px 15px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.paymentStatus tbody tr:nth-of-type(even) {
+  background-color: #ede9fe;
 }

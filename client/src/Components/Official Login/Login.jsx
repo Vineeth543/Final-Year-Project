@@ -43,6 +43,7 @@ const Login = () => {
       .then((result) => {
         if (result.data.status === "success") {
           alert(result.data.msg);
+          document.getElementById("official-login-form").reset();
           localStorage.setItem("CCPS-Official-loggedIn", "true");
           localStorage.setItem("CCPS-Official-Role", role);
           role === "PDO"
@@ -52,12 +53,13 @@ const Login = () => {
             : nav("/president/dashboard");
         } else {
           alert(result.data.msg);
+          document.getElementById("official-login-form").reset();
         }
       })
       .catch((err) => {
-        alert(err.data);
+        alert(err);
+        document.getElementById("official-login-form").reset();
       });
-      document.getElementById("official-login-form").reset();
   };
 
   return (

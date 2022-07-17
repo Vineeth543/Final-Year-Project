@@ -63,7 +63,7 @@ const ViewDocuments = () => {
                     frameBorder="0"
                     scrolling="auto"
                     alt={documentsTitle[index]}
-                    className="w-full h-full object-cover overflow-hidden"
+                    className="w-full h-full"
                     onClick={(e) => showModal(e)}
                   ></iframe>
                 ) : (
@@ -81,10 +81,10 @@ const ViewDocuments = () => {
       </div>
       <div
         id="poupImageContainer"
-        className="overflow-hidden bg-blue-600 p-5"
+        className="overflow-scroll border-8 border-blue-600"
         style={{
           maxWidth: "80%",
-          maxHeight: "100%",
+          maxHeight: "90%",
           position: "absolute",
           top: "50%",
           left: "50%",
@@ -92,7 +92,7 @@ const ViewDocuments = () => {
           display: "none",
         }}
       >
-        <div className="flex items-center justify-between">
+        <div className="sticky top-0 flex items-center justify-between">
           <h1 className="w-full text-center bg-white font-semibold ">
             {popupImage !== ""
               ? documentsTitle[documents.indexOf(popupImage)]
@@ -109,7 +109,7 @@ const ViewDocuments = () => {
           id="popupImage"
           src={popupImage}
           alt={popupImage}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover cursor-all-scroll"
         />
       </div>
     </>

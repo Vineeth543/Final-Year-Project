@@ -32,9 +32,6 @@ const Navbar = () => {
         <Link className="font-semibold text-lg" to="#">
           Others
         </Link>
-        <Link className="font-semibold text-lg" to="/user/login">
-          Login
-        </Link>
       </div>
     </>
   );

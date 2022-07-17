@@ -6,7 +6,7 @@ import axios from "axios";
 const Login = () => {
   const formStyle = {
     width: "40rem",
-    height: "28rem",
+    height: "35rem",
   };
   const nav = useNavigate();
 
@@ -92,7 +92,7 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="bg-blue-800 p-2 px-4 rounded-2xl hover:bg-blue-900 focus:ring ring-blue-700"
+                className="bg-blue-700 py-1 px-3 rounded hover:bg-blue-900 focus:ring ring-blue-700"
               >
                 Login
               </button>
@@ -113,7 +113,7 @@ const Login = () => {
           />
         </div>
       </div>
-      <div className="flex h-16 align-items items-center justify-center mt-20">
+      <div className="flex h-16 align-items items-center justify-center mt-14">
         <h1 className="flex justify-center items-center w-full h-full bg-yellow-500 rounded-tl-xl rounded-tr-xl font-semibold text-xl text-center border">
           Notification
         </h1>

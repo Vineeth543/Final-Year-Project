@@ -19,6 +19,7 @@ import ViewTenderLayout from "./Layout/TenderView.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
 import UserDashboardLayout from "./Layout/UserDashboard.Layout";
+import UserProfileLayout from "./Layout/UserProfile.Layout";
 
 // ***************** Officials Login *************************  //
 
@@ -87,6 +88,11 @@ const App = () => {
           path="/user/dashboard"
           exact
           element={<UserDashboardLayout />}
+        ></Route>
+        <Route
+          path="/user/profile"
+          exact
+          element={<UserProfileLayout />}
         ></Route>
         <Route path="/user/services" exact element={<ServiceLayout />}></Route>
         <Route

@@ -7,11 +7,11 @@ import Footer from "../Components/Footer/Footer";
 const UserDashboardLayout = () => {
   return (
     <>
-      <div className="bg-sky-100">
-        <UserNavbar />
+      <UserNavbar />
+      <div className="flex flex-col gap-10 py-8 mt-2 bg-sky-100">
         <UserDashboard />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

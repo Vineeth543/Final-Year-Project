@@ -94,13 +94,13 @@ const AdminPayments = () => {
                 {payment.description.substring(0, 10)}
               </td>
               <td className="text-center">
-                <span
+                <h3
                   className={
                     payment.status === "captured"
-                      ? "rounded bg-green-500 text-black p-2"
+                      ? "w-20 mx-auto rounded bg-green-500 text-black py-1"
                       : payment.status === "failed"
-                      ? "rounded bg-red-500 text-black p-2"
-                      : "rounded bg-yellow-500 text-black p-2"
+                      ? "w-20 mx-auto rounded bg-red-500 text-black py-1"
+                      : "w-20 mx-auto rounded bg-yellow-500 text-black py-1 "
                   }
                 >
                   {payment.status === "captured"
@@ -108,7 +108,7 @@ const AdminPayments = () => {
                     : payment.status === "failed"
                     ? "Failed"
                     : "Pending"}
-                </span>
+                </h3>
               </td>
               <td className="text-center">{payment.amount / 100}</td>
               <td>

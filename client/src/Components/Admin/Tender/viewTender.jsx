@@ -11,6 +11,7 @@ const AdminViewTender = () => {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [approved, setApproved] = useState();
 
   const deleteTender = (e) => {
     e.preventDefault();
@@ -50,6 +51,11 @@ const AdminViewTender = () => {
       });
   };
 
+  const approveTender = (index) => {
+    setApproved(index);
+    // alert("Tender Approved.");
+  };
+
   useEffect(() => {
     getTenderDetails();
     getTendererDetails();
@@ -63,7 +69,7 @@ const AdminViewTender = () => {
       <table className="content-table dashboard">
         <thead>
           <tr>
-            <th className="text-center w-1/2">CORRIGENDUM</th>
+            <th className="text-center w-1/2">DESCRIPTION</th>
             <th className="text-center">OPENING DATE</th>
             <th className="text-center">CLOSING DATE</th>
             <th className="text-center">ACTION</th>
@@ -86,45 +92,54 @@ const AdminViewTender = () => {
         </tbody>
       </table>
       <div className="flex flex-col">
-        <h1 className="font-bold text-4xl text-center p-4 rounded bg-sky-800 mx-12 text-white">
-          Tenderers Applied for this Tender
-        </h1>
         {tenderer.length > 0 ? (
-          <table className="content-table dashboard">
-            <thead>
-              <tr>
-                <th className="text-center">Tenderer Name</th>
-                <th className="text-center">Contact Person</th>
-                <th className="text-center">Phone</th>
-                <th className="text-center">Email</th>
-                <th className="text-center">Fax</th>
-                <th className="text-center">Address</th>
-                <th className="text-center">Bid Amount</th>
-                <th className="text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tenderer.map((tenderer, index) => (
-                <tr className="text-semibold text-center" key={index}>
-                  <td>{tenderer.tendererName}</td>
-                  <td>{tenderer.contactPerson}</td>
-                  <td>{tenderer.phone}</td>
-                  <td>{tenderer.email}</td>
-                  <td>{tenderer.fax}</td>
-                  <td>{tenderer.address}</td>
-                  <td>₹ {tenderer.bidAmount}</td>
-                  <td>
-                    <button className="px-2 py-1 bg-orange-500 rounded text-white">
-                      Review
-                    </button>
-                  </td>
+          <>
+            <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 mx-12 text-white">
+              Manage Bidder/Developer/Contractor
+            </h1>
+            <table className="content-table dashboard">
+              <thead>
+                <tr>
+                  <th className="text-center">Company Name</th>
+                  <th className="text-center">Contact Person</th>
+                  <th className="text-center">Phone</th>
+                  <th className="text-center">Email</th>
+                  <th className="text-center">Fax</th>
+                  <th className="text-center">Address</th>
+                  <th className="text-center">Bid Amount</th>
+                  <th className="text-center">Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {tenderer.map((tenderer, index) => (
+                  <tr className="text-semibold text-center" key={index}>
+                    <td>{tenderer.tendererName}</td>
+                    <td>{tenderer.contactPerson}</td>
+                    <td>{tenderer.phone}</td>
+                    <td>{tenderer.email}</td>
+                    <td>{tenderer.fax}</td>
+                    <td>{tenderer.address}</td>
+                    <td>₹ {tenderer.bidAmount}</td>
+                    <td>
+                      <button
+                        className={
+                          approved === index
+                            ? "px-2 py-1 bg-green-700 rounded text-white"
+                            : "px-2 py-1 bg-green-500 rounded text-white"
+                        }
+                        onClick={(e) => approveTender(index)}
+                      >
+                        {approved === index ? "Approved" : "Approve"}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
         ) : (
           <h1 className="font-bold text-4xl text-center my-20">
-            No Tenderer Applied for this Tender. ☹️
+            No Tenderers Applied. ☹️
           </h1>
         )}
       </div>

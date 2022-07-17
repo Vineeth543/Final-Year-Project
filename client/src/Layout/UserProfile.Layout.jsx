@@ -1,19 +1,19 @@
 import React from "react";
 
 import UserNavbar from "../Components/User/Navbar";
-import Complaints from "../Components/User/Complaints";
+import UserProfile from "../Components/User/Dashboard/profile";
 import Footer from "../Components/Footer/Footer";
 
-const ComplaintsLayout = () => {
+const UserProfileLayout = () => {
   return (
     <>
       <UserNavbar />
-      <div className="flex flex-col gap-10 m-auto bg-cyan-200 p-10">
-        <Complaints />
+      <div className="bg-sky-100">
+        <UserProfile />
       </div>
       <Footer />
     </>
   );
 };
 
-export default ComplaintsLayout;
+export default UserProfileLayout;

@@ -43,9 +43,10 @@ const SingleService = () => {
       <h1 className="font-bold text-4xl text-center">{tenderTitle}</h1>
       <div className="flex items-center justify-center w-full">
         {tenderer.length > 0 ? (
-          <table className="content-table dashboard w-full">
+          <table className="tender w-full">
             <thead>
               <tr>
+                <th className="text-center">Sl.No</th>
                 <th className="text-center">Tenderer Name</th>
                 <th className="text-center">Contact Person</th>
                 <th className="text-center">Phone</th>
@@ -58,6 +59,7 @@ const SingleService = () => {
             <tbody>
               {tenderer.map((tenderer, index) => (
                 <tr className="text-semibold text-center" key={index}>
+                  <td>{index + 1}</td>
                   <td>{tenderer.tendererName}</td>
                   <td>{tenderer.contactPerson}</td>
                   <td>
@@ -86,7 +88,7 @@ const SingleService = () => {
           </table>
         ) : (
           <h1 className="font-bold text-4xl text-center my-20">
-            No Tenderer Applied for this Tender. ☹️
+            No Tenderer Applied. ☹️
           </h1>
         )}
       </div>
