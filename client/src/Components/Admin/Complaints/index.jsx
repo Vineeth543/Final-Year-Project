@@ -64,7 +64,7 @@ const AdminComplaints = () => {
       <table className="content-table dashboard complaints">
         <thead>
           <tr>
-            <th className="text-center">User Name</th>
+            <th className="text-center">Raised By</th>
             <th className="text-center">Subject</th>
             <th className="text-center">Issue</th>
             <th className="text-center">Solution</th>

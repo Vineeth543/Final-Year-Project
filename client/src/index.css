@@ -153,8 +153,9 @@
 
 /* User Service Status Table */
 .serviceStatus thead tr th {
-  background-color: #7dd3fc;
+  background-color: #c4b5fd;
   padding: 12px 15px;
+  color: black;
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
@@ -162,14 +163,14 @@
 }
 
 .serviceStatus tbody tr td {
-  padding: 12px 15px;
-  text-align: center;
   font-weight: 500;
+  padding: 12px 15px;
   font-size: 1.2em;
+  text-align: center;
 }
 
 .serviceStatus tbody tr:nth-of-type(even) {
-  background-color: #e0f2fe;
+  background-color: #ede9fe;
 }
 
 /* User Tender Status Table */
@@ -193,9 +194,30 @@
   background-color: #cffafe;
 }
 
-/* User Tender Status Table */
+/* User Payment Status Table */
 .paymentStatus thead tr th {
-  background-color: #c4b5fd;
+  background-color: #7dd3fc;
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid white;
+}
+
+.paymentStatus tbody tr td {
+  padding: 8px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.paymentStatus tbody tr:nth-of-type(even) {
+  background-color: #e0f2fe;
+}
+
+/* User Complaints Status Table */
+.complaintStatus thead tr th {
+  background-color: #fcd34d;
   padding: 12px 15px;
   color: black;
   text-align: center;
@@ -204,13 +226,35 @@
   border: 2px solid white;
 }
 
-.paymentStatus tbody tr td {
+.complaintStatus tbody tr td {
   font-weight: 500;
   padding: 8px 15px;
   font-size: 1.2em;
   text-align: center;
 }
 
-.paymentStatus tbody tr:nth-of-type(even) {
-  background-color: #ede9fe;
+.complaintStatus tbody tr:nth-of-type(even) {
+  background-color: #fef3c7;
+}
+
+/* User Notifications Table */
+.notification thead tr th {
+  background-color: #bef264;
+  padding: 12px 15px;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid white;
+}
+
+.notification tbody tr td {
+  font-weight: 500;
+  padding: 8px 15px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.notification tbody tr:nth-of-type(even) {
+  background-color: #ecfccb;
 }

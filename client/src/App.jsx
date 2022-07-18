@@ -90,7 +90,7 @@ const App = () => {
           element={<UserDashboardLayout />}
         ></Route>
         <Route
-          path="/user/profile"
+          path="/user/profile/:section"
           exact
           element={<UserProfileLayout />}
         ></Route>

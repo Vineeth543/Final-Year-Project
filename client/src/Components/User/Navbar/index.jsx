@@ -38,7 +38,7 @@ const UserNavbar = () => {
               />
             </div>
             <div className="dropdown-content">
-              <Link to="/user/profile">Dashboard</Link>
+              <Link to="/user/profile/account">Dashboard</Link>
               <Link to="/user/login" onClick={logout}>
                 Logout
               </Link>

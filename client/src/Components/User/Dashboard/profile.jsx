@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { FaMoneyCheck, FaDownload } from "react-icons/fa";
 import {
@@ -9,7 +10,9 @@ import {
 } from "react-icons/md";
 
 const UserProfile = () => {
-  const [tab, setTabs] = useState(0);
+  const [withdrawn, setWithdrawn] = useState();
+  let section = useLocation().pathname.split("/")[3];
+
   const tabs = [
     "Account",
     "Services",
@@ -146,6 +149,88 @@ const UserProfile = () => {
     phonepe: "https://cdn.worldvectorlogo.com/logos/phonepe-1.svg",
   };
 
+  const Complaints = [
+    {
+      ID: "Jq0qAOujJhPj7w",
+      subject: "Street Light",
+      issue: "Street Light is not working",
+      date: "22-05-2022",
+      status: "Pending",
+      remark: "NA",
+    },
+    {
+      ID: "Jq0qAOujJhPj7w",
+      subject: "Street Light",
+      issue: "Street Light is not working",
+      date: "22-05-2022",
+      status: "Pending",
+      remark: "NA",
+    },
+    {
+      ID: "Jq0qAOujJhPj7w",
+      subject: "Street Light",
+      issue: "Street Light is not working",
+      date: "22-05-2022",
+      status: "Pending",
+      remark: "NA",
+    },
+    {
+      ID: "Jq0qAOujJhPj7w",
+      subject: "Street Light",
+      issue: "Street Light is not working",
+      date: "22-05-2022",
+      status: "Pending",
+      remark: "NA",
+    },
+    {
+      ID: "Jq0qAOujJhPj7w",
+      subject: "Street Light",
+      issue: "Street Light is not working",
+      date: "22-05-2022",
+      status: "Pending",
+      remark: "NA",
+    },
+    {
+      ID: "Jq0qAOujJhPj7w",
+      subject: "Street Light",
+      issue: "Street Light is not working",
+      date: "22-05-2022",
+      status: "Pending",
+      remark: "NA",
+    },
+  ];
+
+  const Notifications = [
+    {
+      message: "Your application has been forwarded",
+      date: "22-05-2022",
+    },
+    {
+      message: "Your application has been forwarded",
+      date: "22-05-2022",
+    },
+    {
+      message: "Your application has been forwarded",
+      date: "22-05-2022",
+    },
+    {
+      message: "Your application has been forwarded",
+      date: "22-05-2022",
+    },
+    {
+      message: "Your application has been forwarded",
+      date: "22-05-2022",
+    },
+    {
+      message: "Your application has been forwarded",
+      date: "22-05-2022",
+    },
+  ];
+
+  const deleteNotification = (id) => {
+    alert("Notification deleted");
+  };
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [fatherName, setFatharName] = useState("");
@@ -159,24 +244,9 @@ const UserProfile = () => {
   const [pinCode, setPinCode] = useState("");
   const [photo, setPhoto] = useState("");
 
-  console.log(
-    firstName,
-    lastName,
-    fatherName,
-    motherName,
-    mobile,
-    email,
-    address,
-    village,
-    taluk,
-    district,
-    pinCode,
-    photo
-  );
-
   const AccountTab = () => {
     return (
-      <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] shadow-2xl bg-white py-20 px-12">
+      <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
         <h1 className="font-bold text-5xl">Account Settings</h1>
         <form className="flex flex-col mr-44 gap-10 font-semibold text-2xl">
           <div className="flex justify-between">
@@ -489,70 +559,98 @@ const UserProfile = () => {
   const ComplaintTab = () => {
     return (
       <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
-        <h1 className="font-bold text-5xl">Your Complaint</h1>
-        <table className="paymentStatus">
+        <h1 className="font-bold text-5xl">Your Complaints</h1>
+        <table className="complaintStatus">
           <thead>
             <tr>
               <th>Sl.No</th>
-              <th>Complaint Subject</th>
+              <th>Complaint ID</th>
+              <th>Subject</th>
               <th>Issue</th>
-              <th>Status</th>
-              <th>Transaction ID</th>
-              <th>Method</th>
               <th>Date</th>
-              <th>Receipt</th>
+              <th>Status</th>
+              <th>Remarks</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {Payments.map((payment, index) => (
+            {Complaints.map((complaint, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td className="flex items-center justify-center gap-2">
-                  <img
-                    src={
-                      payment.payment === "Water Bill"
-                        ? "https://www.freepnglogos.com/uploads/water-drop-png/water-drop-png-index-content-uploads-12.png"
-                        : "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png"
-                    }
-                    alt={payment.payment}
-                    className="h-8"
-                  />
-                  {payment.payment}
-                </td>
-                <td>{payment.amount}</td>
+                <td>{complaint.ID}</td>
+                <td>{complaint.subject}</td>
+                <td>{complaint.issue}</td>
+                <td>{complaint.date}</td>
+                <td>{complaint.status}</td>
+                <td>{complaint.remark}</td>
                 <td>
-                  <h3
+                  <button
                     className={
-                      payment.status === "Paid"
-                        ? "w-20 mx-auto rounded bg-green-500 text-white py-1"
-                        : payment.status === "Failed"
-                        ? "w-20 mx-auto rounded bg-red-500 text-white py-1"
-                        : "w-20 mx-auto rounded bg-yellow-500 text-white py-1"
+                      withdrawn === index
+                        ? "px-2 py-1 bg-red-700 rounded text-white"
+                        : "px-2 py-1 bg-red-500 rounded text-white"
                     }
+                    onClick={(e) => setWithdrawn(index)}
                   >
-                    {payment.status}
-                  </h3>
-                </td>
-                <td>{payment.ID}</td>
-                <td>
-                  <img
-                    src={paymentMethods[payment.method]}
-                    alt={payment.method}
-                    className="w-12 m-auto"
-                  />
-                </td>
-                <td>{payment.date}</td>
-                <td>
-                  {payment.status === "Paid" ? (
-                    <FaDownload className="text-2xl mx-auto cursor-pointer" />
-                  ) : (
-                    "NA"
-                  )}
+                    {withdrawn === index ? "Withdrawn" : "Withdraw"}
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+    );
+  };
+
+  const NotificationTab = () => {
+    return (
+      <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
+        <h1 className="font-bold text-5xl">Notifications</h1>
+        <table className="notification">
+          <thead>
+            <tr>
+              <th>Sl.No</th>
+              <th>Notification</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Notifications.map((notification, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{notification.message}</td>
+                <td>{notification.date}</td>
+                <td>
+                  <button
+                    className="px-2 py-1 bg-red-500 rounded text-white"
+                    onClick={(e) => deleteNotification(index)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <Link
+          to={"/user/profile/notifications-customize"}
+          className="flex w-fit text-2xl font-semibold p-3 bg-lime-400 rounded hover:bg-lime-600 focus:ring ring-lime-400 outline-none"
+        >
+          Customize
+        </Link>
+      </div>
+    );
+  };
+
+  const CustomizeTab = () => {
+    return (
+      <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
+        <h1 className="font-bold text-5xl">Notifications Preferences</h1>
+        <div className="flex justify-between">
+          <div className="flex flex-col justify-between gap-5"></div>
+        </div>
       </div>
     );
   };
@@ -574,27 +672,29 @@ const UserProfile = () => {
           </div>
           <div className="flex flex-col font-semibold text-xl text-center my-10">
             {tabs.map((item, index) => (
-              <h2
+              <Link
+                to={`/user/profile/${item.toLocaleLowerCase()}`}
+                key={index}
                 className={
-                  tab === index
+                  item.toLocaleLowerCase().includes(section.split("-")[0])
                     ? "flex items-center justify-start gap-5 bg-blue-600 text-white py-3 pl-12 border-y border-gray-200 cursor-pointer"
                     : "flex items-center justify-start gap-5 bg-white text-black py-3 pl-12 border-y border-gray-200 cursor-pointer"
                 }
-                key={index}
-                onClick={(e) => setTabs(index)}
               >
                 {icons[index]}
                 {item}
-              </h2>
+              </Link>
             ))}
           </div>
         </div>
         <div className="flex justify-center w-full py-20">
-          {tab === 0 ? AccountTab() : null}
-          {tab === 1 ? ServiceTab() : null}
-          {tab === 2 ? TenderTab() : null}
-          {tab === 3 ? PaymentTab() : null}
-          {tab === 4 ? ComplaintTab() : null}
+          {section === "" || section === "account" ? AccountTab() : null}
+          {section === "services" ? ServiceTab() : null}
+          {section === "tenders" ? TenderTab() : null}
+          {section === "payments" ? PaymentTab() : null}
+          {section === "complaints" ? ComplaintTab() : null}
+          {section === "notifications" ? NotificationTab() : null}
+          {section === "notifications-customize" ? CustomizeTab() : null}
         </div>
       </div>
     </>
