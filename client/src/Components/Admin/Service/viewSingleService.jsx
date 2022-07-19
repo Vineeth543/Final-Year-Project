@@ -13,12 +13,7 @@ const AdminViewSingleServices = () => {
     axios
       .get(`http://localhost:8080/user/services/${categoryID}/`)
       .then((res) => {
-        const Categories = res.data;
-        const subCategory = [];
-        Categories.forEach((element) => {
-          subCategory.push(element);
-        });
-        setCategories(subCategory);
+        setCategories(res.data);
       })
       .catch((err) => {
         alert(err);
@@ -29,12 +24,7 @@ const AdminViewSingleServices = () => {
     axios
       .get(`http://localhost:8080/admin/services/view/${serviceID}`)
       .then((res) => {
-        const Categories = res.data;
-        const subCategory = [];
-        Categories.forEach((element) => {
-          subCategory.push(element);
-        });
-        setServices(subCategory);
+        setServices(res.data);
       })
       .catch((err) => {
         alert(err);
@@ -58,11 +48,7 @@ const AdminViewSingleServices = () => {
   useEffect(() => {
     getCategory();
     getService();
-  }, []);
-
-  const initiateDelete = (id) => {
-    deleteService(id);
-  };
+  });
 
   return (
     <>
@@ -89,7 +75,7 @@ const AdminViewSingleServices = () => {
                 <td className="flex items-center justify-center gap-5">
                   <button
                     className="bg-red-500 px-2 rounded text-white"
-                    onClick={() => initiateDelete(items._id)}
+                    onClick={(e) => deleteService(items._id)}
                   >
                     DELETE
                   </button>

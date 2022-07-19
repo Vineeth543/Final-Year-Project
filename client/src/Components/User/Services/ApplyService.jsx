@@ -23,29 +23,31 @@ const SingleService = () => {
 
   useEffect(() => {
     getRequiredDocuments(serviceId);
-  }, []);
+  }, [serviceId]);
 
   const documentsList = [];
 
   const applyService = async (e) => {
     e.preventDefault();
-    window.confirm("Are you sure you want to apply for this service?");
-    const formData = new FormData();
-    documentsList.forEach((file) => {
-      formData.append("userDocument", file);
-    });
-    axios
-      .post(
-        `http://localhost:8080/user/services/apply/${serviceId}/${userId}`,
-        formData
-      )
-      .then((res) => {
-        alert(res.data);
-      })
-      .catch((err) => {
-        alert(err);
+    if (window.confirm("Are you sure you want to apply for this service?")) {
+      const formData = new FormData();
+      documentsList.forEach((file) => {
+        formData.append("userDocument", file);
       });
-    document.getElementById("apply-service-form").reset();
+      axios
+        .post(
+          `http://localhost:8080/user/services/apply/${serviceId}/${userId}`,
+          formData
+        )
+        .then((res) => {
+          alert(res.data);
+          document.getElementById("apply-service-form").reset();
+        })
+        .catch((err) => {
+          alert(err);
+          document.getElementById("apply-service-form").reset();
+        });
+    }
   };
 
   return (
@@ -80,7 +82,12 @@ const SingleService = () => {
 
           <button
             type="submit"
-            className="m-auto border border-gray-500 px-2 py-1 text-lg font-semibold bg-gray-200 rounded focus:ring ring-gray-300"
+            className={
+              userId === null
+                ? "m-auto border border-gray-500 px-2 py-1 text-lg font-semibold bg-gray-200 rounded cursor-not-allowed"
+                : "m-auto border border-gray-500 px-2 py-1 text-lg font-semibold bg-gray-200 rounded focus:ring ring-gray-300"
+            }
+            disabled={userId === null}
           >
             Submit
           </button>

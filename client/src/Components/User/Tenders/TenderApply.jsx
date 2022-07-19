@@ -49,7 +49,7 @@ const Complaints = () => {
 
   useEffect(() => {
     tenderDetails();
-  }, []);
+  });
 
   return (
     <>

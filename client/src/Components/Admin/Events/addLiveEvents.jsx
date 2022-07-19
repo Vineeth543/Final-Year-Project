@@ -5,8 +5,8 @@ const AddLiveEvents = () => {
   const [title, setTitle] = useState("");
   const [place, setPlace] = useState("");
   const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
+  const [description, setDescription] = useState("");
 
   const startLiveEvent = (e) => {
     e.preventDefault();

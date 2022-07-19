@@ -11,15 +11,10 @@ const AdminViewServices = () => {
     axios
       .get(`http://localhost:8080/user/services/${serviceID}/`)
       .then((res) => {
-        const Categories = res.data;
-        const subCategory = [];
-        Categories.forEach((element) => {
-          subCategory.push(element);
-        });
-        setCategories(subCategory);
+        setCategories(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   };
 

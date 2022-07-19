@@ -39,15 +39,16 @@ const Complaints = () => {
     formData.append("priority", priority);
     formData.append("complaintFile", image);
 
-    // axios
-    //   .post("http://localhost:8080/user/complaint/new", formData)
-    //   .then((res) => {
-    //     alert(res.data);
-    //     document.getElementById("complaint-form").reset();
-    //   })
-    //   .catch((err) => {
-    //     alert("Error in uploading complaint");
-    //   });
+    axios
+      .post("http://localhost:8080/user/complaint/new", formData)
+      .then((res) => {
+        alert(res.data);
+        document.getElementById("complaint-form").reset();
+      })
+      .catch((err) => {
+        alert("Error in uploading complaint");
+        document.getElementById("complaint-form").reset();
+      });
   };
 
   return (

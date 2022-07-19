@@ -39,7 +39,7 @@ const ViewSchemes = () => {
   useEffect(() => {
     getSchemeData();
     getShemeCategory();
-  }, []);
+  });
 
   const deleteScheme = (schemeId) => {
     if (window.confirm("Are you sure you want to delete this scheme?")) {

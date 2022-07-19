@@ -33,7 +33,7 @@ const SingleService = () => {
   useEffect(() => {
     gettenderDetails();
     getTendererDetails();
-  }, []);
+  });
 
   return (
     <>

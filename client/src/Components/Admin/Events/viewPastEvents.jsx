@@ -35,65 +35,6 @@ const ViewUpcomingEvents = () => {
     getPastEvents();
   }, []);
 
-  // const pastEvent = [
-  //   {
-  //     key: 1,
-  //     title: "Mann Ki Baat",
-  //     location: "Radio",
-  //     video: "https://www.youtube.com/embed/thUXYWp0VvU?controls=0",
-  //     date: "28 May, 2022",
-  //   },
-  //   {
-  //     key: 1,
-  //     title: "Social Forestry",
-  //     location: "Village Panchayat",
-  //     video: "https://www.youtube.com/embed/68jnF_MZW7g?controls=0",
-  //     date: "5th June 2022",
-  //   },
-  //   {
-  //     key: 1,
-  //     title: "Turning waste into wealth, training program",
-  //     location: "Government School",
-  //     video: "https://www.youtube.com/embed/kf7KBaviEE0?controls=0",
-  //     date: "10th June 2022",
-  //   },
-  //   {
-  //     key: 1,
-  //     title: "Mann Ki Baat",
-  //     location: "Radio",
-  //     video: "https://www.youtube.com/embed/thUXYWp0VvU?controls=0",
-  //     date: "28 May, 2022",
-  //   },
-  //   {
-  //     key: 1,
-  //     title: "Social Forestry",
-  //     location: "Village Panchayat",
-  //     video: "https://www.youtube.com/embed/68jnF_MZW7g?controls=0",
-  //     date: "5th June 2022",
-  //   },
-  //   {
-  //     key: 1,
-  //     title: "Turning waste into wealth, training program",
-  //     location: "Government School",
-  //     video: "https://www.youtube.com/embed/kf7KBaviEE0?controls=0",
-  //     date: "10th June 2022",
-  //   },
-  //   {
-  //     key: 1,
-  //     title: "Mann Ki Baat",
-  //     location: "Radio",
-  //     video: "https://www.youtube.com/embed/thUXYWp0VvU?controls=0",
-  //     date: "28 May, 2022",
-  //   },
-  //   {
-  //     key: 1,
-  //     title: "Social Forestry",
-  //     location: "Village Panchayat",
-  //     video: "https://www.youtube.com/embed/68jnF_MZW7g?controls=0",
-  //     date: "5th June 2022",
-  //   },
-  // ];
-
   return (
     <>
       <h1 className="font-bold text-4xl text-center text-white py-4 rounded bg-yellow-400 mx-12 text-black">

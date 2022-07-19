@@ -4,8 +4,8 @@ import axios from "axios";
 
 const ViewDocuments = () => {
   const [documents, setDocuments] = useState();
-  const [documentsTitle, setDocumentsTitle] = useState([]);
   const [seviceName, setServiceName] = useState([]);
+  const [documentsTitle, setDocumentsTitle] = useState([]);
   const appliedServiceId = useLocation().pathname.split("/")[4];
 
   const getRequiredDocuments = (serviceId) => {
@@ -36,7 +36,7 @@ const ViewDocuments = () => {
 
   useEffect(() => {
     getDocuments();
-  }, []);
+  });
 
   const poupImageContainer = document.getElementById("poupImageContainer");
   const [popupImage, setPopupImage] = useState("");

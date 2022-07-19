@@ -29,8 +29,7 @@ const addPastEvents = () => {
             />
           </form>
         </div>
-        <div className="flex flex-col shadow-xl bg-white">
-        </div>
+        <div className="flex flex-col shadow-xl bg-white"></div>
         <div className="flex flex-col shadow-xl bg-white">
           <form className="flex flex-col mt-5 mb-2 px-5 gap-4">
             <label htmlFor="eventTitle" className="text-xl font-medium pl-1">

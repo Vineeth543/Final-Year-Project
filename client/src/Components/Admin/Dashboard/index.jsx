@@ -11,33 +11,16 @@ const AdminDashboard = () => {
     axios
       .get(`http://localhost:8080/admin/dashboard/appliedServices`)
       .then((res) => {
-        const serviceData = res.data.doc;
-        const tempServiceData = [];
-        serviceData.forEach((element) => {
-          tempServiceData.push(element);
-        });
-        setUserAndDate(tempServiceData);
-
-        const userData = res.data.users;
-        const tempUserData = [];
-        userData.forEach((element) => {
-          tempUserData.push(element);
-        });
-        setUserName(tempUserData);
-
-        const serviceNameData = res.data.services;
-        const tempServiceNameData = [];
-        serviceNameData.forEach((element) => {
-          tempServiceNameData.push(element);
-        });
-        setServiceName(tempServiceNameData);
+        setUserAndDate(res.data.doc);
+        setUserName(res.data.users);
+        setServiceName(res.data.services);
       })
       .catch((err) => {
         alert(err);
       });
   };
 
-  const formatDate = (date) => {
+  const formatDateAndTime = (date) => {
     const d = date.split("T")[1];
     return date.replace(d, "").slice(0, -1) + " " + date.substring(11, 19);
   };
@@ -64,6 +47,7 @@ const AdminDashboard = () => {
           )
           .then((re) => {
             alert("Certificate sent successfully");
+            loadUserApplications();
           })
 
           .catch((err) => {
@@ -84,7 +68,6 @@ const AdminDashboard = () => {
       .then((res) => {
         alert(res.data);
         sendCertificate(userId, userName, userEmail, serviceName);
-        loadUserApplications();
       })
       .catch((err) => {
         alert(err.data);
@@ -133,13 +116,13 @@ const AdminDashboard = () => {
                     items.service === service._id ? (
                       <tr key={index}>
                         <td>{items.user.toUpperCase()}</td>
-                        <td>{user.name}</td>
+                        <td>{user.firstName + " " + user.lastName}</td>
                         <td>
                           {service.name.length > 85
                             ? service.name.substring(0, 85) + "..."
                             : service.name}
                         </td>
-                        <td>{formatDate(items.date)}</td>
+                        <td>{formatDateAndTime(items.date)}</td>
                         <td className="flex items-center justify-center gap-2">
                           <Link to={`/admin/dashboard/view-docs/${items._id}`}>
                             <button className="bg-pink-500 px-2 rounded text-white">
@@ -152,7 +135,7 @@ const AdminDashboard = () => {
                               setApprove(
                                 items.user,
                                 items._id,
-                                user.name,
+                                user.firstName + " " + user.lastName,
                                 user.email,
                                 service.name
                               )
