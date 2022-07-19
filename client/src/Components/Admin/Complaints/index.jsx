@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const AdminComplaints = () => {
   const [status] = useState([
@@ -11,35 +12,24 @@ const AdminComplaints = () => {
     "Rejected",
     "Spam",
   ]);
+  const [complaints, setComplaints] = useState([]);
 
   const page = useLocation();
 
-  const Complaints = [
-    {
-      userName: "John Doe",
-      subject: "Street Light",
-      issue: "Street Light is not working in my area",
-      solution: "Repair the street light",
-      priority: "High",
-      time: "1 day ago",
-    },
-    {
-      userName: "John Doe",
-      subject: "Street Light",
-      issue: "Street Light is not working in my area",
-      solution: "Repair the street light",
-      priority: "Average",
-      time: "1 day ago",
-    },
-    {
-      userName: "John Doe",
-      subject: "Street Light",
-      issue: "Street Light is not working in my area",
-      solution: "Repair the street light",
-      priority: "Critical",
-      time: "1 day ago",
-    },
-  ];
+  const getComplaintsData = (e) => {
+    axios
+      .get(`http://localhost:8080/official/complaints`)
+      .then((res) => {
+        setComplaints(res.data);
+      })
+      .catch((err) => {
+        alert("Error in fetching complaints");
+      });
+  };
+
+  useEffect(() => {
+    getComplaintsData();
+  }, []);
 
   return (
     <>
@@ -65,28 +55,28 @@ const AdminComplaints = () => {
         <thead>
           <tr>
             <th className="text-center">Raised By</th>
-            <th className="text-center">Subject</th>
+            <th className="text-center">Email</th>
+            <th className="text-center">Phone</th>
             <th className="text-center">Issue</th>
-            <th className="text-center">Solution</th>
             <th className="text-center">Priority</th>
             <th className="text-center">Status</th>
-            <th className="text-center">Time</th>
+            <th className="text-center">Date</th>
             <th className="text-center">Action</th>
           </tr>
         </thead>
         <tbody>
-          {Complaints.map((complaint, index) => (
+          {complaints.map((complaint, index) => (
             <tr className="text-semibold" key={index}>
-              <td className="text-center">{complaint.userName}</td>
-              <td className="text-center">{complaint.subject}</td>
-              <td className="text-center">{complaint.issue}</td>
-              <td className="text-center">{complaint.solution}</td>
+              <td className="text-center">{complaint.name}</td>
+              <td className="text-center">{complaint.email}</td>
+              <td className="text-center">{complaint.phone}</td>
+              <td className="text-center">{complaint.description}</td>
               <td className="text-center">
                 <span
                   className={
-                    complaint.priority === "Average"
+                    complaint.priority === "Normal"
                       ? "p-2 bg-green-500 rounded text-white"
-                      : complaint.priority === "High"
+                      : complaint.priority === "Average"
                       ? "p-2 bg-yellow-500 rounded text-white"
                       : "p-2 bg-red-500 rounded text-white"
                   }
@@ -95,7 +85,9 @@ const AdminComplaints = () => {
                 </span>
               </td>
               <td className="text-center">{complaint.status}</td>
-              <td className="text-center">{complaint.time}</td>
+              <td className="text-center">
+                {complaint.createdAt.split("T")[0]}
+              </td>
               <td className="text-center">
                 <button className="px-2 py-1 bg-orange-500 rounded">
                   Review

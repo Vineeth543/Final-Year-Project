@@ -164,7 +164,7 @@
 
 .serviceStatus tbody tr td {
   font-weight: 500;
-  padding: 12px 15px;
+  padding: 8px 15px;
   font-size: 1.2em;
   text-align: center;
 }
@@ -184,7 +184,7 @@
 }
 
 .tenderStatus tbody tr td {
-  padding: 12px 15px;
+  padding: 8px 15px;
   text-align: center;
   font-weight: 500;
   font-size: 1.2em;

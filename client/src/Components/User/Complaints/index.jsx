@@ -1,19 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Complaints = () => {
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
-  const [images, setImages] = useState("");
+  const [image, setImage] = useState("");
+
+  const getUsersData = () => {
+    const useId = localStorage.getItem("CCPS-userID");
+    axios
+      .get(`http://localhost:8080/user/details/${useId}`)
+      .then((result) => {
+        setName(result.data.firstName + " " + result.data.lastName);
+        setPhone(result.data.phone);
+        setEmail(result.data.email);
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    getUsersData();
+  }, []);
 
   const sendComplaint = (e) => {
     e.preventDefault();
-    console.log(name, email, mobile, subject, description, priority, images);
-    alert("Complaint sent.");
-    document.getElementById("complaint-form").reset();
+    console.log(name, phone, email, description, priority, image);
+    const formData = new FormData();
+    formData.append("userId", localStorage.getItem("CCPS-userID"));
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("email", email);
+    formData.append("description", description);
+    formData.append("priority", priority);
+    formData.append("complaintFile", image);
+
+    // axios
+    //   .post("http://localhost:8080/user/complaint/new", formData)
+    //   .then((res) => {
+    //     alert(res.data);
+    //     document.getElementById("complaint-form").reset();
+    //   })
+    //   .catch((err) => {
+    //     alert("Error in uploading complaint");
+    //   });
   };
 
   return (
@@ -25,53 +59,42 @@ const Complaints = () => {
         id="complaint-form"
       >
         <div className="flex items-center justify-between">
-          <label htmlFor="fullname">Fullname :</label>
+          <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
-            name="fullname"
-            id="fullname"
-            placeholder="Fullname"
-            className="text-lg border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded-sm pl-1"
+            name="fullName"
+            defaultValue={name}
+            id="fullName"
+            className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded pl-1"
             required
             onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="flex items-center justify-between">
-          <label htmlFor="email">Email :</label>
+          <label htmlFor="phone">Phone</label>
+          <input
+            type="nuber"
+            name="phone"
+            defaultValue={phone}
+            id="phone"
+            className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded pl-1"
+            required
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
+            defaultValue={email}
             id="email"
-            placeholder="Email"
-            className="text-lg border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded-sm pl-1"
+            className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded pl-1"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="flex items-center justify-between">
-          <label htmlFor="mobile">Mobile No :</label>
-          <input
-            type="number"
-            name="mobile"
-            id="mobile"
-            placeholder="Mobile No"
-            className="text-lg border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded-sm pl-1"
-            required
-            onChange={(e) => setMobile(e.target.value)}
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <label htmlFor="subject">Complaint Subject :</label>
-          <input
-            type="text"
-            name="subject"
-            id="subject"
-            placeholder="Complaint Subject"
-            className="text-lg border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded-sm pl-1"
-            required
-            onChange={(e) => setSubject(e.target.value)}
-          />
-        </div>
+
         <div className="flex flex-col gap-2">
           <label htmlFor="complaints" className="text-center">
             Write your issue here :
@@ -79,10 +102,10 @@ const Complaints = () => {
           <textarea
             id="complaints"
             name="complaints"
-            rows="5"
-            cols="49"
+            rows="9"
+            cols="50"
             placeholder="Describe your issue here"
-            className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded-sm pl-1"
+            className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded pl-1"
             required
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
@@ -92,12 +115,21 @@ const Complaints = () => {
           <input
             type="radio"
             name="priority"
-            value="critical"
-            id="critical"
+            value="normal"
+            id="normal"
             required
             onChange={(e) => setPriority(e.target.value)}
           />
-          Critical
+          Normal
+          <input
+            type="radio"
+            name="priority"
+            value="average"
+            id="average"
+            required
+            onChange={(e) => setPriority(e.target.value)}
+          />
+          Average
           <input
             type="radio"
             name="priority"
@@ -107,27 +139,26 @@ const Complaints = () => {
             onChange={(e) => setPriority(e.target.value)}
           />
           High
-          <input
-            type="radio"
-            name="priority"
-            value="low"
-            id="low"
-            required
-            onChange={(e) => setPriority(e.target.value)}
-          />
-          Average
         </div>
         <div>
-          <label htmlFor="complaintImages">Upload Photos </label>
+          <label htmlFor="complaintFile">Upload Photos </label>
           <input
             type="file"
-            name="complaintImages"
-            id="complaintImages"
+            name="complaintFile"
+            id="complaintFile"
             required
-            onChange={(e) => setImages(e.target.value)}
+            onChange={(e) => setImage(e.target.files[0])}
           />
         </div>
-        <button className="m-auto bg-blue-500 py-1 px-2 rounded hover:bg-blue-700 text-lg hover:text-white focus:ring ring-blue-400">
+        <button
+          className={
+            localStorage.getItem("CCPS-userID")
+              ? "m-auto bg-blue-500 py-1 px-2 rounded hover:bg-blue-700 text-lg hover:text-white focus:ring ring-blue-400"
+              : "m-auto bg-blue-500 py-1 px-2 rounded text-lg cursor-not-allowed"
+          }
+          type="submit"
+          disabled={localStorage.getItem("CCPS-userID") ? false : true}
+        >
           Submit
         </button>
       </form>

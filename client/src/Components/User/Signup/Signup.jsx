@@ -11,7 +11,8 @@ const Signup = () => {
 
   const nav = useNavigate();
 
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -21,7 +22,8 @@ const Signup = () => {
   const Signup = (e) => {
     e.preventDefault();
     if (
-      name === "" ||
+      firstName === "" ||
+      lastName === "" ||
       gender === "" ||
       email === "" ||
       phone === "" ||
@@ -36,7 +38,8 @@ const Signup = () => {
     }
 
     const newUser = {
-      name: name,
+      firstName: firstName,
+      lastName: lastName,
       gender: gender,
       email: email,
       phone: phone,
@@ -74,15 +77,27 @@ const Signup = () => {
             onSubmit={Signup}
           >
             <div className="flex items-center justify-start gap-6">
-              <label htmlFor="fullname">Fullname:</label>
+              <label htmlFor="firstName">First Name:</label>
               <input
                 type="text"
-                name="fullname"
-                id="name"
-                placeholder="Fullname"
+                name="firstName"
+                id="firstName"
+                placeholder="First Name"
                 className="text-black"
                 required
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className="flex items-center justify-start gap-6">
+              <label htmlFor="lastName">Last name:</label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                placeholder="Last name"
+                className="text-black"
+                required
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-start gap-8">

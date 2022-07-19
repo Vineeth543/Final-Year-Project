@@ -19,9 +19,14 @@ const tenderSchema = new schema(
       type: Date,
       required: true,
     },
+    status: {
+      type: String,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
   },
   { timestamps: true }
 );
 
-const tender = mongoose.model("tenders", tenderSchema);
+const tender = mongoose.model("tender", tenderSchema);
 module.exports = tender;

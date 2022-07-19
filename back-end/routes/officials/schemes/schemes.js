@@ -54,4 +54,16 @@ router.get("/official/schemes/category/:id", (req, res) => {
     });
 });
 
+//delete the schema
+router.get("/official/schemes/delete/:id", (req, res) => {
+  scheme
+    .deleteOne({ _id: req.params.id })
+    .then((doc) => {
+      res.send("Scheme deleted successfully");
+    })
+    .catch((err) => {
+      res.send("Error in deleting the scheme");
+    });
+});
+
 module.exports = router;

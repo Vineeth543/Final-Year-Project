@@ -33,8 +33,13 @@ const appliedTenderSchema = new schema(
       required: true,
     },
     bidAmount: {
-      type: String,
+      type: Number,
       required: true,
+    },
+    status: {
+      type: String,
+      enum: ["accepted", "rejected", "applied"],
+      default: "applied",
     },
   },
   { timestamps: true }

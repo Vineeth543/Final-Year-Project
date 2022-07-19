@@ -1,47 +1,40 @@
-const express = require('express');
-const complaint = require('../../models/complaint');
+const express = require("express");
 
-const path = require('path');
+const complaint = require("../../models/complaint");
+const { uploadFile } = require("../../middlewares/s3");
 
 var router = express.Router();
-var {uploadComplaint} = require('../../middlewares/upload');
-const { async } = require('jshint/src/prod-params');
+router.use(express.json());
 
-const fs = require("fs");
-//router.use(uploadComplaint.array()); 
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-// retrieve the comlaints from the database
-router.get("/user/complaints",(req,res)=>{
-    complaint.find()
-    .then(doc =>{
-        res.send(doc[1].name);
-    })
-    .catch(err=>{
-        res.send(err);
-    });
-});
-
-//upload the new complaints
-router.post("/user/complaints",uploadComplaint.array('avatar',5),(req,res)=>{
-   
+//uploading the new complaint
+router.post(
+  "/user/complaint/new",
+  upload.single("complaintFile"),
+  async (req, res) => {
+    const data = await uploadFile(req.file);
+    const fileLink = data.Location;
     const newComplaint = new complaint({
-        name:req.body.name,
-        email:req.body.email,
-        phone:req.body.phone,
-        description:req.body.desc,
-        file:{
-            // data : new Buffer(encode_img,'base64')
-            data : fs.readFileSync(path.join('./complaintFiles/'+req.files[0].filename))
-        }
+      user: req.body.userId,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      description: req.body.description,
+      priority: req.body.priority,
+      image: fileLink,
     });
-    newComplaint.save()
-    .then(doc=>{
-        res.send(doc);
-    })
-    .catch(err =>{
-        res.send(err);
-    });
-});
-
+    newComplaint
+      .save()
+      .then((result) => {
+        res.send("Complaint raised successfully.");
+      })
+      .catch((err) => {
+        res.send("Complaint creation failed.");
+      });
+  }
+);
 
 module.exports = router;

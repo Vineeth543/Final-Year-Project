@@ -76,20 +76,24 @@ const Tenders = () => {
                   {link}
                 </div>
               ))}
-              <div className="flex">
-                <Link
-                  to={`/user/tenders/view/${tender._id}`}
-                  className="w-fit m-auto px-2 py-1 bg-green-500 rounded font-semibold text-lg text-white hover:bg-green-600 focus:ring ring-green-300"
-                >
-                  View
-                </Link>
-                <Link
-                  to={`/user/tenders/apply/${tender._id}`}
-                  className="w-fit m-auto px-2 py-1 bg-red-500 rounded font-semibold text-lg text-white hover:bg-red-600 focus:ring ring-red-300"
-                >
-                  Apply
-                </Link>
-              </div>
+              {tender.status === "active" ? (
+                <div className="flex">
+                  <Link
+                    to={`/user/tenders/view/${tender._id}`}
+                    className="w-fit m-auto px-2 py-1 bg-green-500 rounded font-semibold text-lg text-white hover:bg-green-600 focus:ring ring-green-300"
+                  >
+                    View
+                  </Link>
+                  <Link
+                    to={`/user/tenders/apply/${tender._id}`}
+                    className="w-fit m-auto px-2 py-1 bg-red-500 rounded font-semibold text-lg text-white hover:bg-red-600 focus:ring ring-red-300"
+                  >
+                    Apply
+                  </Link>
+                </div>
+              ) : (
+                <h2 className="text-center text-red-500 font-bold text-3xl">This tender is inactive.</h2>
+              )}
             </div>
           </div>
         ))

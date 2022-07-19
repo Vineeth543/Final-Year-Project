@@ -81,4 +81,16 @@ router.post("/user/signup", (req, res) => {
     });
 });
 
+// retrieve the user from the database
+router.get("/user/details/:id", (req, res) => {
+  user
+    .findOne({ _id: req.params.id })
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 module.exports = router;

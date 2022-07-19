@@ -1,27 +1,51 @@
-const mongoose  = require('mongoose');
-const schema  = mongoose.Schema;
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
 
-const complaintSchema = new schema({
-    name:{
-        type :String,
-        required:true
+const complaintSchema = new schema(
+  {
+    user: {
+      type: schema.Types.ObjectId,
+      ref: "users",
     },
-    email:{
-        type:String,
-        required:true
+    name: {
+      type: String,
+      required: true,
     },
-    phone:{
-        type : Number,
-        required : true
+    email: {
+      type: String,
+      required: true,
     },
-    description:{
-        type : String,
-        required : true,
+    phone: {
+      type: Number,
+      required: true,
     },
-    file :{
-        data: Buffer
-    }
-},{timestamps : true});
+    description: {
+      type: String,
+      required: true,
+    },
+    priority: {
+      type: String,
+      enum: ["normal", "average", "high"],
+      default: "normal",
+    },
+    remarks: {
+      type: String,
+      default: "",
+    },
+    file: {
+      data: Buffer,
+    },
+    image: {
+      type: String,
+    },
+    status: {
+      type: String,
+      enum: ["new", "pending", "completed", "rejected"],
+      default: "new",
+    },
+  },
+  { timestamps: true }
+);
 
-const complaint = mongoose.model('complaints',complaintSchema);
+const complaint = mongoose.model("complaints", complaintSchema);
 module.exports = complaint;

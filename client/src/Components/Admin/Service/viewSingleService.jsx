@@ -3,8 +3,6 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const AdminViewSingleServices = () => {
-  const [active, setActive] = useState(true);
-
   const [categories, setCategories] = useState([]);
   const [services, setServices] = useState([]);
   const page = useLocation();
@@ -89,14 +87,6 @@ const AdminViewSingleServices = () => {
                 <td className="text-center">{index + 1}</td>
                 <td className="text-center">{items.name}</td>
                 <td className="flex items-center justify-center gap-5">
-                  <button
-                    className={`bg-green-500 px-2 rounded text-white ${
-                      !active && "bg-gray-500"
-                    } `}
-                    onClick={() => setActive(!active)}
-                  >
-                    {`${active ? "ACTIVE" : "DEACTIVE"} `}
-                  </button>
                   <button
                     className="bg-red-500 px-2 rounded text-white"
                     onClick={() => initiateDelete(items._id)}

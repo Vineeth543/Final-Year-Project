@@ -29,7 +29,7 @@ router.post("/user/tenders/apply", (req, res) => {
 //getting users list who applied for particular tender
 router.get("/user/tenders/apply/view/:id", (req, res) => {
   appliedTender
-    .find({ tender: req.params.id })
+    .find({ tender: req.params.id, status: "applied" })
     .sort("bidAmount")
     .then((doc) => {
       res.send(doc);

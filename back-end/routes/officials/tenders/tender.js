@@ -66,4 +66,28 @@ router.get("/official/tenders/delete/:id", (req, res) => {
     });
 });
 
+//setting the status of applied tender
+router.post("/user/tenders/approve", (req, res) => {
+  appliedTender
+    .find({ tender: req.body.tenderId, status: "applied" })
+    .then((doc) => {
+      doc.forEach(async (element, index) => {
+        if (element._id != req.body.appliedTenderId) {
+          doc[index].status = "rejected";
+        } else {
+          doc[index].status = "accepted";
+        }
+        await doc[index].save();
+      });
+      tender.findOne({ _id: req.body.tenderId }).then((doc) => {
+        doc.status = "inactive";
+        doc.save();
+      });
+      res.send("Status updated successfully");
+    })
+    .catch((err) => {
+      res.send("Failed to update the status");
+    });
+});
+
 module.exports = router;

@@ -41,9 +41,19 @@ const ViewSchemes = () => {
     getShemeCategory();
   }, []);
 
-  const deleteScheme = (e) => {
-    e.preventDefault();
-    alert("Scheme Deleted.");
+  const deleteScheme = (schemeId) => {
+    if (window.confirm("Are you sure you want to delete this scheme?")) {
+      axios
+        .get(`http://localhost:8080/official/schemes/delete/${schemeId}`)
+        .then((res) => {
+          alert(res.data);
+          getSchemeData();
+          getShemeCategory();
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
   };
 
   return (
@@ -93,10 +103,10 @@ const ViewSchemes = () => {
                     </span>
                   ))}
                 </td>
-                <td>
+                <td className="text-center">
                   <button
                     className="bg-red-500 px-2 rounded text-white"
-                    onClick={(e) => deleteScheme(e)}
+                    onClick={() => deleteScheme(items._id)}
                   >
                     DELETE
                   </button>
