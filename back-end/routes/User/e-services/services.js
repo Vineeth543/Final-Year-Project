@@ -1,8 +1,7 @@
 const express = require("express");
-const user = require("../../../models/home/user");
-const service = require("../../../models/service");
 const serviceCategory = require("../../../models/e-Services/serviceCategory");
 const services = require("../../../models/e-Services/services");
+const appliedService = require("../../../models/appliedService");
 var router = express.Router();
 
 router.use(express.json());
@@ -41,6 +40,20 @@ router.get("/user/services/view/apply/:serviceId", (req, res) => {
     .catch((doc) => {
       res.send("Nil");
     });
+});
+
+//user getting the applied service details
+router.get("/user/dashboard/services/:id", (req, res) => {
+  appliedService.find({ user: req.params.id }).then(async (doc) => {
+    const serviceList = [];
+    for (let i = 0; i < doc.length; i++) {
+      let element = doc[i];
+      await services.findOne({ _id: element.service }).then((result) => {
+        serviceList.push({ data: element, service: result });
+      });
+    }
+    res.send(serviceList);
+  });
 });
 
 module.exports = router;

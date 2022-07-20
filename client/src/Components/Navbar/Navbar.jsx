@@ -6,11 +6,11 @@ const Navbar = () => {
     <>
       <div className="flex items-center justify-evenly bg-white shadow-lg py-2">
         <Link className="font-semibold text-lg" to="/user">
-          <div className="w-20 h-20">
+          <div className="w-32 h-18">
             <img
-              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
+              src="https://citizen-centric-panchayat-system.s3.ap-south-1.amazonaws.com/logo.png"
               alt="logo"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cove"
             />
           </div>
         </Link>

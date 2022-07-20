@@ -57,11 +57,14 @@ const Sidebar = () => {
           onClick={() => setOpen(!open)}
         />
         <div className="flex bg-white gap-x-4 items-center pl-4 bg-blue-700">
-          <Link to="/" className="flex items-center gap-4 w-10 h-10">
+          <Link
+            to="/"
+            className="flex items-center gap-4 w-18 h-10 overflow-hidden"
+          >
             <img
-              src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/logo512.png"
+              src="https://citizen-centric-panchayat-system.s3.ap-south-1.amazonaws.com/logo.png"
               alt="logo"
-              className={`w-full h-full cursor-pointer duration-500 ${
+              className={`w-full h-full cursor-pointer duration-500 object-cover ${
                 open && "rotate-[360deg]"
               }`}
             />

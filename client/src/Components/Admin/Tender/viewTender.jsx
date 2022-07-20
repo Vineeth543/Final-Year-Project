@@ -73,7 +73,7 @@ const AdminViewTender = () => {
   useEffect(() => {
     getTenderDetails();
     getTendererDetails();
-  });
+  }, []);
 
   return (
     <>

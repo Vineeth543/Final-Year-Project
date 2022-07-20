@@ -18,7 +18,6 @@ import TenderApplyLayout from "./Layout/TenderApply.Layout";
 import ViewTenderLayout from "./Layout/TenderView.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
-import UserDashboardLayout from "./Layout/UserDashboard.Layout";
 import UserProfileLayout from "./Layout/UserProfile.Layout";
 
 // ***************** Officials Login *************************  //
@@ -85,11 +84,6 @@ const App = () => {
         <Route path="/user/login" exact element={<LoginLayout />}></Route>
         <Route path="/user/signup" exact element={<SignupLayout />}></Route>
         <Route
-          path="/user/dashboard"
-          exact
-          element={<UserDashboardLayout />}
-        ></Route>
-        <Route
           path="/user/profile/:section"
           exact
           element={<UserProfileLayout />}
@@ -129,6 +123,11 @@ const App = () => {
           element={<ViewTenderLayout />}
         ></Route>
         <Route path="/user/payments" exact element={<PaymentsLayout />}></Route>
+        <Route
+          path="/user/payments/:for"
+          exact
+          element={<PaymentsLayout />}
+        ></Route>
         <Route
           path="/user/complaints"
           exact

@@ -37,4 +37,28 @@ router.post(
   }
 );
 
+// retrieve the comlaints from the database
+router.get("/user/dashboard/complaints/:id", (req, res) => {
+  complaint
+    .find({ user: req.params.id })
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+// Delete the complaint
+router.get("/user/dashboard/complaints/delete/:id", (req, res) => {
+  complaint
+    .deleteOne({ _id: req.params.id })
+    .then((doc) => {
+      res.send("Complaint deleted successfully.");
+    })
+    .catch((err) => {
+      res.send("Complaint deletion failed.");
+    });
+});
+
 module.exports = router;

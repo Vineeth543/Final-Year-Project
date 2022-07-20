@@ -90,4 +90,18 @@ router.post("/user/tenders/approve", (req, res) => {
     });
 });
 
+//user getting the applied tender details
+router.get("/user/dashboard/tenders/:id", (req, res) => {
+  appliedTender.find({ user: req.params.id }).then(async (doc) => {
+    const tenderList = [];
+    for (let i = 0; i < doc.length; i++) {
+      let element = doc[i];
+      await tender.findOne({ _id: element.tender }).then((result) => {
+        tenderList.push({ data: element, tender: result });
+      });
+    }
+    res.send(tenderList);
+  });
+});
+
 module.exports = router;

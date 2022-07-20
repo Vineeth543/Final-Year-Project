@@ -33,6 +33,14 @@ const userDetailsSchema = new schema(
       type: String,
       required: true,
     },
+    pinCode: {
+      type: Number,
+      required: true,
+    },
+    profilePic: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

@@ -26,6 +26,7 @@ const ViewDocuments = () => {
         `http://localhost:8080/admin/dashboard/appliedServices/documents/${appliedServiceId}`
       )
       .then((res) => {
+        console.log(res.data);
         getRequiredDocuments(res.data.service);
         setDocuments(res.data.userDocuments);
       })
@@ -36,7 +37,7 @@ const ViewDocuments = () => {
 
   useEffect(() => {
     getDocuments();
-  });
+  }, []);
 
   const poupImageContainer = document.getElementById("poupImageContainer");
   const [popupImage, setPopupImage] = useState("");

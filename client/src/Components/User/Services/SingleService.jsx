@@ -34,7 +34,7 @@ const SingleService = () => {
 
   useEffect(() => {
     getSubCategories();
-  });
+  }, []);
 
   const mainServiceCategory = [
     {

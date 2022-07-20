@@ -14,6 +14,28 @@ const Complaints = () => {
   const [tendererAddress, setTendererAddress] = useState("");
   const [tendererBidAmount, setTendererBidAmount] = useState("");
 
+  const getUsersData = () => {
+    const userId = localStorage.getItem("CCPS-userID");
+    axios
+      .get(`http://localhost:8080/user/details/${userId}`)
+      .then((result) => {
+        if (result.data.firstName) {
+          setTendererPersonName(
+            result.data.firstName + " " + result.data.lastName
+          );
+          setTendererMobile(result.data.phone);
+          setTendererEmail(result.data.email);
+        }
+      })
+      .catch((err) => {
+        alert(err.data);
+      });
+  };
+
+  useEffect(() => {
+    getUsersData();
+  }, []);
+
   const tenderDetails = () => {
     axios
       .get(`http://localhost:8080/official/tenders/view/${tenderId}`)
@@ -27,8 +49,10 @@ const Complaints = () => {
 
   const applyForTender = (e) => {
     e.preventDefault();
+    const userId = localStorage.getItem("CCPS-userID");
     axios
       .post("http://localhost:8080/user/tenders/apply", {
+        user: userId,
         tender: tenderId,
         tendererName: tendererName,
         contactPerson: tendererPersonName,
@@ -49,7 +73,7 @@ const Complaints = () => {
 
   useEffect(() => {
     tenderDetails();
-  });
+  }, []);
 
   return (
     <>
@@ -59,17 +83,17 @@ const Complaints = () => {
       <h1 className="font-bold text-4xl text-center">{tenderTitle}</h1>
       <form
         id="tender-apply-form"
-        className="flex flex-col m-auto gap-10 font-semibold text-xl"
+        className="flex flex-col m-auto gap-10 font-semibold text-2xl"
         onSubmit={(e) => applyForTender(e)}
       >
-        <div className="flex justify-between gap-2">
-          <label htmlFor="tendererName">Tenderer Name :</label>
+        <div className="flex justify-between gap-20">
+          <label htmlFor="tendererName">Company Name :</label>
           <input
             type="text"
             name="tendererName"
             id="tendererName"
             placeholder="Tenderer Name"
-            className="text-lg pl-1 border-2 shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
+            className="text-lg pl-1 border shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
             required
             onChange={(e) => {
               setTendererName(e.target.value);
@@ -83,7 +107,8 @@ const Complaints = () => {
             name="fullname"
             id="fullname"
             placeholder="Fullname"
-            className="text-lg pl-1 border-2 shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
+            defaultValue={tendererPersonName}
+            className="text-lg pl-1 border shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
             required
             onChange={(e) => {
               setTendererPersonName(e.target.value);
@@ -97,7 +122,8 @@ const Complaints = () => {
             name="mobile"
             id="mobile"
             placeholder="Mobile No"
-            className="text-lg pl-1 border-2 shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
+            defaultValue={tendererMobile}
+            className="text-lg pl-1 border shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
             required
             onChange={(e) => {
               setTendererMobile(e.target.value);
@@ -111,7 +137,8 @@ const Complaints = () => {
             name="email"
             id="email"
             placeholder="Email"
-            className="text-lg pl-1 border-2 shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
+            defaultValue={tendererEmail}
+            className="text-lg pl-1 border shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
             required
             onChange={(e) => {
               setTendererEmail(e.target.value);
@@ -125,7 +152,7 @@ const Complaints = () => {
             name="fax"
             id="fax"
             placeholder="Fax No"
-            className="text-lg pl-1 border-2 shadow-lg rounded border-slate-300 focus:border-orange-200  focus:outline-none"
+            className="text-lg pl-1 border shadow-lg rounded border-slate-300 focus:border-orange-200  focus:outline-none"
             required
             onChange={(e) => {
               setTendererFax(e.target.value);
@@ -139,7 +166,7 @@ const Complaints = () => {
             name="address"
             id="address"
             placeholder="Address"
-            className="text-lg pl-1 border-2 shadow-lg rounded border-slate-300 focus:border-orange-200  focus:outline-none"
+            className="text-lg pl-1 border shadow-lg rounded border-slate-300 focus:border-orange-200  focus:outline-none"
             required
             onChange={(e) => {
               setTendererAddress(e.target.value);
@@ -153,14 +180,22 @@ const Complaints = () => {
             name="bidAmount"
             id="bidAmount"
             placeholder="Bid Amount"
-            className="text-lg pl-1 border-2 shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
+            className="text-lg pl-1 border shadow-lg rounded border-slate-300 focus:border-orange-200 focus:outline-none"
             required
             onChange={(e) => {
               setTendererBidAmount(e.target.value);
             }}
           />
         </div>
-        <button className="m-auto text-lg bg-blue-500 py-1 px-2 rounded-md hover:bg-blue-700 hover:text-white focus:ring ring-blue-400">
+        <button
+          className={
+            localStorage.getItem("CCPS-userID")
+              ? "m-auto text-lg bg-blue-500 py-1 px-2 rounded-md hover:bg-blue-700 hover:text-white focus:ring ring-blue-400"
+              : "m-auto text-lg bg-blue-500 py-1 px-2 rounded-md cursor-not-allowed"
+          }
+          type="submit"
+          disabled={localStorage.getItem("CCPS-userID") ? false : true}
+        >
           Submit
         </button>
       </form>

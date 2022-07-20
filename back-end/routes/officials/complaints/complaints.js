@@ -14,4 +14,24 @@ router.get("/official/complaints", (req, res) => {
     });
 });
 
+// Sending responses to the user
+router.post("/official/complaints/response", (req, res) => {
+  complaint
+    .findOne({ _id: req.body.id })
+    .then((doc) => {
+      doc.remarks = req.body.response;
+      doc
+        .save()
+        .then((result) => {
+          res.send("Response sent successfully.");
+        })
+        .catch((err) => {
+          res.send("Response sending failed.");
+        });
+    })
+    .catch((err) => {
+      res.send("Response sending failed.");
+    });
+});
+
 module.exports = router;

@@ -7,6 +7,7 @@ router.use(express.json());
 //applying for tender
 router.post("/user/tenders/apply", (req, res) => {
   const newAppliedTender = new appliedTender({
+    user: req.body.user,
     tender: req.body.tender,
     tendererName: req.body.tendererName,
     contactPerson: req.body.contactPerson,
@@ -21,7 +22,7 @@ router.post("/user/tenders/apply", (req, res) => {
     .then((doc) => {
       res.send("Applied successfully");
     })
-    .catch((res) => {
+    .catch((err) => {
       res.send("Not able to apply");
     });
 });

@@ -14,9 +14,11 @@ const Complaints = () => {
     axios
       .get(`http://localhost:8080/user/details/${useId}`)
       .then((result) => {
-        setName(result.data.firstName + " " + result.data.lastName);
-        setPhone(result.data.phone);
-        setEmail(result.data.email);
+        if (result.data.firstName) {
+          setName(result.data.firstName + " " + result.data.lastName);
+          setPhone(result.data.phone);
+          setEmail(result.data.email);
+        }
       })
       .catch((err) => {
         alert(err.data);
@@ -29,7 +31,6 @@ const Complaints = () => {
 
   const sendComplaint = (e) => {
     e.preventDefault();
-    console.log(name, phone, email, description, priority, image);
     const formData = new FormData();
     formData.append("userId", localStorage.getItem("CCPS-userID"));
     formData.append("name", name);
@@ -66,6 +67,7 @@ const Complaints = () => {
             name="fullName"
             defaultValue={name}
             id="fullName"
+            placeholder="Full Name"
             className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded pl-1"
             required
             onChange={(e) => setName(e.target.value)}
@@ -78,6 +80,7 @@ const Complaints = () => {
             name="phone"
             defaultValue={phone}
             id="phone"
+            placeholder="Phone Number"
             className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded pl-1"
             required
             onChange={(e) => setPhone(e.target.value)}
@@ -90,12 +93,12 @@ const Complaints = () => {
             name="email"
             defaultValue={email}
             id="email"
+            placeholder="Email"
             className="border shadow-sm border-slate-400 focus:border-orange-200 outline-none rounded pl-1"
             required
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
         <div className="flex flex-col gap-2">
           <label htmlFor="complaints" className="text-center">
             Write your issue here :
@@ -116,8 +119,8 @@ const Complaints = () => {
           <input
             type="radio"
             name="priority"
-            value="normal"
-            id="normal"
+            value="Normal"
+            id="Normal"
             required
             onChange={(e) => setPriority(e.target.value)}
           />
@@ -125,8 +128,8 @@ const Complaints = () => {
           <input
             type="radio"
             name="priority"
-            value="average"
-            id="average"
+            value="Average"
+            id="Average"
             required
             onChange={(e) => setPriority(e.target.value)}
           />
@@ -134,8 +137,8 @@ const Complaints = () => {
           <input
             type="radio"
             name="priority"
-            value="high"
-            id="high"
+            value="High"
+            id="High"
             required
             onChange={(e) => setPriority(e.target.value)}
           />

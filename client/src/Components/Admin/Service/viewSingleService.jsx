@@ -48,7 +48,7 @@ const AdminViewSingleServices = () => {
   useEffect(() => {
     getCategory();
     getService();
-  });
+  }, []);
 
   return (
     <>

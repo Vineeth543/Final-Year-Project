@@ -3,6 +3,11 @@ const schema = mongoose.Schema;
 
 const appliedTenderSchema = new schema(
   {
+    user: {
+      type: schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
     tender: {
       type: schema.Types.ObjectId,
       ref: "tenders",

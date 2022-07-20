@@ -41,7 +41,7 @@ const SingleScheme = () => {
   useEffect(() => {
     getShemeCategory();
     getSchemeData();
-  });
+  }, []);
 
   return (
     <>

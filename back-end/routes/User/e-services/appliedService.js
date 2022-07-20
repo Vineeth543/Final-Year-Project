@@ -1,16 +1,16 @@
 const express = require("express");
-const appliedService = require("../../../models/e-Services/appliedService");
+const appliedService = require("../../../models/appliedService");
+const services = require("../../../models/e-Services/services");
 
 var router = express.Router();
 
 router.use(express.json());
 
-
 router.post("/user/services/:id", (req, res) => {
-    const appliedServiceData = new appliedService({
-        user: req.body.user,
-        service: req.body.service,
-    });
+  const appliedServiceData = new appliedService({
+    user: req.body.user,
+    service: req.body.service,
+  });
   appliedService
     .find({ eService: req.params.id })
     .then((doc) => {
@@ -20,6 +20,5 @@ router.post("/user/services/:id", (req, res) => {
       res.send("Nil");
     });
 });
-
 
 module.exports = router;

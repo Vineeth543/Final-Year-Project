@@ -12,8 +12,9 @@ import {
 import axios from "axios";
 
 const UserProfile = () => {
-  const [withdrawn, setWithdrawn] = useState();
-  let section = useLocation().pathname.split("/")[3];
+  const [checked, setChecked] = useState(false);
+  const section = useLocation().pathname.split("/")[3];
+  const userId = localStorage.getItem("CCPS-userID");
 
   const tabs = [
     "Account",
@@ -33,114 +34,6 @@ const UserProfile = () => {
     <MdNotifications className="text-4xl" />,
   ];
 
-  const Services = [
-    {
-      title: "Scholarship for Engg. Students",
-      appNo: "62B930FE59BB96840BAF5248",
-      date: "22-05-2022",
-      status: "Applied",
-      remarks: "NA",
-      documents: "NA",
-    },
-    {
-      title: "Scholarship for Engg. Students",
-      appNo: "62B930FE59BB96840BAF5248",
-      date: "22-05-2022",
-      status: "Delivered",
-      remarks: "NA",
-      documents: "NA",
-    },
-    {
-      title: "Scholarship for Engg. Students",
-      appNo: "62B930FE59BB96840BAF5248",
-      date: "22-05-2022",
-      status: "Forwarderd",
-      remarks: "NA",
-      documents: "NA",
-    },
-    {
-      title: "Scholarship for Engg. Students",
-      appNo: "62B930FE59BB96840BAF5248",
-      date: "22-05-2022",
-      status: "Forwarderd",
-      remarks: "NA",
-      documents: "NA",
-    },
-    {
-      title: "Scholarship for Engg. Students",
-      appNo: "62B930FE59BB96840BAF5248",
-      date: "22-05-2022",
-      status: "Delivered",
-      remarks: "NA",
-      documents: "NA",
-    },
-    {
-      title: "Scholarship for Engg. Students",
-      appNo: "62B930FE59BB96840BAF5248",
-      date: "22-05-2022",
-      status: "Delivered",
-      remarks: "NA",
-      documents: "NA",
-    },
-  ];
-
-  const Tenders = [
-    {
-      title: "Tender for Supply of Materials",
-      refNo: "YTEWF3432234GUYRG32",
-      date: "31-12-2022",
-      status: "Applied",
-      bidAmount: "Rs. 1,00,000",
-      remark: "NA",
-      document: "NA",
-    },
-    {
-      title: "Tender for Supply of Materials",
-      refNo: "YTEWF3432234GUYRG32",
-      date: "31-12-2022",
-      status: "Accepted",
-      bidAmount: "Rs. 1,00,000",
-      remark: "NA",
-      document: "NA",
-    },
-    {
-      title: "Tender for Supply of Materials",
-      refNo: "YTEWF3432234GUYRG32",
-      date: "31-12-2022",
-      status: "Accepted",
-      bidAmount: "Rs. 1,00,000",
-      remark: "NA",
-      document: "NA",
-    },
-    {
-      title: "Tender for Supply of Materials",
-      refNo: "YTEWF3432234GUYRG32",
-      date: "31-12-2022",
-      status: "Rejected",
-      bidAmount: "Rs. 1,00,000",
-      remark: "NA",
-      document: "NA",
-    },
-    {
-      title: "Tender for Supply of Materials",
-      refNo: "YTEWF3432234GUYRG32",
-      date: "31-12-2022",
-      status: "Applied",
-      bidAmount: "Rs. 1,00,000",
-      remark: "NA",
-      document: "NA",
-    },
-    {
-      title: "Tender for Supply of Materials",
-      refNo: "YTEWF3432234GUYRG32",
-      date: "31-12-2022",
-      status: "Rejected",
-      bidAmount: "Rs. 1,00,000",
-      remark: "NA",
-      document: "NA",
-    },
-  ];
-
   const Payments = [
     {
       payment: "Water Bill",
@@ -149,7 +42,8 @@ const UserProfile = () => {
       ID: "Jq0qAOujJhPj7w",
       method: "UPI",
       date: "22-05-2022",
-      receipt: "NA",
+      receipt:
+        "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
     },
     {
       payment: "House Tax",
@@ -167,7 +61,8 @@ const UserProfile = () => {
       ID: "Jq0qAOujJhPj7w",
       method: "UPI",
       date: "22-05-2022",
-      receipt: "NA",
+      receipt:
+        "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
     },
     {
       payment: "House Tax",
@@ -194,7 +89,8 @@ const UserProfile = () => {
       ID: "Jq0qAOujJhPj7w",
       method: "UPI",
       date: "22-05-2022",
-      receipt: "NA",
+      receipt:
+        "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
     },
   ];
 
@@ -207,57 +103,6 @@ const UserProfile = () => {
     gpay: "https://upload.wikimedia.org/wikipedia/commons/1/13/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg",
     phonepe: "https://cdn.worldvectorlogo.com/logos/phonepe-1.svg",
   };
-
-  const Complaints = [
-    {
-      ID: "Jq0qAOujJhPj7w",
-      priority: "Average",
-      issue: "Street Light is not working",
-      date: "22-05-2022",
-      status: "Pending",
-      remark: "NA",
-    },
-    {
-      ID: "Jq0qAOujJhPj7w",
-      priority: "High",
-      issue: "Street Light is not working",
-      date: "22-05-2022",
-      status: "Pending",
-      remark: "NA",
-    },
-    {
-      ID: "Jq0qAOujJhPj7w",
-      priority: "High",
-      issue: "Street Light is not working",
-      date: "22-05-2022",
-      status: "Pending",
-      remark: "NA",
-    },
-    {
-      ID: "Jq0qAOujJhPj7w",
-      priority: "Normal",
-      issue: "Street Light is not working",
-      date: "22-05-2022",
-      status: "Pending",
-      remark: "NA",
-    },
-    {
-      ID: "Jq0qAOujJhPj7w",
-      priority: "Average",
-      issue: "Street Light is not working",
-      date: "22-05-2022",
-      status: "Pending",
-      remark: "NA",
-    },
-    {
-      ID: "Jq0qAOujJhPj7w",
-      priority: "Normal",
-      issue: "Street Light is not working",
-      date: "22-05-2022",
-      status: "Pending",
-      remark: "NA",
-    },
-  ];
 
   const Notifications = [
     {
@@ -290,13 +135,6 @@ const UserProfile = () => {
     alert("Notification marked as read.");
   };
 
-  const [checked, setChecked] = useState(false);
-  const handleChange = (nextChecked) => {
-    setChecked(nextChecked);
-    // uncheckedIcon={false}
-    // checkedIcon={false}
-  };
-
   const customizeNotification = () => {
     alert("Notification preference updated.");
   };
@@ -313,31 +151,139 @@ const UserProfile = () => {
   const [district, setDistrict] = useState("");
   const [pinCode, setPinCode] = useState("");
   const [photo, setPhoto] = useState("");
+  const [currentPhoto, setCurrentPhoto] = useState("");
+
+  const [services, setServices] = useState([]);
+  const [tenders, setTenders] = useState([]);
+  const [complaints, setComplaints] = useState([]);
 
   const getUsersData = () => {
-    const useId = localStorage.getItem("CCPS-userID");
-    axios
-      .get(`http://localhost:8080/user/details/${useId}`)
-      .then((result) => {
-        setFirstName(result.data.firstName);
-        setLastName(result.data.lastName);
-        setMobile(result.data.phone);
-        setEmail(result.data.email);
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/user/details/${userId}`)
+        .then((result) => {
+          setFirstName(result.data.firstName);
+          setLastName(result.data.lastName);
+          setMobile(result.data.phone);
+          setEmail(result.data.email);
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
+  };
+
+  const getUserProfileData = () => {
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/user/profileData/${userId}`)
+        .then((result) => {
+          if (result.data.profilePic) {
+            setFatharName(result.data.fatherName);
+            setMotherName(result.data.motherName);
+            setAddress(result.data.address);
+            setVillage(result.data.village);
+            setTaluk(result.data.taluk);
+            setDistrict(result.data.district);
+            setPinCode(result.data.pinCode);
+            setCurrentPhoto(result.data.profilePic);
+          }
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
+  };
+
+  const getUserServices = () => {
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/user/dashboard/services/${userId}`)
+        .then((result) => {
+          setServices(result.data);
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
+  };
+
+  const getUserTenders = () => {
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/user/dashboard/tenders/${userId}`)
+        .then((result) => {
+          console.log(result);
+          setTenders(result.data);
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
+  };
+
+  const getUserComplaints = () => {
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/user/dashboard/complaints/${userId}`)
+        .then((result) => {
+          setComplaints(result.data);
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
+  };
+
+  const updateProfile = (e) => {
+    if (userId) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("userId", userId);
+      formData.append("fatherName", fatherName);
+      formData.append("motherName", motherName);
+      formData.append("address", address);
+      formData.append("village", village);
+      formData.append("taluk", taluk);
+      formData.append("district", district);
+      formData.append("pinCode", pinCode);
+      formData.append("profilePic", photo);
+      e.preventDefault();
+      axios
+        .post("http://localhost:8080/user/updateProfile", formData)
+        .then((res) => {
+          alert(res.data);
+          document.getElementById("updateProfile-form").reset();
+          getUserProfileData();
+        })
+        .catch((err) => {
+          alert("Error in updating profile");
+          document.getElementById("updateProfile-form").reset();
+        });
+    }
+  };
+
+  const deleteUserComplaint = (id) => {
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/user/dashboard/complaints/delete/${id}`)
+        .then((result) => {
+          alert(result.data);
+          getUserComplaints();
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
   };
 
   useEffect(() => {
     getUsersData();
+    getUserProfileData();
+    getUserServices();
+    getUserTenders();
+    getUserComplaints();
   }, []);
-
-  const updateProfile = (e) => {
-    e.preventDefault();
-    alert("Profile updated.");
-    document.getElementById("updateProfile-form").reset();
-  };
 
   const AccountTab = () => {
     return (
@@ -368,6 +314,7 @@ const UserProfile = () => {
                   name="fatherName"
                   id="fatherName"
                   placeholder="Father Name"
+                  defaultValue={fatherName}
                   className="text-lg border border-slate-300 shadow-sm rounded focus:border-orange-200 pl-1 py-1 outline-none"
                   required
                   onChange={(e) => setFatharName(e.target.value)}
@@ -390,6 +337,7 @@ const UserProfile = () => {
                   type="text"
                   name="address"
                   id="address"
+                  defaultValue={address}
                   placeholder="Address"
                   className="text-lg border border-slate-300 shadow-sm rounded focus:border-orange-200 pl-1 py-1 outline-none"
                   required
@@ -402,6 +350,7 @@ const UserProfile = () => {
                   type="text"
                   name="taluk"
                   id="taluk"
+                  defaultValue={taluk}
                   placeholder="Taluk"
                   className="text-lg border border-slate-300 shadow-sm rounded focus:border-orange-200 pl-1 py-1 outline-none"
                   required
@@ -414,6 +363,7 @@ const UserProfile = () => {
                   type="number"
                   name="pinCode"
                   id="pinCode"
+                  defaultValue={pinCode}
                   placeholder="Pin Code"
                   className="text-lg border border-slate-300 shadow-sm rounded focus:border-orange-200 pl-1 py-1 outline-none"
                   required
@@ -439,6 +389,7 @@ const UserProfile = () => {
                   type="text"
                   name="motherName"
                   id="motherName"
+                  defaultValue={motherName}
                   placeholder="Mother Name"
                   className="text-lg border border-slate-300 shadow-sm rounded focus:border-orange-200 pl-1 py-1 outline-none"
                   required
@@ -462,6 +413,7 @@ const UserProfile = () => {
                   type="text"
                   name="village"
                   id="village"
+                  defaultValue={village}
                   placeholder="Village"
                   className="text-lg border border-slate-300 shadow-sm rounded focus:border-orange-200 pl-1 py-1 outline-none"
                   required
@@ -474,6 +426,7 @@ const UserProfile = () => {
                   type="text"
                   name="district"
                   id="district"
+                  defaultValue={district}
                   placeholder="District"
                   className="text-lg border border-slate-300 shadow-sm rounded focus:border-orange-200 pl-1 py-1 outline-none"
                   required
@@ -481,14 +434,14 @@ const UserProfile = () => {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <label htmlFor="profile">Photo</label>
+                <label htmlFor="profilePic">Photo</label>
                 <input
                   type="file"
-                  name="profile"
-                  id="profile"
+                  name="profilePic"
+                  id="profilePic"
                   className="text-lg pl-2 outline-none"
                   required
-                  onChange={(e) => setPhoto(e.target.value)}
+                  onChange={(e) => setPhoto(e.target.files[0])}
                 />
               </div>
             </div>
@@ -521,33 +474,41 @@ const UserProfile = () => {
             </tr>
           </thead>
           <tbody>
-            {Services.map((service, index) => (
+            {services.map((service, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  {service.title.length > 20
-                    ? service.title.substring(0, 20) + "..."
-                    : service.title}
+                  {service.service.name.length > 30
+                    ? service.service.name.substring(0, 30) + "..."
+                    : service.service.name}
                 </td>
-                <td>{service.appNo}</td>
-                <td>{service.date}</td>
+                <td>{service.data._id.slice(-17)}</td>
+                <td>{service.data.createdAt.split("T")[0]}</td>
                 <td>
                   <h3
                     className={
-                      service.status === "Delivered"
+                      service.data.status === "completed"
                         ? "w-28 mx-auto rounded bg-green-500 text-white py-1"
-                        : service.status === "Applied"
+                        : service.data.status === "applied"
                         ? "w-28 mx-auto rounded bg-blue-500 text-white py-1"
                         : "w-28 mx-auto rounded bg-yellow-500 text-white py-1"
                     }
                   >
-                    {service.status}
+                    {service.data.status[0].toUpperCase() +
+                      service.data.status.slice(1)}
                   </h3>
                 </td>
-                <td>{service.remarks}</td>
+                <td>NA</td>
                 <td>
-                  {service.status === "Delivered" ? (
-                    <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                  {service.data.status === "completed" ? (
+                    <a
+                      href={service.certificate}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                    </a>
                   ) : (
                     "NA"
                   )}
@@ -577,33 +538,41 @@ const UserProfile = () => {
             </tr>
           </thead>
           <tbody>
-            {Tenders.map((tender, index) => (
+            {tenders.map((tender, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  {tender.title.length > 20
-                    ? tender.title.substring(0, 20) + "..."
-                    : tender.title}
+                  {tender.tender.title.length > 20
+                    ? tender.tender.title.substring(0, 20) + "..."
+                    : tender.tender.title}
                 </td>
-                <td>{tender.refNo}</td>
-                <td>{tender.date}</td>
+                <td>{tender.data.tender.slice(-15)}</td>
+                <td>{tender.data.createdAt.split("T")[0]}</td>
                 <td>
                   <h3
                     className={
-                      tender.status === "Accepted"
+                      tender.data.status === "accepted"
                         ? "w-28 mx-auto rounded bg-green-500 text-white py-1"
-                        : tender.status === "Applied"
+                        : tender.data.status === "applied"
                         ? "w-28 mx-auto rounded bg-blue-500 text-white py-1"
                         : "w-28 mx-auto rounded bg-red-500 text-white py-1"
                     }
                   >
-                    {tender.status}
+                    {tender.data.status[0].toUpperCase() +
+                      tender.data.status.slice(1)}
                   </h3>
                 </td>
-                <td>{tender.remark}</td>
+                <td>NA</td>
                 <td>
-                  {tender.status === "Accepted" ? (
-                    <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                  {tender.status === "accepted" ? (
+                    <a
+                      href={tender.document}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                    </a>
                   ) : (
                     "NA"
                   )}
@@ -674,7 +643,14 @@ const UserProfile = () => {
                 <td>{payment.date}</td>
                 <td>
                   {payment.status === "Paid" ? (
-                    <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                    <a
+                      href={payment.receipt}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                    </a>
                   ) : (
                     "NA"
                   )}
@@ -695,7 +671,7 @@ const UserProfile = () => {
           <thead>
             <tr>
               <th>Sl.No</th>
-              <th>Complaint ID</th>
+              <th>ComplaintID</th>
               <th>Issue</th>
               <th>Date</th>
               <th>Priority</th>
@@ -705,12 +681,12 @@ const UserProfile = () => {
             </tr>
           </thead>
           <tbody>
-            {Complaints.map((complaint, index) => (
+            {complaints.map((complaint, index) => (
               <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{complaint.ID}</td>
-                <td>{complaint.issue}</td>
-                <td>{complaint.date}</td>
+                <td className="w-4">{index + 1}</td>
+                <td>{complaint._id.slice(-12)}</td>
+                <td>{complaint.description}</td>
+                <td className="w-32">{complaint.createdAt.split("T")[0]}</td>
                 <td>
                   <h3
                     className={
@@ -724,18 +700,28 @@ const UserProfile = () => {
                     {complaint.priority}
                   </h3>
                 </td>
-                <td>{complaint.status}</td>
-                <td>{complaint.remark}</td>
+                <td>
+                  <h2
+                    className={
+                      complaint.status === "Solved"
+                        ? "w-20 py-1 m-auto bg-green-500 rounded text-white"
+                        : complaint.status === "Processing"
+                        ? "w-24 py-1 m-auto bg-yellow-500 rounded text-white"
+                        : complaint.status === "Rejected"
+                        ? "w-20 py-1 m-auto bg-red-500 rounded text-white"
+                        : "w-20 py-1 m-auto bg-blue-500 rounded text-white"
+                    }
+                  >
+                    {complaint.status}
+                  </h2>
+                </td>
+                <td>{complaint.remarks}</td>
                 <td>
                   <button
-                    className={
-                      withdrawn === index
-                        ? "px-2 py-1 bg-pink-700 rounded text-white"
-                        : "px-2 py-1 bg-pink-500 rounded text-white"
-                    }
-                    onClick={(e) => setWithdrawn(index)}
+                    className="px-2 py-1 bg-red-700 rounded text-white"
+                    onClick={(e) => deleteUserComplaint(complaint._id)}
                   >
-                    {withdrawn === index ? "Withdrawn" : "Withdraw"}
+                    Delete
                   </button>
                 </td>
               </tr>
@@ -798,7 +784,7 @@ const UserProfile = () => {
               <h3>New Service/Scheme Alerts</h3>
               <Switch
                 checked={checked}
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 onColor="#2563eb"
                 onHandleColor="#2693e6"
                 handleDiameter={30}
@@ -810,7 +796,7 @@ const UserProfile = () => {
               <h3>Application Status Updates</h3>
               <Switch
                 checked={checked}
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 onColor="#2563eb"
                 onHandleColor="#2693e6"
                 handleDiameter={30}
@@ -822,7 +808,7 @@ const UserProfile = () => {
               <h3>Bill/Tax Payment Remainders</h3>
               <Switch
                 checked={checked}
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 onColor="#2563eb"
                 onHandleColor="#2693e6"
                 handleDiameter={30}
@@ -834,7 +820,7 @@ const UserProfile = () => {
               <h3>Event Alerts</h3>
               <Switch
                 checked={checked}
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 onColor="#2563eb"
                 onHandleColor="#2693e6"
                 handleDiameter={30}
@@ -848,7 +834,7 @@ const UserProfile = () => {
             <div className="flex items-center justify-between">
               <h3>Call</h3>
               <Switch
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 checked={checked}
                 onHandleColor="#22c55e"
                 handleDiameter={30}
@@ -859,7 +845,7 @@ const UserProfile = () => {
             <div className="flex items-center justify-between">
               <h3>SMS</h3>
               <Switch
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 checked={checked}
                 onHandleColor="#22c55e"
                 handleDiameter={30}
@@ -870,7 +856,7 @@ const UserProfile = () => {
             <div className="flex items-center justify-between">
               <h3>Email</h3>
               <Switch
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 checked={checked}
                 onHandleColor="#22c55e"
                 handleDiameter={30}
@@ -881,7 +867,7 @@ const UserProfile = () => {
             <div className="flex items-center justify-between">
               <h3>Whatsapp</h3>
               <Switch
-                onChange={handleChange}
+                onChange={(nextChecked) => setChecked(nextChecked)}
                 checked={checked}
                 onHandleColor="#22c55e"
                 handleDiameter={30}
@@ -908,9 +894,13 @@ const UserProfile = () => {
         <div className="w-1/5 border-r border-gray-300 py-10">
           <div className="flex flex-col gap-5">
             <img
-              src="https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg"
+              src={
+                currentPhoto
+                  ? currentPhoto
+                  : "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
+              }
               alt="profile"
-              className="w-60 m-auto object-cover"
+              className="w-60 h-60 m-auto object-cover"
               style={{
                 borderRadius: "20rem",
               }}
