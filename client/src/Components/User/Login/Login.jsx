@@ -52,59 +52,55 @@ const Login = () => {
             className="w-full h-full"
           />
         </div>
-        <div
-          className="flex flex-col items-center justify-center bg-sky-500 rounded-3xl"
-          style={formStyle}
+        <form
+          className="flex flex-col w-[40rem] h-[37rem] justify-center bg-sky-500 rounded-3xl gap-8 text-white font-semibold px-44"
+          onSubmit={(e) => login(e)}
         >
-          <h1 className="font-bold text-4xl text-black">Login</h1>
-          <form
-            className="flex flex-col justify-center gap-8 text-white font-semibold my-5"
-            onSubmit={login}
+          <h1 className="font-bold text-4xl text-black text-center">Login</h1>
+          <div className="flex items-center justify-between">
+            <label htmlFor="usernamme">Username:</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Mobile No"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="flex mx-auto gap-3">
+            <label htmlFor="remember">Remember me</label>
+            <input type="checkbox" name="remember" id="remember" />
+          </div>
+          <button
+            type="submit"
+            className="mx-auto bg-blue-700 py-1 px-3 rounded hover:bg-blue-900 focus:ring ring-blue-700"
           >
-            <div className="flex items-center justify-center gap-3">
-              <label htmlFor="usernamme">Username:</label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Mobile No"
-                className="text-black"
-                required
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-center gap-4">
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="text-black"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col items-center justify-center gap-4">
-              <div className="flex items-center justify-center gap-4">
-                <label htmlFor="remember">Remember me</label>
-                <input type="checkbox" name="remember" id="remember" />
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-700 py-1 px-3 rounded hover:bg-blue-900 focus:ring ring-blue-700"
-              >
-                Login
-              </button>
-              <div className="flex items-center justify-center gap-4">
-                <Link to="#">Forgot Password..!?</Link>
-              </div>
-              <div className="flex items-center justify-center gap-4">
-                New User..!? <Link to="/user/signup">SignUp</Link>
-              </div>
-            </div>
-          </form>
-        </div>
+            Login
+          </button>
+          <Link to="#" className="text-center">
+            Forgot Password..!?
+          </Link>
+          <h3 className="text-center">
+            New User..!?{" "}
+            <Link to="/user/signup" className="font-semibold text-lg">
+              Signup
+            </Link>
+          </h3>
+        </form>
         <div>
           <img
             src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/tree.png"

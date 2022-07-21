@@ -31,12 +31,11 @@ const VillageCarousals = () => {
     <>
       <Slider {...settings}>
         {carousalImages.map((images, index) => (
-          <div className="w-full px-2 pt-3" key={index}>
+          <div className="w-full px-2 pt-3 outline-none" key={index}>
             <img
               src={images}
               alt="carousalImages"
-              className="w-full rounded-md shadow-lg object-cover"
-              style={{ height: "35rem" }}
+              className="w-full h-[35rem] rounded object-cover"
             />
           </div>
         ))}

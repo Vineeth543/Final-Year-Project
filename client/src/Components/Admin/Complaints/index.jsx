@@ -5,11 +5,12 @@ import axios from "axios";
 const AdminComplaints = () => {
   const [complaints, setComplaints] = useState([]);
   const url = useLocation().pathname;
-  const status = ["New", "Processing", "Solved", "Rejected"];
+  const statusTab = ["New", "Processing", "Resolved", "Rejected"];
+  console.log(url.split("/")[3]);
 
-  const getComplaintsData = (e) => {
+  const getComplaintsData = (status) => {
     axios
-      .get(`http://localhost:8080/official/complaints`)
+      .get(`http://localhost:8080/official/complaints/${status}`)
       .then((res) => {
         setComplaints(res.data);
       })
@@ -19,7 +20,7 @@ const AdminComplaints = () => {
   };
 
   useEffect(() => {
-    getComplaintsData();
+    getComplaintsData(url.split("/")[3]);
   }, []);
 
   const sendResponse = (e, id) => {
@@ -41,19 +42,35 @@ const AdminComplaints = () => {
     }
   };
 
+  const handleStatusChange = (id, status) => {
+    axios
+      .post(`http://localhost:8080/official/complaints/update`, {
+        id: id,
+        status: status,
+      })
+      .then((res) => {
+        alert(res.data);
+        getComplaintsData("New");
+      })
+      .catch((err) => {
+        alert("Error in updating status.");
+      });
+  };
+
   return (
     <>
       <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
         User Complaints List
       </h1>
       <div className="flex bg-sky-500 gap-16 p-2 font-bold text-2xl shadow-md shadow-sky-400 mx-12 rounded">
-        {status.map((item, index) => (
-          <Link to={`/admin/complaints/${item.toLowerCase()}`} key={index}>
+        {statusTab.map((item, index) => (
+          <Link to={`/admin/complaints/${item}`} key={index}>
             <h3
               className={`cursor-pointer p-2 rounded ${
-                url.includes("/admin/complaints/" + item.toLowerCase()) &&
+                url.includes("/admin/complaints/" + item) &&
                 "bg-black text-white"
               } `}
+              onClick={() => getComplaintsData(item)}
             >
               {item}
             </h3>
@@ -135,9 +152,30 @@ const AdminComplaints = () => {
                     {complaint.status}
                   </h2>
                   <div className="dropdown-content">
-                    <h2 className="bg-yellow-500 cursor-pointer">Processing</h2>
-                    <h2 className="bg-green-500 cursor-pointer">Solved</h2>
-                    <h2 className="bg-red-500 cursor-pointer">Rejected</h2>
+                    <h2
+                      className="bg-yellow-500 cursor-pointer"
+                      onClick={(e) =>
+                        handleStatusChange(complaint._id, "Processing")
+                      }
+                    >
+                      Processing
+                    </h2>
+                    <h2
+                      className="bg-green-500 cursor-pointer"
+                      onClick={(e) =>
+                        handleStatusChange(complaint._id, "Resolved")
+                      }
+                    >
+                      Solved
+                    </h2>
+                    <h2
+                      className="bg-red-500 cursor-pointer"
+                      onClick={(e) =>
+                        handleStatusChange(complaint._id, "Rejected")
+                      }
+                    >
+                      Rejected
+                    </h2>
                   </div>
                 </div>
               </td>
@@ -149,10 +187,9 @@ const AdminComplaints = () => {
                   className="px-2 py-1 bg-orange-500 rounded"
                   type="submit"
                   onClick={(e) => sendResponse(e, complaint._id)}
+                  // disabled={complaint.status === "NA" ? true : false}
                 >
-                  {complaint.remarks === "NA"
-                    ? "Respond"
-                    : "Responded"}
+                  {complaint.remarks === "NA" ? "Respond" : "Responded"}
                 </button>
               </td>
             </tr>

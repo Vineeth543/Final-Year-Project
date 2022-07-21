@@ -59,7 +59,7 @@ const Signup = () => {
 
   return (
     <>
-      <div className="flex align-items items-center justify-center mt-10 gap-40">
+      <div className="flex items-center justify-center mt-10 gap-40">
         <div>
           <img
             src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/water.png"
@@ -67,133 +67,131 @@ const Signup = () => {
             className="w-full h-full"
           />
         </div>
-        <div
-          className="flex flex-col items-center justify-center bg-sky-500 rounded-3xl"
-          style={formStyle}
+        <form
+          className="flex flex-col w-[40rem] h-[37rem] bg-sky-500 rounded-3xl gap-8 text-white font-semibold px-36 py-4"
+          onSubmit={Signup}
         >
-          <h1 className="font-bold text-4xl text-black">SignUp</h1>
-          <form
-            className="flex flex-col justify-center gap-8 text-white font-semibold my-5"
-            onSubmit={Signup}
-          >
-            <div className="flex items-center justify-start gap-6">
-              <label htmlFor="firstName">First Name:</label>
+          <h1 className="font-bold text-4xl text-black text-center">SignUp</h1>
+          <div className="flex justify-between">
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              placeholder="First Name"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="lastName">Last name:</label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              placeholder="Last name"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="gender">Gender:</label>
+            <div className="flex items-center justify-center gap-2">
               <input
-                type="text"
-                name="firstName"
-                id="firstName"
-                placeholder="First Name"
-                className="text-black"
+                type="radio"
+                value="male"
+                id="male"
+                name="gender"
                 required
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) => setGender(e.target.value)}
               />
-            </div>
-            <div className="flex items-center justify-start gap-6">
-              <label htmlFor="lastName">Last name:</label>
+              Male
               <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                placeholder="Last name"
-                className="text-black"
+                type="radio"
+                value="female"
+                id="female"
+                name="gender"
                 required
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e) => setGender(e.target.value)}
               />
-            </div>
-            <div className="flex items-center justify-start gap-8">
-              <label htmlFor="gender">Gender:</label>
-              <div className="flex items-center justify-center gap-2">
-                <input
-                  type="radio"
-                  value="male"
-                  id="male"
-                  name="gender"
-                  required
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                Male
-                <input
-                  type="radio"
-                  value="female"
-                  id="female"
-                  name="gender"
-                  required
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                Female
-                <input
-                  type="radio"
-                  value="other"
-                  id="other"
-                  name="gender"
-                  required
-                  onChange={(e) => setGender(e.target.value)}
-                />
-                Other
-              </div>
-            </div>
-            <div className="flex items-center justify-start gap-12">
-              <label htmlFor="email">Email:</label>
+              Female
               <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                className="text-black"
+                type="radio"
+                value="other"
+                id="other"
+                name="gender"
                 required
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setGender(e.target.value)}
               />
+              Other
             </div>
-            <div className="flex items-center justify-start gap-3">
-              <label htmlFor="mobile">Mobile No:</label>
-              <input
-                type="number"
-                name="phone"
-                id="phone"
-                placeholder="Mobile No"
-                className="text-black"
-                required
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-start gap-5">
-              <label htmlFor="password">Password:</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Password"
-                className="text-black"
-                required
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-start gap-4">
-              <label htmlFor="confirmPassword">Confirm Password:</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Confirm Password"
-                className="text-black"
-                required
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center justify-center gap-4">
-              Already Have Account..!?
-              <Link to="/user/login" className="font-semibold text-lg">
-                Signin
-              </Link>
-            </div>
-            <button
-              type="submit"
-              className="m-auto bg-blue-700 py-1 px-3 rounded hover:bg-blue-900 focus:ring ring-blue-700"
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="mobile">Mobile No:</label>
+            <input
+              type="number"
+              name="phone"
+              id="phone"
+              placeholder="Mobile No"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="flex justify-between">
+            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              className="text-black pl-1 rounded outline-none border border-gray-300 focus:border-orange-400"
+              required
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <h3 className="text-center">
+            Already Have Account..!?{" "}
+            <Link
+              to="/user/login"
+              className="font-semibold text-lg"
             >
-              Signup
-            </button>
-          </form>
-        </div>
+              Login
+            </Link>
+          </h3>
+          <button
+            type="submit"
+            className="m-auto bg-blue-700 py-1 px-3 rounded hover:bg-blue-900 focus:ring ring-blue-700"
+          >
+            Signup
+          </button>
+        </form>
         <div>
           <img
             src="https://raw.githubusercontent.com/Vineeth543/Project-Images/main/tree.png"
@@ -202,7 +200,7 @@ const Signup = () => {
           />
         </div>
       </div>
-      <div className="flex h-16 align-items items-center justify-center mt-14">
+      <div className="flex h-16 items-center justify-center mt-14">
         <h1 className="flex justify-center items-center w-full h-full bg-yellow-500 rounded-tl-xl rounded-tr-xl font-semibold text-xl text-center border">
           Notification
         </h1>
@@ -213,7 +211,7 @@ const Signup = () => {
           Awards
         </h1>
       </div>
-      <div className="flex flex-col h-40 align-items items-center justify-center border">
+      <div className="flex flex-col h-40 items-center justify-center border">
         <FcEmptyBattery className="w-fll h-full text-6xl" />
         <h1>No Data</h1>
       </div>

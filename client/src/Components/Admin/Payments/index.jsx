@@ -5,13 +5,12 @@ const AdminPayments = () => {
   const [payments, setPayments] = useState([]);
 
   const paymentMethods = {
-    card: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/800px-Visa_Inc._logo.svg.png",
-    mastercard:
+    Visa: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/800px-Visa_Inc._logo.svg.png",
+    MasterCard:
       "https://cdn.icon-icons.com/icons2/2341/PNG/512/mastercard_payment_method_card_icon_142734.png",
-    upi: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/120px-Paytm_Logo_%28standalone%29.svg.png",
-    amex: "https://1000logos.net/wp-content/uploads/2016/10/American-Express-logo-700x394.png",
-    gpay: "https://upload.wikimedia.org/wikipedia/commons/1/13/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg",
-    phonepe: "https://cdn.worldvectorlogo.com/logos/phonepe-1.svg",
+    upi: "https://raw.githubusercontent.com/Vineeth543/Project-Images/52cfe2f6c3b6509f1846c3a4baf98c4424086f95/upi.svg",
+    RuPay:
+      "https://raw.githubusercontent.com/Vineeth543/Project-Images/7b3c3c784f0d20d1956202bc797b5fda2a8e5801/rupay-logo.svg",
   };
 
   const timeConverter = (unixTimeStamp) => {
@@ -80,7 +79,11 @@ const AdminPayments = () => {
           {payments.map((payment, index) => (
             <tr key={index} className="hover:border-2 border-blue-400">
               <td className="text-center">{index + 1}</td>
-              <td className="text-center">{payment.email}</td>
+              {payment.card ? (
+                <td className="text-center">{payment.card.name}</td>
+              ) : (
+                <td className="text-center">{payment.email}</td>
+              )}
               <td className="flex items-center justify-center gap-2">
                 <img
                   src={
@@ -113,9 +116,13 @@ const AdminPayments = () => {
               <td className="text-center">{payment.amount / 100}</td>
               <td>
                 <img
-                  src={paymentMethods[payment.method]}
+                  src={
+                    payment.card
+                      ? paymentMethods[payment.card.network]
+                      : paymentMethods["upi"]
+                  }
                   alt={payment.method}
-                  className="w-12 m-auto"
+                  className="w-12 m-auto object-cover"
                 />
               </td>
               <td className="text-center">{payment.id.split("_")[1]}</td>

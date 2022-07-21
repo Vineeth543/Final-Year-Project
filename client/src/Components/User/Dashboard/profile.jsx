@@ -34,102 +34,58 @@ const UserProfile = () => {
     <MdNotifications className="text-4xl" />,
   ];
 
-  const Payments = [
-    {
-      payment: "Water Bill",
-      amount: "Rs. 500",
-      status: "Paid",
-      ID: "Jq0qAOujJhPj7w",
-      method: "UPI",
-      date: "22-05-2022",
-      receipt:
-        "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    },
-    {
-      payment: "House Tax",
-      amount: "Rs. 500",
-      status: "Failed",
-      ID: "Jq0qAOujJhPj7w",
-      method: "CARD",
-      date: "22-05-2022",
-      receipt: "NA",
-    },
-    {
-      payment: "Water Bill",
-      amount: "Rs. 500",
-      status: "Paid",
-      ID: "Jq0qAOujJhPj7w",
-      method: "UPI",
-      date: "22-05-2022",
-      receipt:
-        "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    },
-    {
-      payment: "House Tax",
-      amount: "Rs. 500",
-      status: "Pending",
-      ID: "Jq0qAOujJhPj7w",
-      method: "UPI",
-      date: "22-05-2022",
-      receipt: "NA",
-    },
-    {
-      payment: "House Tax",
-      amount: "Rs. 500",
-      status: "Pending",
-      ID: "Jq0qAOujJhPj7w",
-      method: "CARD",
-      date: "22-05-2022",
-      receipt: "NA",
-    },
-    {
-      payment: "Water Bill",
-      amount: "Rs. 500",
-      status: "Paid",
-      ID: "Jq0qAOujJhPj7w",
-      method: "UPI",
-      date: "22-05-2022",
-      receipt:
-        "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-    },
-  ];
-
   const paymentMethods = {
-    CARD: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/800px-Visa_Inc._logo.svg.png",
-    mastercard:
+    Visa: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/800px-Visa_Inc._logo.svg.png",
+    MasterCard:
       "https://cdn.icon-icons.com/icons2/2341/PNG/512/mastercard_payment_method_card_icon_142734.png",
-    UPI: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/120px-Paytm_Logo_%28standalone%29.svg.png",
-    amex: "https://1000logos.net/wp-content/uploads/2016/10/American-Express-logo-700x394.png",
-    gpay: "https://upload.wikimedia.org/wikipedia/commons/1/13/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg",
-    phonepe: "https://cdn.worldvectorlogo.com/logos/phonepe-1.svg",
+    upi: "https://raw.githubusercontent.com/Vineeth543/Project-Images/52cfe2f6c3b6509f1846c3a4baf98c4424086f95/upi.svg",
+    RuPay:
+      "https://raw.githubusercontent.com/Vineeth543/Project-Images/7b3c3c784f0d20d1956202bc797b5fda2a8e5801/rupay-logo.svg",
   };
 
   const Notifications = [
     {
-      message: "Your application has been forwarded",
+      message: "Your application is applied successfully",
       date: "22-05-2022",
     },
     {
       message: "Your application has been forwarded",
-      date: "22-05-2022",
+      date: "23-05-2022",
     },
     {
-      message: "Your application has been forwarded",
-      date: "22-05-2022",
-    },
-    {
-      message: "Your application has been forwarded",
-      date: "22-05-2022",
-    },
-    {
-      message: "Your application has been forwarded",
-      date: "22-05-2022",
-    },
-    {
-      message: "Your application has been forwarded",
-      date: "22-05-2022",
+      message: "Your application has been accepted",
+      date: "27-05-2022",
     },
   ];
+
+  const timeConverter = (unixTimeStamp) => {
+    const DATE = new Date(unixTimeStamp * 1000);
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const year = DATE.getFullYear();
+    const month = months[DATE.getMonth()];
+    const date = DATE.getDate();
+    const hour = DATE.getHours() < 10 ? "0" + DATE.getHours() : DATE.getHours();
+    const min =
+      DATE.getMinutes() < 10 ? "0" + DATE.getMinutes() : DATE.getMinutes();
+    const sec =
+      DATE.getSeconds() < 10 ? "0" + DATE.getSeconds() : DATE.getSeconds();
+    const time =
+      date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
+    return time;
+  };
 
   const readNotification = (id) => {
     alert("Notification marked as read.");
@@ -156,6 +112,7 @@ const UserProfile = () => {
   const [services, setServices] = useState([]);
   const [tenders, setTenders] = useState([]);
   const [complaints, setComplaints] = useState([]);
+  const [payments, setPayments] = useState([]);
 
   const getUsersData = () => {
     if (userId) {
@@ -213,7 +170,6 @@ const UserProfile = () => {
       axios
         .get(`http://localhost:8080/user/dashboard/tenders/${userId}`)
         .then((result) => {
-          console.log(result);
           setTenders(result.data);
         })
         .catch((err) => {
@@ -232,6 +188,22 @@ const UserProfile = () => {
         .catch((err) => {
           alert(err.data);
         });
+    }
+  };
+
+  const getUserPayments = async () => {
+    if (userId) {
+      try {
+        const { data } = await axios.post(
+          "http://localhost:8080/user/payments/all"
+        );
+        const Payments = data.data.items.filter(
+          (item) => item.notes.userId === userId
+        );
+        setPayments(Payments);
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
@@ -283,6 +255,7 @@ const UserProfile = () => {
     getUserServices();
     getUserTenders();
     getUserComplaints();
+    getUserPayments();
   }, []);
 
   const AccountTab = () => {
@@ -502,7 +475,7 @@ const UserProfile = () => {
                 <td>
                   {service.data.status === "completed" ? (
                     <a
-                      href={service.certificate}
+                      href={service.data.certificate}
                       download
                       target="_blank"
                       rel="noopener noreferrer"
@@ -564,7 +537,7 @@ const UserProfile = () => {
                 </td>
                 <td>NA</td>
                 <td>
-                  {tender.status === "accepted" ? (
+                  {tender.data.status === "accepted" ? (
                     <a
                       href={tender.document}
                       download
@@ -603,46 +576,54 @@ const UserProfile = () => {
             </tr>
           </thead>
           <tbody>
-            {Payments.map((payment, index) => (
+            {payments.map((payment, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td className="flex items-center justify-center gap-2">
                   <img
                     src={
-                      payment.payment === "Water Bill"
+                      payment.description.split(" ")[1] === "Water Bill"
                         ? "https://www.freepnglogos.com/uploads/water-drop-png/water-drop-png-index-content-uploads-12.png"
                         : "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png"
                     }
                     alt={payment.payment}
                     className="h-8"
                   />
-                  {payment.payment}
+                  {payment.description.substring(0, 10)}
                 </td>
-                <td>{payment.amount}</td>
+                <td>{payment.amount / 100}</td>
                 <td>
                   <h3
                     className={
-                      payment.status === "Paid"
-                        ? "w-20 mx-auto rounded bg-green-500 text-white py-1"
-                        : payment.status === "Failed"
-                        ? "w-20 mx-auto rounded bg-red-500 text-white py-1"
-                        : "w-20 mx-auto rounded bg-yellow-500 text-white py-1"
+                      payment.status === "captured"
+                        ? "w-20 mx-auto rounded bg-green-500 text-black py-1"
+                        : payment.status === "failed"
+                        ? "w-20 mx-auto rounded bg-red-500 text-black py-1"
+                        : "w-20 mx-auto rounded bg-yellow-500 text-black py-1 "
                     }
                   >
-                    {payment.status}
+                    {payment.status === "captured"
+                      ? "Paid"
+                      : payment.status === "failed"
+                      ? "Failed"
+                      : "Pending"}
                   </h3>
                 </td>
-                <td>{payment.ID}</td>
+                <td>{payment.id.split("_")[1]}</td>
                 <td>
                   <img
-                    src={paymentMethods[payment.method]}
+                    src={
+                      payment.card
+                        ? paymentMethods[payment.card.network]
+                        : paymentMethods["upi"]
+                    }
                     alt={payment.method}
                     className="w-12 m-auto"
                   />
                 </td>
-                <td>{payment.date}</td>
+                <td>{timeConverter(payment.created_at)}</td>
                 <td>
-                  {payment.status === "Paid" ? (
+                  {payment.status === "captured" ? (
                     <a
                       href={payment.receipt}
                       download
@@ -896,8 +877,8 @@ const UserProfile = () => {
             <img
               src={
                 currentPhoto
-                  ? currentPhoto
-                  : "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
+                // ? currentPhoto
+                // : "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
               }
               alt="profile"
               className="w-60 h-60 m-auto object-cover"

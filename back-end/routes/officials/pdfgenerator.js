@@ -1,8 +1,9 @@
 const PDFDocument = require("pdfkit");
 
 const express = require("express");
-const appliedService = require("../../models/appliedService");
 var router = express.Router();
+
+const { uploadServiceCertificate } = require("../officials/uploadCertificate");
 
 router.use(express.json());
 const QRCode = require("qrcode");
@@ -32,7 +33,10 @@ router.post("/admin/dashboard/appliedServices/sendCertificate", (req, res) => {
     //let file = { content: "<div><h1>Welcome to html-pdf-node</h1><div><img src='"+doc+"' /></div></div>" };
     let format = fs.readFileSync("./middlewares/income.html").toString();
     format = format.replace("@$headername$@", req.body.serviceName);
-    format = format.replace("@$certificateId$@", "xxxxxx");
+    format = format.replace(
+      "@$certificateId$@",
+      Math.floor(Math.random() * 1000000)
+    );
     format = format.replace("@$username$@", req.body.name);
     format = format.replace("@$fatherName$@", req.body.fatherName);
     format = format.replace("@$motherName$@", req.body.motherName);
@@ -56,6 +60,8 @@ router.post("/admin/dashboard/appliedServices/sendCertificate", (req, res) => {
           return console.log(err);
         }
         console.log("The file was saved!");
+        const certificate = fs.readFileSync("./Certificates/testFile.pdf");
+        uploadServiceCertificate(certificate, req.body.userId);
       });
       var transporter = nodemailer.createTransport({
         service: "gmail",
@@ -67,8 +73,8 @@ router.post("/admin/dashboard/appliedServices/sendCertificate", (req, res) => {
       var mailOptions = {
         from: "demo28052002@yahoo.com",
         to: req.body.email,
-        subject: "Sending Email using Node.js",
-        text: "That was easy!",
+        subject: "Certficate for your requested service",
+        text: "Congratulations! Your service request has been approved. Please find the attached certificate.",
         attachments: [
           {
             // file on disk as an attachment

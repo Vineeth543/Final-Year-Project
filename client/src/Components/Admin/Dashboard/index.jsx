@@ -114,7 +114,7 @@ const AdminDashboard = () => {
               user._id === items.user
                 ? serviceName.map((service) =>
                     items.service === service._id ? (
-                      <tr key={index}>
+                      <tr key={index} className="text-center">
                         <td>{items.user.toUpperCase()}</td>
                         <td>{user.firstName + " " + user.lastName}</td>
                         <td>

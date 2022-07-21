@@ -30,7 +30,7 @@ const Sidebar = () => {
       src: "https://cdn-icons-png.flaticon.com/512/726/726488.png",
     },
     {
-      title: "Complaints/all",
+      title: "Complaints/New",
       src: "https://cdn-icons-png.flaticon.com/512/792/792152.png",
     },
     {

@@ -1,52 +1,63 @@
 import React, { useEffect, useState } from "react";
+import { TbPlayerTrackNext } from "react-icons/tb";
 import axios from "axios";
 
 const Events = () => {
+  const [pastEvent, setPastEvent] = useState([]);
   const [liveEvent, setLiveEvents] = useState([]);
+  const [upcomingEvent, setUpcomingEvent] = useState([]);
+  const awareness = [
+    "https://www.mohfw.gov.in/assets/images/socialdistancingEnglish_page-0001.png",
+    "https://www.mohfw.gov.in/assets/images/FINAL_14_03_2020_ENg_page-0001.png",
+    "https://www.mohfw.gov.in/assets/images/ProtectivemeasuresEng_page-0001.png",
+    "https://www.mohfw.gov.in/assets/images/Poster_Corona_ad_Eng_page-0001.png",
+  ];
+  const [liveEventLength, setLiveEventLength] = useState(0);
+  const [upcomingEventLength, setUpcomingEventLength] = useState(0);
+  const [pastEventLength, setPastEventLength] = useState(0);
 
   const getLiveEvents = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/live")
       .then((res) => {
-        const tempLiveEvents = [];
-        res.data.forEach((event) => {
-          tempLiveEvents.push(event);
-        });
-        setLiveEvents(tempLiveEvents);
+        if (res.data.length > 3) {
+          setLiveEvents(res.data.slice(0, 3));
+          setLiveEventLength(res.data.length);
+        } else {
+          setLiveEvents(res.data);
+        }
       })
       .catch((err) => {
         alert(err);
       });
   };
-
-  const [upcomingEvent, setUpcomingEvent] = useState([]);
 
   const getUpcomingEvents = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/upcoming")
       .then((res) => {
-        const tempUpcomingEvent = [];
-        res.data.forEach((event) => {
-          tempUpcomingEvent.push(event);
-        });
-        setUpcomingEvent(tempUpcomingEvent);
+        if (res.data.length > 3) {
+          setUpcomingEvent(res.data.slice(0, 3));
+          setUpcomingEventLength(res.data.length);
+        } else {
+          setUpcomingEvent(res.data);
+        }
       })
       .catch((err) => {
         alert(err);
       });
   };
 
-  const [pastEvent, setPastEvent] = useState([]);
-
   const getPastEvents = () => {
     axios
       .get("http://localhost:8080/admin/events/viewEvent/past")
       .then((res) => {
-        const tempUpcomingEvent = [];
-        res.data.forEach((event) => {
-          tempUpcomingEvent.push(event);
-        });
-        setPastEvent(tempUpcomingEvent);
+        if (res.data.length > 3) {
+          setPastEvent(res.data.slice(0, 3));
+          setPastEventLength(res.data.length);
+        } else {
+          setPastEvent(res.data);
+        }
       })
       .catch((err) => {
         alert(err);
@@ -58,13 +69,6 @@ const Events = () => {
     getUpcomingEvents();
     getPastEvents();
   }, []);
-
-  const awareness = [
-    "https://www.mohfw.gov.in/assets/images/socialdistancingEnglish_page-0001.png",
-    "https://www.mohfw.gov.in/assets/images/FINAL_14_03_2020_ENg_page-0001.png",
-    "https://www.mohfw.gov.in/assets/images/ProtectivemeasuresEng_page-0001.png",
-    "https://www.mohfw.gov.in/assets/images/Poster_Corona_ad_Eng_page-0001.png",
-  ];
 
   return (
     <>
@@ -105,55 +109,82 @@ const Events = () => {
           </h1>
         )}
       </div>
+      {liveEventLength > 3 && (
+        <button className="flex items-center gap-2 m-auto bg-red-500 text-white p-2 mt-5 rounded font-semibold cursor-pointer hover:bg-red-700 focus:ring ring-red-300">
+          View More <TbPlayerTrackNext className="text-xl" />
+        </button>
+      )}
       <h1 className="font-semibold text-4xl text-center p-10">
         Upcoming Events
       </h1>
       <div className="flex flex-wrap w-full items-center justify-center gap-5 p-10 border border-gray-100 rounded shadow-2xl">
-        {upcomingEvent.map((items, index) => (
-          <div className="p-10 hover:shadow-2xl bg-gray-900" key={index}>
-            <div className="w-96 h-60">
-              <img
-                src={items.poster}
-                alt={items.name}
-                className="w-full h-60 object-cover"
-              />
+        {upcomingEvent.length !== 0 ? (
+          upcomingEvent.map((items, index) => (
+            <div className="p-10 hover:shadow-2xl bg-gray-900" key={index}>
+              <div className="w-96 h-60">
+                <img
+                  src={items.poster}
+                  alt={items.name}
+                  className="w-full h-60 object-cover"
+                />
+              </div>
+              <div className="flex flex-col mt-3 gap-3 text-lg font-semibold">
+                <h4 className="text-orange-400">{items.name}</h4>
+                <h4 className="text-orange-400">{items.place}</h4>
+                <h4 className="text-white">{items.date}</h4>
+                <button className="bg-orange-400 text-white p-1">
+                  Event Details
+                </button>
+              </div>
             </div>
-            <div className="flex flex-col mt-3 gap-3 text-lg font-semibold">
-              <h4 className="text-orange-400">{items.name}</h4>
-              <h4 className="text-orange-400">{items.place}</h4>
-              <h4 className="text-white">{items.date}</h4>
-              <button className="bg-orange-400 text-white p-1">
-                Event Details
-              </button>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <h1 className="flex items-center justify-center text-gray-500 font-medium text-3xl w-full h-96">
+            No Upcoming Events. ☹️
+          </h1>
+        )}
       </div>
+      {upcomingEventLength > 3 && (
+        <button className="flex items-center gap-2 m-auto bg-red-500 text-white p-2 mt-5 rounded font-semibold cursor-pointer hover:bg-red-700 focus:ring ring-red-300">
+          View More <TbPlayerTrackNext className="text-xl" />
+        </button>
+      )}
       <h1 className="font-semibold text-4xl text-center p-10">Past Events</h1>
       <div className="flex flex-wrap w-full items-center justify-center gap-5 p-10 border border-gray-100 rounded shadow-2xl">
-        {pastEvent.map((items, index) => (
-          <div className="p-10 hover:shadow-2xl bg-sky-900" key={index}>
-            <div className="w-96 h-60">
-              <iframe
-                className="w-full h-full"
-                src={items.link}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+        {pastEvent.length !== 0 ? (
+          pastEvent.map((items, index) => (
+            <div className="p-10 hover:shadow-2xl bg-sky-900" key={index}>
+              <div className="w-96 h-60">
+                <iframe
+                  className="w-full h-full"
+                  src={items.link}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div className="flex flex-col mt-3 gap-3 text-lg font-semibold">
+                <h4 className="text-orange-400">{items.name}</h4>
+                <h4 className="text-orange-400">{items.place}</h4>
+                <h4 className="text-white">{items.date}</h4>
+                <button className="bg-orange-400 text-white p-1">
+                  Event Details
+                </button>
+              </div>
             </div>
-            <div className="flex flex-col mt-3 gap-3 text-lg font-semibold">
-              <h4 className="text-orange-400">{items.name}</h4>
-              <h4 className="text-orange-400">{items.place}</h4>
-              <h4 className="text-white">{items.date}</h4>
-              <button className="bg-orange-400 text-white p-1">
-                Event Details
-              </button>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <h1 className="flex items-center justify-center text-gray-500 font-medium text-3xl w-full h-96">
+            No Past Events. ☹️
+          </h1>
+        )}
       </div>
+      {pastEventLength > 3 && (
+        <button className="flex items-center gap-2 m-auto bg-red-500 text-white p-2 mt-5 rounded font-semibold cursor-pointer hover:bg-red-700 focus:ring ring-red-300">
+          View More <TbPlayerTrackNext className="text-xl" />
+        </button>
+      )}
       <h1 className="font-semibold text-4xl text-center p-10">Awareness</h1>
       <div className="flex justify-center gap-5">
         {awareness.map((items, index) => (

@@ -3,8 +3,8 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const Complaints = () => {
-  const location = useLocation();
-  const tenderId = location.pathname.split("/")[4];
+  const userId = localStorage.getItem("CCPS-userID");
+  const tenderId = useLocation().pathname.split("/")[4];
   const [tenderTitle, setTenderTitle] = useState("");
   const [tendererName, setTendererName] = useState("");
   const [tendererPersonName, setTendererPersonName] = useState("");
@@ -15,26 +15,21 @@ const Complaints = () => {
   const [tendererBidAmount, setTendererBidAmount] = useState("");
 
   const getUsersData = () => {
-    const userId = localStorage.getItem("CCPS-userID");
-    axios
-      .get(`http://localhost:8080/user/details/${userId}`)
-      .then((result) => {
-        if (result.data.firstName) {
+    if (userId) {
+      axios
+        .get(`http://localhost:8080/user/details/${userId}`)
+        .then((result) => {
           setTendererPersonName(
             result.data.firstName + " " + result.data.lastName
           );
           setTendererMobile(result.data.phone);
           setTendererEmail(result.data.email);
-        }
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
   };
-
-  useEffect(() => {
-    getUsersData();
-  }, []);
 
   const tenderDetails = () => {
     axios
@@ -48,30 +43,32 @@ const Complaints = () => {
   };
 
   const applyForTender = (e) => {
-    e.preventDefault();
-    const userId = localStorage.getItem("CCPS-userID");
-    axios
-      .post("http://localhost:8080/user/tenders/apply", {
-        user: userId,
-        tender: tenderId,
-        tendererName: tendererName,
-        contactPerson: tendererPersonName,
-        phone: tendererMobile,
-        email: tendererEmail,
-        fax: tendererFax,
-        address: tendererAddress,
-        bidAmount: tendererBidAmount,
-      })
-      .then((res) => {
-        alert(res.data);
-        document.getElementById("tender-apply-form").reset();
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
+    if (userId) {
+      e.preventDefault();
+      axios
+        .post("http://localhost:8080/user/tenders/apply", {
+          user: userId,
+          tender: tenderId,
+          tendererName: tendererName,
+          contactPerson: tendererPersonName,
+          phone: tendererMobile,
+          email: tendererEmail,
+          fax: tendererFax,
+          address: tendererAddress,
+          bidAmount: tendererBidAmount,
+        })
+        .then((res) => {
+          alert(res.data);
+          document.getElementById("tender-apply-form").reset();
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
+    }
   };
 
   useEffect(() => {
+    getUsersData();
     tenderDetails();
   }, []);
 
@@ -189,12 +186,12 @@ const Complaints = () => {
         </div>
         <button
           className={
-            localStorage.getItem("CCPS-userID")
+            userId
               ? "m-auto text-lg bg-blue-500 py-1 px-2 rounded-md hover:bg-blue-700 hover:text-white focus:ring ring-blue-400"
               : "m-auto text-lg bg-blue-500 py-1 px-2 rounded-md cursor-not-allowed"
           }
           type="submit"
-          disabled={localStorage.getItem("CCPS-userID") ? false : true}
+          disabled={userId ? false : true}
         >
           Submit
         </button>

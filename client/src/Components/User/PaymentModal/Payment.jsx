@@ -1,5 +1,5 @@
+import React, { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
 import axios from "axios";
 
 export default function PaymentModal({
@@ -11,7 +11,7 @@ export default function PaymentModal({
   const closeModal = () => {
     setIsOpen(false);
   };
-
+  const userId = localStorage.getItem("CCPS-userID");
   const [userName, setName] = useState("");
   const [userEmail, setEmail] = useState("");
   const [userPhone, setPhone] = useState("");
@@ -19,10 +19,10 @@ export default function PaymentModal({
   const getUserDetails = () => {
     axios
       .post("http://localhost:8080/user/details", {
-        userId: localStorage.getItem("CCPS-userID"),
+        userId: userId,
       })
       .then((res) => {
-        setName(res.data.name);
+        setName(res.data.firstName + " " + res.data.lastName);
         setEmail(res.data.email);
         setPhone(res.data.phone);
       })
@@ -30,6 +30,10 @@ export default function PaymentModal({
         alert("Error in getting user details");
       });
   };
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
 
   const initwaterBillPayment = (data) => {
     const options = {
@@ -75,6 +79,9 @@ export default function PaymentModal({
       image:
         "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png",
       order_id: data.id,
+      notes: {
+        userId: userId,
+      },
       remember_customer: true,
       prefill: {
         name: userName,
@@ -107,7 +114,6 @@ export default function PaymentModal({
           amount: waterBill > 0 ? waterBill : homeTax,
         }
       );
-      getUserDetails();
       waterBill > 0
         ? initwaterBillPayment(data.data)
         : initHomeTaxPayment(data.data);

@@ -60,6 +60,8 @@ router.post("/user/payments/all", async (req, res) => {
       amount: req.body.amount * 100,
       currency: "INR",
       receipt: crypto.randomBytes(10).toString("hex"),
+      count: 10,
+      "expand[]": "card",
     };
 
     instance.payments.all(options, (error, payment) => {

@@ -3,9 +3,9 @@ const complaint = require("../../../models/complaint");
 var router = express.Router();
 
 // retrieve the comlaints from the database
-router.get("/official/complaints", (req, res) => {
+router.get("/official/complaints/:status", (req, res) => {
   complaint
-    .find()
+    .find({ status: req.params.status })
     .then((doc) => {
       res.send(doc);
     })
@@ -31,6 +31,26 @@ router.post("/official/complaints/response", (req, res) => {
     })
     .catch((err) => {
       res.send("Response sending failed.");
+    });
+});
+
+// update the comlaints status
+router.post("/official/complaints/update", (req, res) => {
+  complaint
+    .findOne({ _id: req.body.id })
+    .then((doc) => {
+      doc.status = req.body.status;
+      doc
+        .save()
+        .then((result) => {
+          res.send("Status updated successfully");
+        })
+        .catch((err) => {
+          res.send("Failed to update the status");
+        });
+    })
+    .catch((err) => {
+      res.send("Failed to update the status outside.");
     });
 });
 

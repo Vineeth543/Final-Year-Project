@@ -23,4 +23,16 @@ function uploadFile(file) {
   return s3.upload(uploadParams).promise();
 }
 
+function uploadCertificateFromDisk(file) {
+  const uploadParams = {
+    Bucket: bucketName,
+    Body: file,
+    Key: Date.now() + "-certificate.pdf",
+    ContentType: file.mimetype,
+  };
+  return s3.upload(uploadParams).promise();
+}
+
+exports.uploadCertificateFromDisk = uploadCertificateFromDisk;
+
 exports.uploadFile = uploadFile;

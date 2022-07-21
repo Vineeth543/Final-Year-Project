@@ -13,8 +13,8 @@ const appliedServiceSchema = new schema(
       ref: "users",
       required: true,
     },
-    userDocuments:{
-        type: Array
+    userDocuments: {
+      type: Array,
     },
     date: {
       type: Date,
@@ -32,6 +32,10 @@ const appliedServiceSchema = new schema(
       type: String,
       enum: ["rejected", "accepted", "completed", "applied"],
       default: "applied",
+    },
+    certificate: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }
