@@ -4,10 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
-  const formStyle = {
-    width: "40rem",
-    height: "35rem",
-  };
   const nav = useNavigate();
 
   const [phone, setPhone] = useState("");

@@ -264,3 +264,8 @@
 .notification tbody tr:nth-of-type(even) {
   background-color: #ecfccb;
 }
+
+.loader {
+  margin: auto;
+  margin-top: 25%;
+}

@@ -13,12 +13,15 @@ import ApplyServiceLayout from "./Layout/ApplyService.Layout";
 import SchemesLayout from "./Layout/Schemes.Layout";
 import SingleSchemeLayout from "./Layout/SingleScheme.Layout";
 import EventsLayout from "./Layout/Events.Layout";
+import MoreEventsLayout from "./Layout/MoreEvents.Layout";
 import TendersLayout from "./Layout/Tenders.Layout";
 import TenderApplyLayout from "./Layout/TenderApply.Layout";
 import ViewTenderLayout from "./Layout/TenderView.Layout";
 import PaymentsLayout from "./Layout/Payments.Layout";
 import ComplaintsLayout from "./Layout/Complaints.Layout";
 import UserProfileLayout from "./Layout/UserProfile.Layout";
+import WaterBillPaymentLayout from "./Layout/WaterBillPayment.Layout";
+import HouseTaxPaymentLayout from "./Layout/HouseTaxPayment.Layout";
 
 // ***************** Officials Login *************************  //
 
@@ -105,6 +108,11 @@ const App = () => {
           element={<ApplyServiceLayout />}
         ></Route>
         <Route path="/user/events" exact element={<EventsLayout />}></Route>
+        <Route
+          path="/user/events/more/:type"
+          exact
+          element={<MoreEventsLayout />}
+        ></Route>
         <Route path="/user/schemes" exact element={<SchemesLayout />}></Route>
         <Route
           path="/user/schemes/view/:id"
@@ -124,9 +132,14 @@ const App = () => {
         ></Route>
         <Route path="/user/payments" exact element={<PaymentsLayout />}></Route>
         <Route
-          path="/user/payments/:for"
+          path="/user/payments/waterbill"
           exact
-          element={<PaymentsLayout />}
+          element={<WaterBillPaymentLayout />}
+        ></Route>
+        <Route
+          path="/user/payments/housetax"
+          exact
+          element={<HouseTaxPaymentLayout />}
         ></Route>
         <Route
           path="/user/complaints"

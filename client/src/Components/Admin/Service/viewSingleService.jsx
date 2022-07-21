@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const AdminViewSingleServices = () => {
+  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [services, setServices] = useState([]);
   const page = useLocation();
@@ -25,6 +27,7 @@ const AdminViewSingleServices = () => {
       .get(`http://localhost:8080/admin/services/view/${serviceID}`)
       .then((res) => {
         setServices(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         alert(err);
@@ -32,6 +35,7 @@ const AdminViewSingleServices = () => {
   };
 
   const deleteService = (id) => {
+    setLoading(true);
     axios
       .put(`http://localhost:8080/admin/services/view/delete`, {
         serviceId: id,
@@ -52,42 +56,54 @@ const AdminViewSingleServices = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
-        {categories.map((category) => {
-          if (category._id === serviceID.split("/")[1]) return category.name;
-          return null;
-        })}
-      </h1>
-      {services.length > 0 ? (
-        <table className="content-table dashboard">
-          <thead>
-            <tr>
-              <th className="text-center">SL.NO</th>
-              <th className="text-center">Service Name</th>
-              <th className="text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {services.map((items, index) => (
-              <tr key={index}>
-                <td className="text-center">{index + 1}</td>
-                <td className="text-center">{items.name}</td>
-                <td className="flex items-center justify-center gap-5">
-                  <button
-                    className="bg-red-500 px-2 rounded text-white"
-                    onClick={(e) => deleteService(items._id)}
-                  >
-                    DELETE
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {loading ? (
+        <MoonLoader
+          color={"blue"}
+          loading={loading}
+          size={50}
+          className="loader"
+        />
       ) : (
-        <h1 className="font-bold text-4xl text-center my-20">
-          No Services Found. ☹️
-        </h1>
+        <>
+          <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-xl shadow-blue-600 mx-12 text-white">
+            {categories.map((category) => {
+              if (category._id === serviceID.split("/")[1])
+                return category.name;
+              return null;
+            })}
+          </h1>
+          {services.length > 0 ? (
+            <table className="content-table dashboard">
+              <thead>
+                <tr>
+                  <th className="text-center">SL.NO</th>
+                  <th className="text-center">Service Name</th>
+                  <th className="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {services.map((items, index) => (
+                  <tr key={index}>
+                    <td className="text-center">{index + 1}</td>
+                    <td className="text-center">{items.name}</td>
+                    <td className="flex items-center justify-center gap-5">
+                      <button
+                        className="bg-red-500 px-2 rounded text-white"
+                        onClick={(e) => deleteService(items._id)}
+                      >
+                        DELETE
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <h1 className="font-bold text-4xl text-center my-20">
+              No Services Found. ☹️
+            </h1>
+          )}
+        </>
       )}
     </>
   );

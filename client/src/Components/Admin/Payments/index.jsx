@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 import axios from "axios";
 
 const AdminPayments = () => {
+  const [loading, setLoading] = useState(true);
   const [payments, setPayments] = useState([]);
 
   const paymentMethods = {
@@ -48,6 +50,7 @@ const AdminPayments = () => {
         "http://localhost:8080/user/payments/all"
       );
       setPayments(data.data.items);
+      setLoading(!loading);
     } catch (error) {
       alert(error);
     }
@@ -59,80 +62,91 @@ const AdminPayments = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
-        Transactions
-      </h1>
-      <table className="content-table">
-        <thead>
-          <tr>
-            <th className="text-center">Sl.No</th>
-            <th className="text-center">User Name</th>
-            <th className="text-center">Payment</th>
-            <th className="text-center">Status</th>
-            <th className="text-center">Amount</th>
-            <th className="text-center">Method</th>
-            <th className="text-center">Transaction ID</th>
-            <th className="text-center">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {payments.map((payment, index) => (
-            <tr key={index} className="hover:border-2 border-blue-400">
-              <td className="text-center">{index + 1}</td>
-              {payment.card ? (
-                <td className="text-center">{payment.card.name}</td>
-              ) : (
-                <td className="text-center">{payment.email}</td>
-              )}
-              <td className="flex items-center justify-center gap-2">
-                <img
-                  src={
-                    payment.description === "Water Bill Submission Amount"
-                      ? "https://www.freepnglogos.com/uploads/water-drop-png/water-drop-png-index-content-uploads-12.png"
-                      : "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png"
-                  }
-                  alt={payment.for}
-                  className="h-8"
-                />
-                {payment.description.substring(0, 10)}
-              </td>
-              <td className="text-center">
-                <h3
-                  className={
-                    payment.status === "captured"
-                      ? "w-20 mx-auto rounded bg-green-500 text-black py-1"
-                      : payment.status === "failed"
-                      ? "w-20 mx-auto rounded bg-red-500 text-black py-1"
-                      : "w-20 mx-auto rounded bg-yellow-500 text-black py-1 "
-                  }
-                >
-                  {payment.status === "captured"
-                    ? "Paid"
-                    : payment.status === "failed"
-                    ? "Failed"
-                    : "Pending"}
-                </h3>
-              </td>
-              <td className="text-center">{payment.amount / 100}</td>
-              <td>
-                <img
-                  src={
-                    payment.card
-                      ? paymentMethods[payment.card.network]
-                      : paymentMethods["upi"]
-                  }
-                  alt={payment.method}
-                  className="w-12 m-auto object-cover"
-                />
-              </td>
-              <td className="text-center">{payment.id.split("_")[1]}</td>
-              <td className="text-center">
-                {timeConverter(payment.created_at)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading ? (
+        <MoonLoader
+          color={"blue"}
+          loading={loading}
+          size={50}
+          className="loader"
+        />
+      ) : (
+        <>
+          <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
+            Transactions
+          </h1>
+          <table className="content-table">
+            <thead>
+              <tr>
+                <th className="text-center">Sl.No</th>
+                <th className="text-center">User Name</th>
+                <th className="text-center">Payment</th>
+                <th className="text-center">Status</th>
+                <th className="text-center">Amount</th>
+                <th className="text-center">Method</th>
+                <th className="text-center">Transaction ID</th>
+                <th className="text-center">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {payments.map((payment, index) => (
+                <tr key={index} className="hover:border-2 border-blue-400">
+                  <td className="text-center">{index + 1}</td>
+                  {payment.card ? (
+                    <td className="text-center">{payment.card.name}</td>
+                  ) : (
+                    <td className="text-center">{payment.email}</td>
+                  )}
+                  <td className="flex items-center justify-center gap-2">
+                    <img
+                      src={
+                        payment.description === "Water Bill Submission Amount"
+                          ? "https://www.freepnglogos.com/uploads/water-drop-png/water-drop-png-index-content-uploads-12.png"
+                          : "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png"
+                      }
+                      alt={payment.for}
+                      className="h-8"
+                    />
+                    {payment.description.substring(0, 10)}
+                  </td>
+                  <td className="text-center">
+                    <h3
+                      className={
+                        payment.status === "captured"
+                          ? "w-20 mx-auto rounded bg-green-500 text-black py-1"
+                          : payment.status === "failed"
+                          ? "w-20 mx-auto rounded bg-red-500 text-black py-1"
+                          : "w-20 mx-auto rounded bg-yellow-500 text-black py-1 "
+                      }
+                    >
+                      {payment.status === "captured"
+                        ? "Paid"
+                        : payment.status === "failed"
+                        ? "Failed"
+                        : "Pending"}
+                    </h3>
+                  </td>
+                  <td className="text-center">{payment.amount / 100}</td>
+                  <td>
+                    <img
+                      src={
+                        payment.card
+                          ? paymentMethods[payment.card.network]
+                          : paymentMethods["upi"]
+                      }
+                      alt={payment.method}
+                      className="w-12 m-auto object-cover"
+                    />
+                  </td>
+                  <td className="text-center">{payment.id.split("_")[1]}</td>
+                  <td className="text-center">
+                    {timeConverter(payment.created_at)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </>
   );
 };

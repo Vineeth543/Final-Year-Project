@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const AdminViewServices = () => {
+  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const page = useLocation();
   const serviceID = page.pathname.replace("/admin/services/view/", "");
@@ -12,6 +14,7 @@ const AdminViewServices = () => {
       .get(`http://localhost:8080/user/services/${serviceID}/`)
       .then((res) => {
         setCategories(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         alert(err);
@@ -75,30 +78,41 @@ const AdminViewServices = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 mx-12 text-white">
-        {mainServiceCategory.map((category) => {
-          if (category.id === serviceID) return category.title;
-          return null;
-        })}
-      </h1>
-      <table className="content-table dashboard">
-        <thead>
-          <tr>
-            <th className="text-center">SL.NO</th>
-            <th className="text-center">Services</th>
-          </tr>
-        </thead>
-        <tbody>
-          {categories.map((items, index) => (
-            <tr key={index}>
-              <td className="text-center">{index + 1}</td>
-              <td className="text-center">
-                <Link to={`${items._id}`}>{items.name}</Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading ? (
+        <MoonLoader
+          color={"blue"}
+          loading={loading}
+          size={50}
+          className="loader"
+        />
+      ) : (
+        <>
+          <h1 className="font-bold text-4xl text-center py-4 rounded bg-blue-800 mx-12 text-white">
+            {mainServiceCategory.map((category) => {
+              if (category.id === serviceID) return category.title;
+              return null;
+            })}
+          </h1>
+          <table className="content-table dashboard">
+            <thead>
+              <tr>
+                <th className="text-center">SL.NO</th>
+                <th className="text-center">Services</th>
+              </tr>
+            </thead>
+            <tbody>
+              {categories.map((items, index) => (
+                <tr key={index}>
+                  <td className="text-center">{index + 1}</td>
+                  <td className="text-center">
+                    <Link to={`${items._id}`}>{items.name}</Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </>
   );
 };

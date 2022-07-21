@@ -1,17 +1,19 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function PaymentModal({
   isOpen,
   setIsOpen,
   waterBill,
-  homeTax,
+  houseTax,
 }) {
   const closeModal = () => {
     setIsOpen(false);
   };
   const userId = localStorage.getItem("CCPS-userID");
+  const nav = useNavigate();
   const [userName, setName] = useState("");
   const [userEmail, setEmail] = useState("");
   const [userPhone, setPhone] = useState("");
@@ -43,7 +45,7 @@ export default function PaymentModal({
       name: "Water Bill Payment",
       description: "Water Bill Submission Amount",
       image:
-        "https://clipart.world/wp-content/uploads/2021/05/Water-Drop-clipart-transparent.png",
+        "https://raw.githubusercontent.com/Vineeth543/Project-Images/main/water-drop-11843.png",
       order_id: data.id,
       remember_customer: true,
       prefill: {
@@ -59,6 +61,7 @@ export default function PaymentModal({
           );
           setIsOpen(false);
           alert("Payment Successful.");
+          nav("/user/payments");
         } catch (error) {
           alert(error);
         }
@@ -72,12 +75,12 @@ export default function PaymentModal({
   const initHomeTaxPayment = (data) => {
     const options = {
       key: "rzp_test_qBHNeycDgsDQcu",
-      amount: homeTax * 100,
+      amount: houseTax * 100,
       currency: "INR",
       name: "House Tax Payment",
       description: "House Tax Submission Amount",
       image:
-        "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png",
+        "https://raw.githubusercontent.com/Vineeth543/Project-Images/main/home.png",
       order_id: data.id,
       notes: {
         userId: userId,
@@ -96,6 +99,7 @@ export default function PaymentModal({
           );
           setIsOpen(false);
           alert("Payment Successful.");
+          nav("/user/payments");
         } catch (error) {
           alert(error);
         }
@@ -111,7 +115,7 @@ export default function PaymentModal({
       const { data } = await axios.post(
         "http://localhost:8080/user/payments/",
         {
-          amount: waterBill > 0 ? waterBill : homeTax,
+          amount: waterBill > 0 ? waterBill : houseTax,
         }
       );
       waterBill > 0
@@ -176,7 +180,7 @@ export default function PaymentModal({
                     className="w-full inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     onClick={launchRazorPay}
                   >
-                    Pay ₹{waterBill > 0 ? waterBill : homeTax}
+                    Pay ₹{waterBill > 0 ? waterBill : houseTax}
                   </button>
                   <button
                     type="button"

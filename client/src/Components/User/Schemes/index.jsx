@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Schemes = () => {
+  const [loading, setLoading] = useState(true);
   const [scheme, setSchemes] = useState([]);
 
   const schemes = [
@@ -72,6 +74,7 @@ const Schemes = () => {
       .get("http://localhost:8080/official/schemes/category")
       .then((res) => {
         setSchemes(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         alert(err.data);
@@ -84,28 +87,39 @@ const Schemes = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center">Schemes</h1>
-      <div className="flex flex-wrap gap-3 justify-between">
-        {scheme.map((scheme, index) => (
-          <Link to={`/user/schemes/view/${scheme._id}`} key={index}>
-            <div
-              className={`flex items-center justify-center gap-4 bg-white hover:border-4 p-10 border-b-4 ${schemes[index].borderColor}`}
-              style={{ width: "22rem" }}
-            >
-              <div className="w-24 h-20">
-                <img
-                  src={schemes[index].image}
-                  alt={scheme.title}
-                  className="w-full h-full"
-                />
-              </div>
-              <h2 className="text-lg font-semibold">
-                {index + 1}.) {scheme.title}
-              </h2>
-            </div>
-          </Link>
-        ))}
-      </div>
+      {loading ? (
+        <MoonLoader
+          color={"blue"}
+          loading={loading}
+          size={50}
+          className="loader"
+        />
+      ) : (
+        <>
+          <h1 className="font-bold text-4xl text-center">Schemes</h1>
+          <div className="flex flex-wrap gap-3 justify-between">
+            {scheme.map((scheme, index) => (
+              <Link to={`/user/schemes/view/${scheme._id}`} key={index}>
+                <div
+                  className={`flex items-center justify-center gap-4 bg-white hover:border-4 p-10 border-b-4 ${schemes[index].borderColor}`}
+                  style={{ width: "22rem" }}
+                >
+                  <div className="w-24 h-20">
+                    <img
+                      src={schemes[index].image}
+                      alt={scheme.title}
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <h2 className="text-lg font-semibold">
+                    {index + 1}.) {scheme.title}
+                  </h2>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };

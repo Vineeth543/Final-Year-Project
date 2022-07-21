@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import MoonLoader from "react-spinners/MoonLoader";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 const AdminServices = () => {
+  const [loading, setLoading] = useState(false);
   const services = [
     {
       id: "62b87ae8be83ec8f10283763",
@@ -56,35 +58,46 @@ const AdminServices = () => {
 
   return (
     <>
-      <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-lg shadow-blue-600 mx-12">
-        <h1 className="font-semibold text-4xl text-white">Services</h1>
-        <Link className="flex w-max" to="/admin/services/add-service">
-          <IoMdAddCircleOutline className="p-2 text-5xl bg-white rounded-tl-lg rounded-bl-lg" />
-          <h2 className="p-2 text-xl font-semibold bg-white rounded-tr-lg rounded-br-lg">
-            New Service
-          </h2>
-        </Link>
-      </div>
-      <table className="content-table dashboard">
-        <thead>
-          <tr>
-            <th className="text-center">SL.NO</th>
-            <th className="text-center">Services Category</th>
-          </tr>
-        </thead>
-        <tbody>
-          {services.map((items, index) => (
-            <tr key={index}>
-              <td className="text-center">{index + 1}</td>
-              <td className="text-center">
-                <Link to={`/admin/services/view/${items.id}`}>
-                  {items.title}
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading ? (
+        <MoonLoader
+          color={"blue"}
+          loading={loading}
+          size={50}
+          className="loader"
+        />
+      ) : (
+        <>
+          <div className="flex flex-col p-4 rounded-lg gap-5 bg-blue-800 shadow-lg shadow-blue-600 mx-12">
+            <h1 className="font-semibold text-4xl text-white">Services</h1>
+            <Link className="flex w-max" to="/admin/services/add-service">
+              <IoMdAddCircleOutline className="p-2 text-5xl bg-white rounded-tl-lg rounded-bl-lg" />
+              <h2 className="p-2 text-xl font-semibold bg-white rounded-tr-lg rounded-br-lg">
+                New Service
+              </h2>
+            </Link>
+          </div>
+          <table className="content-table dashboard">
+            <thead>
+              <tr>
+                <th className="text-center">SL.NO</th>
+                <th className="text-center">Services Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              {services.map((items, index) => (
+                <tr key={index}>
+                  <td className="text-center">{index + 1}</td>
+                  <td className="text-center">
+                    <Link to={`/admin/services/view/${items.id}`}>
+                      {items.title}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </>
   );
 };

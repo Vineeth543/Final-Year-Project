@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 import Switch from "react-switch";
 import { useLocation, Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
@@ -12,6 +13,7 @@ import {
 import axios from "axios";
 
 const UserProfile = () => {
+  const [loading, setLoading] = useState(true);
   const [checked, setChecked] = useState(false);
   const section = useLocation().pathname.split("/")[3];
   const userId = localStorage.getItem("CCPS-userID");
@@ -158,6 +160,7 @@ const UserProfile = () => {
         .get(`http://localhost:8080/user/dashboard/services/${userId}`)
         .then((result) => {
           setServices(result.data);
+          console.log(result.data);
         })
         .catch((err) => {
           alert(err.data);
@@ -201,6 +204,7 @@ const UserProfile = () => {
           (item) => item.notes.userId === userId
         );
         setPayments(Payments);
+        setLoading(false);
       } catch (error) {
         alert(error);
       }
@@ -434,62 +438,70 @@ const UserProfile = () => {
     return (
       <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] shadow-2xl bg-white px-12 py-20">
         <h1 className="font-bold text-5xl">Services Applied</h1>
-        <table className="serviceStatus">
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>Service Name</th>
-              <th>Application No.</th>
-              <th>Applied On</th>
-              <th>Status</th>
-              <th>Remarks</th>
-              <th>Certificate</th>
-            </tr>
-          </thead>
-          <tbody>
-            {services.map((service, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>
-                  {service.service.name.length > 30
-                    ? service.service.name.substring(0, 30) + "..."
-                    : service.service.name}
-                </td>
-                <td>{service.data._id.slice(-17)}</td>
-                <td>{service.data.createdAt.split("T")[0]}</td>
-                <td>
-                  <h3
-                    className={
-                      service.data.status === "completed"
-                        ? "w-28 mx-auto rounded bg-green-500 text-white py-1"
-                        : service.data.status === "applied"
-                        ? "w-28 mx-auto rounded bg-blue-500 text-white py-1"
-                        : "w-28 mx-auto rounded bg-yellow-500 text-white py-1"
-                    }
-                  >
-                    {service.data.status[0].toUpperCase() +
-                      service.data.status.slice(1)}
-                  </h3>
-                </td>
-                <td>NA</td>
-                <td>
-                  {service.data.status === "completed" ? (
-                    <a
-                      href={service.data.certificate}
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaDownload className="text-2xl mx-auto cursor-pointer" />
-                    </a>
-                  ) : (
-                    "NA"
-                  )}
-                </td>
+        {services && services.length > 0 ? (
+          <table className="serviceStatus">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>Service Name</th>
+                <th>Application No.</th>
+                <th>Applied On</th>
+                <th>Status</th>
+                <th>Certificate</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {services.map((service, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>
+                    {service.service !== null
+                      ? service.service.name.length > 30
+                        ? service.service.name.slice(0, 30) + "..."
+                        : service.service.name
+                      : ""}
+                  </td>
+                  <td>{service.data._id.slice(-17)}</td>
+                  <td>{service.data.createdAt.split("T")[0]}</td>
+                  <td>
+                    <h3
+                      className={
+                        service.data.status === "completed"
+                          ? "w-28 mx-auto rounded bg-green-500 text-white py-1"
+                          : service.data.status === "applied"
+                          ? "w-28 mx-auto rounded bg-blue-500 text-white py-1"
+                          : service.data.status === "accepted"
+                          ? "w-28 mx-auto rounded bg-yellow-500 text-white py-1"
+                          : "w-28 mx-auto rounded bg-red-500 text-white py-1"
+                      }
+                    >
+                      {service.data.status[0].toUpperCase() +
+                        service.data.status.slice(1)}
+                    </h3>
+                  </td>
+                  <td>
+                    {service.data.status === "completed" ? (
+                      <a
+                        href={service.data.certificate}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                      </a>
+                    ) : (
+                      "NA"
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h1 className="font-bold text-4xl text-center py-48 border-t border-violet-400 shadow-lg shadow-violet-400">
+            You Haven't Done Any Payments. ☹️
+          </h1>
+        )}
       </div>
     );
   };
@@ -498,62 +510,68 @@ const UserProfile = () => {
     return (
       <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
         <h1 className="font-bold text-5xl">Tender Status</h1>
-        <table className="tenderStatus">
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>Project Title</th>
-              <th>Reference No.</th>
-              <th>Applied On</th>
-              <th>Status</th>
-              <th>Remarks</th>
-              <th>Document</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tenders.map((tender, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>
-                  {tender.tender.title.length > 20
-                    ? tender.tender.title.substring(0, 20) + "..."
-                    : tender.tender.title}
-                </td>
-                <td>{tender.data.tender.slice(-15)}</td>
-                <td>{tender.data.createdAt.split("T")[0]}</td>
-                <td>
-                  <h3
-                    className={
-                      tender.data.status === "accepted"
-                        ? "w-28 mx-auto rounded bg-green-500 text-white py-1"
-                        : tender.data.status === "applied"
-                        ? "w-28 mx-auto rounded bg-blue-500 text-white py-1"
-                        : "w-28 mx-auto rounded bg-red-500 text-white py-1"
-                    }
-                  >
-                    {tender.data.status[0].toUpperCase() +
-                      tender.data.status.slice(1)}
-                  </h3>
-                </td>
-                <td>NA</td>
-                <td>
-                  {tender.data.status === "accepted" ? (
-                    <a
-                      href={tender.document}
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaDownload className="text-2xl mx-auto cursor-pointer" />
-                    </a>
-                  ) : (
-                    "NA"
-                  )}
-                </td>
+        {tenders.length > 0 ? (
+          <table className="tenderStatus">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>Project Title</th>
+                <th>Reference No.</th>
+                <th>Applied On</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Document</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {tenders.map((tender, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>
+                    {tender.tender.title.length > 20
+                      ? tender.tender.title.substring(0, 20) + "..."
+                      : tender.tender.title}
+                  </td>
+                  <td>{tender.data.tender.slice(-15)}</td>
+                  <td>{tender.data.createdAt.split("T")[0]}</td>
+                  <td>
+                    <h3
+                      className={
+                        tender.data.status === "accepted"
+                          ? "w-28 mx-auto rounded bg-green-500 text-white py-1"
+                          : tender.data.status === "applied"
+                          ? "w-28 mx-auto rounded bg-blue-500 text-white py-1"
+                          : "w-28 mx-auto rounded bg-red-500 text-white py-1"
+                      }
+                    >
+                      {tender.data.status[0].toUpperCase() +
+                        tender.data.status.slice(1)}
+                    </h3>
+                  </td>
+                  <td>NA</td>
+                  <td>
+                    {tender.data.status === "accepted" ? (
+                      <a
+                        href={tender.document}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                      </a>
+                    ) : (
+                      "NA"
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h1 className="font-bold text-4xl text-center py-48 border-t border-cyan-400 shadow-lg shadow-cyan-400">
+            You Haven't Applied For Any Tenders. ☹️
+          </h1>
+        )}
       </div>
     );
   };
@@ -562,84 +580,90 @@ const UserProfile = () => {
     return (
       <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
         <h1 className="font-bold text-5xl">Payment History</h1>
-        <table className="paymentStatus">
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>Payment</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Transaction ID</th>
-              <th>Method</th>
-              <th>Date</th>
-              <th>Receipt</th>
-            </tr>
-          </thead>
-          <tbody>
-            {payments.map((payment, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td className="flex items-center justify-center gap-2">
-                  <img
-                    src={
-                      payment.description.split(" ")[1] === "Water Bill"
-                        ? "https://www.freepnglogos.com/uploads/water-drop-png/water-drop-png-index-content-uploads-12.png"
-                        : "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png"
-                    }
-                    alt={payment.payment}
-                    className="h-8"
-                  />
-                  {payment.description.substring(0, 10)}
-                </td>
-                <td>{payment.amount / 100}</td>
-                <td>
-                  <h3
-                    className={
-                      payment.status === "captured"
-                        ? "w-20 mx-auto rounded bg-green-500 text-black py-1"
-                        : payment.status === "failed"
-                        ? "w-20 mx-auto rounded bg-red-500 text-black py-1"
-                        : "w-20 mx-auto rounded bg-yellow-500 text-black py-1 "
-                    }
-                  >
-                    {payment.status === "captured"
-                      ? "Paid"
-                      : payment.status === "failed"
-                      ? "Failed"
-                      : "Pending"}
-                  </h3>
-                </td>
-                <td>{payment.id.split("_")[1]}</td>
-                <td>
-                  <img
-                    src={
-                      payment.card
-                        ? paymentMethods[payment.card.network]
-                        : paymentMethods["upi"]
-                    }
-                    alt={payment.method}
-                    className="w-12 m-auto"
-                  />
-                </td>
-                <td>{timeConverter(payment.created_at)}</td>
-                <td>
-                  {payment.status === "captured" ? (
-                    <a
-                      href={payment.receipt}
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaDownload className="text-2xl mx-auto cursor-pointer" />
-                    </a>
-                  ) : (
-                    "NA"
-                  )}
-                </td>
+        {payments.length > 0 ? (
+          <table className="paymentStatus">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>Payment</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Transaction ID</th>
+                <th>Method</th>
+                <th>Date</th>
+                <th>Receipt</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {payments.map((payment, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td className="flex items-center justify-center gap-2">
+                    <img
+                      src={
+                        payment.description.split(" ")[1] === "Water Bill"
+                          ? "https://www.freepnglogos.com/uploads/water-drop-png/water-drop-png-index-content-uploads-12.png"
+                          : "https://www.freepnglogos.com/uploads/house-png/home-house-icon-34.png"
+                      }
+                      alt={payment.payment}
+                      className="h-8"
+                    />
+                    {payment.description.substring(0, 10)}
+                  </td>
+                  <td>{payment.amount / 100}</td>
+                  <td>
+                    <h3
+                      className={
+                        payment.status === "captured"
+                          ? "w-20 mx-auto rounded bg-green-500 text-black py-1"
+                          : payment.status === "failed"
+                          ? "w-20 mx-auto rounded bg-red-500 text-black py-1"
+                          : "w-20 mx-auto rounded bg-yellow-500 text-black py-1 "
+                      }
+                    >
+                      {payment.status === "captured"
+                        ? "Paid"
+                        : payment.status === "failed"
+                        ? "Failed"
+                        : "Pending"}
+                    </h3>
+                  </td>
+                  <td>{payment.id.split("_")[1]}</td>
+                  <td>
+                    <img
+                      src={
+                        payment.card
+                          ? paymentMethods[payment.card.network]
+                          : paymentMethods["upi"]
+                      }
+                      alt={payment.method}
+                      className="w-12 m-auto"
+                    />
+                  </td>
+                  <td>{timeConverter(payment.created_at)}</td>
+                  <td>
+                    {payment.status === "captured" ? (
+                      <a
+                        href={payment.receipt}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaDownload className="text-2xl mx-auto cursor-pointer" />
+                      </a>
+                    ) : (
+                      "NA"
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h1 className="font-bold text-4xl text-center py-48 border-t border-sky-400 shadow-lg shadow-sky-400">
+            You Haven't Done Any Payments. ☹️
+          </h1>
+        )}
       </div>
     );
   };
@@ -648,67 +672,75 @@ const UserProfile = () => {
     return (
       <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
         <h1 className="font-bold text-5xl">Your Complaints</h1>
-        <table className="complaintStatus">
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>ComplaintID</th>
-              <th>Issue</th>
-              <th>Date</th>
-              <th>Priority</th>
-              <th>Status</th>
-              <th>Remarks</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {complaints.map((complaint, index) => (
-              <tr key={index}>
-                <td className="w-4">{index + 1}</td>
-                <td>{complaint._id.slice(-12)}</td>
-                <td>{complaint.description}</td>
-                <td className="w-32">{complaint.createdAt.split("T")[0]}</td>
-                <td>
-                  <h3
-                    className={
-                      complaint.priority === "Normal"
-                        ? "w-20 mx-auto rounded bg-green-500 text-white py-1"
-                        : complaint.priority === "High"
-                        ? "w-20 mx-auto rounded bg-red-500 text-white py-1"
-                        : "w-20 mx-auto rounded bg-violet-500 text-white py-1"
-                    }
-                  >
-                    {complaint.priority}
-                  </h3>
-                </td>
-                <td>
-                  <h2
-                    className={
-                      complaint.status === "Solved"
-                        ? "w-20 py-1 m-auto bg-green-500 rounded text-white"
-                        : complaint.status === "Processing"
-                        ? "w-24 py-1 m-auto bg-yellow-500 rounded text-white"
-                        : complaint.status === "Rejected"
-                        ? "w-20 py-1 m-auto bg-red-500 rounded text-white"
-                        : "w-20 py-1 m-auto bg-blue-500 rounded text-white"
-                    }
-                  >
-                    {complaint.status}
-                  </h2>
-                </td>
-                <td>{complaint.remarks}</td>
-                <td>
-                  <button
-                    className="px-2 py-1 bg-red-700 rounded text-white"
-                    onClick={(e) => deleteUserComplaint(complaint._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+        {complaints.length > 0 ? (
+          <table className="complaintStatus">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>ComplaintID</th>
+                <th>Issue</th>
+                <th>Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {complaints.map((complaint, index) => (
+                <tr key={index}>
+                  <td className="w-4">{index + 1}</td>
+                  <td>{complaint._id.slice(-12)}</td>
+                  <td>{complaint.description}</td>
+                  <td className="w-32">{complaint.createdAt.split("T")[0]}</td>
+                  <td>
+                    <h3
+                      className={
+                        complaint.priority === "normal"
+                          ? "w-20 mx-auto rounded bg-green-500 text-white py-1"
+                          : complaint.priority === "high"
+                          ? "w-20 mx-auto rounded bg-red-500 text-white py-1"
+                          : "w-20 mx-auto rounded bg-violet-500 text-white py-1"
+                      }
+                    >
+                      {complaint.priority[0].toUpperCase() +
+                        complaint.priority.slice(1)}
+                    </h3>
+                  </td>
+                  <td>
+                    <h2
+                      className={
+                        complaint.status === "resolved"
+                          ? "w-20 py-1 m-auto bg-green-500 rounded text-white"
+                          : complaint.status === "processing"
+                          ? "w-24 py-1 m-auto bg-yellow-500 rounded text-white"
+                          : complaint.status === "rejected"
+                          ? "w-20 py-1 m-auto bg-red-500 rounded text-white"
+                          : "w-20 py-1 m-auto bg-blue-500 rounded text-white"
+                      }
+                    >
+                      {complaint.status[0].toUpperCase() +
+                        complaint.status.slice(1)}
+                    </h2>
+                  </td>
+                  <td>{complaint.remarks}</td>
+                  <td>
+                    <button
+                      className="px-2 py-1 bg-red-700 rounded text-white"
+                      onClick={(e) => deleteUserComplaint(complaint._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h1 className="font-bold text-4xl text-center py-48 border-t border-yellow-400 shadow-lg shadow-yellow-400">
+            You Haven't Raised Any Complaints. ☹️
+          </h1>
+        )}
       </div>
     );
   };
@@ -717,33 +749,39 @@ const UserProfile = () => {
     return (
       <div className="flex flex-col gap-10 border-2 w-5/6 h-[45rem] px-12 shadow-2xl bg-white py-20">
         <h1 className="font-bold text-5xl">Notifications</h1>
-        <table className="notification">
-          <thead>
-            <tr>
-              <th>Sl.No</th>
-              <th>Notification</th>
-              <th>Date</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Notifications.map((notification, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{notification.message}</td>
-                <td>{notification.date}</td>
-                <td>
-                  <button
-                    className="px-2 py-1 bg-red-500 rounded text-white"
-                    onClick={(e) => readNotification(index)}
-                  >
-                    Mark as Read
-                  </button>
-                </td>
+        {Notifications.length > 0 ? (
+          <table className="notification">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>Notification</th>
+                <th>Date</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {Notifications.map((notification, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{notification.message}</td>
+                  <td>{notification.date}</td>
+                  <td>
+                    <button
+                      className="px-2 py-1 bg-red-500 rounded text-white"
+                      onClick={(e) => readNotification(index)}
+                    >
+                      Mark as Read
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h1 className="font-bold text-4xl text-center py-48 border-t border-lime-400 shadow-lg shadow-lime-400">
+            You Don't Have Any New Notifications. ☹️
+          </h1>
+        )}
         <Link
           to={"/user/profile/notifications-customize"}
           className="flex w-fit text-2xl font-semibold p-3 bg-lime-400 rounded hover:bg-lime-600 hover:text-white focus:ring ring-lime-400 outline-none"
@@ -908,13 +946,24 @@ const UserProfile = () => {
           </div>
         </div>
         <div className="flex justify-center w-full py-20">
-          {section === "" || section === "account" ? AccountTab() : null}
-          {section === "services" ? ServiceTab() : null}
-          {section === "tenders" ? TenderTab() : null}
-          {section === "payments" ? PaymentTab() : null}
-          {section === "complaints" ? ComplaintTab() : null}
-          {section === "notifications" ? NotificationTab() : null}
-          {section === "notifications-customize" ? CustomizeTab() : null}
+          {loading ? (
+            <MoonLoader
+              color={"blue"}
+              loading={loading}
+              size={50}
+              className="loader"
+            />
+          ) : (
+            <>
+              {section === "" || section === "account" ? AccountTab() : null}
+              {section === "services" ? ServiceTab() : null}
+              {section === "tenders" ? TenderTab() : null}
+              {section === "payments" ? PaymentTab() : null}
+              {section === "complaints" ? ComplaintTab() : null}
+              {section === "notifications" ? NotificationTab() : null}
+              {section === "notifications-customize" ? CustomizeTab() : null}
+            </>
+          )}
         </div>
       </div>
     </>

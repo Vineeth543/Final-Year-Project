@@ -25,8 +25,8 @@ const complaintSchema = new schema(
     },
     priority: {
       type: String,
-      enum: ["Normal", "Average", "High"],
-      default: "Normal",
+      enum: ["normal", "average", "high"],
+      default: "normal",
     },
     remarks: {
       type: String,
@@ -37,8 +37,8 @@ const complaintSchema = new schema(
     },
     status: {
       type: String,
-      enum: ["New", "Processing", "Resolved", "Rejected"],
-      default: "New",
+      enum: ["new", "processing", "resolved", "rejected"],
+      default: "new",
     },
   },
   { timestamps: true }

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 import { Link } from "react-router-dom";
 
 const Services = () => {
+  const [loading, setLoading] = useState(false);
   const services = [
     {
       id: "62b87ae8be83ec8f10283763",
@@ -91,27 +93,38 @@ const Services = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center">e-Services</h1>
-      <div className="flex flex-wrap gap-10 justify-between">
-        {services.map((items, index) => (
-          <Link to={`/user/services/${items.id}`} key={index}>
-            <div className="flex gap-1 hover:shadow-2xl">
-              <div className="w-32">
-                <img
-                  src={items.image}
-                  alt={items.title}
-                  className={`w-full ${items.bgColor} object-cover`}
-                />
-              </div>
-              <h2
-                className={`flex justify-center items-center w-96 ${items.bgColor} font-semibold text-xl`}
-              >
-                {items.title}
-              </h2>
-            </div>
-          </Link>
-        ))}
-      </div>
+      {loading ? (
+        <MoonLoader
+          color={"blue"}
+          loading={loading}
+          size={50}
+          className="loader"
+        />
+      ) : (
+        <>
+          <h1 className="font-bold text-4xl text-center">e-Services</h1>
+          <div className="flex flex-wrap gap-10 justify-between">
+            {services.map((items, index) => (
+              <Link to={`/user/services/${items.id}`} key={index}>
+                <div className="flex gap-1 hover:shadow-2xl">
+                  <div className="w-32">
+                    <img
+                      src={items.image}
+                      alt={items.title}
+                      className={`w-full ${items.bgColor} object-cover`}
+                    />
+                  </div>
+                  <h2
+                    className={`flex justify-center items-center w-96 ${items.bgColor} font-semibold text-xl`}
+                  >
+                    {items.title}
+                  </h2>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };

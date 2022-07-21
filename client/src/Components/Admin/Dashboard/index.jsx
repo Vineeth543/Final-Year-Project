@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import MoonLoader from "react-spinners/MoonLoader";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const AdminDashboard = () => {
+  const [loading, setLoading] = useState(true);
   const [userAndDate, setUserAndDate] = useState([]);
   const [userName, setUserName] = useState([]);
   const [serviceName, setServiceName] = useState([]);
@@ -14,6 +16,7 @@ const AdminDashboard = () => {
         setUserAndDate(res.data.doc);
         setUserName(res.data.users);
         setServiceName(res.data.services);
+        setLoading(false);
       })
       .catch((err) => {
         alert(err);
@@ -48,6 +51,7 @@ const AdminDashboard = () => {
           .then((re) => {
             alert("Certificate sent successfully");
             loadUserApplications();
+            setLoading(false);
           })
 
           .catch((err) => {
@@ -60,6 +64,7 @@ const AdminDashboard = () => {
   };
 
   const setApprove = (userId, serviceId, userName, userEmail, serviceName) => {
+    setLoading(true);
     axios
       .post(`http://localhost:8080/admin/dashboard/appliedServices/status`, {
         id: serviceId,
@@ -75,6 +80,7 @@ const AdminDashboard = () => {
   };
 
   const setReject = (id) => {
+    setLoading(true);
     axios
       .post(`http://localhost:8080/admin/dashboard/appliedServices/status`, {
         id: id,
@@ -83,6 +89,7 @@ const AdminDashboard = () => {
       .then((res) => {
         alert(res.data);
         loadUserApplications();
+        setLoading(false);
       })
       .catch((err) => {
         alert(err.data);
@@ -95,69 +102,90 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
-        Users Applied for Services
-      </h1>
-      <table className="content-table dashboard">
-        <thead>
-          <tr>
-            <th className="text-center">User ID</th>
-            <th className="text-center">Name</th>
-            <th className="text-center">Service Title</th>
-            <th className="text-center">Applied On</th>
-            <th className="text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {userName.map((user, index) =>
-            userAndDate.map((items) =>
-              user._id === items.user
-                ? serviceName.map((service) =>
-                    items.service === service._id ? (
-                      <tr key={index} className="text-center">
-                        <td>{items.user.toUpperCase()}</td>
-                        <td>{user.firstName + " " + user.lastName}</td>
-                        <td>
-                          {service.name.length > 85
-                            ? service.name.substring(0, 85) + "..."
-                            : service.name}
-                        </td>
-                        <td>{formatDateAndTime(items.date)}</td>
-                        <td className="flex items-center justify-center gap-2">
-                          <Link to={`/admin/dashboard/view-docs/${items._id}`}>
-                            <button className="bg-pink-500 px-2 rounded text-white">
-                              VIEW
-                            </button>
-                          </Link>
-                          <button
-                            className="bg-green-500 px-2 rounded text-white"
-                            onClick={() =>
-                              setApprove(
-                                items.user,
-                                items._id,
-                                user.firstName + " " + user.lastName,
-                                user.email,
-                                service.name
-                              )
-                            }
-                          >
-                            APPROVE
-                          </button>
-                          <button
-                            className="bg-red-400 px-2 rounded text-white"
-                            onClick={() => setReject(items._id)}
-                          >
-                            REJECT
-                          </button>
-                        </td>
-                      </tr>
-                    ) : null
+      {loading ? (
+        <MoonLoader
+          color={"blue"}
+          loading={loading}
+          size={50}
+          className="loader"
+        />
+      ) : (
+        <>
+          <h1 className="font-bold text-4xl text-center p-4 rounded bg-blue-800 shadow-lg shadow-blue-600 mx-12 text-white">
+            Users Applied for Services
+          </h1>
+          {userName.length > 0 &&
+          serviceName.length > 0 &&
+          userAndDate.length > 0 ? (
+            <table className="content-table dashboard">
+              <thead>
+                <tr>
+                  <th className="text-center">User ID</th>
+                  <th className="text-center">Name</th>
+                  <th className="text-center">Service Title</th>
+                  <th className="text-center">Applied On</th>
+                  <th className="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userName.map((user, index) =>
+                  userAndDate.map((items) =>
+                    user._id === items.user
+                      ? serviceName.map((service) =>
+                          items.service === service._id ? (
+                            <tr key={index} className="text-center">
+                              <td>{items.user.toUpperCase()}</td>
+                              <td>{user.firstName + " " + user.lastName}</td>
+                              <td>
+                                {service.name.length > 85
+                                  ? service.name.substring(0, 85) + "..."
+                                  : service.name}
+                              </td>
+                              <td>{formatDateAndTime(items.date)}</td>
+                              <td className="flex items-center justify-center gap-2">
+                                <Link
+                                  to={`/admin/dashboard/view-docs/${items._id}`}
+                                >
+                                  <button className="bg-pink-500 px-2 rounded text-white">
+                                    VIEW
+                                  </button>
+                                </Link>
+                                <button
+                                  className="bg-green-500 px-2 rounded text-white"
+                                  onClick={() =>
+                                    setApprove(
+                                      items.user,
+                                      items._id,
+                                      user.firstName + " " + user.lastName,
+                                      user.email,
+                                      service.name
+                                    )
+                                  }
+                                >
+                                  APPROVE
+                                </button>
+                                <button
+                                  className="bg-red-400 px-2 rounded text-white"
+                                  onClick={() => setReject(items._id)}
+                                >
+                                  REJECT
+                                </button>
+                              </td>
+                            </tr>
+                          ) : null
+                        )
+                      : null
                   )
-                : null
-            )
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <h1 className="font-bold text-4xl text-center my-40">
+              Currently No New User Applications. ☹️
+            </h1>
           )}
-        </tbody>
-      </table>
+        </>
+      )}
     </>
   );
 };
