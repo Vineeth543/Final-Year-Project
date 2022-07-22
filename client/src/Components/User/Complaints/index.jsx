@@ -36,6 +36,7 @@ const Complaints = () => {
   }, []);
 
   const sendComplaint = (e) => {
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData();
     formData.append("userId", userId);
@@ -45,17 +46,17 @@ const Complaints = () => {
     formData.append("description", description);
     formData.append("priority", priority);
     formData.append("complaintFile", image);
-
     axios
       .post("http://localhost:8080/user/complaint/new", formData)
       .then((res) => {
         alert(res.data);
-        document.getElementById("complaint-form").reset();
+        setLoading(false);
       })
       .catch((err) => {
         alert("Error in uploading complaint");
-        document.getElementById("complaint-form").reset();
+        setLoading(false);
       });
+    document.getElementById("complaint-form").reset();
   };
 
   return (

@@ -51,7 +51,6 @@ const AdminDashboard = () => {
           .then((re) => {
             alert("Certificate sent successfully");
             loadUserApplications();
-            setLoading(false);
           })
 
           .catch((err) => {
@@ -64,7 +63,6 @@ const AdminDashboard = () => {
   };
 
   const setApprove = (userId, serviceId, userName, userEmail, serviceName) => {
-    setLoading(true);
     axios
       .post(`http://localhost:8080/admin/dashboard/appliedServices/status`, {
         id: serviceId,

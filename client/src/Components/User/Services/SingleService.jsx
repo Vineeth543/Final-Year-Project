@@ -97,7 +97,7 @@ const SingleService = () => {
           color={"blue"}
           loading={loading}
           size={50}
-          className="loader"
+          className="m-auto my-40"
         />
       ) : (
         <>

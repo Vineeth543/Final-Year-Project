@@ -499,7 +499,7 @@ const UserProfile = () => {
           </table>
         ) : (
           <h1 className="font-bold text-4xl text-center py-48 border-t border-violet-400 shadow-lg shadow-violet-400">
-            You Haven't Done Any Payments. ☹️
+            You Haven't Applied For Any Services. ☹️
           </h1>
         )}
       </div>

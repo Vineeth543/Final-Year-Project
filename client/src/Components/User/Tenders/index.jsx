@@ -61,7 +61,7 @@ const Tenders = () => {
                   <h1 className="text-xl font-semibold">{tender.title}</h1>
                   <div className="flex flex-col text-lg font-medium border-l items-center justify-center py-2 px-4">
                     <p>Tender Reference No:</p>
-                    <p>{tender._id}</p>
+                    <p>{tender._id.toUpperCase()}</p>
                   </div>
                 </div>
                 <div className="text-center grid grid-cols-2 divide-x border-b w-full">

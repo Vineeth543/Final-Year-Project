@@ -148,10 +148,10 @@ const MoreEvents = () => {
         />
       ) : (
         <>
-          <h1 className="font-semibold text-4xl text-center p-10">
+          <h1 className="font-semibold text-4xl text-center">
             {event[0].toUpperCase() + event.slice(1)} Events
           </h1>
-          <div className="flex flex-wrap w-full items-center justify-center gap-5 p-10 border border-gray-100 rounded shadow-2xl">
+          <div className="flex flex-wrap m-auto gap-12 my-6">
             {event === "live" ? LiveEvents() : null}
             {event === "upcoming" ? UpcomingEvents() : null}
             {event === "past" ? PastEvents() : null}
